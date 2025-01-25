@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './components/Signup/Signup';
+import Login from './components/Login/Login';
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import UsherDashboard from "./components/Usher/UserDashboard";
+import NotFound from './components/NotFound';
 
 const App = () => {
-  const [ isChangeColor, setIsChangeColor ] = useState(false);
-
-    //get the changes from the browser
-    useEffect(()=>{
-      const storeColor = localStorage.getItem("isChangeColor");
-      if(storeColor){
-        setIsChangeColor(JSON.parse(storeColor))
-      }
-    },[])
-
-  //set the changes into the browser
-  useEffect(()=>{
-    localStorage.setItem("isChangeColor", JSON.stringify(isChangeColor))
-
-  }, [isChangeColor])
-
-  const handleChangeColor = ()=> {
-    setIsChangeColor(!isChangeColor);
-
-  }
 
   return (
-    <div className={ isChangeColor ? `white-bg` : `dark-bg` }>
-      <h1 className="header" onClick={handleChangeColor}>My App</h1>
+    <div className='app-container'>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Signup />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/usher-dashboard" element={<UsherDashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
