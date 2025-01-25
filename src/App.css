@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(17, 29, 48);
+}
+
+.white-bg{
+  background-color: rgb(183, 211, 255);
+  height: 100vh;
+  flex-grow: 1;
+}
+.dark-bg{
+  background-color: rgb(17, 29, 48);
+  flex-grow: 1;
+  height: 100vh;
+}
+.header{
+  cursor: pointer;
+}
