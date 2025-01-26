@@ -90,3 +90,9 @@ body{
   cursor: pointer;
   margin: 15px 0px;
 }
+
+/* not found css */
+.not-found-outer-container{
+  height: 100vh;
+  background: var(--light-text);
+}

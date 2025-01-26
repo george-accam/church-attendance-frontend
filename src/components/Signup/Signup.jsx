@@ -11,6 +11,7 @@ const initialState = {
 const Signup = () => {
     const [formData, setFormData] = useState(initialState);
 
+    // handles the input values
     const handleInputChange = (e)=>{
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value});
