@@ -14,7 +14,7 @@ const Signup = () => {
     // handles the input values
     const handleInputChange = (e)=>{
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value});
+        setFormData({ ...formData, [name]: value });
     }
 
 return (
@@ -26,7 +26,7 @@ return (
             />
             <div className="outer-container">
                 <div className="inner-container">
-                    <h1 className='container-header'>Register as a new user</h1>
+                    <h1 className='container-header'>Register</h1>
                     <form >
                         <div className="form-group">
                             <label htmlFor="fullName">

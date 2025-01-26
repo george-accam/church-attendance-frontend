@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import UsherDashboard from "./components/Usher/UserDashboard";
 import NotFound from './components/NotFound';
+import LandingPage from './components/LandingPage/LandingPage';
 
 const App = () => {
 
@@ -12,7 +13,8 @@ const App = () => {
     <div className='app-container'>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/usher-dashboard" element={<UsherDashboard />} />
