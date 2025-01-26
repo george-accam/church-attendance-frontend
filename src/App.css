@@ -65,6 +65,12 @@ body{
   cursor: pointer;
   text-decoration: none;
   color: #2a2a72;
+  transition: .5s;
+}
+.navbar-button:hover{
+  background-color: #1818ab;
+  color: var(--light-text);
+  border: 1px solid var(--light-text);
 }
 .navbar-button2{
   margin-left: 30px;
@@ -72,7 +78,7 @@ body{
 
 /* landing page */
 .landing-page-container{
-  height: 100vh;
+  height: auto;
   background: var(--white-bg);
   background-image: linear-gradient(45deg,  rgba(23, 35, 40, 0.637), rgba(23, 35, 40, 0.382), rgba(74, 207, 255, 0.481)), url("./components/assets/landing-page-image1.jpeg");
   background-size: cover;
@@ -90,8 +96,8 @@ body{
   height: 100vh;
 }
 .landing-page-inner{
-  margin: 30px 10px;
-  padding: 100px;
+  margin: 40px 40px 0px 40px;
+  padding: 20px 50px;
   border: 1px solid var(--light-text);
   border-radius: 10px;
   background-color: rgba(23, 35, 40, 0.637);
@@ -100,13 +106,48 @@ body{
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 45px;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .landing-page-title2{
   font-family: 'Courier New', Courier, monospace;
   font-size: 28px;
   text-align: center;
-
+}
+.landing-page-sub-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.sub-image-container1{
+  display: flex;
+  flex-direction: column;
+  margin: 14px;
+}
+.sub-image-container1 img{
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+.sub-image-container1 span{
+  font-size: 18px;
+  text-align: center;
+  background-color: rgba(224, 224, 224, 0.477);
+  color: white;
+  position: relative;
+  top: -29px;
+  padding: 4px;
+  border-radius: 0 0 10px 10px;
+}
+.sub-image-top{
+  margin-bottom: 60px;
+}
+.landing-page-bottom{
+  margin-top: 10px;
+}
+.landing-page-bottom h3{
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
 
