@@ -1,3 +1,5 @@
+import { RxEyeClosed } from "react-icons/rx"; 
+import { RxEyeOpen } from "react-icons/rx"; 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import BgImage from "../assets/christ-embassy.png"
@@ -11,11 +13,16 @@ const initialState = {
 }
 const Signup = () => {
     const [formData, setFormData] = useState(initialState);
+    const[openPassword, setOpenPassword] =  useState(false);
 
     // handles the input values
     const handleInputChange = (e)=>{
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    }
+    // handles the password visibility
+    const handleOpenPassword = ()=>{
+        setOpenPassword(!openPassword);
     }
 
 return (
@@ -64,27 +71,32 @@ return (
                                 placeholder="enter your phone number" 
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="password">
                             <label htmlFor="password">
                                 Password
                             </label>
-                            <input type="password" 
-                                name="password" 
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                placeholder="enter your password" 
-                            />
+                            <div className="password-container">
+                                <input type={openPassword ? "text" : "password" }
+                                    name="password" 
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    placeholder="enter your password" 
+                                />
+                                <div onClick={handleOpenPassword} className="">
+                                        { openPassword ? <RxEyeOpen className="password-icon" /> : <RxEyeClosed className="password-icon" />}
+                                </div>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="confirmPassword">
                                 Confirm Password
                             </label>
-                            <input type="password" 
-                                name="confirmPassword" 
-                                value={formData.confirmPassword}
-                                onChange={handleInputChange}
-                                placeholder="confirm your password" 
-                            />
+                                <input type={openPassword ? "text" : "password" }
+                                    name="confirmPassword" 
+                                    value={formData.confirmPassword}
+                                    onChange={handleInputChange}
+                                    placeholder="confirm your password" 
+                                />
                         </div>
                         <div className="button-container">
                             <button type="submit"
