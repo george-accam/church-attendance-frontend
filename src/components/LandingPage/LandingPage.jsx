@@ -17,31 +17,29 @@ const LandingPage = () => {
                             <h1 className='landing-page-title'>
                                 Welcome to the Church Attendance System!
                             </h1>
-                            <h2 className='landing-page-title2'>
-                                <marquee behavior="scroll" direction="left">
-                                    Effortless attendance tracking and member management at your fingertips.
-                                </marquee>
+                            <h2 className='landing-page-title2 typing'>
+                                Effortless attendance tracking and member management at your fingertips.
                             </h2>
                             <div className="landing-page-sub-image">
                                 <div className="sub-image-container1 sub-image-top">
                                     <img src={LandImg1} alt="" />
-                                    <span>Hello</span>
+                                    <span>Saves time</span>
                                 </div>
                                 <div className="sub-image-container1">
                                     <img src={LandImg2} alt="" />
-                                    <span>Hello</span>
+                                    <span>Accurate records</span>
                                 </div>
                                 <div className="sub-image-container1 sub-image-top">
                                     <img src={LandImg3} alt="" />
-                                    <span>Hello</span>
+                                    <span>Saves effort</span>
                                 </div>
                                 <div className="sub-image-container1">
                                     <img src={LandImg4} alt="" />
-                                    <span>Hello</span>
+                                    <span>Better church planning</span>
                                 </div>
                                 <div className="sub-image-container1 sub-image-top">
                                     <img src={LandImg6} alt="" />
-                                    <span>Hello</span>
+                                    <span> Easy to use</span>
                                 </div>
                             </div>
                                 <div className="landing-page-bottom">

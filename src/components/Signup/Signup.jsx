@@ -20,10 +20,12 @@ const Signup = () => {
 return (
     <div>
         <div className="container-background">
-            <img src={BgImage} 
-            className='background-image'
-            alt="background-image"
-            />
+            <div className="image-container">
+                <img src={BgImage} 
+                className='background-image'
+                alt="background-image"
+                />
+            </div>
             <div className="outer-container">
                 <div className="inner-container">
                     <h1 className='container-header'>Register</h1>
