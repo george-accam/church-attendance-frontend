@@ -180,6 +180,8 @@ body{
 /* signup and login */
 .container-background{
   background-color: var(--white-bg);
+  background-image: url("./components/assets/pattern3.jpg");
+  background-position: center;
   height: 100vh;
   display: flex;
 }
@@ -260,6 +262,43 @@ body{
 .not-found-outer-container{
   height: 100vh;
   background: var(--light-text);
+  background-image: url("./components/assets/pattern3.jpg");
+  background-position: center;
+}
+.not-found-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-content{
+  margin: 180px 20px;
+  display: block;
+  text-align: center;
+  background-color: var(--white-bg);
+  border-radius: 10px;
+  padding: 40px 20px;
+}
+.not-found-content h1{
+  color: red;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+.not-found-content h2{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.not-found-content p{
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.not-found-link{
+  background-color: blue;
+  border: 2px solid rgb(144, 225, 255);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 10px;
+  color: var(--light-text);
+  text-decoration: none;
 }
 
 /* responsiveness css */
