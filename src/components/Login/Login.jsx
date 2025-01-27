@@ -14,15 +14,22 @@ const initialState = {
 const Login = () => {
     const [formData, setFormData] = useState(initialState);
     const [openPassword, setOpenPassword] = useState(false);
+    const [isSwitch, setIsSwitch] = useState(null);
 
     // handles the input values
     const handleInputChange = (e)=>{
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     }
+    // show and close the password
     const handleOpenPassword = () => {
       setOpenPassword(!openPassword);
     }
+    // switches the email and phone number input
+    const handleIsSwitch = ()=>{
+      setIsSwitch(isSwitch === "email" ? "phone" : "email")
+    }
+
 
 return (
     <div>
@@ -37,28 +44,35 @@ return (
                 <div className="inner-container">
                     <h1 className='container-header'>Login</h1>
                     <form >
-                        <div className="form-group">
-                            <label htmlFor="email">
-                                Email
-                            </label>
-                            <input type="email" 
-                                name="email" 
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                placeholder="enter your email" 
-                            />
+                      <div className="">
+                        <div  className="email-phone-container">
+                          <label onClick={handleIsSwitch} htmlFor="email" className={`email-phone ${ isSwitch === "email" ? "email-phone-switch" : ""}`}>
+                            Email
+                          </label>
+                          <label onClick={handleIsSwitch} htmlFor="phone" className={`email-phone ${ isSwitch === "phone" ? "email-phone-switch" : ""}`}>
+                            Phone
+                          </label>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="phoneNumber">
-                                Phone number
-                            </label>
-                            <input type="text" 
-                                name="phoneNumber" 
-                                value={formData.phoneNumber}
-                                onChange={handleInputChange}
-                                placeholder="enter your phone number" 
-                            />
-                        </div>
+                        { isSwitch === "email" ? (
+                          <div className="form-group">
+                              <input type="email" 
+                                  name="email" 
+                                  value={formData.email}
+                                  onChange={handleInputChange}
+                                  placeholder="enter your email" 
+                              />
+                          </div>
+                        ): (
+                          <div className="form-group">
+                              <input type="text" 
+                                  name="phoneNumber" 
+                                  value={formData.phoneNumber}
+                                  onChange={handleInputChange}
+                                  placeholder="enter your phone number" 
+                              />
+                          </div>
+                        )}
+                      </div>
                         <div className="password">
                             <label htmlFor="password">
                                 Password
