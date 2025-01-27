@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BgImage from "../assets/christ-embassy.png"
 
 const initialState = {
@@ -85,11 +86,17 @@ return (
                                 placeholder="confirm your password" 
                             />
                         </div>
-                        <button type="submit"
-                            className='submit-button'
-                        >
-                            complete register
-                        </button>
+                        <div className="button-container">
+                            <button type="submit"
+                                className='submit-button'
+                            >
+                                submit
+                            </button>
+                            <div className="login-link-container">
+                                Already have an account? 
+                                <Link to="/login" className="login-link">Login</Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
