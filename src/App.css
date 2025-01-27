@@ -2,8 +2,14 @@
   margin: 0;
   padding: 0;
 }
+html{
+  font-size: 1.2vw;
+}
 body{
   font-family: "Poppins", sans-serif;
+}
+::-webkit-scrollbar{
+  width: 0%;
 }
 
 :root{
@@ -112,6 +118,7 @@ body{
   font-family: 'Courier New', Courier, monospace;
   font-size: 28px;
   text-align: center;
+  margin-bottom: 20px;
 }
 .typing {
   border-right: .15em solid var(--light-text);
@@ -253,4 +260,123 @@ body{
 .not-found-outer-container{
   height: 100vh;
   background: var(--light-text);
+}
+
+/* responsiveness css */
+@media only screen and (max-width: 1250px) {
+  .landing-page-inner{
+    margin: 40px 0px;
+    padding: 20px 10px;
+    width: 80%;
+  }
+  .landing-page-title{
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  .landing-page-title2{
+    font-size: 1.5rem;
+  }
+  .typing {
+    white-space: nowrap; 
+  }
+  .landing-page-sub-image{
+    overflow-x: scroll;
+    width: 90%;
+    max-width: 950px;
+    margin: 0px auto;
+  }
+  .sub-image-container1{
+    margin: 14px;
+  }
+  .sub-image-container1 img{
+    width: 190px;
+    height: 190px;
+  }
+  .sub-image-top{
+    margin-bottom: 60px;
+  }
+  .landing-page-bottom{
+    margin-top: 10px;
+  }
+  .landing-page-bottom h3{
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .image-container{
+    display: none;
+  }
+  .inner-container{
+    width: 80%;
+  }
+  .navbar-button{
+    font-size: 12px;
+  }
+  .landing-page-title{
+    font-size: 25px;
+  }
+  .sub-image-container1 img{
+    width: 20rem;
+    height: 20rem;
+  }
+  .sub-image-container1 span{
+    font-size: 1.9rem;
+  }
+  .sub-image-top{
+    margin-bottom: 60px;
+  }
+  .landing-page-bottom{
+    margin-top: 10px;
+  }
+  .landing-page-bottom h3{
+    font-size: 25px;
+    margin-bottom: 10px;
+  } 
+  .landing-page-bottom p{
+    font-size: 1.6rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .navbar-button{
+    font-size: 3rem;
+  }
+  .navbar-button2{
+    margin-left: 3rem;
+  }
+  .nav-image img{
+    width: 9rem;
+    height: 9rem;
+  }
+  .image-text{
+    font-size: 3.9rem;
+    margin-left: 3rem;
+  }
+  .landing-page-title{
+    font-size: 5rem;
+  }
+  .landing-page-title2{
+    font-size: 1.5rem;
+  }
+  .sub-image-container1 img{
+    width: 20rem;
+    height: 20rem;
+  }
+  .sub-image-container1 span{
+    font-size: 1.9rem;
+    border-radius: 0;
+  }
+  .sub-image-top{
+    margin-bottom: 60px;
+  }
+  .landing-page-bottom{
+    margin-top: 10px;
+  }
+  .landing-page-bottom h3{
+    font-size: 4rem;
+    margin-bottom: 10px;
+  } 
+  .landing-page-bottom p{
+    font-size: 3rem;
+  }
 }

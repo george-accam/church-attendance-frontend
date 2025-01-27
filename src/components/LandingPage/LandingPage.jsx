@@ -42,12 +42,12 @@ const LandingPage = () => {
                                     <span> Easy to use</span>
                                 </div>
                             </div>
-                                <div className="landing-page-bottom">
-                                    <h3>Get Started Today!</h3>
-                                    <p>
-                                        Sign up now and experience the convenience of modern church management.
-                                    </p>
-                                </div>
+                            <div className="landing-page-bottom">
+                                <h3>Get Started Today!</h3>
+                                <p>
+                                    Sign up now and experience the convenience of modern church management.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
