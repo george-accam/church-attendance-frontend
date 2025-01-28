@@ -58,7 +58,7 @@ const Login = () => {
           return handleError("Password is required");
         }
 
-        
+
         setIsLoading(true);
 
         const response = await Api.post("/login", formData);
@@ -159,7 +159,7 @@ return (
                               disabled={isLoading}
                               className='submit-button'
                             >
-                                {isLoading ? "logging" : "login"}
+                                {isLoading ? "logging in" : "login"}
                             </button>
                             <div className="login-link-container">
                                 Don't have an account? 
