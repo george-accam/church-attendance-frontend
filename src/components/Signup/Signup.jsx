@@ -1,8 +1,11 @@
 import { RxEyeClosed } from "react-icons/rx"; 
 import { RxEyeOpen } from "react-icons/rx"; 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BgImage from "../assets/christ-embassy.png"
+import { handleSuccess, handleError } from "../../notifications/Notification"
+import { ToastContainer } from "react-toastify";
+import Api from "../../API/Api.js";
 
 const initialState = {
     fullName: "", 
@@ -14,6 +17,10 @@ const initialState = {
 const Signup = () => {
     const [formData, setFormData] = useState(initialState);
     const[openPassword, setOpenPassword] =  useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    
+    const navigate = useNavigate();
 
     // handles the input values
     const handleInputChange = (e)=>{
@@ -23,6 +30,50 @@ const Signup = () => {
     // handles the password visibility
     const handleOpenPassword = ()=>{
         setOpenPassword(!openPassword);
+    }
+
+    const handleOnSubmit = async(e)=>{
+        e.preventDefault();
+        const { phoneNumber, password, confirmPassword } = formData;
+        try {
+            if(phoneNumber.length !== 10){
+                handleError(" Phone number should be 10 digits");
+                return;
+            }
+            else if (password !== confirmPassword) {
+                handleError("Passwords do not match");
+                return;
+            }
+
+            setIsLoading(true);
+            const response = await Api.post("/register", formData);
+            const { message, user } = response.data;
+            handleSuccess(message);
+            setFormData(initialState);
+            setTimeout(()=>{
+                navigate("/login")
+
+            }, 3000);
+
+            // store the user data in local storage
+            if(user){
+                localStorage.setItem("user", JSON.stringify(user));
+            }
+
+        } catch (error) {
+            if (error.response) {
+                handleError(`Registration failed: ${error.response.data.message} `)
+            }
+            else if (error.request) {
+                handleError(" Registration failed: Request failed with status code " + error.request.status)
+            }
+            else{
+                handleError(`Error occurred : ${error.message}`);
+            }
+        }finally{
+            setIsLoading(false);
+        }
+
     }
 
 return (
@@ -37,13 +88,14 @@ return (
             <div className="outer-container">
                 <div className="inner-container">
                     <h1 className='container-header'>Register</h1>
-                    <form >
+                    <form onSubmit={handleOnSubmit}>
                         <div className="form-group">
                             <label htmlFor="fullName">
                                 Full name
                             </label>
                             <input type="text" 
                                 name="fullName" 
+                                required
                                 value={formData.fullName}
                                 onChange={handleInputChange}
                                 placeholder="enter your full name" 
@@ -55,6 +107,7 @@ return (
                             </label>
                             <input type="email" 
                                 name="email" 
+                                required
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 placeholder="enter your email" 
@@ -66,6 +119,7 @@ return (
                             </label>
                             <input type="text" 
                                 name="phoneNumber" 
+                                required
                                 value={formData.phoneNumber}
                                 onChange={handleInputChange}
                                 placeholder="enter your phone number" 
@@ -78,6 +132,7 @@ return (
                             <div className="password-container">
                                 <input type={openPassword ? "text" : "password" }
                                     name="password" 
+                                    required
                                     value={formData.password}
                                     onChange={handleInputChange}
                                     placeholder="enter your password" 
@@ -93,6 +148,7 @@ return (
                             </label>
                                 <input type={openPassword ? "text" : "password" }
                                     name="confirmPassword" 
+                                    required
                                     value={formData.confirmPassword}
                                     onChange={handleInputChange}
                                     placeholder="confirm your password" 
@@ -100,9 +156,10 @@ return (
                         </div>
                         <div className="button-container">
                             <button type="submit"
+                                disabled={isLoading}
                                 className='submit-button'
                             >
-                                submit
+                                {isLoading ? "submitting" : "submit"}
                             </button>
                             <div className="login-link-container">
                                 Already have an account? 
@@ -113,6 +170,7 @@ return (
                 </div>
             </div>
         </div>
+        <ToastContainer />
     </div>
 )
 }

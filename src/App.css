@@ -341,7 +341,7 @@ body{
   align-items: center;
 }
 .not-found-content{
-  margin: 180px 20px;
+  margin: 90px 20px;
   display: block;
   text-align: center;
   background-color: var(--white-bg);
@@ -351,11 +351,11 @@ body{
 .not-found-content h1{
   color: red;
   font-size: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
-.not-found-content h2{
-  font-size: 30px;
-  margin-bottom: 20px;
+
+.not-found-content img{
+  height: 40vh;
 }
 .not-found-content p{
   font-size: 20px;
@@ -371,6 +371,20 @@ body{
   text-decoration: none;
 }
 
+/* user dashboard */
+.user-dashboard-container{
+  background-color: var(--white-bg);
+  height: 100vh;
+}
+
+
+
+
+
+/* toast notification */
+.custom-toast-message{
+  font-size: 18px;
+}
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{
