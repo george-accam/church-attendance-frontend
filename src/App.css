@@ -189,7 +189,7 @@ body{
   display: flex;
   flex-grow: 1;
   width: 50%;
-  border-right: 4px solid var(--dark-bg);
+  border-right: 2px solid var(--dark-bg);
   filter: brightness(0.5);
   box-shadow: inset 0 0 0 1000px rgba(37, 37, 37, 0.5);
 }
@@ -243,7 +243,7 @@ body{
   color: var(--dark-bg);
 }
 .form-group input{
-  padding: 8px;
+  padding: 10px;
   outline: none;
   border: none;
   border-radius: 6px;
@@ -251,6 +251,37 @@ body{
 .form-group input:focus-visible{
   border: 1px solid blue;
   background-color: rgba(0, 0, 255, 0.048);
+}
+.password{
+  margin: 15px 0px;
+  display: flex;
+  flex-direction: column;
+}
+.password label{
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark-bg);
+}
+.password input{
+  width: 90%;
+  padding: 8px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+}
+.password-container{
+  display: flex;
+  background-color: white;
+  border-radius: 6px;
+}
+.password-active{
+  border: 1px solid blue;
+}
+.password-icon{
+  font-size: 25px;
+  cursor: pointer;
+  margin: 5px 8px;
 }
 .button-container{
   display: flex;
@@ -279,6 +310,23 @@ body{
   text-decoration: none;
   color: red;
 }
+.email-phone-container{
+  background-color: white;
+  padding: 2px;
+  width: 30%;
+  border-radius: 5px;
+}
+.email-phone{
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.email-phone-switch{
+  background-color: var(--dark-text);
+  color: var(--light-text);
+  padding: 2px;
+  border-radius: 4px;
+}
 
 /* not found css */
 .not-found-outer-container{
@@ -293,7 +341,7 @@ body{
   align-items: center;
 }
 .not-found-content{
-  margin: 180px 20px;
+  margin: 90px 20px;
   display: block;
   text-align: center;
   background-color: var(--white-bg);
@@ -303,11 +351,11 @@ body{
 .not-found-content h1{
   color: red;
   font-size: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
-.not-found-content h2{
-  font-size: 30px;
-  margin-bottom: 20px;
+
+.not-found-content img{
+  height: 40vh;
 }
 .not-found-content p{
   font-size: 20px;
@@ -323,6 +371,20 @@ body{
   text-decoration: none;
 }
 
+/* user dashboard */
+.user-dashboard-container{
+  background-color: var(--white-bg);
+  height: 100vh;
+}
+
+
+
+
+
+/* toast notification */
+.custom-toast-message{
+  font-size: 18px;
+}
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{
@@ -439,5 +501,8 @@ body{
   } 
   .landing-page-bottom p{
     font-size: 3rem;
+  }
+  .email-phone-container{
+    width: 40%;
   }
 }

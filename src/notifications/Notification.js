@@ -9,6 +9,7 @@ export const handleSuccess = (msg) =>{
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+        className: "custom-toast-message",
     });
 }
 export const handleError = (msg) =>{
@@ -19,5 +20,6 @@ export const handleError = (msg) =>{
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+        className: "custom-toast-message",
     });
 }
