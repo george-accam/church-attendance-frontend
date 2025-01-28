@@ -51,7 +51,7 @@ const Login = () => {
         if(!email && !phoneNumber){
           return handleError("Please fill either email or phone number");
         }
-        else if(phoneNumber.length !== 10){
+        else if(phoneNumber.trim() && phoneNumber.length !== 10){
           return handleError("Phone number should be 10 digits");
         }
         else if(!password){
