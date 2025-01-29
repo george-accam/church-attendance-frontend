@@ -9,18 +9,32 @@ import LandingPage from './components/LandingPage/LandingPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(()=>{
-    const storedUser = localStorage.getItem('user');
-    if(storedUser){
-      setUser(JSON.parse(storedUser));
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (error) {
+      console.error("Error retrieving user from localStorage:", error);
     }
-    setIsLoading(false)
-  },[])
+    setIsLoading(false);
+  }, []);
 
   if (isLoading) {
-    return <div className="">Loading......</div>
+    // Display a loading state while user data is being fetched
+    return (
+      <div className="loading-container">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    // Redirect non-logged-in users to the register page
+    return <Navigate to="/register" replace />;
   }
 
   return (
@@ -28,7 +42,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={ <Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           {user && (
             <>
@@ -40,7 +54,7 @@ const App = () => {
         </Routes>
       </Router>
     </div>
-  )
-}
+  );
+};
 
 export default App;

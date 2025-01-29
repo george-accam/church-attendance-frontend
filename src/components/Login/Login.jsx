@@ -18,7 +18,6 @@ const Login = () => {
     const [isSwitch, setIsSwitch] = useState(null);
     const [isLoading, setIsLoading] = useState(null)
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
 
 
     // handles the input values
@@ -35,13 +34,6 @@ const Login = () => {
       setIsSwitch(!isSwitch)
     }
 
-    // retrieve the role of the user from the local storage
-    useEffect(()=>{
-      const storedUser = localStorage.getItem("user");
-      if(storedUser){
-        setUser(JSON.parse(storedUser));
-      }
-    },[])
 
     // handles the form submission
     const handleSubmit = async(e) => {
@@ -62,15 +54,15 @@ const Login = () => {
         setIsLoading(true);
 
         const response = await Api.post("/login", formData);
-        const { message, token } = response.data;
+        const { message, user, token } = response.data;
 
         if (message) {
-          handleSuccess(message || "Login successful");
+          handleSuccess(message);
           setTimeout(()=>{
-            if(user.role === "usher"){
+            if(user.role === "Usher"){
               navigate(`/usher-dashboard/${user._id}`);
             }
-            else if(user.role === "admin"){
+            else if(user.role === "Admin"){
               navigate(`/admin-dashboard/${user._id}`)
             }
           }, 3000);
