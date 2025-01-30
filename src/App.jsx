@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {  Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import AdminDashboard from "./components/Admin/AdminDashboard";
@@ -10,18 +10,21 @@ import LandingPage from './components/LandingPage/LandingPage';
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         setUser(JSON.parse(storedUser));
+      }else{
+        navigate("/login")
       }
     } catch (error) {
       console.error("Error retrieving user from localStorage:", error);
     }
     setIsLoading(false);
-  }, []);
+  }, [navigate]);
 
   if (isLoading) {
     // Display a loading state while user data is being fetched
@@ -32,14 +35,8 @@ const App = () => {
     );
   }
 
-  if (!user) {
-    // Redirect non-logged-in users to the register page
-    return <Navigate to="/register" replace />;
-  }
-
   return (
     <div className='app-container'>
-      <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -52,7 +49,6 @@ const App = () => {
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
     </div>
   );
 };
