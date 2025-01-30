@@ -55,11 +55,6 @@ const Signup = () => {
 
             }, 3000);
 
-            // store the user data in local storage
-            if(user){
-                localStorage.setItem("user", JSON.stringify(user));
-            }
-
         } catch (error) {
             if (error.response) {
                 handleError(`Registration failed: ${error.response.data.message} `)
