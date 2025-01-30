@@ -49,11 +49,15 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-          {user.role === "Admin" && (
-              <Route path={`/admin-dashboard/${user._id}`} element={<AdminDashboard />} />
-          )}
-          {user.role === "Usher" && (
-              <Route path={`/usher-dashboard/${user._id}`} element={<UsherDashboard />} />
+          {user && (
+            <>
+                <Route path={`/usher-dashboard`} element={<UsherDashboard />} />
+                <Route path={`/admin-dashboard`} element={<AdminDashboard />} />
+              {/* {user.role === "Admin" && (
+              )}
+              {user.role === "Usher" && (
+              )} */}
+            </>
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>
