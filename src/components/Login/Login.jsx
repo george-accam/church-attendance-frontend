@@ -56,6 +56,11 @@ const Login = () => {
         const response = await Api.post("/login", formData);
         const { message, user, token } = response.data;
 
+        // store the user data in local storage
+        if(user){
+            localStorage.setItem("user", JSON.stringify(user));
+        }
+        
         if (message) {
           handleSuccess(message);
           setTimeout(()=>{
