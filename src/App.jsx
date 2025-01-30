@@ -18,14 +18,22 @@ const App = () => {
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       }else{
-        navigate("/login")
+        navigate("/")
       }
     } catch (error) {
       console.error("Error retrieving user from localStorage:", error);
     }
     setIsLoading(false);
-  }, [navigate]);
+  }, []);
 
+  useEffect(()=>{
+    if(isLoading){
+      const timer = (()=>{
+        navigate("/")
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  },[isLoading, navigate]);
   if (isLoading) {
     // Display a loading state while user data is being fetched
     return (
