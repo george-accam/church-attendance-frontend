@@ -30,7 +30,7 @@ const App = () => {
     if(isLoading){
       const timer = (()=>{
         navigate("/")
-      }, 500);
+      }, 10);
       return () => clearTimeout(timer);
     }
   },[isLoading, navigate]);
@@ -49,8 +49,12 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-          <Route path={`/admin-dashboard/${user._id}`} element={<AdminDashboard />} />
-          <Route path={`/usher-dashboard/${user._id}`} element={<UsherDashboard />} />
+          {user.role === "Admin" && (
+              <Route path={`/admin-dashboard/${user._id}`} element={<AdminDashboard />} />
+          )}
+          {user.role === "Usher" && (
+              <Route path={`/usher-dashboard/${user._id}`} element={<UsherDashboard />} />
+          )}
           <Route path="*" element={<NotFound />} />
         </Routes>
     </div>
