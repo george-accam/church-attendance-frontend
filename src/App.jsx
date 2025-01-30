@@ -49,12 +49,8 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-          {user && (
-            <>
-              <Route path={`/admin-dashboard/${user._id}`} element={<AdminDashboard />} />
-              <Route path={`/usher-dashboard/${user._id}`} element={<UsherDashboard />} />
-            </>
-          )}
+          <Route path={`/admin-dashboard/${user._id}`} element={<AdminDashboard />} />
+          <Route path={`/usher-dashboard/${user._id}`} element={<UsherDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     </div>
