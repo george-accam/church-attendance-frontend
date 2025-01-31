@@ -23,7 +23,7 @@ const UserDashboard = () => {
 
   if(!user){
     return (
-      <div className="">
+      <div className="loading-container">
         <p>loading....</p>
       </div>
     )

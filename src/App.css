@@ -32,6 +32,12 @@ body{
   flex-grow: 1;
   height: 100vh;
 }
+.mode-selected{
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+}
+
+/* app component */
 .app-container{
   height: auto;
 }
@@ -413,9 +419,9 @@ body{
   font-size: 20px;
   cursor: pointer;
   color: var(--light-text);
-  background-color: rgb(44, 217, 1);
+  background-color: blue;
   padding: 5px;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 .sidebar-user-dashboard{
   display: flex;
@@ -478,6 +484,7 @@ body{
   align-items: center;
 }
 .logout-holder{
+  margin-top: -200px;
   background-color: var(--light-text);
   padding: 10px;
   box-shadow: 0 0 10px rgba(100, 100, 100, 0.596);
@@ -494,6 +501,18 @@ body{
   color: var(--dark-text);
   font-size: 16px;
   margin-bottom: 10px;
+}
+.dark-background{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(47, 55, 64, 0.225);
+
 }
 .decision{
   display: flex;
@@ -524,6 +543,49 @@ body{
 }
 .no:hover{
   background-color: rgba(62, 62, 62, 0.921);
+}
+.theme-button{
+  background-color: rgb(0, 106, 255);
+  color: var(--light-text);
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.theme-button:hover{
+  background-color: rgba(62, 62, 62, 0.921);
+}
+.theme-holder-container{
+  width: 20%;
+}
+.theme-holder-container h2{
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.theme-holder-container p{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.theme-holder{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+.theme-holder img{
+  width: 60px;
+  height: 60px;
+  margin: 0 10px;
+}
+.theme-mode-choice-container{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.284);
+  border-radius: 10px;
+  padding: 8px 5px;
 }
 
 
@@ -609,7 +671,12 @@ body{
   }
   /* dashboard navbar */
   .dashboard-navbar-container h1{
-    font-size: 3rem;
+    font-size: 25px;
+  }
+  .dashboard-navbar-container p{
+    font-size: 16px;
+    margin-top: 0;
+    padding: 5px;
   }
   .logout-inner-container section{
     font-size: 1.2rem;
@@ -619,6 +686,13 @@ body{
   }
   .logout-inner-container h6{
     font-size: 1.5rem;
+  }
+  /* user dashboard */
+  .theme-holder-container{
+    width: 60%;
+  }
+  .theme-holder{
+    margin: 10px 20px;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -666,8 +740,36 @@ body{
   .email-phone-container{
     width: 40%;
   }
+  .button-container{
+    flex-direction: column;
+  }
   /* dashboard navbar */
   .logout-inner-container{
     width: 10%;
+  }
+  .dashboard-navbar-container h1{
+    display: none;
+  }
+  .theme-holder-container{
+    width: 90%;
+  }
+  .theme-holder{
+    margin: 10px 20px;
+  }
+  .theme-holder img{
+    width: 16rem;
+    height: 16rem;
+  }
+  .theme-holder-container h2{
+    font-size: 6.5rem;
+    margin-bottom: 10px;
+  }
+  .theme-holder-container p{
+    font-size: 3.8rem;
+    margin-bottom: 10px;
+  }
+  .theme-button{
+    margin-top: 2rem;
+    padding: 2rem;
   }
 }
