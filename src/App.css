@@ -23,15 +23,20 @@ body{
 .white-bg{
   background-color: var(--white-bg);
   color: var(--dark-text);
-  height: 100vh;
-  flex-grow: 1;
 }
 .dark-bg{
   background-color: var(--dark-bg);
   color: var(--light-text);
-  flex-grow: 1;
-  height: 100vh;
 }
+.mode-selected{
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 5px;
+}
+
+/* app component */
 .app-container{
   height: auto;
 }
@@ -387,16 +392,19 @@ body{
 
 /* user dashboard */
 .user-dashboard-container{
-  background-color: var(--white-bg);
   height: 100vh;
-  color: var(--dark-text);
 }
 .dashboard-navbar-container{
   height: auto;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--dark-bg);
   padding: 10px 20px;
+}
+.dashboard-border-bottom-dark{
+  border-bottom: 2px solid var(--dark-bg);
+}
+.dashboard-border-bottom-light{
+  border-bottom: 2px solid var(--white-bg);
 }
 .dashboard-navbar-container h1{
   font-size: 28px;
@@ -405,17 +413,23 @@ body{
   font-size: 16px;
   margin-top: 6px;
   padding: 3px;
+  border-radius: 5px;
+}
+.light-par{
+  background-color: var(--white-bg);
+  color: var(--dark-text);
+}
+.dark-par{
   color: var(--light-text);
   background-color: var(--dark-bg);
-  border-radius: 5px;
 }
 .logout-container span{
   font-size: 20px;
   cursor: pointer;
   color: var(--light-text);
-  background-color: rgb(44, 217, 1);
+  background-color: blue;
   padding: 5px;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 .sidebar-user-dashboard{
   display: flex;
@@ -478,6 +492,7 @@ body{
   align-items: center;
 }
 .logout-holder{
+  margin-top: -200px;
   background-color: var(--light-text);
   padding: 10px;
   box-shadow: 0 0 10px rgba(100, 100, 100, 0.596);
@@ -494,6 +509,18 @@ body{
   color: var(--dark-text);
   font-size: 16px;
   margin-bottom: 10px;
+}
+.dark-background{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(47, 55, 64, 0.225);
+
 }
 .decision{
   display: flex;
@@ -524,6 +551,50 @@ body{
 }
 .no:hover{
   background-color: rgba(62, 62, 62, 0.921);
+}
+.theme-button{
+  background-color: rgb(0, 106, 255);
+  color: var(--light-text);
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.theme-button:hover{
+  background-color: rgba(62, 62, 62, 0.921);
+}
+.theme-holder-container{
+  width: 20%;
+}
+.theme-holder-container h2{
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.theme-holder-container p{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.theme-holder{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+.theme-holder img{
+  width: 60px;
+  height: 60px;
+  margin: 0 10px;
+}
+.theme-mode-choice-container{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.284);
+  border-radius: 10px;
+  padding: 8px 5px;
+  color: var(--dark-text);
 }
 
 
@@ -573,6 +644,17 @@ body{
     font-size: 1.6rem;
     margin-bottom: 10px;
   }
+  /* user dashboard */
+  .theme-holder-container{
+    width: 30%;
+  }
+  .theme-holder img{
+    width: 6rem;
+    height: 6rem;
+  }
+  .theme-holder-container p{
+    font-size: 1.5rem;
+  }
 }
 @media only screen and (max-width: 768px) {
   .image-container{
@@ -609,7 +691,12 @@ body{
   }
   /* dashboard navbar */
   .dashboard-navbar-container h1{
-    font-size: 3rem;
+    font-size: 25px;
+  }
+  .dashboard-navbar-container p{
+    font-size: 16px;
+    margin-top: 0;
+    padding: 5px;
   }
   .logout-inner-container section{
     font-size: 1.2rem;
@@ -618,6 +705,20 @@ body{
     font-size: 1.5rem;
   }
   .logout-inner-container h6{
+    font-size: 1.5rem;
+  }
+  /* user dashboard */
+  .theme-holder-container{
+    width: 60%;
+  }
+  .theme-holder{
+    margin: 10px 20px;
+  }
+  .theme-holder img{
+    width: 6rem;
+    height: 6rem;
+  }
+  .theme-holder-container p{
     font-size: 1.5rem;
   }
 }
@@ -666,8 +767,36 @@ body{
   .email-phone-container{
     width: 40%;
   }
+  .button-container{
+    flex-direction: column;
+  }
   /* dashboard navbar */
   .logout-inner-container{
     width: 10%;
+  }
+  .dashboard-navbar-container h1{
+    display: none;
+  }
+  .theme-holder-container{
+    width: 90%;
+  }
+  .theme-holder{
+    margin: 10px 20px;
+  }
+  .theme-holder img{
+    width: 16rem;
+    height: 16rem;
+  }
+  .theme-holder-container h2{
+    font-size: 6.5rem;
+    margin-bottom: 10px;
+  }
+  .theme-holder-container p{
+    font-size: 3.8rem;
+    margin-bottom: 10px;
+  }
+  .theme-button{
+    margin-top: 2rem;
+    padding: 2rem;
   }
 }
