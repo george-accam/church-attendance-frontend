@@ -23,14 +23,10 @@ body{
 .white-bg{
   background-color: var(--white-bg);
   color: var(--dark-text);
-  height: 100vh;
-  flex-grow: 1;
 }
 .dark-bg{
   background-color: var(--dark-bg);
   color: var(--light-text);
-  flex-grow: 1;
-  height: 100vh;
 }
 .mode-selected{
   background-color: var(--dark-bg);
@@ -396,16 +392,19 @@ body{
 
 /* user dashboard */
 .user-dashboard-container{
-  background-color: var(--white-bg);
   height: 100vh;
-  color: var(--dark-text);
 }
 .dashboard-navbar-container{
   height: auto;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--dark-bg);
   padding: 10px 20px;
+}
+.dashboard-border-bottom-dark{
+  border-bottom: 2px solid var(--dark-bg);
+}
+.dashboard-border-bottom-light{
+  border-bottom: 2px solid var(--white-bg);
 }
 .dashboard-navbar-container h1{
   font-size: 28px;
@@ -414,9 +413,15 @@ body{
   font-size: 16px;
   margin-top: 6px;
   padding: 3px;
+  border-radius: 5px;
+}
+.light-par{
+  background-color: var(--white-bg);
+  color: var(--dark-text);
+}
+.dark-par{
   color: var(--light-text);
   background-color: var(--dark-bg);
-  border-radius: 5px;
 }
 .logout-container span{
   font-size: 20px;
