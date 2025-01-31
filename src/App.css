@@ -35,6 +35,9 @@ body{
 .mode-selected{
   background-color: var(--dark-bg);
   color: var(--light-text);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 5px;
 }
 
 /* app component */
@@ -586,6 +589,7 @@ body{
   background-color: rgba(128, 128, 128, 0.284);
   border-radius: 10px;
   padding: 8px 5px;
+  color: var(--dark-text);
 }
 
 
@@ -634,6 +638,17 @@ body{
   .landing-page-bottom h3{
     font-size: 1.6rem;
     margin-bottom: 10px;
+  }
+  /* user dashboard */
+  .theme-holder-container{
+    width: 30%;
+  }
+  .theme-holder img{
+    width: 6rem;
+    height: 6rem;
+  }
+  .theme-holder-container p{
+    font-size: 1.5rem;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -693,6 +708,13 @@ body{
   }
   .theme-holder{
     margin: 10px 20px;
+  }
+  .theme-holder img{
+    width: 6rem;
+    height: 6rem;
+  }
+  .theme-holder-container p{
+    font-size: 1.5rem;
   }
 }
 @media only screen and (max-width: 400px) {

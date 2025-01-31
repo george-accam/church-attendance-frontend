@@ -10,7 +10,7 @@ const DashboardNavbar = ({ user, }) => {
     const [isShow, setIsShow] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [isTheme, setIsTheme] = useState(false);
-    const [selectedMode, setSelectedMode] = useState(null);
+    const [selectedMode, setSelectedMode] = useState(localStorage.getItem("theme") || "light");
     const menuRef = useRef(null);
     const navigate = useNavigate();
 
@@ -45,8 +45,9 @@ const DashboardNavbar = ({ user, }) => {
     };
 
     // change the theme mode
-    const handleSelectedMode = ()=>{
-        setSelectedMode(!selectedMode);
+    const handleSelectedMode = (mode)=>{
+        setSelectedMode(mode);
+        localStorage.setItem("theme", mode);
     }
 
     // close the theme container when cursor is outside
@@ -64,7 +65,7 @@ const DashboardNavbar = ({ user, }) => {
     }, []);
 
     return (
-        <div className='dashboard-navbar-container'>
+        <div className={'dashboard-navbar-container'}>
             <h1>
                 Dashboard
             </h1>
@@ -93,11 +94,15 @@ const DashboardNavbar = ({ user, }) => {
                                 <h2>Theme Preference</h2>
                                 <p>Choose your preferred theme</p>
                                 <div className="theme-holder">
-                                    <div onClick={handleSelectedMode} className={`theme-mode-choice-container ${selectedMode  ? "mode-selected" : ""}`}>
+                                    <div onClick={()=> handleSelectedMode("light")} 
+                                        className={`${selectedMode === "light" ? "mode-selected" : "theme-mode-choice-container"}`}
+                                    >
                                         <img src={lightMode} alt="light mode" />
                                         <p>light mode</p>
                                     </div>
-                                    <div onClick={handleSelectedMode} className={`theme-mode-choice-container ${!selectedMode ? "mode-selected" : ""}`}>
+                                    <div onClick={()=> handleSelectedMode("dark")} 
+                                        className={`${selectedMode === "dark" ? "mode-selected" : "theme-mode-choice-container"}`}
+                                    >
                                         <img src={darkMode} alt="dark mode" />
                                         <p>dark mode</p>
                                     </div>
