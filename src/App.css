@@ -38,7 +38,7 @@ body{
 
 /* app component */
 .app-container{
-  height: auto;
+  height: 100vh;
 }
 
 /* app loading container */
@@ -594,6 +594,7 @@ body{
   flex-grow: 1;
 }
 .sidebar-container{
+  height: 91.3vh;
   padding: 10px 0;
   background-color: var(--dark-text);
   border-right: 2px solid var(--white-bg);
@@ -641,7 +642,8 @@ body{
   margin: 60px 0;
 }
 .sidebar-bottom{
-  margin-top: 20px;
+  border-top: 1px solid var(--light-text);
+  margin-top: 75%;
 }
 .sidebar-email{
   font-size: 16px;
@@ -649,6 +651,16 @@ body{
   margin-left: 10px;
   margin-top: 5%;
   margin-bottom: 10%;
+}
+.sidebar-logout{
+  font-size: 16px;
+  color: var(--light-text);
+  margin: 0 10px;
+  cursor: pointer;
+  background-color: rgba(115, 255, 0, 0.677);
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
 }
 .sidebar-email span{
   font-family: monospace;
@@ -665,6 +677,7 @@ body{
   flex-grow: 1;
 }
 .user-content-container{
+  height: 90.4vh;
 }
 
 
@@ -808,6 +821,9 @@ body{
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 20px;
+}
+.sidebar-bottom{
+  margin-top: 40%;
 }
 }
 @media only screen and (max-width: 400px) {
