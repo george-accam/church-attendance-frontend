@@ -434,14 +434,6 @@ body{
 .sidebar-user-dashboard{
   display: flex;
 }
-.dashboard-sidebar{
-  width: 20%;
-  flex-grow: 1;
-}
-.dashboard-container{
-  width: 80%;
-  flex-grow: 1;
-}
 .logout-inner-container{
   position: absolute;
   right: 0%;
@@ -597,7 +589,85 @@ body{
   color: var(--dark-text);
 }
 
+/* user sidebar */
+.dashboard-sidebar{
+  width: 270px;
+  flex-grow: 1;
+}
+.sidebar-container{
+  padding: 10px 0;
+  background-color: var(--dark-text);
+  border-right: 2px solid var(--white-bg);
+}
+.sidebar-top{
+  display: none;
+}
+.dashboard-sidebar-title{
+  color: var(--light-text);
+  font-size: 25px;
+}
+.sidebar-close-icon{
+  font-size: 22px;
+  color: var(--light-text);
+  cursor: pointer;
+}
+.dashboard-sidebar-subtitle{
+  font-size: 18px;
+  color: var(--light-text);
+  margin-left: 10px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+.dashboard-sidebar-subtitle span{
+  font-weight: 700;
+  font-family: monospace;
+  margin-left: 10px;
+}
+.sidebar-navigator{
+  font-size: 15px;
+  text-align: center;
+  color: var(--light-text);
+  background-color: rgb(91, 93, 97);
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px 0 0 15px;
+  cursor: pointer;
+}
+.sidebar-navigator:hover{
+  background-color: rgba(91, 93, 97, 0.37);
+}
+.navbar-navigator-container{
+  margin: 60px 0;
+}
+.sidebar-bottom{
+  margin-top: 20px;
+}
+.sidebar-email{
+  font-size: 16px;
+  color: var(--light-text);
+  margin-left: 10px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+.sidebar-email span{
+  font-family: monospace;
+  margin-left: 20px;
+  color: rgb(255, 115, 0);
+}
 
+
+
+
+/* user content */
+.dashboard-container{
+  width: 80%;
+  flex-grow: 1;
+}
+/* .user-content-container{
+  height: 92.8vh;
+} */
 
 
 /* toast notification */
@@ -691,7 +761,7 @@ body{
   }
   /* dashboard navbar */
   .dashboard-navbar-container h1{
-    font-size: 25px;
+    display: none;
   }
   .dashboard-navbar-container p{
     font-size: 16px;
@@ -721,6 +791,27 @@ body{
   .theme-holder-container p{
     font-size: 1.5rem;
   }
+  .sidebar-container{
+  padding: 10px 0;
+  background-color: var(--dark-text);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-right: 2px solid var(--white-bg);
+  }
+  /* user sidebar */
+.dashboard-sidebar{
+  width: 500px;
+  flex-grow: 1;
+}
+.sidebar-navigator{
+  margin-left: 30px;
+}
+.sidebar-top{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px;
+}
 }
 @media only screen and (max-width: 400px) {
   .navbar-button{

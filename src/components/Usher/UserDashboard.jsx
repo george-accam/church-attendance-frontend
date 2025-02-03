@@ -47,6 +47,7 @@ const UserDashboard = () => {
   }
   return (
     <div className={`user-dashboard-container ${changeColor ? 'white-bg' : 'dark-bg'}`} >
+      {/* navbar */}
       <Navbar 
         user={user.role}
         handleChangeColor={handleChangeColor}
@@ -54,11 +55,14 @@ const UserDashboard = () => {
       />
       <div className="sidebar-user-dashboard">
         <div className="dashboard-sidebar">
+          {/* sidebar container */}
           <Sidebar 
-            user={user.email} 
+            userName={user.fullName} 
+            userEmail={user.email} 
           />
         </div>
         <div className="dashboard-container">
+          {/* user content */}
           <UsherContainer 
             user={user} 
           />
