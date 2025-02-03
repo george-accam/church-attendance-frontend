@@ -392,7 +392,6 @@ body{
 
 /* user dashboard */
 .user-dashboard-container{
-  height: 100vh;
 }
 .dashboard-navbar-container{
   height: auto;
@@ -665,9 +664,8 @@ body{
   width: 80%;
   flex-grow: 1;
 }
-/* .user-content-container{
-  height: 92.8vh;
-} */
+.user-content-container{
+}
 
 
 /* toast notification */
@@ -796,7 +794,6 @@ body{
   background-color: var(--dark-text);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  border-right: 2px solid var(--white-bg);
   }
   /* user sidebar */
 .dashboard-sidebar{
