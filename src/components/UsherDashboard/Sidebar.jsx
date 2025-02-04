@@ -1,11 +1,11 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 import React from 'react';
 
-const Sidebar = ({ userName, userEmail }) => {
+const Sidebar = ({ userName, userEmail, sidebarActive }) => {
   return (
     <div>
       <div className="">
-        <div className='sidebar-container'>
+        <div className={`sidebar-container ${sidebarActive ? "dashboard-sidebar-open" : "dashboard-sidebar-close"}`}>
           <div className="sidebar-top">
             <h1 className="dashboard-sidebar-title">
                 Dashboard

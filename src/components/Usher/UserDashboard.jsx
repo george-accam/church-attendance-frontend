@@ -9,6 +9,11 @@ import UsherContainer from '../UsherDashboard/UsherContainer';
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [changeColor, setChangeColor] = useState(true)
+  const [sidebarActive, setSidebarActive] = useState(false);
+
+  const handleSidebarActive = ()=>{
+    setSidebarActive((prev)=> !prev);
+  };
 
   useEffect(()=>{
     const isChangeColor = localStorage.getItem("changeColor");
@@ -50,13 +55,16 @@ const UserDashboard = () => {
       {/* navbar */}
       <Navbar 
         user={user.role}
+        sidebarActive={sidebarActive}
+        handleSidebarActive={handleSidebarActive}
         handleChangeColor={handleChangeColor}
         changeColor={changeColor}
       />
       <div className="sidebar-user-dashboard">
-        <div className="dashboard-sidebar">
+        <div className={`dashboard-sidebar`}>
           {/* sidebar container */}
-          <Sidebar 
+          <Sidebar
+            sidebarActive={sidebarActive}
             userName={user.fullName} 
             userEmail={user.email} 
           />
