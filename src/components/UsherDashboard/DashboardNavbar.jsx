@@ -1,3 +1,4 @@
+import { HiMenuAlt1 } from "react-icons/hi"; 
 import { AiOutlineLogout } from "react-icons/ai"; 
 import { MdOutlineModeStandby } from "react-icons/md"; 
 import { MdLogout } from "react-icons/md"; 
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router";
 import lightMode from "../assets/light-mode.svg";
 import darkMode from "../assets/dark-mode.svg";
 
-const DashboardNavbar = ({ user, handleChangeColor, changeColor }) => {
+const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarActive }) => {
     const [isShow, setIsShow] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [isTheme, setIsTheme] = useState(false);
@@ -69,7 +70,18 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor }) => {
             <h1>
                 Dashboard
             </h1>
-            <p className={changeColor ? "dark-par" : "light-par"}>{user ? user : "Usher"}</p>
+            <p className={changeColor ? "dark-par" : "light-par"}>
+                {user ? user : "Usher"}
+            </p>
+
+            <div className="usher-close-container">
+                <span onClick={handleSidebarActive}>
+                    <HiMenuAlt1 />
+                </span>
+                <h6 className={changeColor ? "dark-par" : "light-par"}>
+                    {user ? user : "Usher"}
+                </h6>
+            </div>
             <div className="logout-container"
                 role="menu"
                 aria-orientation="vertical"

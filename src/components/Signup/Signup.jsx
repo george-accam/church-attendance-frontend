@@ -53,7 +53,7 @@ const Signup = () => {
             setTimeout(()=>{
                 navigate("/login")
 
-            }, 3000);
+            }, 2000);
 
         } catch (error) {
             if (error.response) {

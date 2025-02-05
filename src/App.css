@@ -38,7 +38,7 @@ body{
 
 /* app component */
 .app-container{
-  height: auto;
+  height: 100vh;
 }
 
 /* app loading container */
@@ -392,7 +392,6 @@ body{
 
 /* user dashboard */
 .user-dashboard-container{
-  height: 100vh;
 }
 .dashboard-navbar-container{
   height: auto;
@@ -434,14 +433,6 @@ body{
 .sidebar-user-dashboard{
   display: flex;
 }
-.dashboard-sidebar{
-  width: 20%;
-  flex-grow: 1;
-}
-.dashboard-container{
-  width: 80%;
-  flex-grow: 1;
-}
 .logout-inner-container{
   position: absolute;
   right: 0%;
@@ -451,6 +442,9 @@ body{
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
+}
+.usher-close-container{
+  display: none;
 }
 .logout-inner-container section{
   font-size: 14px;
@@ -597,7 +591,86 @@ body{
   color: var(--dark-text);
 }
 
-
+/* user sidebar */
+.sidebar-container{
+  width: 320px;
+  height: 90vh;
+  padding: 10px 0;
+  background-color: var(--dark-text);
+}
+.sidebar-top{
+  display: none;
+}
+.dashboard-sidebar-title{
+  color: var(--light-text);
+  font-size: 25px;
+}
+.dashboard-sidebar-subtitle{
+  font-size: 18px;
+  color: var(--light-text);
+  margin-left: 10px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+.dashboard-sidebar-subtitle span{
+  font-weight: 700;
+  font-family: monospace;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+.sidebar-navigator{
+  font-size: 15px;
+  text-align: center;
+  color: var(--light-text);
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px 0 0 15px;
+  cursor: pointer;
+}
+.active{
+  background-color: rgb(91, 93, 97);
+}
+.sidebar-navigator:hover{
+  background-color: rgba(91, 93, 97, 0.37);
+}
+.navbar-navigator-container{
+  margin: 60px 0;
+}
+.sidebar-bottom{
+  margin-top: 170px;
+  border-top: 1px solid var(--light-text);
+}
+.sidebar-email{
+  font-size: 16px;
+  color: var(--light-text);
+  margin-left: 10px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+.sidebar-logout{
+  font-size: 16px;
+  color: var(--light-text);
+  margin: 0 40px;
+  cursor: pointer;
+  background-color: rgba(115, 255, 0, 0.677);
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+.sidebar-email span{
+  font-family: monospace;
+  margin-left: 20px;
+  color: rgb(115, 255, 0);
+}
+/* user content */
+.dashboard-container{
+  flex-grow: 1;
+}
+.user-content-container{
+  height: 90vh;
+}
 
 
 /* toast notification */
@@ -655,6 +728,14 @@ body{
   .theme-holder-container p{
     font-size: 1.5rem;
   }
+  /* user sidebar */
+  .sidebar-container{
+    width: 300px;
+    height: 93.5vh;
+  }
+  .user-content-container{
+    height: 94.5vh;
+  }
 }
 @media only screen and (max-width: 768px) {
   .image-container{
@@ -691,12 +772,26 @@ body{
   }
   /* dashboard navbar */
   .dashboard-navbar-container h1{
-    font-size: 25px;
+    display: none;
   }
   .dashboard-navbar-container p{
+    display: none;
+  }
+  .usher-close-container h6{
     font-size: 16px;
+    font-weight: 100;
     margin-top: 0;
     padding: 5px;
+    border-radius: 5px;
+  }
+  .usher-close-container{
+    display: flex;
+  }
+  .usher-close-container span{
+    color: var(--light-text);
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 30px;
   }
   .logout-inner-container section{
     font-size: 1.2rem;
@@ -720,6 +815,40 @@ body{
   }
   .theme-holder-container p{
     font-size: 1.5rem;
+  }
+  /* user sidebar */
+  .sidebar-container{
+    position: fixed;
+    width: 350px;
+    height: 92.2vh;
+    padding: 10px 0;
+    background-color: var(--dark-text);
+    transition: transform 0.3s ease-in-out; 
+  }
+  .sidebar-container-open {
+    display: block;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out; 
+  }
+  .sidebar-container-close {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  .sidebar-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .sidebar-navigator{
+    margin-left: 60px;
+  }
+  .sidebar-bottom{
+    margin-top: 100px;
+  }
+  /* user content container */
+  .user-content-container{
+    height: 93.3vh;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -799,4 +928,15 @@ body{
     margin-top: 2rem;
     padding: 2rem;
   }
+  /* user sidebar */
+  .sidebar-bottom{
+    margin-top: 110px;
+  }
+  .sidebar-container{
+    width: 300px;
+    height: 92.2vh;
+  }
+  /* .user-content-container{
+    height: 92.2vh;
+  } */
 }
