@@ -1,7 +1,14 @@
-import { AiOutlineCloseCircle } from "react-icons/ai"; 
-import React from 'react';
+import React, { useState } from 'react';
 
-const Sidebar = ({ userName, userEmail, sidebarActive }) => {
+const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
+  const [isActive, setIsActive] = useState(null);
+
+  // handle sidebar active
+  const handleShowActive = (activeName)=>{
+    setIsActive(activeName);
+  };
+
+
   return (
     <div>
       <div className="">
@@ -18,16 +25,24 @@ const Sidebar = ({ userName, userEmail, sidebarActive }) => {
               </span> 
           </p>
           <div className="navbar-navigator-container">
-            <p className="sidebar-navigator">
+            <p onClick={()=> handleShowActive("all-members")} 
+            className={`sidebar-navigator ${isActive === "all-members" ? "active" : ""}`}
+            >
                 All members
             </p>
-            <p className="sidebar-navigator">
+            <p 
+            onClick={()=> handleShowActive("personal")} 
+            className={`sidebar-navigator ${isActive === "personal" ? "active" : ""}`}>
                 Personal
             </p>
-            <p className="sidebar-navigator">
+            <p 
+            onClick={()=> handleShowActive("register")} 
+            className={`sidebar-navigator ${isActive === "register" ? "active" : ""}`}>
                 Register
             </p>
-            <p className="sidebar-navigator">
+            <p 
+            onClick={()=> handleShowActive("check-in")} 
+            className={`sidebar-navigator ${isActive === "check-in" ? "active" : ""}`}>
                 Check In
             </p>
           </div>

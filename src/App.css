@@ -622,13 +622,15 @@ body{
   font-size: 15px;
   text-align: center;
   color: var(--light-text);
-  background-color: rgb(91, 93, 97);
   padding: 10px;
   margin-left: 30px;
   margin-top: 10px;
   margin-bottom: 20px;
   border-radius: 15px 0 0 15px;
   cursor: pointer;
+}
+.active{
+  background-color: rgb(91, 93, 97);
 }
 .sidebar-navigator:hover{
   background-color: rgba(91, 93, 97, 0.37);
@@ -650,7 +652,7 @@ body{
 .sidebar-logout{
   font-size: 16px;
   color: var(--light-text);
-  margin: 0 10px;
+  margin: 0 40px;
   cursor: pointer;
   background-color: rgba(115, 255, 0, 0.677);
   text-align: center;
@@ -839,7 +841,7 @@ body{
     margin-bottom: 20px;
   }
   .sidebar-navigator{
-    margin-left: 30px;
+    margin-left: 60px;
   }
   .sidebar-bottom{
     margin-top: 100px;

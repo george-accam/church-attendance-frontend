@@ -56,6 +56,7 @@ const UserDashboard = () => {
       <Navbar 
         user={user.role}
         sidebarActive={sidebarActive}
+        setSidebarActive={setSidebarActive}
         handleSidebarActive={handleSidebarActive}
         handleChangeColor={handleChangeColor}
         changeColor={changeColor}
