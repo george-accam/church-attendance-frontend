@@ -65,6 +65,7 @@ const UserDashboard = () => {
           {/* sidebar container */}
           <Sidebar
             sidebarActive={sidebarActive}
+            handleSidebarActive={handleSidebarActive}
             userName={user.fullName} 
             userEmail={user.email} 
           />

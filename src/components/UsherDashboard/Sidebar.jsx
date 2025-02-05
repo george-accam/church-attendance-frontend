@@ -5,12 +5,11 @@ const Sidebar = ({ userName, userEmail, sidebarActive }) => {
   return (
     <div>
       <div className="">
-        <div className={`sidebar-container ${sidebarActive ? "dashboard-sidebar-open" : "dashboard-sidebar-close"}`}>
+        <div className={`sidebar-container ${sidebarActive ? "sidebar-container-open" : "sidebar-container-close"}`}>
           <div className="sidebar-top">
             <h1 className="dashboard-sidebar-title">
                 Dashboard
             </h1>
-            <AiOutlineCloseCircle className="sidebar-close-icon"  />
           </div>
           <p className="dashboard-sidebar-subtitle">
               Welcome, 
