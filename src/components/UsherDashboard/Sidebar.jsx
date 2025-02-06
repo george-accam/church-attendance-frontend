@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(null);
@@ -11,7 +12,13 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
 
   return (
     <div>
-      <div className="">
+      <div 
+      onClick={()=>{
+        handleSidebarActive();
+        setSidebarActive(false);
+      }} 
+      className={`sidebar-slide-container ${sidebarActive ? "sidebar-container-open" : "sidebar-container-close"}`}
+      >
         <div className={`sidebar-container ${sidebarActive ? "sidebar-container-open" : "sidebar-container-close"}`}>
           <div className="sidebar-top">
             <h1 className="dashboard-sidebar-title">
@@ -25,26 +32,30 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
               </span> 
           </p>
           <div className="navbar-navigator-container">
-            <p onClick={()=> handleShowActive("all-members")} 
+            <NavLink to="all-members"
+            onClick={()=> handleShowActive("all-members")} 
             className={`sidebar-navigator ${isActive === "all-members" ? "active" : ""}`}
             >
                 All members
-            </p>
-            <p 
+            </NavLink>
+
+            <NavLink to="personal"
             onClick={()=> handleShowActive("personal")} 
             className={`sidebar-navigator ${isActive === "personal" ? "active" : ""}`}>
                 Personal
-            </p>
-            <p 
+            </NavLink>
+
+            <NavLink to="register-member"
             onClick={()=> handleShowActive("register")} 
             className={`sidebar-navigator ${isActive === "register" ? "active" : ""}`}>
                 Register
-            </p>
-            <p 
+            </NavLink>
+
+            <NavLink to="check-in"
             onClick={()=> handleShowActive("check-in")} 
             className={`sidebar-navigator ${isActive === "check-in" ? "active" : ""}`}>
                 Check In
-            </p>
+            </NavLink>
           </div>
           <div className="sidebar-bottom">
             <p className="sidebar-email">
