@@ -718,7 +718,18 @@ body{
   font-size: 15px;
   color: var(--light-text);
   border-radius: 3px;
+  margin: 20px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.596);
+}
+.no-members{
+  width: 100%;
+  background-color: rgb(96, 128, 139);
+  padding: 6px 10px;
+  border-radius: 3px;
   margin: 10px 0;
+  font-size: 15px;
+  color: var(--light-text);
+  text-align: center;
 }
 
 
