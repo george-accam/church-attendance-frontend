@@ -73,8 +73,7 @@ const UserDashboard = () => {
         </div>
         <div className="dashboard-container">
           {/* user content */}
-          <UsherContainer 
-            user={user} 
+          <UsherContainer
           />
         </div>
       </div>

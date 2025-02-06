@@ -52,7 +52,7 @@ const App = () => {
           {user && (
             <>
                 <Route path="usher-dashboard/*" element={<UsherDashboard />} />
-                <Route path="admin-dashboard" element={<AdminDashboard />} />
+                <Route path="admin-dashboard/*" element={<AdminDashboard />} />
             </>
           )}
           <Route path="*" element={<NotFound />} />

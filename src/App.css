@@ -391,8 +391,6 @@ body{
 }
 
 /* user dashboard */
-.user-dashboard-container{
-}
 .dashboard-navbar-container{
   height: auto;
   display: flex;
@@ -682,13 +680,45 @@ body{
 }
 /* all the members */
 .all-members-container{
-  margin: 20px;
+  margin: 0 20px;
+  height: 90vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 .all-members-title{
   font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 10px;
   margin-bottom: 20px;
   text-align: center;
   border-bottom: 1px solid var(--light-text);
+}
+.all-members-content{
+  width: 100%;
+  border-collapse: collapse;
+}
+.all-members-list-header{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(109, 158, 90);
+  font-size: 20px;
+  padding: 6px 10px;
+  color: var(--light-text);
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 5px;
+}
+.all-members-list-header th{
+  font-weight: 400;
+}
+.all-members-list{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(96, 128, 139);
+  padding: 6px 10px;
+  font-size: 15px;
+  color: var(--light-text);
+  border-radius: 3px;
+  margin: 10px 0;
 }
 
 
@@ -750,10 +780,10 @@ body{
   /* user sidebar */
   .sidebar-container{
     width: 300px;
-    height: 93.5vh;
+    height: 90vh;
   }
   .user-content-container{
-    height: 94.5vh;
+    height: 90vh;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -836,17 +866,13 @@ body{
     height: 6rem;
   }
   .theme-holder-container p{
-    font-size: 1.5rem;
+    display: block;
+    font-size: 2.5rem;
+  }
+  .logout-holder p {
+    display: block;
   }
   /* user sidebar */
-  .sidebar-container{
-    position: fixed;
-    width: 350px;
-    height: 92.2vh;
-    padding: 10px 0;
-    background-color: var(--dark-text);
-    transition: transform 0.3s ease-in-out; 
-  }
   .sidebar-container-open {
     display: block;
     transform: translateX(0);
@@ -874,9 +900,18 @@ body{
   .sidebar-bottom{
     margin-top: 100px;
   }
+  /* user sidebar */
+  .sidebar-container{
+    position: fixed;
+    width: 350px;
+    height: 92.2vh;
+    padding: 10px 0;
+    background-color: var(--dark-text);
+    transition: transform 0.3s ease-in-out; 
+  }
   /* user content container */
   .user-content-container{
-    height: 93.3vh;
+    height: 93vh;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -946,6 +981,7 @@ body{
     margin-bottom: 10px;
   }
   .theme-holder-container p{
+    display: block;
     font-size: 3.8rem;
     margin-bottom: 10px;
   }
@@ -961,7 +997,7 @@ body{
     width: 300px;
     height: 92.2vh;
   }
-  /* .user-content-container{
-    height: 92.2vh;
-  } */
+  .user-content-container{
+    height: 93.3vh;
+  }
 }
