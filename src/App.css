@@ -680,6 +680,16 @@ body{
 .user-content-container{
   height: 90vh;
 }
+/* all the members */
+.all-members-container{
+  margin: 20px;
+}
+.all-members-title{
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--light-text);
+}
 
 
 /* toast notification */
