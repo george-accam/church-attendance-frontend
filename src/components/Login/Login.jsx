@@ -65,10 +65,10 @@ const Login = () => {
           handleSuccess(message);
           setTimeout(()=>{
             if(user.role === "Usher"){
-              navigate(`/usher-dashboard`);
+              navigate("/usher-dashboard");
             }
             else if(user.role === "Admin"){
-              navigate(`/admin-dashboard`)
+              navigate("/admin-dashboard")
             }
           }, 3000);
         }

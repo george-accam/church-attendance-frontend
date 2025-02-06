@@ -75,7 +75,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
             </p>
 
             <div className="usher-close-container">
-                <span onClick={handleSidebarActive}>
+                <span className={changeColor ? "dark-icon" : "light-icon"} onClick={handleSidebarActive}>
                     <HiMenuAlt1 />
                 </span>
                 <h6 className={changeColor ? "dark-par" : "light-par"}>
@@ -99,6 +99,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                     </div>
                 )}
 
+                {/* the theme container */}
                 {isTheme && (
                     <div className="dark-background">
                         <div className="logout-decision-holder">
@@ -133,6 +134,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                     </div>
                 )}
 
+                {/* the logout container */}
                 {isLogout &&(
                     <div className="dark-background">
                         <div className="logout-decision-holder">

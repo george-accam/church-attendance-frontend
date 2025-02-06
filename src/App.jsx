@@ -47,13 +47,12 @@ const App = () => {
     <div className='app-container'>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Signup />} />
           {user && (
             <>
-                <Route path={`/usher-dashboard/*`} element={<UsherDashboard />} />
-                <Route path={`/admin-dashboard`} element={<AdminDashboard />} />
-
+                <Route path="usher-dashboard/*" element={<UsherDashboard />} />
+                <Route path="admin-dashboard" element={<AdminDashboard />} />
             </>
           )}
           <Route path="*" element={<NotFound />} />
