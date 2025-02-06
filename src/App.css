@@ -422,6 +422,12 @@ body{
   color: var(--light-text);
   background-color: var(--dark-bg);
 }
+.dark-icon{
+  color: var(--dark-text);
+}
+.light-icon{
+  color: var(--light-text);
+}
 .logout-container span{
   font-size: 20px;
   cursor: pointer;
@@ -642,7 +648,7 @@ body{
   margin: 60px 0;
 }
 .sidebar-bottom{
-  margin-top: 170px;
+  margin-top: 120px;
   border-top: 1px solid var(--light-text);
 }
 .sidebar-email{
@@ -791,15 +797,18 @@ body{
     display: flex;
   }
   .usher-close-container span{
-    color: var(--light-text);
     font-size: 24px;
     cursor: pointer;
     margin-right: 30px;
+  }
+  .logout-inner-container{
+    width: 100px;
   }
   .logout-inner-container section{
     font-size: 1.2rem;
   }
   .logout-inner-container p{
+    display: block;
     font-size: 1.5rem;
   }
   .logout-inner-container h6{
@@ -909,9 +918,6 @@ body{
     flex-direction: column;
   }
   /* dashboard navbar */
-  .logout-inner-container{
-    width: 10%;
-  }
   .dashboard-navbar-container h1{
     display: none;
   }
