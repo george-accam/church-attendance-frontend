@@ -51,12 +51,9 @@ const App = () => {
           <Route path="/register" element={<Signup />} />
           {user && (
             <>
-                <Route path={`/usher-dashboard`} element={<UsherDashboard />} />
+                <Route path={`/usher-dashboard/*`} element={<UsherDashboard />} />
                 <Route path={`/admin-dashboard`} element={<AdminDashboard />} />
-              {/* {user.role === "Admin" && (
-              )}
-              {user.role === "Usher" && (
-              )} */}
+
             </>
           )}
           <Route path="*" element={<NotFound />} />

@@ -622,6 +622,7 @@ body{
   font-size: 15px;
   text-align: center;
   color: var(--light-text);
+  text-decoration: none;
   padding: 10px;
   margin-left: 30px;
   margin-top: 10px;
@@ -636,6 +637,8 @@ body{
   background-color: rgba(91, 93, 97, 0.37);
 }
 .navbar-navigator-container{
+  display: flex;
+  flex-direction: column;
   margin: 60px 0;
 }
 .sidebar-bottom{
@@ -842,6 +845,12 @@ body{
   }
   .sidebar-navigator{
     margin-left: 60px;
+  }
+  .sidebar-slide-container{
+    background-color: rgba(146, 146, 146, 0.085);
+    position: fixed;
+    width: 750px;
+    height: 92.9vh;
   }
   .sidebar-bottom{
     margin-top: 100px;
