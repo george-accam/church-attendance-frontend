@@ -28,34 +28,34 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
           <p className="dashboard-sidebar-subtitle">
               Welcome, 
               <span>
-                {userName}
+                {userName} {" "} 😊
               </span> 
           </p>
           <div className="navbar-navigator-container">
-            <NavLink to="all-members"
+            <Link to="/usher-dashboard/all-members"
             onClick={()=> handleShowActive("all-members")} 
             className={`sidebar-navigator ${isActive === "all-members" ? "active" : ""}`}
             >
                 All members
-            </NavLink>
+            </Link>
 
-            <NavLink to="personal"
+            <Link to="/usher-dashboard/personal"
             onClick={()=> handleShowActive("personal")} 
             className={`sidebar-navigator ${isActive === "personal" ? "active" : ""}`}>
                 Personal
-            </NavLink>
+            </Link>
 
-            <NavLink to="register-member"
+            <Link to="/usher-dashboard/register-member"
             onClick={()=> handleShowActive("register")} 
             className={`sidebar-navigator ${isActive === "register" ? "active" : ""}`}>
                 Register
-            </NavLink>
+            </Link>
 
-            <NavLink to="check-in"
+            <Link to="/usher-dashboard/check-in"
             onClick={()=> handleShowActive("check-in")} 
             className={`sidebar-navigator ${isActive === "check-in" ? "active" : ""}`}>
                 Check In
-            </NavLink>
+            </Link>
           </div>
           <div className="sidebar-bottom">
             <p className="sidebar-email">

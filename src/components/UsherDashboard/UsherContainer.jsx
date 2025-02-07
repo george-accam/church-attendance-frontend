@@ -10,7 +10,6 @@ const UsherContainer = () => {
     <div>
       <div className="user-content-container">
         <div className="user-content">
-          <h1>Usher Container</h1>
           <Routes>
             <Route path="/" element={<Navigate to="all-members" />} />
             <Route path="all-members" element={<AllMembers />} />
