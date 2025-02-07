@@ -37,9 +37,9 @@ const AllMembers = () => {
     useEffect(() => {
         fetchAllMembers();
     }, []);
-
+    
     // loading state
-    if (!isLoading) {
+    if (isLoading) {
         return (
             <div className="member-loading-container">
                <div className="all-members-container">
@@ -76,6 +76,7 @@ const AllMembers = () => {
         )
         
     }
+
 
     return (
         <div>
