@@ -39,7 +39,7 @@ const AllMembers = () => {
     }, []);
 
     // loading state
-    if (isLoading) {
+    if (!isLoading) {
         return (
             <div className="member-loading-container">
                <div className="all-members-container">
@@ -54,10 +54,21 @@ const AllMembers = () => {
                                 <th>Date</th>
                             </tr>
                         </thead>
-                        <div className='no-members'>
-                            <img src={member} alt="" />
-                            <p>No members available yet</p>
-                        </div>
+                        <tr className='loading-members member-card'>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr className='loading-members member-card'>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr className='loading-members member-card'>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                      </table>
                 </div>
             </div>
