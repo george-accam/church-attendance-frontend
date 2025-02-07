@@ -897,14 +897,14 @@ body{
     width: 120px;
   }
   .logout-inner-container section{
-    font-size: 1.2rem;
+    font-size: 14px;
   }
   .logout-inner-container p{
     display: block;
-    font-size: 1.5rem;
+    font-size: 15px;
   }
   .logout-inner-container h6{
-    font-size: 1.5rem;
+    font-size: 15px;
   }
   /* user dashboard */
   .theme-holder-container{
@@ -950,7 +950,7 @@ body{
     height: 92.9vh;
   }
   .sidebar-bottom{
-    margin-top: 100px;
+    margin-top: 50px;
   }
   /* user sidebar */
   .sidebar-container{
@@ -1043,7 +1043,7 @@ body{
   }
   /* user sidebar */
   .sidebar-bottom{
-    margin-top: 110px;
+    margin-top: 70px;
   }
   .sidebar-container{
     width: 300px;

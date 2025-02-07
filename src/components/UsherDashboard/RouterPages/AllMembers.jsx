@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
-import { handleError, handleSuccess } from '../../../notifications/Notification.js';
+import { handleError } from '../../../notifications/Notification.js';
 import member from './../../assets/member.svg';
 
 
