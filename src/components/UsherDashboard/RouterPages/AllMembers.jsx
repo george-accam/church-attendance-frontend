@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../../../notifications/Notification.js';
+import member from './../../assets/member.svg';
 
 
 const AllMembers = () => {
@@ -37,6 +38,34 @@ const AllMembers = () => {
         fetchAllMembers();
     }, []);
 
+    // loading state
+    if (isLoading) {
+        return (
+            <div className="member-loading-container">
+               <div className="all-members-container">
+                <h1 className='all-members-title'>All Members</h1>
+                <div className="">
+                    <table className='all-members-content'>
+                        {/* table header */}
+                        <thead>
+                            <tr className='all-members-list-header'>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <div className='no-members'>
+                            <img src={member} alt="" />
+                            <p>No members available yet</p>
+                        </div>
+                     </table>
+                </div>
+            </div>
+            </div>
+        )
+        
+    }
+
     return (
         <div>
             <div className="all-members-container">
@@ -53,7 +82,7 @@ const AllMembers = () => {
                         </thead>
                         {/* table body */}
                         <tbody>
-                                {members.length > 0 ?  ( members.map((member) => (
+                                {members && members.length > 0 ?  ( members.map((member) => (
                                     <tr key={member._id} className='all-members-list'>
                                         <td>
                                             {member.fullName}
@@ -68,7 +97,8 @@ const AllMembers = () => {
                                 ))
                             ): (
                                 <div className='no-members'>
-                                    <p>No members available</p>
+                                    <img src={member} alt="" />
+                                    <p>No members available yet</p>
                                 </div>
                             )}
                         </tbody>

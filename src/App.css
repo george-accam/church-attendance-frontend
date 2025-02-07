@@ -700,7 +700,7 @@ body{
 .all-members-list-header{
   display: flex;
   justify-content: space-evenly;
-  background-color: rgb(109, 158, 90);
+  background-color: rgba(115, 255, 0, 0.677);
   font-size: 20px;
   padding: 6px 10px;
   color: var(--light-text);
@@ -723,13 +723,21 @@ body{
 }
 .no-members{
   width: 100%;
-  background-color: rgb(96, 128, 139);
-  padding: 6px 10px;
+  height: 50vh;
+  background-color: rgba(96, 128, 139, 0.273);
+  padding-top: 150px;
   border-radius: 3px;
   margin: 10px 0;
   font-size: 15px;
-  color: var(--light-text);
   text-align: center;
+}
+.no-members img{
+  width: 100px;
+  height: 100px;
+}
+.no-members p{
+  font-size: 18px;
+  margin-top: 15px;
 }
 
 

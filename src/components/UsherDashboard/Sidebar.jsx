@@ -28,7 +28,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
           <p className="dashboard-sidebar-subtitle">
               Welcome, 
               <span>
-                {userName}
+                {userName} {" "} 😊
               </span> 
           </p>
           <div className="navbar-navigator-container">
