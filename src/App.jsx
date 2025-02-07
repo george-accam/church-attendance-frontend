@@ -30,7 +30,7 @@ const App = () => {
     if(isLoading){
       const timer = (()=>{
         navigate("/")
-      }, 10);
+      }, 1);
       return () => clearTimeout(timer);
     }
   },[isLoading, navigate]);

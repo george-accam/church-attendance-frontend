@@ -19,11 +19,11 @@ const AllMembers = () => {
             setMembers(attendance);
 
         } catch (error) {
-            if (error.response) {
-                handleError(error.response.data.error);
+            if (error.response.data) {
+                handleError(error.response.data);
             }
             else if (error.request) {
-                handleError("Error connecting to the server. Please check your internet connection");
+                handleError("Error connecting to the server. Please check your internet connection", + error.request);
             }
             else {
                 handleError("An error occurred. Please try again");
@@ -43,35 +43,39 @@ const AllMembers = () => {
         return (
             <div className="member-loading-container">
                <div className="all-members-container">
-                <h1 className='all-members-title'>All Members</h1>
-                <div className="">
-                    <table className='all-members-content'>
-                        {/* table header */}
-                        <thead>
-                            <tr className='all-members-list-header'>
-                                <th>Full Name</th>
-                                <th>Phone Number</th>
-                                <th>Date</th>
+                    <h1 className='all-members-title'>All Members</h1>
+                    <div className="">
+                        <table className='all-members-content'>
+                            {/* table header */}
+                            <thead>
+                                <tr className='all-members-list-header'>
+                                    <th>Full Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tr className='loading-members member-card'>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                        </thead>
-                        <tr className='loading-members member-card'>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr className='loading-members member-card'>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr className='loading-members member-card'>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                     </table>
+                            <tr className='loading-members member-card'>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr className='loading-members member-card'>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
+                <p className='number-of-members loading-number-of-members'>
+                    <span className='ping-effect'></span>
+                    <p></p>
+                </p>
             </div>
         )
         
@@ -99,6 +103,7 @@ const AllMembers = () => {
                                         <td>
                                             {member.fullName}
                                         </td>
+                                        
                                         <td className='all-members-list-phone-number'>
                                             {member.phoneNumber}
                                         </td>
@@ -108,15 +113,21 @@ const AllMembers = () => {
                                     </tr>
                                 ))
                             ): (
-                                <div className='no-members'>
-                                    <img src={member} alt="" />
-                                    <p>No members available yet</p>
-                                </div>
+                                <tr className='no-members'>
+                                    <td>
+                                        <img src={member} alt="" />
+                                        <p>No members available yet</p>
+                                    </td>
+                                </tr>
                             )}
                         </tbody>
                     </table>
                 </div>
             </div>
+                <p className='number-of-members'>
+                    <span className='ping-effect'></span>
+                    Number of members registered : {members && members.length > 0 ? members.length : 0}
+                </p>
             <ToastContainer />
         </div>
     )
