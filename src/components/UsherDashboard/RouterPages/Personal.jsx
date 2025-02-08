@@ -1,3 +1,4 @@
+import { CgSearch } from "react-icons/cg"; 
 import React, { useState, useEffect } from 'react';
 import api from "../../../API/Api.js";
 import { handleError } from '../../../notifications/Notification';
@@ -90,7 +91,16 @@ const Personal = () => {
   return (
     <div>
       <div className="all-members-container">
-          <h1 className='all-members-title'>Personal Members</h1>
+          {/* search bar */}
+          <div className="header-search-bar">
+            <h1 className='all-members-title'>Personal Members</h1>
+            <div className="search-container">
+              <input type="text"
+              placeholder='search members'
+              />
+              <CgSearch className="search-icon"/>
+            </div>
+          </div>
           <div className="">
               <table className='all-members-content'>
                   {/* table header */}
