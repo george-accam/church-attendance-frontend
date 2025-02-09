@@ -38,7 +38,7 @@ body{
 
 /* app component */
 .app-container{
-  height: 100vh;
+  height: auto;
 }
 
 /* app loading container */
@@ -743,11 +743,6 @@ body{
   border-collapse: collapse;
 }
 .all-members-list-header{
-  /* display: flex;
-  justify-content: space-evenly;
-  padding: 6px 10px;
-  border-radius: 3px 3px 0 0;
-  margin-bottom: 5px; */
   text-align: center;
   background-color: rgba(115, 255, 0, 0.677);
   font-size: 20px;
@@ -757,11 +752,6 @@ body{
   padding: 11px;
 }
 .all-members-list{
-  /* display: flex;
-  justify-content: space-between;
-  padding: 6px 0px;
-  border-radius: 3px;
-  margin: 20px 0; */
   text-align: center;
   color: var(--light-text);
   background-color: rgb(96, 128, 139);
@@ -769,7 +759,7 @@ body{
   font-size: 15px;
 }
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
-  padding: 16px;
+  padding: 16px 0;
 }
 .no-members{
   width: 100%;
@@ -1071,6 +1061,7 @@ body{
     position: fixed;
     width: 750px;
     height: 92.9vh;
+    z-index: 1;
   }
   .sidebar-bottom{
     margin-top: 50px;
@@ -1132,7 +1123,7 @@ body{
     font-size: 3rem;
   }
   .email-phone-container{
-    width: 40%;
+    width: 120px;
   }
   .button-container{
     flex-direction: column;
@@ -1170,10 +1161,10 @@ body{
   }
   .sidebar-container{
     width: 300px;
-    height: 92.2vh;
+    height: 100vh;
   }
   .user-content-container{
-    height: 93.3vh;
+    height: 100vh;
   }
   .header-search-bar{
     display: flex;

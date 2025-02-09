@@ -1,12 +1,15 @@
 import { RxEyeClosed } from "react-icons/rx"; 
 import { RxEyeOpen } from "react-icons/rx"; 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import BgImage from "../assets/christ-embassy.png"
 import { handleSuccess, handleError } from "../../notifications/Notification"
 import { ToastContainer } from "react-toastify";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import Api from "../../API/Api.js";
 
+// input fields values
 const initialState = {
     fullName: "", 
     email: '', 
@@ -14,6 +17,7 @@ const initialState = {
     password: "", 
     confirmPassword: ""
 }
+
 const Signup = () => {
     const [formData, setFormData] = useState(initialState);
     const[openPassword, setOpenPassword] =  useState(false);
@@ -25,7 +29,17 @@ const Signup = () => {
     // handles the input values
     const handleInputChange = (e)=>{
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (name === "phoneNumber") {
+            setFormData({ 
+                ...formData, [name]: value.replace(/\s+/g, "")
+            });
+        } else if (name === "email"){
+            setFormData({
+                ...formData, [name]: value.replace(/\s+/g, "")
+            });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     }
     // handles the password visibility
     const handleOpenPassword = ()=>{
@@ -71,6 +85,15 @@ const Signup = () => {
 
     }
 
+    useEffect(()=>{
+        Aos.init({
+        duration: 300,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100,
+        });
+    }, [])
+
 return (
     <div>
         <div className="container-background">
@@ -81,7 +104,9 @@ return (
                 />
             </div>
             <div className="outer-container">
-                <div className="inner-container">
+                <div className="inner-container"
+                data-aos="fade-up"
+                >
                     <h1 className='container-header'>Register</h1>
                     <form onSubmit={handleOnSubmit}>
                         <div className="form-group">
@@ -158,7 +183,7 @@ return (
                             </button>
                             <div className="login-link-container">
                                 Already have an account? 
-                                <Link to="/login" className="login-link">Login</Link>
+                                <Link to="/login" className="login-link">login</Link>
                             </div>
                         </div>
                     </form>
