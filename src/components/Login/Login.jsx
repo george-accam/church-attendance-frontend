@@ -70,7 +70,7 @@ const Login = () => {
             else if(user.role === "Admin"){
               navigate("/admin-dashboard")
             }
-          }, 3000);
+          }, 2000);
         }
         if(token){
           localStorage.setItem("token", token);
@@ -108,29 +108,29 @@ return (
                     <form onSubmit={handleSubmit}>
                       <div className="">
                         <div  className="email-phone-container">
-                          <label onClick={handleIsSwitch} htmlFor="email" className={`email-phone ${ isSwitch? "email-phone-switch" : ""}`}>
+                          <label onClick={handleIsSwitch} htmlFor="email" className={`email-phone email-label ${ !isSwitch? "email-phone-switch" : ""}`}>
                             Email
                           </label>
-                          <label onClick={handleIsSwitch} htmlFor="phone" className={`email-phone ${ !isSwitch? "email-phone-switch" : ""}`}>
+                          <label onClick={handleIsSwitch} htmlFor="phone" className={`email-phone ${ isSwitch? "email-phone-switch" : ""}`}>
                             Phone
                           </label>
                         </div>
                         { isSwitch ? (
-                          <div className="form-group">
-                              <input type="email" 
-                                  name="email" 
-                                  value={formData.email}
-                                  onChange={handleInputChange}
-                                  placeholder="enter your email" 
-                              />
-                          </div>
-                        ): (
                           <div className="form-group">
                               <input type="text" 
                                   name="phoneNumber" 
                                   value={formData.phoneNumber}
                                   onChange={handleInputChange}
                                   placeholder="enter your phone number" 
+                              />
+                          </div>
+                        ): (
+                          <div className="form-group">
+                              <input type="email" 
+                                  name="email" 
+                                  value={formData.email}
+                                  onChange={handleInputChange}
+                                  placeholder="enter your email" 
                               />
                           </div>
                         )}
