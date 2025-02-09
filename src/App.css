@@ -236,10 +236,14 @@ body{
 }
 .inner-container{
   width: 70%;
-  background-color: rgb(230, 249, 255);
   margin: 10px 15px;
+}
+/* usher check in form */
+.check-in-form{
   padding: 10px 30px;
-  border-radius: 10px;
+  background-color: rgb(230, 249, 255);
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
 }
 .container-header{
   color: var(--dark-bg);
@@ -878,6 +882,9 @@ body{
 }
 .usher-register-inner-container{
   margin-top: -200px;
+}
+.usher-check-in-inner-container{
+  margin-top: -300px;
 }
 .check-in-register-member{
   margin-left: 10px;

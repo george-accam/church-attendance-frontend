@@ -53,9 +53,15 @@ const CheckIn = () => {
         <div className="outer-container "
           data-aos="fade-up"
         >
-          <div className="inner-container usher-register-inner-container">
-              <h1 className='container-header'>Check In Member</h1>
-              <form onSubmit={handleOnSubmit}>
+          <div className="">
+            
+          </div>
+          <div className="inner-container usher-check-in-inner-container">
+              <form 
+                className='check-in-form'
+                onSubmit={handleOnSubmit}
+              >
+                <h1 className='container-header'>Check In Member</h1>
                 <div className="form-group">
                     <label htmlFor="fullName">
                       Phone number
@@ -73,7 +79,7 @@ const CheckIn = () => {
                         disabled={isLoading}
                         className={`submit-button ${isLoading ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "checking in" : "check in"}
+                        {isLoading ? "searching" : "search"}
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
@@ -83,6 +89,17 @@ const CheckIn = () => {
                     </div>
                 </div>
               </form>
+              {/* members table */}
+              <table className='all-members-content'>
+                  {/* table header */}
+                  <thead>
+                      <tr className='all-members-list-header personal-members-list-header'>
+                          <th>Full Name</th>
+                          <th>Phone Number</th>
+                          <th>Date</th>
+                      </tr>
+                  </thead>
+              </table>
           </div>
         </div>
       </div>
