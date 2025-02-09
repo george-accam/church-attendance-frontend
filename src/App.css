@@ -621,7 +621,7 @@ body{
   color: var(--light-text);
   margin-left: 10px;
   margin-top: 5%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 .dashboard-sidebar-subtitle span{
   font-weight: 700;
@@ -715,14 +715,12 @@ body{
 }
 .search-container {
   display: flex;
-  background-color: white;
+  background-color: var(--light-text);
   border-radius: 5px;
-  border: 2px solid var(--dark-bg);
-}
-.search-container:focus{
-  border: 2px solid blue;
+  border: 1px solid var(--dark-bg);
 }
 .search-container input{
+  background-color: var(--light-text);
   width: 90%;
   border-radius: 6px;
   padding: 6px;
@@ -733,34 +731,45 @@ body{
   font-size: 22px;
   cursor: pointer;
   color: var(--dark-bg);
-  margin: 4px;
+  padding: 4px;
+  transition: .5s;
+}
+.search-icon:hover{
+  color: var(--light-text);
+  background-color: var(--dark-text);
 }
 .all-members-content{
   width: 100%;
   border-collapse: collapse;
 }
 .all-members-list-header{
-  display: flex;
+  /* display: flex;
   justify-content: space-evenly;
-  background-color: rgba(115, 255, 0, 0.677);
-  font-size: 20px;
   padding: 6px 10px;
   border-radius: 3px 3px 0 0;
-  margin-bottom: 5px;
+  margin-bottom: 5px; */
+  text-align: center;
+  background-color: rgba(115, 255, 0, 0.677);
+  font-size: 20px;
 }
 .all-members-list-header th{
   font-weight: 400;
+  padding: 11px;
 }
 .all-members-list{
-  display: flex;
-  justify-content: space-evenly;
-  background-color: rgb(96, 128, 139);
+  /* display: flex;
+  justify-content: space-between;
   padding: 6px 0px;
-  font-size: 15px;
-  color: var(--light-text);
   border-radius: 3px;
-  margin: 20px 0;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.596);
+  margin: 20px 0; */
+  text-align: center;
+  color: var(--light-text);
+  background-color: rgb(96, 128, 139);
+  border-bottom: 2px solid rgb(0, 0, 0);
+  font-size: 15px;
+}
+.all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
+  padding: 16px;
 }
 .no-members{
   width: 100%;
@@ -829,14 +838,12 @@ body{
 
 /* usher loading */
 .loading-members{
-  display: flex;
-  justify-content: space-evenly;
+  /* display: flex;
+  justify-content: space-evenly; */
   width: 100%;
   background-color: rgba(96, 128, 139, 0.573);
-  border-radius: 3px;
-  margin-top: 10px;
   font-size: 15px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.596);
+  border-bottom: 2px solid black;
 }
 .loading-members td{
   background-image: linear-gradient(
@@ -847,13 +854,11 @@ body{
 	);
   background-size: 300%;
   background-position: 100% 0;
-  padding: 10px;
-  margin: 6px 0;
-  border-radius: 6px;
+  padding: 20px;
   animation: loading 2s infinite;
 }
 .member-card td{
-  width: 20%;
+  width: 10%;
   height: 5px;
 }
 @keyframes loading{
