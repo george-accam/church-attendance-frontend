@@ -1170,4 +1170,8 @@ body{
     display: flex;
     flex-direction: column;
   }
+  /* usher register */
+  .usher-register-container{
+    height: 92.8vh;
+  }
 }
