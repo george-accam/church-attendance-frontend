@@ -238,6 +238,13 @@ body{
   width: 70%;
   margin: 10px 15px;
 }
+/* usher register form */
+.usher-register-form{
+  padding: 10px 30px;
+  background-color: rgb(230, 249, 255);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
 /* usher check in form */
 .check-in-form{
   padding: 10px 30px;
@@ -759,8 +766,27 @@ body{
   text-align: center;
   color: var(--light-text);
   background-color: rgb(96, 128, 139);
-  border-bottom: 2px solid rgb(0, 0, 0);
   font-size: 15px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+/* check in member list */
+.check-in-all-members-content{
+  height: 48vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.check-in-all-members-content::-webkit-scrollbar{
+  width: 8px;
+  background-color: rgba(18, 26, 39, 0.037);
+}
+.check-in-all-members-content::-webkit-scrollbar-thumb{
+  border-radius: 6px;
+  background-color: rgba(62, 95, 115, 0.332);
+}
+.check-in-all-members-list{
+  color: var(--dark-text);
+  background-color: var(--white-bg);
+  border-bottom: 2px solid rgb(0, 255, 0);
 }
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
   padding: 16px 0;
@@ -884,7 +910,7 @@ body{
   margin-top: -200px;
 }
 .usher-check-in-inner-container{
-  margin-top: -300px;
+  height: 91vh;
 }
 .check-in-register-member{
   margin-left: 10px;
@@ -963,7 +989,7 @@ body{
     display: none;
   }
   .inner-container{
-    width: 80%;
+    width: 95%;
   }
   .navbar-button{
     font-size: 12px;
@@ -1086,6 +1112,12 @@ body{
   .user-content-container{
     height: 93vh;
   }
+  .all-members-list-header th{
+    padding: 10px 0;
+  }
+  .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
+    padding: 10px 0;
+  }
 }
 @media only screen and (max-width: 400px) {
   .navbar-button{
@@ -1180,5 +1212,18 @@ body{
   /* usher register */
   .usher-register-container{
     height: 92.8vh;
+  }
+  .all-members-list-header{
+    font-size: 17px;
+  }
+  /* usher check in */
+  .check-in-all-members-content{
+    height: 42vh;
+  }
+  .all-members-list-header th{
+    padding: 8px 0;
+  }
+  .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
+    padding: 8px 0;
   }
 }

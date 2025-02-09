@@ -50,12 +50,9 @@ const CheckIn = () => {
   return (
     <div>
       <div className="container-background usher-register-container">
-        <div className="outer-container "
+        <div className="outer-container"
           data-aos="fade-up"
         >
-          <div className="">
-            
-          </div>
           <div className="inner-container usher-check-in-inner-container">
               <form 
                 className='check-in-form'
@@ -90,16 +87,282 @@ const CheckIn = () => {
                 </div>
               </form>
               {/* members table */}
-              <table className='all-members-content'>
-                  {/* table header */}
-                  <thead>
-                      <tr className='all-members-list-header personal-members-list-header'>
-                          <th>Full Name</th>
-                          <th>Phone Number</th>
-                          <th>Date</th>
+              <div className="check-in-all-members-content">
+                <table className='all-members-content'>
+                    {/* table header */}
+                    <thead>
+                        <tr className='all-members-list-header personal-members-list-header'>
+                            <th>Full Name</th>
+                            <th>Phone Number</th>
+                            <th>check in</th>
+                        </tr>
+                    </thead>
+                    {/* breaks the thead from the tbody */}
+                    <br />
+
+                    <tbody>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
                       </tr>
-                  </thead>
-              </table>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      <tr className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
+                              hello
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              0215436516
+                          </td>
+                          <td className='all-members-list-date'>
+                              <input type="checkbox" 
+                                name=""  
+                              />
+                          </td>
+                      </tr>
+                      
+                      {/* <tr key={filteredMember._id} className='all-members-list'>
+                          <td>
+                              {filteredMember.attendeeName}
+                          </td>
+                          <td className='all-members-list-phone-number'>
+                              {filteredMember.attendeePhoneNumber}
+                          </td>
+                          <td className='all-members-list-date'>
+                              { new Date(filteredMember.createdAt).toLocaleDateString()}
+                          </td>
+                      </tr> */}
+                    </tbody>
+                </table>
+              </div>
           </div>
         </div>
       </div>

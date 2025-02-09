@@ -84,8 +84,8 @@ const Register = () => {
         data-aos="fade-up"
         >
           <div className="inner-container usher-register-inner-container">
-              <h1 className='container-header'>Register Member</h1>
-              <form onSubmit={handleOnSubmit}>
+              <form className='usher-register-form' onSubmit={handleOnSubmit}>
+                <h1 className='container-header'>Register Member</h1>
                 <div className="form-group">
                     <label htmlFor="fullName">
                         Full name

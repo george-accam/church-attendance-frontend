@@ -166,7 +166,7 @@ const Personal = () => {
                                   <td className='all-members-list-date'>
                                       { new Date(filteredMember.createdAt).toLocaleDateString()}
                                   </td>
-                              </tr>
+                          </tr>
                         ))
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
@@ -184,7 +184,7 @@ const Personal = () => {
                           ))
                       ): (
                           <tr className='no-members'>
-                            <td>
+                            <td colSpan={3}>
                               <img src={member} alt="" />
                               <p>No members available yet</p>
                             </td>
