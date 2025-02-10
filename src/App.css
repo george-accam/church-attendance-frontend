@@ -926,7 +926,11 @@ body{
 .check-in-register-member{
   margin-left: 10px;
 }
-
+.check-in-search-no-members td{
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+}
 
 
 
@@ -936,6 +940,7 @@ body{
   font-size: 18px;
 }
 
+/* check input */
 .checkbox {
   appearance: none;
   width: 18px;

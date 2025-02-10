@@ -19,10 +19,9 @@ const CheckIn = () => {
   }
 
   // submit the check in data
-  const handleOnSubmit = async(e) => {
-    e.preventDefault();
+  const handleOnSubmit = async(telephoneNumber) => {
     try {
-      const response = await Api.post("check-in");
+      const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
       if (message) {
         setIsLoading(true);
@@ -44,6 +43,8 @@ const CheckIn = () => {
     }
   };
 
+
+  // handle the search members
   const handleFetchSearch = async()=>{
     try {
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
@@ -141,11 +142,12 @@ const CheckIn = () => {
                     </thead>
                     {/* breaks the thead from the tbody */}
                     <br />
+                    <br />
 
                     <tbody>
                       {filteredMembers === null || filteredMembers.length === 0 ? (
-                        <tr className='all-members-list check-in-all-members-list'>
-                          <td colSpan="3">No members found</td>
+                        <tr className='check-in-all-members-list check-in-search-no-members'>
+                          <td colSpan="3">No members found yet</td>
                         </tr>
                       ) : (
                         filteredMembers.map((filteredMember)=> (
@@ -157,7 +159,11 @@ const CheckIn = () => {
                                   {filteredMember.phoneNumber}
                               </td>
                               <td className='all-members-list-date'>
-                                  <input class="checkbox" type="checkbox" />
+                                  <input 
+                                    class="checkbox" 
+                                    type="checkbox"
+                                    onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
+                                  />
                               </td>
                           </tr>
                         ))
