@@ -127,8 +127,8 @@ return (
                 <div className="inner-container"
                   data-aos="fade-up"
                 >
-                    <h1 className='container-header'>Login</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form className='usher-register-form' onSubmit={handleSubmit}>
+                      <h1 className='container-header'>Login</h1>
                       <div className="">
                         <div  className="email-phone-container">
                           <label onClick={handleIsSwitch} htmlFor="email" className={`email-phone email-label ${ !isSwitch? "email-phone-switch" : ""}`}>

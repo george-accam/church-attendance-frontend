@@ -460,6 +460,7 @@ body{
   right: 0%;
   margin: 18px 20px 0 0;
   width: 10%;
+  z-index: 1;
   background-color: var(--light-text);
   padding: 5px;
   border-radius: 10px;
@@ -532,6 +533,7 @@ body{
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -791,6 +793,15 @@ body{
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
   padding: 16px 0;
 }
+/* usher check in */
+.check-in-input{
+  accent-color: rgb(5, 255, 5);
+  outline: none;
+  cursor: pointer;
+}
+.check-in-input[type="checkbox"]{
+  transform: scale(1.3);
+}
 .no-members{
   width: 100%;
   height: 70vh;
@@ -924,6 +935,66 @@ body{
 .custom-toast-message{
   font-size: 18px;
 }
+
+.checkbox {
+  appearance: none;
+  width: 18px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 2px solid black;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox::before {
+  font-family: "Quicksand", sans-serif;
+  position: absolute;
+  bottom: -12px;
+  left: -4px;
+  content: "✔";
+  font-size: 40px;
+  color: rgb(255, 158, 14);
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked::before {
+  animation: zoom 0.5s ease-in-out;
+  transform: scale(0.8);
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+
+  20% {
+    transform: scale(1.5);
+  }
+
+  40% {
+    transform: scale(0.5);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  90% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{

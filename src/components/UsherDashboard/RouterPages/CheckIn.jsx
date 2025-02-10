@@ -9,18 +9,25 @@ import 'aos/dist/aos.css';
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredMember, setFilteredMember] = useState([]);
+  const [member, setMember] = useState([]);
 
+
+  // handle the input value
   const handleInputChange = (e) => {
     setPhoneNumber(e.target.value);
   }
 
+  // submit the check in data
   const handleOnSubmit = async(e) => {
     e.preventDefault();
     try {
       const response = await Api.post("/check-in", { phoneNumber });
       const { message } = response.data;
-      setIsLoading(true);
-      handleSuccess(message);
+      if (message) {
+        setIsLoading(true);
+        handleSuccess(message);
+      }
       setPhoneNumber("");
       
     } catch (error) {
@@ -37,6 +44,28 @@ const CheckIn = () => {
     }
   };
 
+  const handleFetchSearch = async()=>{
+    try {
+      const response = await Api.get(`search-attendee?q=${phoneNumber}`)
+      const { attendee } = response.data;
+      setFilteredMember(attendee);
+
+    } catch (error) {
+      
+    }
+  }
+
+  // get all members
+  const getMembers = async () => {
+    try {
+      const response = await Api.get("/members");
+      const { data } = response.data;
+      setMember(data);
+      setFilteredMember(data);
+      } catch (error) {
+        handleError("Error fetching members");
+    }
+  };
   useEffect(()=>{
     Aos.init({
       duration: 300,
@@ -56,7 +85,7 @@ const CheckIn = () => {
           <div className="inner-container usher-check-in-inner-container">
               <form 
                 className='check-in-form'
-                onSubmit={handleOnSubmit}
+                onSubmit={handleFetchSearch}
               >
                 <h1 className='container-header'>Check In Member</h1>
                 <div className="form-group">
@@ -109,255 +138,19 @@ const CheckIn = () => {
                               0215436516
                           </td>
                           <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
-                          </td>
-                      </tr>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input type="checkbox" 
-                                name=""  
-                              />
+                              <input class="checkbox" type="checkbox" />
                           </td>
                       </tr>
                       
-                      {/* <tr key={filteredMember._id} className='all-members-list'>
-                          <td>
+                      {/* <tr key={filteredMember._id} className='all-members-list check-in-all-members-list'>
+                          <td className='all-members-list-name'>
                               {filteredMember.attendeeName}
                           </td>
                           <td className='all-members-list-phone-number'>
                               {filteredMember.attendeePhoneNumber}
                           </td>
                           <td className='all-members-list-date'>
-                              { new Date(filteredMember.createdAt).toLocaleDateString()}
+                              <input class="checkbox" type="checkbox" />
                           </td>
                       </tr> */}
                     </tbody>
