@@ -774,16 +774,6 @@ body{
 /* check in member list */
 .check-in-all-members-content{
   height: 48vh;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-}
-.check-in-all-members-content::-webkit-scrollbar{
-  width: 8px;
-  background-color: rgba(18, 26, 39, 0.037);
-}
-.check-in-all-members-content::-webkit-scrollbar-thumb{
-  border-radius: 6px;
-  background-color: rgba(62, 95, 115, 0.332);
 }
 .check-in-all-members-list{
   color: var(--dark-text);

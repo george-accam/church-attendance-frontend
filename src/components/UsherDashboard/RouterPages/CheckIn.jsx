@@ -11,12 +11,37 @@ const CheckIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [member, setMember] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
+
+  // count the check time out
+  useEffect(()=>{
+    let timeOut
+
+    //if the check is true
+    if(isChecked){
+      timeOut = setTimeout(()=>{
+        setIsChecked(false)
+      }, 10000)
+    }
+
+    return ()=>{
+      // clear the time out
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+    }
+  }, [isChecked])
+
+  // handles the check changes
+  const handleChecked = (e)=>{
+    setIsChecked(e.target.checked);
+  };
 
   // handle the input value
   const handleInputChange = (e) => {
-    setPhoneNumber(e.target.value);
-  }
+    setPhoneNumber(e.target.value.replace(/\s+/g, ""));
+  };
 
   // submit the check in data
   const handleOnSubmit = async(telephoneNumber) => {
@@ -47,6 +72,11 @@ const CheckIn = () => {
   // handle the search members
   const handleFetchSearch = async()=>{
     try {
+      if (filteredMembers === null || filteredMembers.length === 0) {
+        handleError("member not found");
+        return;
+      }
+
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { attendee } = response.data;
       setIsLoading(true)
@@ -66,7 +96,7 @@ const CheckIn = () => {
     }finally{
       setIsLoading(false);
     }
-  }
+  };
 
   // get all members
   const getMembers = async () => {
@@ -74,11 +104,13 @@ const CheckIn = () => {
       const response = await Api.get("/members");
       const { data } = response.data;
       setMember(data);
-      setFilteredMember(data);
+      setFilteredMembers(data);
       } catch (error) {
         handleError("Error fetching members");
     }
   };
+
+  // the aos effect
   useEffect(()=>{
     Aos.init({
       duration: 300,
@@ -87,7 +119,7 @@ const CheckIn = () => {
       offset: 100,
     });
     handleFetchSearch();
-  }, [])
+  }, []);
 
 
   return (
@@ -142,12 +174,11 @@ const CheckIn = () => {
                     </thead>
                     {/* breaks the thead from the tbody */}
                     <br />
-                    <br />
 
                     <tbody>
                       {filteredMembers === null || filteredMembers.length === 0 ? (
                         <tr className='check-in-all-members-list check-in-search-no-members'>
-                          <td colSpan="3">No members found yet</td>
+                          <td colSpan="3">No members found</td>
                         </tr>
                       ) : (
                         filteredMembers.map((filteredMember)=> (
@@ -162,6 +193,8 @@ const CheckIn = () => {
                                   <input 
                                     class="checkbox" 
                                     type="checkbox"
+                                    checked={isChecked}
+                                    onChange={handleChecked}
                                     onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
                                   />
                               </td>
