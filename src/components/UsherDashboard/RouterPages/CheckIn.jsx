@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [filteredMember, setFilteredMember] = useState([]);
+  const [filteredMembers, setFilteredMembers] = useState([]);
   const [member, setMember] = useState([]);
 
 
@@ -22,7 +22,7 @@ const CheckIn = () => {
   const handleOnSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await Api.post("/check-in", { phoneNumber });
+      const response = await Api.post("check-in");
       const { message } = response.data;
       if (message) {
         setIsLoading(true);
@@ -48,10 +48,22 @@ const CheckIn = () => {
     try {
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { attendee } = response.data;
-      setFilteredMember(attendee);
+      setIsLoading(true)
+      setFilteredMembers(attendee);
 
     } catch (error) {
-      
+      if (error.response.data) {
+        handleError(error.response.data);
+
+      }else if(error.request){
+        handleError("Error connecting to the server. Please check your internet connection", + error.request);
+
+      }else{
+        handleError("An error occurred. Please try again");
+
+      }
+    }finally{
+      setIsLoading(false);
     }
   }
 
@@ -73,6 +85,7 @@ const CheckIn = () => {
       once: true,
       offset: 100,
     });
+    handleFetchSearch();
   }, [])
 
 
@@ -83,9 +96,8 @@ const CheckIn = () => {
           data-aos="fade-up"
         >
           <div className="inner-container usher-check-in-inner-container">
-              <form 
+              <div 
                 className='check-in-form'
-                onSubmit={handleFetchSearch}
               >
                 <h1 className='container-header'>Check In Member</h1>
                 <div className="form-group">
@@ -102,6 +114,7 @@ const CheckIn = () => {
                 </div>
                 <div className="button-container">
                     <button type="submit"
+                    onClick={handleFetchSearch}
                         disabled={isLoading}
                         className={`submit-button ${isLoading ? "button-loading" : ""}`}
                     >
@@ -114,7 +127,7 @@ const CheckIn = () => {
                         </Link>
                     </div>
                 </div>
-              </form>
+              </div>
               {/* members table */}
               <div className="check-in-all-members-content">
                 <table className='all-members-content'>
@@ -130,29 +143,25 @@ const CheckIn = () => {
                     <br />
 
                     <tbody>
-                      <tr className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              hello
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              0215436516
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input class="checkbox" type="checkbox" />
-                          </td>
-                      </tr>
-                      
-                      {/* <tr key={filteredMember._id} className='all-members-list check-in-all-members-list'>
-                          <td className='all-members-list-name'>
-                              {filteredMember.attendeeName}
-                          </td>
-                          <td className='all-members-list-phone-number'>
-                              {filteredMember.attendeePhoneNumber}
-                          </td>
-                          <td className='all-members-list-date'>
-                              <input class="checkbox" type="checkbox" />
-                          </td>
-                      </tr> */}
+                      {filteredMembers === null || filteredMembers.length === 0 ? (
+                        <tr className='all-members-list check-in-all-members-list'>
+                          <td colSpan="3">No members found</td>
+                        </tr>
+                      ) : (
+                        filteredMembers.map((filteredMember)=> (
+                          <tr key={filteredMember._id} className='all-members-list check-in-all-members-list'>
+                              <td className='all-members-list-name'>
+                                  {filteredMember.fullName}
+                              </td>
+                              <td className='all-members-list-phone-number'>
+                                  {filteredMember.phoneNumber}
+                              </td>
+                              <td className='all-members-list-date'>
+                                  <input class="checkbox" type="checkbox" />
+                              </td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                 </table>
               </div>

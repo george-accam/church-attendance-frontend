@@ -22,8 +22,8 @@ const AllMembers = () => {
     const searchMembers = async() => {
         try {
             const response = await api.get(`search-attendee?q=${search}`);
-            setIsLoading(true);
             const { attendee } = response.data;
+            setIsLoading(true);
             setFilteredMembers(attendee);
 
         } catch (error) {
