@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import lightMode from "../assets/light-mode.svg";
 import darkMode from "../assets/dark-mode.svg";
 import Logout from "../reusableComponents/Logout";
+import NavbarToggleButton from "../reusableComponents/NavbarToggleButton";
 
 const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarActive }) => {
     const [isShow, setIsShow] = useState(false);
@@ -83,33 +84,19 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                     {user ? user : "Usher"}
                 </h6>
             </div>
-            <div className="logout-container"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="options-menu"
-                ref={menuRef}
-            >
-                <span id="options-menu" onClick={handleShow} aria-expanded={isShow}>
-                    <MdLogout />
-                </span>
-                {isShow && (
-                    <div className="logout-inner-container" role="none">
-                        <section>options</section>
-                        <div className="toggle-switch-container">
-                            <label class="ui-switch">
-                                <input type="checkbox" />
-                                <div class="slider">
-                                    <div class="circle"></div>
-                                </div>
-                            </label>
-                        </div>
-                        <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6>
-                        <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
-                    </div>
-                )}
 
-
-            </div>
+            {/* toggle navbar container */}
+            <NavbarToggleButton
+                isShow={isShow}
+                setIsShow={setIsShow}
+                handleShow={handleShow}
+                handleTheme={handleTheme}
+                handleLogout={handleLogout}
+                handleChangeColor={()=> { 
+                handleChangeColor();
+                setIsTheme(false);
+            }}
+            />
                 {/* the theme container */}
                 {isTheme && (
                     <div className="dark-background">

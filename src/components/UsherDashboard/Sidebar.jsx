@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import Logout from '../reusableComponents/Logout';
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(null);
+  const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
   // handle sidebar active
   const handleShowActive = (activeName)=>{
     setIsActive(activeName);
   };
 
+  // logout the user
+  const handleYes = ()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  }
+
+  const handleLogout = ()=>{
+    setShowLogout(!showLogout);
+  }
 
   return (
     <div>
@@ -61,12 +74,18 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
             <p className="sidebar-email">
               email:  <span>{ userEmail }</span>
             </p>
-            <p className="sidebar-logout">
+            <p onClick={handleLogout} className="sidebar-logout">
                 Logout
             </p>
           </div>
         </div>
       </div>
+      {showLogout && (
+        <Logout 
+          handleYes={handleYes}
+          handleLogout={handleLogout}
+        />
+      )}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import api from "../../../API/Api.js";
 import { handleError, handleSuccess } from '../../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
 import member from './../../assets/member.svg';
+import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
 
 const Personal = () => {
   const [members, setMembers] = useState([]);
@@ -83,46 +84,7 @@ const Personal = () => {
   // loading state
   if (isLoading) {
     return (
-      <div className="member-loading-container">
-        <div className="all-members-container">
-          <div className="header-search-bar">
-            <h1 className='all-members-title'>Personal Members</h1>
-          </div>
-          <div className="">
-              <table className='all-members-content'>
-                  {/* table header */}
-                  <thead>
-                      <tr className='all-members-list-header personal-members-list-header'>
-                          <th>Full Name</th>
-                          <th>Phone Number</th>
-                          <th>Date</th>
-                      </tr>
-                  </thead>
-                  {/* breaks the thead from the tbody */}
-                  <br />
-                  <tr className='loading-members member-card'>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr className='loading-members member-card'>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr className='loading-members member-card'>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-              </table>
-          </div>
-        </div>
-        <p className='number-of-members loading-number-of-members'>
-          <span className='ping-effect'></span>
-          <p></p>
-        </p>
-      </div>
+      <PersonalComponentLoader />
   );
   }
 

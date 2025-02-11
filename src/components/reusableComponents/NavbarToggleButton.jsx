@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { AiOutlineLogout } from "react-icons/ai"; 
+import { MdOutlineModeStandby } from "react-icons/md"; 
+import { MdLogout } from "react-icons/md"; 
 
-const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleTheme, handleLogout, handleChangeColor}) => {
+const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleTheme, handleLogout, handleChangeColor }) => {
     const menuRef = useRef(null);
+    
     // close the theme container when cursor is outside
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -30,7 +34,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleTheme, handle
                 {isShow && (
                     <div className="logout-inner-container" role="none">
                         <section>options</section>
-                        <div onClick={()=> handleChangeColor()} className="toggle-switch-container">
+                        <div onClick={ ()=>handleChangeColor() } className="toggle-switch-container">
                             <label class="ui-switch">
                                 <input type="checkbox" />
                                 <div class="slider">

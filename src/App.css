@@ -547,8 +547,8 @@ body{
   --switch-width: 38px;
   --switch-height: 10px;
   /* circle */
-  --circle-diameter: 19px;
-  --circle-bg: rgb(0, 56, 146);
+  --circle-diameter: 20px;
+  --circle-bg: rgb(0, 9, 22);
   --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
 }
 .ui-switch input {

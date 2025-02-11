@@ -4,6 +4,7 @@ import Sidebar from "../UsherDashboard/Sidebar"
 import { handleError } from '../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
 import UsherContainer from '../UsherDashboard/UsherContainer';
+import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 
 
 const UserDashboard = () => {
@@ -45,15 +46,7 @@ const UserDashboard = () => {
 
   if(!user){
     return (
-      <div className="loading-container">
-        <div class="container">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <p>a moment please... 😊😊</p>
-      </div>
+      <MainComponentLoader />
     )
   }
   return (
