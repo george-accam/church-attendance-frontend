@@ -38,7 +38,7 @@ body{
 
 /* app component */
 .app-container{
-  height: 100vh;
+  height: auto;
 }
 
 /* app loading container */
@@ -48,8 +48,67 @@ body{
   color: var(--dark-text);
   font-size: 3rem;
 }
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  height: 96px;
+  width: 96px;
+  animation: rotate_3922 1.2s linear infinite;
+  background-color: #9b59b6;
+  background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+}
+
+.container span {
+  position: absolute;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  background-color: #9b59b6;
+  background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+}
+
+.container span:nth-of-type(1) {
+  filter: blur(5px);
+}
+
+.container span:nth-of-type(2) {
+  filter: blur(10px);
+}
+
+.container span:nth-of-type(3) {
+  filter: blur(25px);
+}
+
+.container span:nth-of-type(4) {
+  filter: blur(50px);
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: #fff;
+  border: solid 5px #ffffff;
+  border-radius: 50%;
+}
+
+@keyframes rotate_3922 {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .loading-container p{
-  padding-top: 60%;
+  padding-top: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,10 +295,21 @@ body{
 }
 .inner-container{
   width: 70%;
-  background-color: rgb(230, 249, 255);
   margin: 10px 15px;
+}
+/* usher register form */
+.usher-register-form{
   padding: 10px 30px;
+  background-color: rgb(230, 249, 255);
   border-radius: 10px;
+  margin-bottom: 20px;
+}
+/* usher check in form */
+.check-in-form{
+  padding: 10px 30px;
+  background-color: rgb(230, 249, 255);
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
 }
 .container-header{
   color: var(--dark-bg);
@@ -449,6 +519,7 @@ body{
   right: 0%;
   margin: 18px 20px 0 0;
   width: 10%;
+  z-index: 1;
   background-color: var(--light-text);
   padding: 5px;
   border-radius: 10px;
@@ -462,6 +533,88 @@ body{
   text-align: center;
   margin: 4px 0;
   color: rgba(100, 100, 100, 0.596);
+}
+/* switch settings 👇 */
+.toggle-switch-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+.ui-switch {
+  /* switch */
+  --switch-bg: rgb(135, 150, 165);
+  --switch-width: 38px;
+  --switch-height: 10px;
+  /* circle */
+  --circle-diameter: 19px;
+  --circle-bg: rgb(0, 56, 146);
+  --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
+}
+.ui-switch input {
+  display: none;
+}
+.slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  background: var(--switch-bg);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+}
+.slider .circle {
+  top: calc(var(--circle-inset) * -1);
+  left: 0;
+  width: var(--circle-diameter);
+  height: var(--circle-diameter);
+  position: absolute;
+  background: var(--circle-bg);
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTkuMzA1IDEuNjY3VjMuNzVoMS4zODlWMS42NjdoLTEuMzl6bS00LjcwNyAxLjk1bC0uOTgyLjk4Mkw1LjA5IDYuMDcybC45ODItLjk4Mi0xLjQ3My0xLjQ3M3ptMTAuODAyIDBMMTMuOTI3IDUuMDlsLjk4Mi45ODIgMS40NzMtMS40NzMtLjk4Mi0uOTgyek0xMCA1LjEzOWE0Ljg3MiA0Ljg3MiAwIDAwLTQuODYyIDQuODZBNC44NzIgNC44NzIgMCAwMDEwIDE0Ljg2MiA0Ljg3MiA0Ljg3MiAwIDAwMTQuODYgMTAgNC44NzIgNC44NzIgMCAwMDEwIDUuMTM5em0wIDEuMzg5QTMuNDYyIDMuNDYyIDAgMDExMy40NzEgMTBhMy40NjIgMy40NjIgMCAwMS0zLjQ3MyAzLjQ3MkEzLjQ2MiAzLjQ2MiAwIDAxNi41MjcgMTAgMy40NjIgMy40NjIgMCAwMTEwIDYuNTI4ek0xLjY2NSA5LjMwNXYxLjM5aDIuMDgzdi0xLjM5SDEuNjY2em0xNC41ODMgMHYxLjM5aDIuMDg0di0xLjM5aC0yLjA4NHpNNS4wOSAxMy45MjhMMy42MTYgMTUuNGwuOTgyLjk4MiAxLjQ3My0xLjQ3My0uOTgyLS45ODJ6bTkuODIgMGwtLjk4Mi45ODIgMS40NzMgMS40NzMuOTgyLS45ODItMS40NzMtMS40NzN6TTkuMzA1IDE2LjI1djIuMDgzaDEuMzg5VjE2LjI1aC0xLjM5eiIgLz4KPC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -o-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  ;
+}
+.slider .circle::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: inherit;
+  -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+  opacity: 0;
+}
+/* actions */
+.ui-switch input:checked+.slider .circle {
+  left: calc(100% - var(--circle-diameter));
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+}
+.ui-switch input:active+.slider .circle::before {
+  -webkit-transition: 0s;
+  -o-transition: 0s;
+  transition: 0s;
+  opacity: 1;
+  width: 0;
+  height: 0;
 }
 .logout-inner-container p{
   font-size: 16px;
@@ -521,6 +674,7 @@ body{
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -688,7 +842,7 @@ body{
 
 /* all the members */
 .all-members-container{
-  margin: 0 20px;
+  margin: 0 10px;
   height: 85vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -743,11 +897,6 @@ body{
   border-collapse: collapse;
 }
 .all-members-list-header{
-  /* display: flex;
-  justify-content: space-evenly;
-  padding: 6px 10px;
-  border-radius: 3px 3px 0 0;
-  margin-bottom: 5px; */
   text-align: center;
   background-color: rgba(115, 255, 0, 0.677);
   font-size: 20px;
@@ -757,19 +906,32 @@ body{
   padding: 11px;
 }
 .all-members-list{
-  /* display: flex;
-  justify-content: space-between;
-  padding: 6px 0px;
-  border-radius: 3px;
-  margin: 20px 0; */
   text-align: center;
   color: var(--light-text);
   background-color: rgb(96, 128, 139);
-  border-bottom: 2px solid rgb(0, 0, 0);
   font-size: 15px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+/* check in member list */
+.check-in-all-members-content{
+  height: 48vh;
+}
+.check-in-all-members-list{
+  color: var(--dark-text);
+  background-color: var(--white-bg);
+  border-bottom: 2px solid rgb(0, 255, 0);
 }
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
-  padding: 16px;
+  padding: 16px 0;
+}
+/* usher check in */
+.check-in-input{
+  accent-color: rgb(5, 255, 5);
+  outline: none;
+  cursor: pointer;
+}
+.check-in-input[type="checkbox"]{
+  transform: scale(1.3);
 }
 .no-members{
   width: 100%;
@@ -889,10 +1051,17 @@ body{
 .usher-register-inner-container{
   margin-top: -200px;
 }
+.usher-check-in-inner-container{
+  height: 80vh;
+}
 .check-in-register-member{
   margin-left: 10px;
 }
-
+.check-in-search-no-members td{
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+}
 
 
 
@@ -901,6 +1070,70 @@ body{
 .custom-toast-message{
   font-size: 18px;
 }
+
+/*check in check input */
+.checkbox {
+  appearance: none;
+  width: 18px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 2px solid black;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox::before {
+  font-family: "Quicksand", sans-serif;
+  position: absolute;
+  bottom: -12px;
+  left: -4px;
+  content: "✔";
+  font-size: 40px;
+  color: rgb(255, 158, 14);
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked::before {
+  animation: zoom 0.5s ease-in-out;
+  transform: scale(0.8);
+}
+.is-checked{
+  cursor: not-allowed;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+
+  20% {
+    transform: scale(1.5);
+  }
+
+  40% {
+    transform: scale(0.5);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  90% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{
@@ -966,7 +1199,7 @@ body{
     display: none;
   }
   .inner-container{
-    width: 80%;
+    width: 95%;
   }
   .navbar-button{
     font-size: 12px;
@@ -1071,6 +1304,7 @@ body{
     position: fixed;
     width: 750px;
     height: 92.9vh;
+    z-index: 1;
   }
   .sidebar-bottom{
     margin-top: 50px;
@@ -1087,6 +1321,12 @@ body{
   /* user content container */
   .user-content-container{
     height: 93vh;
+  }
+  .all-members-list-header th{
+    padding: 10px 0;
+  }
+  .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
+    padding: 10px 0;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -1132,7 +1372,7 @@ body{
     font-size: 3rem;
   }
   .email-phone-container{
-    width: 40%;
+    width: 120px;
   }
   .button-container{
     flex-direction: column;
@@ -1170,13 +1410,30 @@ body{
   }
   .sidebar-container{
     width: 300px;
-    height: 92.2vh;
+    height: 93vh;
   }
   .user-content-container{
-    height: 93.3vh;
+    height: 92.8vh;
   }
   .header-search-bar{
     display: flex;
     flex-direction: column;
+  }
+  /* usher register */
+  .usher-register-container{
+    height: 92.8vh;
+  }
+  .all-members-list-header{
+    font-size: 16px;
+  }
+  /* usher check in */
+  .check-in-all-members-content{
+    height: 42vh;
+  }
+  .all-members-list-header th{
+    padding: 8px 0;
+  }
+  .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
+    padding: 8px 0;
   }
 }

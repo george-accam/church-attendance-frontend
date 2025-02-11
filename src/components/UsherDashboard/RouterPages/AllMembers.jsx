@@ -22,8 +22,11 @@ const AllMembers = () => {
     const searchMembers = async() => {
         try {
             const response = await api.get(`search-attendee?q=${search}`);
-            setIsLoading(true);
             const { attendee } = response.data;
+            setIsLoading(true);
+            if (attendee === null || attendee.length === 0) {
+                handleError("member not found");
+            }
             setFilteredMembers(attendee);
 
         } catch (error) {

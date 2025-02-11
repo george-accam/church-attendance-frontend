@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import BgImage from "../assets/christ-embassy.png"
 import { handleError, handleSuccess } from "../../notifications/Notification";
 import { ToastContainer } from "react-toastify";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import Api from "../../API/Api.js";
 
 const initialState = {
@@ -22,8 +24,18 @@ const Login = () => {
 
     // handles the input values
     const handleInputChange = (e)=>{
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+      const { name, value } = e.target;
+      if (name === "phoneNumber") {
+          setFormData({ 
+              ...formData, [name]: value.replace(/\s+/g, "")
+          });
+      } else if (name === "email"){
+          setFormData({
+              ...formData, [name]: value.replace(/\s+/g, "")
+          });
+      } else {
+          setFormData({ ...formData, [name]: value });
+      }
     }
     // show and close the password
     const handleOpenPassword = () => {
@@ -93,6 +105,15 @@ const Login = () => {
       }
     }
 
+    useEffect(()=>{
+      Aos.init({
+        duration: 300,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100,
+      });
+    }, [])
+
 return (
     <div>
         <div className="container-background">
@@ -103,9 +124,11 @@ return (
                 />
             </div>
             <div className="outer-container">
-                <div className="inner-container">
-                    <h1 className='container-header'>Login</h1>
-                    <form onSubmit={handleSubmit}>
+                <div className="inner-container"
+                  data-aos="fade-up"
+                >
+                    <form className='usher-register-form' onSubmit={handleSubmit}>
+                      <h1 className='container-header'>Login</h1>
                       <div className="">
                         <div  className="email-phone-container">
                           <label onClick={handleIsSwitch} htmlFor="email" className={`email-phone email-label ${ !isSwitch? "email-phone-switch" : ""}`}>

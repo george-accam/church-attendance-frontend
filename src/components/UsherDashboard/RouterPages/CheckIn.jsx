@@ -1,24 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { handleSuccess, handleError } from '../../../notifications/Notification';
 import Api from "../../../API/Api";
 import { ToastContainer } from 'react-toastify';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredMembers, setFilteredMembers] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
+
+  // count the check time out
+  useEffect(()=>{
+    let timeOut
+
+    //if the check is true
+    if(isChecked){
+      timeOut = setTimeout(()=>{
+        setIsChecked(false)
+      }, 120000)
+    }
+
+    return ()=>{
+      // clear the time out
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+    }
+  }, [isChecked])
+
+  // handles the check changes
+  const handleChecked = (e)=>{
+    setIsChecked(e.target.checked);
+  };
+
+  // handle the input value
   const handleInputChange = (e) => {
-    setPhoneNumber(e.target.value);
-  }
+    setPhoneNumber(e.target.value.replace(/\s+/g, ""));
+  };
 
-  const handleOnSubmit = async(e) => {
-    e.preventDefault();
+  // submit the check in data
+  const handleOnSubmit = async(telephoneNumber) => {
     try {
-      const response = await Api.post("/check-in", { phoneNumber });
+      const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
-      setIsLoading(true);
-      handleSuccess(message);
+      if (message) {
+        setIsLoading(true);
+        handleSuccess(message);
+      }
       setPhoneNumber("");
       
     } catch (error) {
@@ -35,13 +67,58 @@ const CheckIn = () => {
     }
   };
 
+
+  // handle the search members
+  const handleFetchSearch = async()=>{
+    try {
+
+      const response = await Api.get(`search-attendee?q=${phoneNumber}`)
+      const { attendee } = response.data;
+      setIsLoading(true)
+      if (attendee === null || attendee.length === 0) {
+        handleError("member not found");
+      }
+      setFilteredMembers(attendee);
+
+    } catch (error) {
+      if (error.response.data) {
+        handleError(error.response.data);
+
+      }else if(error.request){
+        handleError("Error connecting to the server. Please check your internet connection", + error.request);
+
+      }else{
+        handleError("An error occurred. Please try again");
+
+      }
+    }finally{
+      setIsLoading(false);
+    }
+  };
+
+  // the aos effect
+  useEffect(()=>{
+    Aos.init({
+      duration: 300,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100,
+    });
+    handleFetchSearch();
+  }, []);
+
+
   return (
     <div>
       <div className="container-background usher-register-container">
-        <div className="outer-container ">
-          <div className="inner-container usher-register-inner-container">
-              <h1 className='container-header'>Check In Member</h1>
-              <form onSubmit={handleOnSubmit}>
+        <div className="outer-container"
+          data-aos="fade-up"
+        >
+          <div className="inner-container usher-check-in-inner-container">
+              <div 
+                className='check-in-form'
+              >
+                <h1 className='container-header'>Check In Member</h1>
                 <div className="form-group">
                     <label htmlFor="fullName">
                       Phone number
@@ -56,10 +133,11 @@ const CheckIn = () => {
                 </div>
                 <div className="button-container">
                     <button type="submit"
+                    onClick={handleFetchSearch}
                         disabled={isLoading}
                         className={`submit-button ${isLoading ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "checking in" : "check in"}
+                        {isLoading ? "searching" : "search"}
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
@@ -68,7 +146,63 @@ const CheckIn = () => {
                         </Link>
                     </div>
                 </div>
-              </form>
+              </div>
+              {/* members table */}
+              <div className="check-in-all-members-content">
+                <table className='all-members-content'>
+                    {/* table header */}
+                    <thead>
+                        <tr className='all-members-list-header personal-members-list-header'>
+                            <th>Full Name</th>
+                            <th>Phone Number</th>
+                            <th>check in</th>
+                        </tr>
+                    </thead>
+                    {/* breaks the thead from the tbody */}
+                    <br />
+
+                    <tbody>
+                      {filteredMembers === null || filteredMembers.length === 0 ? (
+                        <tr 
+                          data-aos="fade-up"
+                          className='check-in-all-members-list check-in-search-no-members'
+                        >
+                          <td colSpan="3">No member found</td>
+                        </tr>
+                      ) : (
+                        filteredMembers.map((filteredMember)=> (
+                          <tr 
+                            key={filteredMember._id} 
+                            data-aos="fade-up"
+                            className='all-members-list check-in-all-members-list'
+                          >
+                              <td className='all-members-list-name'>
+                                  {filteredMember.fullName}
+                              </td>
+                              <td className='all-members-list-phone-number'>
+                                  {filteredMember.phoneNumber}
+                              </td>
+                              <td className='all-members-list-date'>
+                                  <input 
+                                    class={`checkbox ${isChecked ? "is-checked": ""}`}
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    disabled={isChecked}
+                                    onChange={handleChecked}
+                                    onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
+                                  />
+                              </td>
+                          </tr>
+                        ))
+                      )}
+                      {isLoading && (
+                        <tr className='check-in-all-members-list check-in-search-no-members'>
+                          loading..
+                        </tr>
+                      )}
+                    </tbody>
+                </table>
+              </div>
           </div>
         </div>
       </div>

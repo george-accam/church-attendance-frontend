@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import { handleSuccess, handleError } from '../../../notifications/Notification';
 import Api from "../../../API/Api";
 import { ToastContainer } from 'react-toastify';
-
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -66,13 +67,25 @@ const Register = () => {
     }
   }
 
+  
+  useEffect(()=>{
+    Aos.init({
+      duration: 300,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100,
+    });
+  }, [])
+
   return (
     <div>
       <div className="container-background usher-register-container">
-        <div className="outer-container ">
+        <div className="outer-container "
+        data-aos="fade-up"
+        >
           <div className="inner-container usher-register-inner-container">
-              <h1 className='container-header'>Register Member</h1>
-              <form onSubmit={handleOnSubmit}>
+              <form className='usher-register-form' onSubmit={handleOnSubmit}>
+                <h1 className='container-header'>Register Member</h1>
                 <div className="form-group">
                     <label htmlFor="fullName">
                         Full name
