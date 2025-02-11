@@ -3,7 +3,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineModeStandby } from "react-icons/md"; 
 import { MdLogout } from "react-icons/md"; 
 
-const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleTheme, handleLogout, handleChangeColor }) => {
+const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handleChangeColor }) => {
     const menuRef = useRef(null);
     
     // close the theme container when cursor is outside
@@ -34,15 +34,19 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleTheme, handle
                 {isShow && (
                     <div className="logout-inner-container" role="none">
                         <section>options</section>
-                        <div onClick={ ()=>handleChangeColor() } className="toggle-switch-container">
-                            <label class="ui-switch">
-                                <input type="checkbox" />
-                                <div class="slider">
-                                    <div class="circle"></div>
-                                </div>
-                            </label>
+                        <div className="toggle-switch-container">
+                            <div className='dark-day'>day</div>
+                                <label className="ui-switch">
+                                    <input type="checkbox" 
+                                        onChange={handleChangeColor}
+                                    />
+                                    <div className="slider">
+                                        <div className="circle"></div>
+                                    </div>
+                                </label>
+                            <div className='dark-day'>dark</div>
                         </div>
-                        <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6>
+                        {/* <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6> */}
                         <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
                     </div>
                 )}

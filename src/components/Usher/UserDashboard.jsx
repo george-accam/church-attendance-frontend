@@ -9,7 +9,7 @@ import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
-  const [changeColor, setChangeColor] = useState(true)
+  const [changeColor, setChangeColor] = useState(false)
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const handleSidebarActive = ()=>{
@@ -57,7 +57,7 @@ const UserDashboard = () => {
         sidebarActive={sidebarActive}
         setSidebarActive={setSidebarActive}
         handleSidebarActive={handleSidebarActive}
-        handleChangeColor={handleChangeColor}
+        handleChangeColor={()=> handleChangeColor()}
         changeColor={changeColor}
       />
       <div className="sidebar-user-dashboard">

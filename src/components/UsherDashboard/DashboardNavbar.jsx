@@ -93,12 +93,12 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                 handleTheme={handleTheme}
                 handleLogout={handleLogout}
                 handleChangeColor={()=> { 
-                handleChangeColor();
-                setIsTheme(false);
-            }}
+                    handleChangeColor();
+                    setIsTheme(false);
+                }}
             />
                 {/* the theme container */}
-                {isTheme && (
+                {/* {isTheme && (
                     <div className="dark-background">
                         <div className="logout-decision-holder">
                             <div className="logout-holder theme-holder-container">
@@ -130,7 +130,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                             </div>
                         </div>
                     </div>
-                )}
+                )} */}
                 {/* the logout container */}
                 {isLogout &&(
                     <Logout

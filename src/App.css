@@ -108,10 +108,11 @@ body{
 }
 
 .loading-container p{
-  padding-top: 50%;
+  padding-top: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--dark-text);
 }
 
 /* navbar page */
@@ -537,9 +538,13 @@ body{
 /* switch settings 👇 */
 .toggle-switch-container{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   margin: 10px 0;
+}
+.dark-day{
+  color: var(--dark-text);
+  font-size: 13px;
+  margin-top: -3px;
 }
 .ui-switch {
   /* switch */
@@ -1175,6 +1180,9 @@ body{
     margin-bottom: 10px;
   }
   /* user dashboard */
+  .logout-inner-container{
+    width: 130px;
+  }
   .theme-holder-container{
     width: 30%;
   }
