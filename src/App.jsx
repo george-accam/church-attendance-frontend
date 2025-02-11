@@ -34,6 +34,7 @@ const App = () => {
       return () => clearTimeout(timer);
     }
   },[isLoading, navigate]);
+  
   if (isLoading) {
     // Display a loading state while user data is being fetched
     return (

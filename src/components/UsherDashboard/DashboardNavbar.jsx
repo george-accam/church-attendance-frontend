@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import lightMode from "../assets/light-mode.svg";
 import darkMode from "../assets/dark-mode.svg";
+import Logout from "../reusableComponents/Logout";
 
 const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarActive }) => {
     const [isShow, setIsShow] = useState(false);
@@ -55,7 +56,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (menuRef.current && !menuRef.current.contains(e.target)) {
-            setIsShow(false);
+                setIsShow(false);
             }
         };
 
@@ -94,11 +95,21 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                 {isShow && (
                     <div className="logout-inner-container" role="none">
                         <section>options</section>
+                        <div className="toggle-switch-container">
+                            <label class="ui-switch">
+                                <input type="checkbox" />
+                                <div class="slider">
+                                    <div class="circle"></div>
+                                </div>
+                            </label>
+                        </div>
                         <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6>
                         <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
                     </div>
                 )}
 
+
+            </div>
                 {/* the theme container */}
                 {isTheme && (
                     <div className="dark-background">
@@ -133,23 +144,13 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                         </div>
                     </div>
                 )}
-
                 {/* the logout container */}
                 {isLogout &&(
-                    <div className="dark-background">
-                        <div className="logout-decision-holder">
-                            <div className="logout-holder">
-                                <h2>Logout Confirmation</h2>
-                                <p>Are you sure you want to logout ?</p>
-                                <div className="decision">
-                                    <button className="yes" onClick={handleYes}>Yes</button>
-                                    <button className="no" onClick={handleLogout}>No</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Logout
+                        handleYes={handleYes}
+                        handleLogout={handleLogout}
+                    />
                 )}
-            </div>
         </div>
     )
 }
