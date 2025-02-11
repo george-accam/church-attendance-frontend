@@ -48,10 +48,10 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
     };
 
     // change the theme mode
-    const handleSelectedMode = (mode)=>{
-        setSelectedMode(mode);
-        localStorage.setItem("theme", mode);
-    }
+    // const handleSelectedMode = (mode)=>{
+    //     setSelectedMode(mode);
+    //     localStorage.setItem("theme", mode);
+    // }
 
     // close the theme container when cursor is outside
     useEffect(() => {

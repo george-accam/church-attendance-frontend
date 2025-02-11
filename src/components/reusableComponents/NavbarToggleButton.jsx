@@ -35,7 +35,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handl
                     <div className="logout-inner-container" role="none">
                         <section>options</section>
                         <div className="toggle-switch-container">
-                            <div className='dark-day'>day</div>
+                            <div className='dark-day'>dark</div>
                                 <label className="ui-switch">
                                     <input type="checkbox" 
                                         onChange={handleChangeColor}
@@ -44,7 +44,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handl
                                         <div className="circle"></div>
                                     </div>
                                 </label>
-                            <div className='dark-day'>dark</div>
+                            <div className='dark-day'>day</div>
                         </div>
                         {/* <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6> */}
                         <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
