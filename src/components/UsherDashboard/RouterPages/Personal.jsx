@@ -33,6 +33,9 @@ const Personal = () => {
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
       setIsLoading(true);
       const { personalAttendance } = response.data;
+      if (personalAttendance === null || personalAttendance.length === 0) {
+        handleError("member not found");
+      }
       setFilteredMembers(personalAttendance);
 
     } catch (error) {

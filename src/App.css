@@ -930,7 +930,7 @@ body{
   font-size: 18px;
 }
 
-/* check input */
+/*check in check input */
 .checkbox {
   appearance: none;
   width: 18px;
@@ -1283,7 +1283,7 @@ body{
     height: 92.8vh;
   }
   .all-members-list-header{
-    font-size: 17px;
+    font-size: 16px;
   }
   /* usher check in */
   .check-in-all-members-content{
