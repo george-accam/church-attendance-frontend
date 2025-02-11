@@ -46,7 +46,13 @@ const UserDashboard = () => {
   if(!user){
     return (
       <div className="loading-container">
-        <p>loading....</p>
+        <div class="container">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p>a moment please... 😊😊</p>
       </div>
     )
   }
