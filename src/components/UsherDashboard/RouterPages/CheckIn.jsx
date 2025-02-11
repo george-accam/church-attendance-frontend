@@ -10,7 +10,6 @@ const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
-  const [member, setMember] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
 
 
@@ -22,7 +21,7 @@ const CheckIn = () => {
     if(isChecked){
       timeOut = setTimeout(()=>{
         setIsChecked(false)
-      }, 10000)
+      }, 120000)
     }
 
     return ()=>{
@@ -72,14 +71,13 @@ const CheckIn = () => {
   // handle the search members
   const handleFetchSearch = async()=>{
     try {
-      if (filteredMembers === null || filteredMembers.length === 0) {
-        handleError("member not found");
-        return;
-      }
 
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { attendee } = response.data;
       setIsLoading(true)
+      if (attendee === null || attendee.length === 0) {
+        handleError("member not found");
+      }
       setFilteredMembers(attendee);
 
     } catch (error) {
@@ -95,18 +93,6 @@ const CheckIn = () => {
       }
     }finally{
       setIsLoading(false);
-    }
-  };
-
-  // get all members
-  const getMembers = async () => {
-    try {
-      const response = await Api.get("/members");
-      const { data } = response.data;
-      setMember(data);
-      setFilteredMembers(data);
-      } catch (error) {
-        handleError("Error fetching members");
     }
   };
 
@@ -177,12 +163,19 @@ const CheckIn = () => {
 
                     <tbody>
                       {filteredMembers === null || filteredMembers.length === 0 ? (
-                        <tr className='check-in-all-members-list check-in-search-no-members'>
-                          <td colSpan="3">No members found</td>
+                        <tr 
+                          data-aos="fade-up"
+                          className='check-in-all-members-list check-in-search-no-members'
+                        >
+                          <td colSpan="3">No member found</td>
                         </tr>
                       ) : (
                         filteredMembers.map((filteredMember)=> (
-                          <tr key={filteredMember._id} className='all-members-list check-in-all-members-list'>
+                          <tr 
+                            key={filteredMember._id} 
+                            data-aos="fade-up"
+                            className='all-members-list check-in-all-members-list'
+                          >
                               <td className='all-members-list-name'>
                                   {filteredMember.fullName}
                               </td>
@@ -191,15 +184,21 @@ const CheckIn = () => {
                               </td>
                               <td className='all-members-list-date'>
                                   <input 
-                                    class="checkbox" 
+                                    class={`checkbox ${isChecked ? "is-checked": ""}`}
                                     type="checkbox"
                                     checked={isChecked}
+                                    disabled={isChecked}
                                     onChange={handleChecked}
                                     onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
                                   />
                               </td>
                           </tr>
                         ))
+                      )}
+                      {isLoading && (
+                        <tr className='check-in-all-members-list check-in-search-no-members'>
+                          loading..
+                        </tr>
                       )}
                     </tbody>
                 </table>
