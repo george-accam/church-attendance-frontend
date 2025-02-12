@@ -73,12 +73,17 @@ const CheckIn = () => {
     try {
 
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
-      const { attendee } = response.data;
+      const { message, attendee } = response.data;
       setIsLoading(true)
       if (attendee === null || attendee.length === 0) {
         handleError("member not found");
+        return;
       }
-      setFilteredMembers(attendee);
+
+      if (attendee !== null || attendee.length !== 0) {
+        handleSuccess(message)
+        setFilteredMembers(attendee);
+      }
 
     } catch (error) {
       if (error.response.data) {

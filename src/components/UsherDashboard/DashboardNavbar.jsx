@@ -33,7 +33,10 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         setIsLogout(!isLogout);
-        navigate("/login");
+        handleSuccess("logged out successfully");
+        setTimeout(()=>{
+            navigate('/login');
+        }, 2000);
     }
     
     // change the theme

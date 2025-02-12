@@ -67,7 +67,7 @@ const Register = () => {
     }
   }
 
-  
+  // animate the form
   useEffect(()=>{
     Aos.init({
       duration: 300,

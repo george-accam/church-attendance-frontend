@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
+import { handleSuccess } from '../../notifications/Notification';
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(null);
@@ -16,7 +17,10 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
   const handleYes = ()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    navigate('/login');
+    handleSuccess("logged out successfully");
+    setTimeout(()=>{
+      navigate('/login');
+    }, 2000);
   }
 
   const handleLogout = ()=>{
