@@ -46,7 +46,7 @@ body{
   background-color: var(--white-bg);
   height: 100vh;
   color: var(--dark-text);
-  font-size: 3rem;
+  font-size: 30px;
 }
 .container {
   position: absolute;
@@ -108,7 +108,7 @@ body{
 }
 
 .loading-container p{
-  padding-top: 30%;
+  padding-top: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1234,6 +1234,9 @@ body{
   } 
   .landing-page-bottom p{
     font-size: 1.6rem;
+  }
+  .loading-container{
+    font-size: 20px;
   }
   /* dashboard navbar */
   .dashboard-navbar-container h1{
