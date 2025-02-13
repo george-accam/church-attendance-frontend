@@ -9,6 +9,7 @@ import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
+  const [firstName, setFirstName] = useState("");
   const [changeColor, setChangeColor] = useState(false)
   const [sidebarActive, setSidebarActive] = useState(false);
 
@@ -16,13 +17,7 @@ const UserDashboard = () => {
     setSidebarActive((prev)=> !prev);
   };
 
-  useEffect(()=>{
-    const isChangeColor = localStorage.getItem("changeColor");
-    if(isChangeColor !== null){
-      setChangeColor(JSON.parse(isChangeColor));
-    }
-  }, []);
-
+  // handle change background color
   const handleChangeColor = ()=>{
     setChangeColor((prev)=>{
       const newColor = !prev;
@@ -30,6 +25,14 @@ const UserDashboard = () => {
       return newColor;
     })
   }
+
+  // change color of the background
+  useEffect(()=>{
+    const isChangeColor = localStorage.getItem("changeColor");
+    if(isChangeColor !== null){
+      setChangeColor(JSON.parse(isChangeColor));
+    }
+  }, []);
 
   // get the stored user data
   useEffect(()=>{
@@ -40,9 +43,20 @@ const UserDashboard = () => {
       }
       
     } catch (error) {
-      handleError("Error occurred  : ", error)
+      handleError("Error occurred fetching user data");
     }
   }, [])
+
+  // render the first name of the user
+  useEffect(()=>{
+    if(user){
+      const [first, ...rest] = user.fullName.split(" ");
+      setFirstName(first || "");
+    }
+    else{
+      setFirstName("");
+    }
+  }, [user]);
 
   if(!user){
     return (
@@ -66,7 +80,7 @@ const UserDashboard = () => {
           <Sidebar
             sidebarActive={sidebarActive}
             handleSidebarActive={handleSidebarActive}
-            userName={user.fullName} 
+            userName={firstName} 
             userEmail={user.email} 
           />
         </div>

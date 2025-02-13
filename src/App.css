@@ -859,7 +859,7 @@ body{
 }
 .all-members-container::-webkit-scrollbar-thumb{
   border-radius: 6px;
-  background-color: rgba(62, 95, 115, 0.332);
+  background-color: rgba(62, 95, 115, 0.223);
 }
 .header-search-bar{
   display: flex;
@@ -1420,7 +1420,7 @@ body{
     margin-top: 70px;
   }
   .sidebar-container{
-    width: 300px;
+    width: 280px;
     height: 93vh;
   }
   .user-content-container{
@@ -1444,7 +1444,16 @@ body{
   .all-members-list-header th{
     padding: 8px 0;
   }
+  .all-members-container::-webkit-scrollbar{
+    display: none;
+  }
+  .all-members-container::-webkit-scrollbar-thumb{
+    display: none;
+  }
   .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
     padding: 8px 0;
+  }
+  .all-members-list-name{
+    padding: 0 3px;
   }
 }

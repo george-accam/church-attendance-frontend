@@ -24,7 +24,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handl
         <div>
             {isShow && (
                 <div className="logout-inner-container" role="none">
-                    <section>options</section>
+                    <section>menu</section>
                     <div className="toggle-switch-container">
                         <div className='dark-day'>dark</div>
                             <label className="ui-switch">

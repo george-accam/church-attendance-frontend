@@ -150,7 +150,10 @@ const Personal = () => {
                       ): (
                           <tr className='no-members'>
                             <td colSpan={3}>
-                              <img src={member} alt="" />
+                              <picture>
+                                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47d/512.webp" type="image/webp" />
+                                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47d/512.gif" alt="👽" width="42" height="42" />
+                              </picture>
                               <p>No members available yet</p>
                             </td>
                           </tr>
