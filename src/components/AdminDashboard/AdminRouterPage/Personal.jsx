@@ -63,9 +63,6 @@ const Personal = () => {
       const response = await api.get(`personal-attendee/${userId}`);
       setIsLoading(true);
       const { personalAttendance } = response.data;
-      if (personalAttendance === null || personalAttendance.length === 0) {
-        handleError("member not found");
-      }
       setMembers(personalAttendance);
     } catch (error) {
       if (error.response.data) {
@@ -91,25 +88,13 @@ const Personal = () => {
   );
   }
 
-  // allows the enter key
-  const handleKeydown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      searchPersonalMember();
-    }
-  }
-
   return (
     <div>
       <div className="all-members-container">
           {/* search bar */}
           <div className="header-search-bar">
             <h1 className='all-members-title'>Personal Members</h1>
-            <div 
-              tabIndex={0}
-              onKeyDown={handleKeydown}
-              role="button"
-              className="search-container">
+            <div className="search-container">
               <input type="text"
               placeholder='search members'
               value={search}

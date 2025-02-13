@@ -81,23 +81,13 @@ const AllMembers = () => {
         
     }
 
-    const handleKeyDown = async(e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault(); 
-            searchMembers();
-        }
-        };
 
     return (
         <div>
             <div className="all-members-container">
                 <div className="header-search-bar">
                     <h1 className='all-members-title'>All Members</h1>
-                    <div
-                        tabIndex={0}
-                        onKeyDown={handleKeyDown}
-                        role="button"
-                        className="search-container">
+                    <div className="search-container">
                         <input type="text"
                         placeholder='search members'
                         value={search}
