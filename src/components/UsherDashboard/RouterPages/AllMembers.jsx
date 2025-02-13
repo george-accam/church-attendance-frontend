@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
 import { handleError } from '../../../notifications/Notification.js';
-import member from './../../assets/member.svg';
+import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 
 
@@ -145,10 +145,7 @@ const AllMembers = () => {
                             ): (
                                 <tr className='no-members'>
                                     <td colSpan={3}>
-                                    <picture>
-                                        <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47d/512.webp" type="image/webp" />
-                                        <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f47d/512.gif" alt="👽" width="42" height="42" />
-                                    </picture>
+                                    <img src={member} alt="👽" />
                                         <p>No members available yet</p>
                                     </td>
                                 </tr>

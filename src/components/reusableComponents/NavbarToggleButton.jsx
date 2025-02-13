@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AiOutlineLogout } from "react-icons/ai"; 
-import { MdOutlineModeStandby } from "react-icons/md"; 
-import { MdLogout } from "react-icons/md"; 
+import { AiOutlineLogout } from "react-icons/ai";
 
 const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handleChangeColor }) => {
     const menuRef = useRef(null);
+    const [selectedMode, setSelectedMode] = useState(localStorage.getItem("theme") || "light");
+
+
     
     // close the theme container when cursor is outside
     useEffect(() => {

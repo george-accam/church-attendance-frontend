@@ -785,8 +785,12 @@ body{
 .dashboard-sidebar-subtitle span{
   font-weight: 700;
   font-family: monospace;
-  margin-right: 15px;
   margin-left: 10px;
+}
+.dashboard-sidebar-subtitle img{
+  margin-left: 20px;
+  width: 32px;
+  height: 32px;
 }
 .sidebar-navigator{
   font-size: 15px;
@@ -949,8 +953,8 @@ body{
   text-align: center;
 }
 .no-members img{
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
 }
 .no-members p{
   font-size: 18px;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
 import { handleSuccess } from '../../notifications/Notification';
+import welcome  from "../assets/welcome.gif"
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(null);
@@ -47,10 +48,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
               Welcome, 
               <span>
                 {userName} {" "} 
-              <picture>
-                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f917/512.webp" type="image/webp" />
-                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f917/512.gif" alt="🤗" width="23" height="23" />
-              </picture>
+              <img src={welcome} alt="🤗" />
               </span> 
           </p>
           <div className="navbar-navigator-container">
