@@ -37,7 +37,7 @@ const App = () => {
   },[isLoading, navigate]);
 
   // Display a loading state while user data is being fetched
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <MainComponentLoader />
     )

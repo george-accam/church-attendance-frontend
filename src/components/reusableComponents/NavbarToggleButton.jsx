@@ -22,35 +22,25 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handl
 
     return (
         <div>
-            <div className="logout-container"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="options-menu"
-                ref={menuRef}
-            >
-                <span id="options-menu" onClick={handleShow} aria-expanded={isShow}>
-                    <MdLogout />
-                </span>
-                {isShow && (
-                    <div className="logout-inner-container" role="none">
-                        <section>options</section>
-                        <div className="toggle-switch-container">
-                            <div className='dark-day'>dark</div>
-                                <label className="ui-switch">
-                                    <input type="checkbox" 
-                                        onChange={handleChangeColor}
-                                    />
-                                    <div className="slider">
-                                        <div className="circle"></div>
-                                    </div>
-                                </label>
-                            <div className='dark-day'>day</div>
-                        </div>
-                        {/* <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6> */}
-                        <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
+            {isShow && (
+                <div className="logout-inner-container" role="none">
+                    <section>options</section>
+                    <div className="toggle-switch-container">
+                        <div className='dark-day'>dark</div>
+                            <label className="ui-switch">
+                                <input type="checkbox" 
+                                    onChange={handleChangeColor}
+                                />
+                                <div className="slider">
+                                    <div className="circle"></div>
+                                </div>
+                            </label>
+                        <div className='dark-day'>day</div>
                     </div>
-                )}
-            </div>
+                    {/* <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6> */}
+                    <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
+                </div>
+            )}
         </div>
     )
 }

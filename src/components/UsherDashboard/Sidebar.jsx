@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
 import { handleSuccess } from '../../notifications/Notification';
 
@@ -7,6 +7,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
   const [isActive, setIsActive] = useState(null);
   const [showLogout, setShowLogout] = useState(false);
   const navigate = useNavigate();
+  
 
   // handle sidebar active
   const handleShowActive = (activeName)=>{
@@ -45,7 +46,11 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
           <p className="dashboard-sidebar-subtitle">
               Welcome, 
               <span>
-                {userName} {" "} 😊
+                {userName} {" "} 
+              <picture>
+                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f917/512.webp" type="image/webp" />
+                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f917/512.gif" alt="🤗" width="23" height="23" />
+              </picture>
               </span> 
           </p>
           <div className="navbar-navigator-container">

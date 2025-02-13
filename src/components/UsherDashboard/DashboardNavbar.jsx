@@ -7,7 +7,9 @@ import { useNavigate } from "react-router";
 import lightMode from "../assets/light-mode.svg";
 import darkMode from "../assets/dark-mode.svg";
 import Logout from "../reusableComponents/Logout";
+import { handleSuccess } from "../../notifications/Notification";
 import NavbarToggleButton from "../reusableComponents/NavbarToggleButton";
+import { ToastContainer } from "react-toastify";
 
 const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarActive }) => {
     const [isShow, setIsShow] = useState(false);
@@ -87,19 +89,38 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                     {user ? user : "Usher"}
                 </h6>
             </div>
-
-            {/* toggle navbar container */}
-            <NavbarToggleButton
-                isShow={isShow}
-                setIsShow={setIsShow}
-                handleShow={handleShow}
-                handleTheme={handleTheme}
-                handleLogout={handleLogout}
-                handleChangeColor={()=> { 
-                    handleChangeColor();
-                    setIsTheme(false);
-                }}
-            />
+            <div className="logout-container"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+                ref={menuRef}
+                >
+                <span id="options-menu" onClick={handleShow} aria-expanded={isShow}>
+                    <MdLogout />
+                </span>
+                {/* toggle navbar container */}
+                {isShow && (
+                    <NavbarToggleButton
+                        isShow={isShow}
+                        setIsShow={setIsShow}
+                        handleShow={handleShow}
+                        handleTheme={handleTheme}
+                        handleLogout={handleLogout}
+                        handleChangeColor={()=> { 
+                            handleChangeColor();
+                            setIsTheme(false);
+                        }}
+                    />
+                )}
+                {/* the logout container */}
+                {isLogout &&(
+                    <Logout
+                        handleYes={handleYes}
+                        handleLogout={handleLogout}
+                    />
+                )}
+                <ToastContainer />
+            </div>
                 {/* the theme container */}
                 {/* {isTheme && (
                     <div className="dark-background">
@@ -134,13 +155,6 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                         </div>
                     </div>
                 )} */}
-                {/* the logout container */}
-                {isLogout &&(
-                    <Logout
-                        handleYes={handleYes}
-                        handleLogout={handleLogout}
-                    />
-                )}
         </div>
     )
 }
