@@ -804,6 +804,16 @@ body{
   border-radius: 15px 0 0 15px;
   cursor: pointer;
 }
+/* admin sidebar navigator */
+.admin-navbar-navigator-container{
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+.admin-sidebar-navigator{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 .active{
   background-color: rgb(91, 93, 97);
 }
@@ -819,6 +829,12 @@ body{
   margin-top: 120px;
   border-top: 1px solid var(--light-text);
 }
+/* admin side bar bottom */
+.admin-sidebar-bottom{
+  margin-top: 40px;
+  border-top: 1px solid var(--light-text);
+}
+
 .sidebar-email{
   font-size: 16px;
   color: var(--light-text);

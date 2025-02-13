@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../UsherDashboard/DashboardNavbar';
-import Sidebar from "../UsherDashboard/Sidebar"
+import Navbar from '../AdminDashboard/AdminDashboardNavbar';
+import Sidebar from "../AdminDashboard/AdminSidebar"
+import AdminContainer from '../AdminDashboard/AdminContainer';
 import { handleError } from '../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
-import UsherContainer from '../UsherDashboard/UsherContainer';
 import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 
 
-const UserDashboard = () => {
-  const [user, setUser] = useState(null);
+const AdminDashboard = () => {
+  const [userAdmin, setUserAdmin] = useState(null);
+  const [firstName, setFirstName] = useState("");
   const [changeColor, setChangeColor] = useState(false)
   const [sidebarActive, setSidebarActive] = useState(false);
 
@@ -36,15 +37,25 @@ const UserDashboard = () => {
     const storedUser = localStorage.getItem("user");
     try {
       if(storedUser){
-        setUser(JSON.parse(storedUser));
+        setUserAdmin(JSON.parse(storedUser));
       }
-      
     } catch (error) {
       handleError("Error occurred  : ", error)
     }
   }, [])
 
-  if(!user){
+  // pick only the first name and display
+  useEffect(()=>{
+    if(userAdmin){
+      const [first, ...rest ] = userAdmin.fullName.split(" ");
+      setFirstName(first || "");
+    }
+    else{
+      setFirstName("");
+    }
+  }, [userAdmin]);
+
+  if(!userAdmin){
     return (
       <MainComponentLoader />
     )
@@ -53,7 +64,7 @@ const UserDashboard = () => {
     <div className={`user-dashboard-container ${changeColor ? 'white-bg' : 'dark-bg'}`} >
       {/* navbar */}
       <Navbar 
-        user={user.role}
+        user={userAdmin.role}
         sidebarActive={sidebarActive}
         setSidebarActive={setSidebarActive}
         handleSidebarActive={handleSidebarActive}
@@ -66,13 +77,13 @@ const UserDashboard = () => {
           <Sidebar
             sidebarActive={sidebarActive}
             handleSidebarActive={handleSidebarActive}
-            userName={user.fullName} 
-            userEmail={user.email} 
+            userName={firstName} 
+            userEmail={userAdmin.email} 
           />
         </div>
         <div className="dashboard-container">
-          {/* user content */}
-          <UsherContainer
+          {/* admin content */}
+          <AdminContainer
           />
         </div>
       </div>
@@ -81,4 +92,4 @@ const UserDashboard = () => {
   )
 }
 
-export default UserDashboard;
+export default AdminDashboard;

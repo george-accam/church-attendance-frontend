@@ -144,7 +144,7 @@ const Personal = () => {
                                       {filteredMember.attendeePhoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(filteredMember.createdAt).toLocaleDateString()}
+                                  { new Date(filteredMember.createdAt).toLocaleDateString("en-GB") }
                                   </td>
                           </tr>
                         ))
@@ -158,7 +158,7 @@ const Personal = () => {
                                       {member.attendeePhoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(member.createdAt).toLocaleDateString()}
+                                  { new Date(member.createdAt).toLocaleDateString("en-GB") }
                                   </td>
                               </tr>
                           ))
