@@ -6,6 +6,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import UsherDashboard from "./components/Usher/UserDashboard";
 import NotFound from './components/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
+import MainComponentLoader from './components/reusableComponents/MainComponentLoader';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -34,20 +35,12 @@ const App = () => {
       return () => clearTimeout(timer);
     }
   },[isLoading, navigate]);
-  
+
+  // Display a loading state while user data is being fetched
   if (isLoading) {
-    // Display a loading state while user data is being fetched
     return (
-      <div className="loading-container">
-        <div class="container">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <p>a moment please... 😊😊</p>
-      </div>
-    );
+      <MainComponentLoader />
+    )
   }
 
   return (

@@ -4,24 +4,20 @@ import Sidebar from "../UsherDashboard/Sidebar"
 import { handleError } from '../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
 import UsherContainer from '../UsherDashboard/UsherContainer';
+import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
-  const [changeColor, setChangeColor] = useState(true)
+  const [firstName, setFirstName] = useState("");
+  const [changeColor, setChangeColor] = useState(false)
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const handleSidebarActive = ()=>{
     setSidebarActive((prev)=> !prev);
   };
 
-  useEffect(()=>{
-    const isChangeColor = localStorage.getItem("changeColor");
-    if(isChangeColor !== null){
-      setChangeColor(JSON.parse(isChangeColor));
-    }
-  }, []);
-
+  // handle change background color
   const handleChangeColor = ()=>{
     setChangeColor((prev)=>{
       const newColor = !prev;
@@ -29,6 +25,14 @@ const UserDashboard = () => {
       return newColor;
     })
   }
+
+  // change color of the background
+  useEffect(()=>{
+    const isChangeColor = localStorage.getItem("changeColor");
+    if(isChangeColor !== null){
+      setChangeColor(JSON.parse(isChangeColor));
+    }
+  }, []);
 
   // get the stored user data
   useEffect(()=>{
@@ -39,21 +43,24 @@ const UserDashboard = () => {
       }
       
     } catch (error) {
-      handleError("Error occurred  : ", error)
+      handleError("Error occurred fetching user data");
     }
   }, [])
 
+  // render the first name of the user
+  useEffect(()=>{
+    if(user){
+      const [first, ...rest] = user.fullName.split(" ");
+      setFirstName(first || "");
+    }
+    else{
+      setFirstName("");
+    }
+  }, [user]);
+
   if(!user){
     return (
-      <div className="loading-container">
-        <div class="container">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <p>a moment please... 😊😊</p>
-      </div>
+      <MainComponentLoader />
     )
   }
   return (
@@ -64,7 +71,7 @@ const UserDashboard = () => {
         sidebarActive={sidebarActive}
         setSidebarActive={setSidebarActive}
         handleSidebarActive={handleSidebarActive}
-        handleChangeColor={handleChangeColor}
+        handleChangeColor={()=> handleChangeColor()}
         changeColor={changeColor}
       />
       <div className="sidebar-user-dashboard">
@@ -73,7 +80,7 @@ const UserDashboard = () => {
           <Sidebar
             sidebarActive={sidebarActive}
             handleSidebarActive={handleSidebarActive}
-            userName={user.fullName} 
+            userName={firstName} 
             userEmail={user.email} 
           />
         </div>

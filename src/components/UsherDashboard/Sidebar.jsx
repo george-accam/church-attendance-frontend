@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logout from '../reusableComponents/Logout';
+import { handleSuccess } from '../../notifications/Notification';
+import welcome  from "../assets/welcome.gif"
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(null);
+  const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
+  
 
   // handle sidebar active
   const handleShowActive = (activeName)=>{
     setIsActive(activeName);
   };
 
+  // logout the user
+  const handleYes = ()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    handleSuccess("logged out successfully");
+    setTimeout(()=>{
+      navigate('/login');
+    }, 2000);
+  }
+
+  const handleLogout = ()=>{
+    setShowLogout(!showLogout);
+  }
 
   return (
     <div>
@@ -28,7 +47,8 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
           <p className="dashboard-sidebar-subtitle">
               Welcome, 
               <span>
-                {userName} {" "} 😊
+                {userName} {" "} 
+              <img src={welcome} alt="🤗" />
               </span> 
           </p>
           <div className="navbar-navigator-container">
@@ -61,12 +81,18 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
             <p className="sidebar-email">
               email:  <span>{ userEmail }</span>
             </p>
-            <p className="sidebar-logout">
+            <p onClick={handleLogout} className="sidebar-logout">
                 Logout
             </p>
           </div>
         </div>
       </div>
+      {showLogout && (
+        <Logout 
+          handleYes={handleYes}
+          handleLogout={handleLogout}
+        />
+      )}
     </div>
   )
 }
