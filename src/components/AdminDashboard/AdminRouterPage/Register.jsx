@@ -32,7 +32,8 @@ const Register = () => {
         return;
       }
       const passUser = JSON.parse(user);
-      const userId = passUser._id;
+      const userId = passUser._id; //user id from local storage
+      const userFullName = passUser.fullName; //user full name from local storage
       // validate user id
       const isValidateUserId = /^[0-9a-fA-F]{24}$/.test(userId);
       if (!isValidateUserId) {
@@ -43,6 +44,7 @@ const Register = () => {
       // submit form data
       const submitData = {
         userId: userId,
+        userFullName: userFullName,
         ...formData,
       };
       const response = await Api.post("/attendee", submitData);
