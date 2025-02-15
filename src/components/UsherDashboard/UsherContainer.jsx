@@ -11,7 +11,7 @@ const UsherContainer = () => {
       <div className="user-content-container">
         <div className="user-content">
           <Routes>
-            <Route path="/" element={<Navigate to="all-members" />} />
+            <Route path="/" element={<Navigate to="all-members" replace />} />
             <Route path="all-members" element={<AllMembers />} />
             <Route path="personal" element={<Personal />} />
             <Route path="register-member" element={<Register />} />

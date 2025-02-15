@@ -13,7 +13,7 @@ const AdminContainer = () => {
       <div className="user-content-container">
         <div className="user-content">
           <Routes>
-            <Route path="/" element={<Navigate to="members-checked" />} />
+            <Route path="/" element={<Navigate to="members-checked" replace />} />
             <Route path="members-checked" element={<AdminMembersChecked />} />
             <Route path="ushers" element={<AdminUshers />} />
             <Route path="all-members" element={<AdminAllMembers />} />

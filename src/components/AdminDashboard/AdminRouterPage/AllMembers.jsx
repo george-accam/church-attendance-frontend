@@ -76,7 +76,9 @@ const AllMembers = () => {
     // loading state
     if (isLoading) {
         return (
-            <SubComponentLoader />
+            <SubComponentLoader 
+            changes={"Registrars"}
+            />
         )
         
     }
@@ -105,7 +107,7 @@ const AllMembers = () => {
                             <tr className='all-members-list-header'>
                                 <th>Full Name</th>
                                 <th>Phone Number</th>
-                                <th>Date</th>
+                                <th>Registrars</th>
                             </tr>
                         </thead>
                         {/* breaks the thead from the tbody */}

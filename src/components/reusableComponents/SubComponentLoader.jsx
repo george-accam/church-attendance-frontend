@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SubComponentLoader = () => {
+const SubComponentLoader = ({ changes }) => {
     return (
         <div>
             <div className="member-loading-container">
@@ -15,7 +15,7 @@ const SubComponentLoader = () => {
                                 <tr className='all-members-list-header'>
                                     <th>Full Name</th>
                                     <th>Phone Number</th>
-                                    <th>Date</th>
+                                    <th>{changes}</th>
                                 </tr>
                             </thead>
                             {/* breaks the thead from the tbody */}

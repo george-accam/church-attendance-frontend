@@ -76,7 +76,9 @@ const AllMembers = () => {
     // loading state
     if (isLoading) {
         return (
-            <SubComponentLoader />
+            <SubComponentLoader
+            changes={"Date"}
+             />
         )
         
     }

@@ -1468,7 +1468,7 @@ body{
     height: 42vh;
   }
   .all-members-list-header th{
-    padding: 8px 0;
+    padding: 8px 5px;
   }
   .all-members-container::-webkit-scrollbar{
     display: none;
