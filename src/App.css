@@ -778,19 +778,25 @@ body{
 .dashboard-sidebar-subtitle{
   font-size: 18px;
   color: var(--light-text);
-  margin-left: 10px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin: 10px 20px;
+  display: flex;
+  justify-content: space-evenly;
 }
-.dashboard-sidebar-subtitle span{
+.subtitle{
   font-weight: 700;
   font-family: monospace;
-  margin-left: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 150px;
+
 }
 .dashboard-sidebar-subtitle img{
+  margin-top: -6px;
   margin-left: 20px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
 }
 .sidebar-navigator{
   font-size: 15px;
@@ -1222,7 +1228,7 @@ body{
     height: 90vh;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   .image-container{
     display: none;
   }
@@ -1333,7 +1339,7 @@ body{
   .sidebar-slide-container{
     background-color: rgba(146, 146, 146, 0.085);
     position: fixed;
-    width: 750px;
+    width: 100%;
     height: 92.9vh;
     z-index: 1;
   }

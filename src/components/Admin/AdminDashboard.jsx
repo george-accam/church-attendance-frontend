@@ -47,7 +47,7 @@ const AdminDashboard = () => {
   // pick only the first name and display
   useEffect(()=>{
     if(userAdmin){
-      const [first, ...rest ] = userAdmin.fullName.split(" ");
+      const first = userAdmin.fullName;
       setFirstName(first || "");
     }
     else{

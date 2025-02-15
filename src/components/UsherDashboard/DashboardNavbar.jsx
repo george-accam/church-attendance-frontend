@@ -38,7 +38,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
         handleSuccess("logged out successfully");
         setTimeout(()=>{
             navigate('/login');
-        }, 2000);
+        }, 1000);
     }
     
     // change the theme
