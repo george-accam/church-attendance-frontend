@@ -125,7 +125,7 @@ const AllMembers = () => {
                                             {filteredMember.phoneNumber}
                                         </td>
                                         <td className='all-members-list-date'>
-                                            { new Date(filteredMember.createdAt).toLocaleDateString()}
+                                            { filteredMember.userFullName }
                                         </td>
                                     </tr>
                                 ))
@@ -140,7 +140,7 @@ const AllMembers = () => {
                                             {member.phoneNumber}
                                         </td>
                                         <td className='all-members-list-date'>
-                                            { new Date(member.createdAt).toLocaleDateString()}
+                                            { member.userFullName }
                                         </td>
                                     </tr>
                                 ))
