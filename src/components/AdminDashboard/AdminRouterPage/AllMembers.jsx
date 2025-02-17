@@ -83,13 +83,24 @@ const AllMembers = () => {
         
     }
 
+    const handleEnter = (e)=>{
+        if(e.key === "Enter"){
+            e.preventDefault();
+            searchMembers();
+        }
+    }
+
 
     return (
         <div>
             <div className="all-members-container">
                 <div className="header-search-bar">
                     <h1 className='all-members-title'>All Members</h1>
-                    <div className="search-container">
+                    <div 
+                        tabIndex={0}
+                        onKeyDown={handleEnter}
+                        className="search-container"
+                    >
                         <input type="text"
                         placeholder='search members'
                         value={search}
@@ -153,6 +164,14 @@ const AllMembers = () => {
                                 </tr>
                             )
                         )}
+                        {isLoading && (
+                                <tr className='no-members'>
+                                    <td colSpan={3}>
+                                        loading
+                                    </td>
+                                </tr>
+                            )
+                        }
                         </tbody>
                     </table>
                 </div>

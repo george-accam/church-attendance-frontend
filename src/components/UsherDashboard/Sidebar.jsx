@@ -47,9 +47,9 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
           <div className="dashboard-sidebar-subtitle">
               Welcome, 
               <div className='subtitle'>
-                {userName}
+                { userName }
               </div> 
-              <img src={welcome} alt="🤗" />
+              <img src={ welcome } alt="🤗" />
           </div>
           <div className="navbar-navigator-container">
             <Link to="/usher-dashboard/all-members"
