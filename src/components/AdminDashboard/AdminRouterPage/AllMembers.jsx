@@ -1,19 +1,23 @@
 import { SlOptionsVertical } from "react-icons/sl"; 
 import { AiTwotoneEdit } from "react-icons/ai"; 
 import { CgSearch } from "react-icons/cg"; 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
 import { handleError } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
+import Edit from "../../reusableComponents/Edit.jsx";
 
 
 const AllMembers = () => {
     const [members, setMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isSearching, setIsSearching] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredMembers, setFilteredMembers] = useState([]);
+    const [isShow, setIsShow] = useState(false);
+    const menuRef = useRef(null);
 
     // search members
     const handleSearch = (e) => {
@@ -26,7 +30,7 @@ const AllMembers = () => {
         try {
             const response = await api.get(`search-attendee?q=${search}`);
             const { attendee } = response.data;
-            setIsLoading(true);
+            setIsSearching(true);
             if (attendee === null || attendee.length === 0) {
                 handleError("member not found");
             }
@@ -41,7 +45,7 @@ const AllMembers = () => {
                 handleError("An error occurred. Please try again");
             }
         } finally {
-            setIsLoading(false);
+            setIsSearching(false);
         }
     };
 
@@ -73,7 +77,7 @@ const AllMembers = () => {
     useEffect(() => {
         fetchAllMembers();
         searchMembers();
-    }, []);
+    }, [search]);
     
     // loading state
     if (isLoading) {
@@ -93,12 +97,30 @@ const AllMembers = () => {
         }
     }
 
-    // handle the mouse outside 
+    // handle show edit container
+    const handleShowEdit = (id)=>{
+        setIsShow(isShow === id ? false : id);
+    } 
+
+    // useEffect(()=>{
+    //     const handleClickOutside = (e)=>{
+    //         if(menuRef.current && !menuRef.current.contains(e.target)){
+    //             setIsShow(false);
+    //         }
+    //     }
+
+    //     document.addEventListener("mousedown", handleClickOutside);
+        
+    //     return ()=>{
+    //         document.removeEventListener("mousedown", handleClickOutside);
+    //     }
+    // }, []);
 
 
     return (
         <div>
             <div className="all-members-container">
+                {/* the search container */}
                 <div className="header-search-bar">
                     <h1 className='all-members-title'>All Members</h1>
                     <div 
@@ -160,13 +182,30 @@ const AllMembers = () => {
                                             { member.userFullName }
                                         </td>
                                         <td className='all-members-list-date edit-button'>
-                                            <SlOptionsVertical />
+                                            <div 
+                                                // ref={menuRef}
+                                                role='menu'
+                                                aria-label="Options menu"
+                                                aria-haspopup="true"
+                                                aria-expanded={isShow}  
+                                            >
+                                            <SlOptionsVertical
+                                                onClick={()=> handleShowEdit(member._id)}
+                                            />
+                                                { isShow === member._id && (
+                                                    <Edit
+                                                        member={member}
+                                                        isShow ={isShow}
+                                                        setIsShow={setIsShow}
+                                                    />
+                                                )}
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
                             ): (
                                 <tr className='no-members'>
-                                    <td colSpan={3}>
+                                    <td colSpan={4}>
                                     <img src={member} alt="👽" />
                                         <p>No members available yet</p>
                                     </td>
@@ -175,12 +214,19 @@ const AllMembers = () => {
                         )}
                         {isLoading && (
                                 <tr className='no-members'>
-                                    <td colSpan={3}>
-                                        loading
+                                    <td colSpan={4}>
+                                        loading.......
                                     </td>
                                 </tr>
                             )
                         }
+                        {isSearching && (
+                            <tr className='no-members'>
+                                <td colSpan={4}>
+                                    loading
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
                 </div>

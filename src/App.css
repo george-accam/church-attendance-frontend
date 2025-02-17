@@ -526,6 +526,16 @@ body{
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
 }
+.edit-container{
+  position: absolute;
+  right: 0%;
+  margin: 18px;
+  width: 150px;
+  background-color: var(--light-text);
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
+}
 .usher-close-container{
   display: none;
 }
