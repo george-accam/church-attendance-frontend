@@ -1,3 +1,5 @@
+import { SlOptionsVertical } from "react-icons/sl"; 
+import { AiTwotoneEdit } from "react-icons/ai"; 
 import { CgSearch } from "react-icons/cg"; 
 import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
@@ -83,12 +85,15 @@ const AllMembers = () => {
         
     }
 
+    // handle the enter key press
     const handleEnter = (e)=>{
         if(e.key === "Enter"){
             e.preventDefault();
             searchMembers();
         }
     }
+
+    // handle the mouse outside 
 
 
     return (
@@ -119,6 +124,7 @@ const AllMembers = () => {
                                 <th>Full Name</th>
                                 <th>Phone Number</th>
                                 <th>Registrars</th>
+                                <th><AiTwotoneEdit /></th>
                             </tr>
                         </thead>
                         {/* breaks the thead from the tbody */}
@@ -152,6 +158,9 @@ const AllMembers = () => {
                                         </td>
                                         <td className='all-members-list-date'>
                                             { member.userFullName }
+                                        </td>
+                                        <td className='all-members-list-date edit-button'>
+                                            <SlOptionsVertical />
                                         </td>
                                     </tr>
                                 ))

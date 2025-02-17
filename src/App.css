@@ -955,6 +955,13 @@ body{
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
   padding: 16px 0;
 }
+.edit-button{
+  cursor: pointer;
+  transition: .5s;
+}
+.edit-button:hover{
+  color: red;
+}
 /* usher check in */
 .check-in-input{
   accent-color: rgb(5, 255, 5);
@@ -1170,14 +1177,14 @@ body{
   .landing-page-inner{
     margin: 40px 0px;
     padding: 20px 10px;
-    width: 80%;
+    width: 92%;
   }
   .landing-page-title{
     font-size: 3rem;
     margin-bottom: 20px;
   }
   .landing-page-title2{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .typing {
     white-space: nowrap; 
@@ -1259,7 +1266,7 @@ body{
     margin-bottom: 10px;
   } 
   .landing-page-bottom p{
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
   .loading-container{
     font-size: 20px;
@@ -1385,7 +1392,7 @@ body{
     font-size: 5rem;
   }
   .landing-page-title2{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
   .sub-image-container1 img{
     width: 20rem;

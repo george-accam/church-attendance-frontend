@@ -112,6 +112,12 @@ const CheckIn = () => {
     handleFetchSearch();
   }, []);
 
+  const handleEnter = (e)=>{
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      handleFetchSearch();
+    }
+  }
 
   return (
     <div>
@@ -124,7 +130,10 @@ const CheckIn = () => {
                 className='check-in-form'
               >
                 <h1 className='container-header'>Check In Member</h1>
-                <div className="form-group">
+                <div 
+                  tabIndex={0}
+                  onKeyDown={handleEnter}
+                  className="form-group">
                     <label htmlFor="fullName">
                       Phone number
                     </label>
@@ -138,9 +147,9 @@ const CheckIn = () => {
                 </div>
                 <div className="button-container">
                     <button type="submit"
-                    onClick={handleFetchSearch}
-                        disabled={isLoading}
-                        className={`submit-button ${isLoading ? "button-loading" : ""}`}
+                      onClick={handleFetchSearch}
+                      disabled={isLoading}
+                      className={`submit-button ${isLoading ? "button-loading" : ""}`}
                     >
                         {isLoading ? "searching" : "search"}
                     </button>
@@ -199,11 +208,6 @@ const CheckIn = () => {
                               </td>
                           </tr>
                         ))
-                      )}
-                      {isLoading && (
-                        <tr className='check-in-all-members-list check-in-search-no-members'>
-                          loading..
-                        </tr>
                       )}
                     </tbody>
                 </table>
