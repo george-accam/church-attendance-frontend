@@ -1,3 +1,4 @@
+import { SlOptions } from "react-icons/sl"; 
 import { SlOptionsVertical } from "react-icons/sl"; 
 import { AiTwotoneEdit } from "react-icons/ai"; 
 import { CgSearch } from "react-icons/cg"; 
@@ -8,6 +9,7 @@ import { handleError } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import Edit from "../../reusableComponents/Edit.jsx";
+import CapitaliseEachLetter from "../../reusableComponents/CapitaliseEachLetter.js"
 
 
 const AllMembers = () => {
@@ -121,6 +123,12 @@ const AllMembers = () => {
         }
     }, []);
 
+    const capitalizeWords = (str) => {
+        return str
+        .split(" ")
+        .map(word=> word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ");
+    };
 
     return (
         <div>
@@ -170,7 +178,7 @@ const AllMembers = () => {
                                 filteredMembers.map(filteredMember =>(
                                     <tr key={filteredMember._id} className='all-members-list'>
                                         <td className='all-members-list-name'>
-                                            {filteredMember.fullName}
+                                            {CapitaliseEachLetter(filteredMember.fullName)}
                                         </td>
                                         
                                         <td className='all-members-list-phone-number'>
@@ -185,7 +193,7 @@ const AllMembers = () => {
                                 members && members.length > 0 ?  ( members.map((member) => (
                                     <tr key={member._id} className='all-members-list'>
                                         <td className='all-members-list-name'>
-                                            {member.fullName}
+                                            {CapitaliseEachLetter(member.fullName)}
                                         </td>
                                         
                                         <td className='all-members-list-phone-number'>

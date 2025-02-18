@@ -536,7 +536,8 @@ body{
   width: 150px;
   background-color: var(--light-text);
   padding: 5px;
-  border-radius: 10px;
+  border: 1px solid rgb(7, 253, 7);
+  border-radius: 4px 0 4px 4px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
   z-index: 1;
   color: var(--dark-text);
@@ -1259,6 +1260,9 @@ body{
   }
   .user-content-container{
     height: 90vh;
+  }
+  .edit-container{
+    margin: 4px 15px 0 0;
   }
 }
 @media only screen and (max-width: 1000px) {

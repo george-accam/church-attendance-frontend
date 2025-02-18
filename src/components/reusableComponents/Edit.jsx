@@ -26,7 +26,7 @@ const Edit = ({ member, isShow, setIsShow }) => {
                 className='edit-container'
             >
                 <p>
-                    <span>Member Name:</span> {member.name}
+                    <span>Member Name:</span> {member.fullName}
                 </p>
             </div>
         </>
