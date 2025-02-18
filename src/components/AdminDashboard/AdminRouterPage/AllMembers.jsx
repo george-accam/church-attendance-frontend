@@ -212,6 +212,7 @@ const AllMembers = () => {
                                             />
                                                 { isShow === member._id && (
                                                     <Edit
+                                                        setPropagation={(e)=> e.stopPropagation()}
                                                         member={member}
                                                         isShow ={isShow}
                                                         setIsShow={setIsShow}

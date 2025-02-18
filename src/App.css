@@ -551,6 +551,10 @@ body{
   margin: 10px 5px;
   padding: 5px;
 }
+.edit-icon{
+  font-size: 20px;
+  margin-right: 20px;
+}
 .edit-container-delete{
   display: flex;
   justify-content: center;
@@ -558,7 +562,7 @@ body{
   color: rgba(255, 47, 47, 0.878);
   padding: 5px;
 }
-.edit-icon{
+.delete-icon{
   font-size: 20px;
   margin-right: 20px;
 }
@@ -1432,6 +1436,7 @@ body{
   /* admin all members */
   .edit-container{
     margin: 4px 20px 0 0;
+    width: 120px;
   }
 }
 @media only screen and (max-width: 400px) {

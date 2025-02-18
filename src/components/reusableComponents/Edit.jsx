@@ -1,16 +1,13 @@
 import { FiEdit } from "react-icons/fi"; 
-import { FaRegEdit } from "react-icons/fa"; 
 import { RiDeleteBin6Line } from "react-icons/ri"; 
-import { MdDeleteOutline } from "react-icons/md"; 
-import { MdDelete } from "react-icons/md"; 
-import { CiEdit } from "react-icons/ci"; 
 import React, { useEffect, useRef } from 'react';
 
-const Edit = ({ member }) => {
+const Edit = ({ member, setPropagation }) => {
     
     return (
         <>
             <div
+                onClick={setPropagation}
                 key={member._id}
                 role='menuItems'
                 className='edit-container'
@@ -27,7 +24,7 @@ const Edit = ({ member }) => {
 
                 <div className="edit-container-delete">
                     <RiDeleteBin6Line 
-                        className="edit-icon"
+                        className="delete-icon"
                     />
                     <p>Delete</p>
                 </div>
