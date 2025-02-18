@@ -25,7 +25,9 @@ const Edit = ({ member, isShow, setIsShow }) => {
                 role='menuItems'
                 className='edit-container'
             >
-                Edit
+                <p>
+                    <span>Member Name:</span> {member.name}
+                </p>
             </div>
         </>
     )

@@ -12,10 +12,10 @@ import Edit from "../../reusableComponents/Edit.jsx";
 
 const AllMembers = () => {
     const [members, setMembers] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSearching, setIsSearching] = useState(true);
-    const [search, setSearch] = useState("");
     const [filteredMembers, setFilteredMembers] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
+    const [search, setSearch] = useState("");
     const [isShow, setIsShow] = useState(false);
     const menuRef = useRef(null);
 
@@ -28,9 +28,14 @@ const AllMembers = () => {
     // search members function
     const searchMembers = async() => {
         try {
+            if(search.trim() === ""){
+                setFilteredMembers([]);
+                return;
+            }
+
+            setIsSearching(true);
             const response = await api.get(`search-attendee?q=${search}`);
             const { attendee } = response.data;
-            setIsSearching(true);
             if (attendee === null || attendee.length === 0) {
                 handleError("member not found");
             }
@@ -99,22 +104,22 @@ const AllMembers = () => {
 
     // handle show edit container
     const handleShowEdit = (id)=>{
-        setIsShow(isShow === id ? false : id);
+        setIsShow(isShow === id ? true : id);
     } 
 
-    // useEffect(()=>{
-    //     const handleClickOutside = (e)=>{
-    //         if(menuRef.current && !menuRef.current.contains(e.target)){
-    //             setIsShow(false);
-    //         }
-    //     }
+    useEffect(()=>{
+        const handleClickOutside = (e)=>{
+            if(menuRef.current && !menuRef.current.contains(e.target)){
+                setIsShow(false);
+            }
+        }
 
-    //     document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
         
-    //     return ()=>{
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //     }
-    // }, []);
+        return ()=>{
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
 
 
     return (
@@ -153,6 +158,14 @@ const AllMembers = () => {
                         <br />
                         {/* table body */}
                         <tbody>
+                            {/* search container */}
+                            {isSearching && (
+                                <tr className='search-all-members-list'>
+                                    <td colSpan={4}>
+                                        searching.......
+                                    </td>
+                                </tr>
+                            )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
                                 filteredMembers.map(filteredMember =>(
                                     <tr key={filteredMember._id} className='all-members-list'>
@@ -183,11 +196,8 @@ const AllMembers = () => {
                                         </td>
                                         <td className='all-members-list-date edit-button'>
                                             <div 
-                                                // ref={menuRef}
-                                                role='menu'
-                                                aria-label="Options menu"
-                                                aria-haspopup="true"
-                                                aria-expanded={isShow}  
+                                                ref={menuRef} 
+                                                className="edit-parent-container"
                                             >
                                             <SlOptionsVertical
                                                 onClick={()=> handleShowEdit(member._id)}
@@ -211,21 +221,6 @@ const AllMembers = () => {
                                     </td>
                                 </tr>
                             )
-                        )}
-                        {isLoading && (
-                                <tr className='no-members'>
-                                    <td colSpan={4}>
-                                        loading.......
-                                    </td>
-                                </tr>
-                            )
-                        }
-                        {isSearching && (
-                            <tr className='no-members'>
-                                <td colSpan={4}>
-                                    loading
-                                </td>
-                            </tr>
                         )}
                         </tbody>
                     </table>
