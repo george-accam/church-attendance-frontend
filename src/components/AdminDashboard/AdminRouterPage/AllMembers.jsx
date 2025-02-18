@@ -9,6 +9,7 @@ import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import Edit from "../../reusableComponents/Edit.jsx";
 import CapitaliseEachLetter from "../../reusableComponents/CapitaliseEachLetter.js"
+import Rename from "../../reusableComponents/Rename.jsx";
 
 
 const AllMembers = () => {
@@ -18,6 +19,8 @@ const AllMembers = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [search, setSearch] = useState("");
     const [isShow, setIsShow] = useState(false);
+    const [isDelete, setIsDelete]= useState(false);
+    const [isRename, setIsRename] = useState(false);
     const menuRef = useRef(null);
 
     // search members
@@ -122,12 +125,10 @@ const AllMembers = () => {
         }
     }, []);
 
-    const capitalizeWords = (str) => {
-        return str
-        .split(" ")
-        .map(word=> word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ");
-    };
+    // handle the rename member
+    const handleRename = (id)=>{
+        setIsRename(isRename === id ? true : id);
+    }
 
     return (
         <div>
@@ -201,10 +202,10 @@ const AllMembers = () => {
                                         <td className='all-members-list-date'>
                                             { member.userFullName }
                                         </td>
-                                        <td className='all-members-list-date edit-button'>
+                                        <td className='all-members-list-date edit-button edit-parent-container'>
                                             <div 
                                                 ref={menuRef} 
-                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                                className={` ${isShow === member._id ? "edit-button-color" : ""}`}
                                             >
                                             <SlOptionsVertical
                                                 className="edit-button"
@@ -214,11 +215,15 @@ const AllMembers = () => {
                                                     <Edit
                                                         setPropagation={(e)=> e.stopPropagation()}
                                                         member={member}
-                                                        isShow ={isShow}
-                                                        setIsShow={setIsShow}
+                                                        handleRename={handleRename}
                                                     />
                                                 )}
                                             </div>
+                                            { isRename && ( 
+                                                <Rename 
+                                                    member={member}
+                                                />
+                                            )}
                                         </td>
                                     </tr>
                                 ))

@@ -2,7 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri"; 
 import React, { useEffect, useRef } from 'react';
 
-const Edit = ({ member, setPropagation }) => {
+const Edit = ({ member, setPropagation, handleRename, handleDelete }) => {
     
     return (
         <>
@@ -16,14 +16,20 @@ const Edit = ({ member, setPropagation }) => {
                     -- option --
                 </p>
                 {/* rename container */}
-                <div className="edit-container-rename">
+                <div
+                    onClick={()=> handleRename(member._id)}
+                    className="edit-container-rename"
+                >
                     <FiEdit 
                         className="edit-icon"
                     />
                     <p>Rename</p>
                 </div>
                 {/* delete container */}
-                <div className="edit-container-delete">
+                <div
+                    // onClick={handleDelete(member._id)}
+                    className="edit-container-delete"
+                >
                     <RiDeleteBin6Line 
                         className="delete-icon"
                     />
