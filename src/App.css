@@ -550,9 +550,9 @@ body{
   justify-content: center;
   margin: 10px 5px;
   padding: 5px;
+  font-size: 17px;
 }
 .edit-icon{
-  font-size: 20px;
   margin-right: 20px;
 }
 .edit-container-delete{
@@ -561,9 +561,9 @@ body{
   margin: 10px 5px;
   color: rgba(255, 47, 47, 0.878);
   padding: 5px;
+  font-size: 17px;
 }
 .delete-icon{
-  font-size: 20px;
   margin-right: 20px;
 }
 .edit-container-rename:hover, .edit-container-delete:hover{

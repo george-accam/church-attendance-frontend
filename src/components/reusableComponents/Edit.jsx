@@ -15,13 +15,14 @@ const Edit = ({ member, setPropagation }) => {
                 <p className="edit-container-menu">
                     -- option --
                 </p>
+                {/* rename container */}
                 <div className="edit-container-rename">
                     <FiEdit 
                         className="edit-icon"
                     />
                     <p>Rename</p>
                 </div>
-
+                {/* delete container */}
                 <div className="edit-container-delete">
                     <RiDeleteBin6Line 
                         className="delete-icon"
