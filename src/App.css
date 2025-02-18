@@ -532,7 +532,7 @@ body{
 .edit-container{
   position: absolute;
   right: 0%;
-  margin: 4px 50px 0 0;
+  margin: 4px 55px 0 0;
   width: 150px;
   background-color: var(--light-text);
   padding: 5px;
@@ -541,6 +541,9 @@ body{
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
   z-index: 1;
   color: var(--dark-text);
+}
+.edit-button-color{
+  color: red;
 }
 .usher-close-container{
   display: none;
@@ -1262,7 +1265,7 @@ body{
     height: 90vh;
   }
   .edit-container{
-    margin: 4px 15px 0 0;
+    margin: 4px 35px 0 0;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -1401,6 +1404,10 @@ body{
   }
   .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
     padding: 10px 0;
+  }
+  /* admin all members */
+  .edit-container{
+    margin: 4px 20px 0 0;
   }
 }
 @media only screen and (max-width: 400px) {

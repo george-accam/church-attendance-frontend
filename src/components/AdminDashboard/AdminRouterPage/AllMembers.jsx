@@ -1,4 +1,3 @@
-import { SlOptions } from "react-icons/sl"; 
 import { SlOptionsVertical } from "react-icons/sl"; 
 import { AiTwotoneEdit } from "react-icons/ai"; 
 import { CgSearch } from "react-icons/cg"; 
@@ -205,9 +204,10 @@ const AllMembers = () => {
                                         <td className='all-members-list-date edit-button'>
                                             <div 
                                                 ref={menuRef} 
-                                                className="edit-parent-container"
+                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                             >
                                             <SlOptionsVertical
+                                                className="edit-button"
                                                 onClick={()=> handleShowEdit(member._id)}
                                             />
                                                 { isShow === member._id && (
