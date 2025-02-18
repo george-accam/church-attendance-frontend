@@ -564,7 +564,7 @@ body{
   font-size: 17px;
 }
 .delete-icon{
-  margin-right: 20px;
+  margin-right: 32px;
 }
 .edit-container-rename:hover, .edit-container-delete:hover{
   background-color: rgba(106, 107, 107, 0.375);
