@@ -1,22 +1,12 @@
+import { FiEdit } from "react-icons/fi"; 
+import { FaRegEdit } from "react-icons/fa"; 
+import { RiDeleteBin6Line } from "react-icons/ri"; 
+import { MdDeleteOutline } from "react-icons/md"; 
+import { MdDelete } from "react-icons/md"; 
+import { CiEdit } from "react-icons/ci"; 
 import React, { useEffect, useRef } from 'react';
 
-const Edit = ({ member, isShow, setIsShow }) => {
-    const menuRef = useRef(null);
-
-    // close the the container when the cursor is outside
-    // useEffect(()=>{
-    //     const handleClickOutside = (e)=>{
-    //         if(menuRef.current && !menuRef.current.contains(e.target)){
-    //             setIsShow(false);
-    //         }
-    //     }
-
-    //     document.addEventListener("mousedown", handleClickOutside);
-        
-    //     return ()=>{
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //     }
-    // }, []);
+const Edit = ({ member }) => {
     
     return (
         <>
@@ -25,9 +15,22 @@ const Edit = ({ member, isShow, setIsShow }) => {
                 role='menuItems'
                 className='edit-container'
             >
-                <p>
-                    <span>Member Name:</span> {member.fullName}
+                <p className="edit-container-menu">
+                    -- option --
                 </p>
+                <div className="edit-container-rename">
+                    <FiEdit 
+                        className="edit-icon"
+                    />
+                    <p>Rename</p>
+                </div>
+
+                <div className="edit-container-delete">
+                    <RiDeleteBin6Line 
+                        className="edit-icon"
+                    />
+                    <p>Delete</p>
+                </div>
             </div>
         </>
     )
