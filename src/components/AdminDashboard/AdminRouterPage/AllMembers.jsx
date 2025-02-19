@@ -4,7 +4,7 @@ import { CgSearch } from "react-icons/cg";
 import React, { useEffect, useRef, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
-import { handleError } from '../../../notifications/Notification.js';
+import { handleError, handleSuccess } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import Edit from "../../reusableComponents/Edit.jsx";
@@ -22,6 +22,8 @@ const AllMembers = () => {
     const [isShow, setIsShow] = useState(false);
     const [isDelete, setIsDelete]= useState(null);
     const [isRename, setIsRename] = useState(null);
+    const [deletedData, setDeletedData] = useState("");
+    const [isDeleting, setIsDeleting] = useState(false);
     const menuRef = useRef(null);
 
     // search members
@@ -149,6 +151,32 @@ const AllMembers = () => {
         setIsDelete(null);
     }
 
+    // handle the deleted data
+    const handleDeletedData = async(id)=>{
+        try {
+            setIsDeleting(true)
+            const response =  await api.delete(`/delete-attendance/${id}`);
+            const { message  } = response.data;
+            if(message){
+                handleSuccess(message || "member deleted successfully")
+                fetchAllMembers();
+            }
+
+        } catch (error) {
+            if(error.response.data){
+                handleError(error.response.data)
+            }
+            else if(error.request){
+                handleError(`Network error : ${error.request}`)
+            }
+            else{
+                handleError("Error occurred");
+            }
+        }
+        finally{
+            setIsDeleting(false);
+        }
+    }
 
     return (
         <div>
@@ -263,7 +291,11 @@ const AllMembers = () => {
                                                 {isDelete === member._id && (
                                                     <Delete 
                                                         member={member}
+                                                        isDeleting={isDeleting}
                                                         handleCloseDelete={handleCloseDelete}
+                                                        handleDeletedData={()=> {
+                                                            handleDeletedData(member._id);
+                                                        }}
                                                     />
                                                 )}
                                             </div>

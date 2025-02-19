@@ -71,14 +71,14 @@ const AllMembers = () => {
     useEffect(() => {
         fetchAllMembers();
         searchMembers();
-    }, []);
+    }, [search]);
     
     // loading state
     if (isLoading) {
         return (
             <SubComponentLoader
             changes={"Date"}
-             />
+            />
         )
         
     }

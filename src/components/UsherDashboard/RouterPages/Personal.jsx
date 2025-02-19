@@ -82,7 +82,7 @@ const Personal = () => {
   useEffect(() => {
     fetchMembers();
     searchPersonalMember([]);
-  }, []);
+  }, [search]);
 
   // loading state
   if (isLoading) {

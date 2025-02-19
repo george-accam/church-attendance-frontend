@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 
-const Delete = ({ member, handleCloseDelete, handleDeletedData }) => {
+const Delete = ({ member, isDeleting, handleCloseDelete, handleDeletedData }) => {
     return (
         <div 
             key={member._id}
@@ -24,7 +24,7 @@ const Delete = ({ member, handleCloseDelete, handleDeletedData }) => {
                             onClick={handleDeletedData}
                             className="delete-button"
                         >
-                            Yes
+                            {isDeleting ? "Deleting" :"Yes"}
                         </button>
                         <button
                             onClick={handleCloseDelete}
