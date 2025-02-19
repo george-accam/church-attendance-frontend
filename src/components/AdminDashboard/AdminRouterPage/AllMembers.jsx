@@ -213,17 +213,11 @@ const AllMembers = () => {
                                             />
                                                 { isShow === member._id && (
                                                     <Edit
-                                                        setPropagation={(e)=> e.stopPropagation()}
                                                         member={member}
                                                         handleRename={handleRename}
                                                     />
                                                 )}
                                             </div>
-                                            { isRename && ( 
-                                                <Rename 
-                                                    member={member}
-                                                />
-                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -238,6 +232,12 @@ const AllMembers = () => {
                         )}
                         </tbody>
                     </table>
+                    
+                    { !isRename && ( 
+                        <Rename 
+                            member={member}
+                        />
+                    )}
                 </div>
             </div>
                 <p className='number-of-members'>

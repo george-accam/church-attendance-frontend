@@ -2,12 +2,11 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri"; 
 import React, { useEffect, useRef } from 'react';
 
-const Edit = ({ member, setPropagation, handleRename, handleDelete }) => {
+const Edit = ({ member, handleRename, handleDelete }) => {
     
     return (
         <>
             <div
-                onClick={setPropagation}
                 key={member._id}
                 role='menuItems'
                 className='edit-container'
