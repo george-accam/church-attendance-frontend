@@ -36,12 +36,21 @@ const Rename = ({ member, handleCloseRename }) => {
                             onChange={(e)=> setNewPhoneNumber(e.target.value)}
                         />
                     </div>
-                    <button
-                        className="rename-button"
-                        type="submit"
-                    >
-                        Save
-                    </button>
+                    <div className="delete-button-container">
+                        <button
+                            className="rename-button"
+                            type="submit"
+                        >
+                            save
+                        </button>
+
+                        <button
+                            className="delete-button"
+                            onClick={handleCloseRename}
+                        >
+                            cancel
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

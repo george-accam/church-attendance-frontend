@@ -10,6 +10,7 @@ import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx"
 import Edit from "../../reusableComponents/Edit.jsx";
 import CapitaliseEachLetter from "../../reusableComponents/CapitaliseEachLetter.js"
 import Rename from "../../reusableComponents/Rename.jsx";
+import Delete from "../../reusableComponents/Delete.jsx";
 
 
 const AllMembers = () => {
@@ -138,6 +139,17 @@ const AllMembers = () => {
         setIsRename(null);
     }
 
+    // open the delete component
+    const handleDelete = (id)=>{
+        setIsDelete(isDelete === id ? true : id);
+    }
+
+    // close the delete component
+    const handleCloseDelete = ()=>{
+        setIsDelete(null);
+    }
+
+
     return (
         <div>
             <div className="all-members-container">
@@ -199,7 +211,9 @@ const AllMembers = () => {
                                 ))
                             ) : ( 
                                 members && members.length > 0 ?  ( members.map((member) => (
-                                    <tr key={member._id} className='all-members-list'>
+                                    <tr key={member._id} 
+                                        className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                                    >
                                         <td className='all-members-list-name'>
                                             {CapitaliseEachLetter(member.fullName)}
                                         </td>
@@ -229,9 +243,13 @@ const AllMembers = () => {
                                                     >
                                                         <Edit
                                                             member={member}
-                                                            handleRenameClick={()=> {
+                                                            handleRename={()=> {
                                                                 handleRename(member._id);
                                                                 handleShowEdit(member._id);
+                                                            }}
+                                                            handleDelete={()=> {
+                                                                handleDelete(member._id);
+                                                                handleShowEdit(member.id);
                                                             }}
                                                         />
                                                     </div>
@@ -240,6 +258,12 @@ const AllMembers = () => {
                                                     <Rename 
                                                         member={member}
                                                         handleCloseRename={handleCloseRename}
+                                                    />
+                                                )}
+                                                {isDelete === member._id && (
+                                                    <Delete 
+                                                        member={member}
+                                                        handleCloseDelete={handleCloseDelete}
                                                     />
                                                 )}
                                             </div>

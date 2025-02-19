@@ -1237,8 +1237,9 @@ body{
   right: 0;
   bottom: 0;
   left: 0;
+  padding: 0 10px;
   z-index: 1;
-  background-color: rgba(96, 103, 110, 0.358);
+  background-color: rgba(96, 103, 110, 0.277);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1250,6 +1251,13 @@ body{
   background-color: #8ed0fc;
   box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
 }
+.delete-container-inner{
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  background-color: #8ed0fc;
+  box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
+}
 .rename-container-header{
   color: var(--dark-bg);
   border-bottom: 1px solid var(--dark-bg);
@@ -1258,8 +1266,18 @@ body{
   display: flex;
   justify-content: space-between;
 }
+.delete-container-sub-header{
+  color: red;
+  font-size: 17px;
+  text-align: center;
+  margin-top: 25px;
+}
 .rename-container-header span{
   cursor: pointer;
+  transition: .5s;
+}
+.rename-container-header span:hover{
+  color: red;
 }
 .rename-input-container{
   display: block;
@@ -1277,14 +1295,51 @@ body{
   width: 95%;
   outline: none;
 }
+.delete-button-container-outer{
+  display: flex;
+  justify-content: center;
+}
+.delete-button-container{
+  display: flex;
+  margin-top: 20px;
+}
+.delete-button{
+  display: block;
+  outline: none;
+  border: 1px solid var(--light-bg);
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-right: 60px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(251, 54, 54);
+  transition: .3s;
+}
+.delete-button:hover{
+  background-color: rgba(129, 4, 4, 0.819);
+  color: var(--light-text);
+}
 .rename-button{
   display: block;
   outline: none;
   border: 1px solid var(--dark-bg);
   border-radius: 5px;
-  padding: 8px;
+  padding: 8px 15px;
+  margin-right: 60px;
   cursor: pointer;
   background-color: white;
+  transition: .3s;
+}
+.rename-button:hover{
+  background-color: var(--dark-bg);
+  color: white;
+  border: 1px solid var(--white-bg);
+}
+.update-table{
+  background-color: #0055ff88;
+}
+.delete-table{
+  background-color: #ff000078;
 }
 
 /* responsiveness css */

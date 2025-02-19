@@ -3,24 +3,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import React, { useEffect, useState, useRef } from 'react';
 import Rename from "./Rename";
 
-const Edit = ({ member, handleRenameClick, handleDelete }) => {
+const Edit = ({ member, handleRename, handleDelete }) => {
     const [isDelete, setIsDelete]= useState(null);
-    // const [isRename, setIsRename] = useState(null);
-    // const menuRef = useRef(null);
-
-    // // handle the rename member
-    // const handleRename = (id)=>{
-    //     setIsRename(isRename === id ? true : id);
-    //     console.log(id);
-        
-    // }
-    // const handleCloseRename = ()=>{
-    //     setIsRename(null);
-    // }
-    // const handleRenameClick = (e)=>{
-    //     e.stopPropagation();
-    //     handleRename(member._id);
-    // }
 
     return (
         <>
@@ -35,7 +19,7 @@ const Edit = ({ member, handleRenameClick, handleDelete }) => {
                 </p>
                 {/* rename container */}
                 <div
-                    onClick={handleRenameClick}
+                    onClick={handleRename}
                     className="edit-container-rename"
                 >
                     <FiEdit 
@@ -45,7 +29,7 @@ const Edit = ({ member, handleRenameClick, handleDelete }) => {
                 </div>
                 {/* delete container */}
                 <div
-                    // onClick={handleDelete(member._id)}
+                    onClick={handleDelete}
                     className="edit-container-delete"
                 >
                     <RiDeleteBin6Line 
