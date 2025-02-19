@@ -37,7 +37,7 @@ const Rename = ({ member, handleCloseRename }) => {
                         />
                     </div>
                     <button
-                    className="rename-button"
+                        className="rename-button"
                         type="submit"
                     >
                         Save

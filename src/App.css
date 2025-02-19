@@ -1266,6 +1266,10 @@ body{
   font-size: 18px;
   margin: 15px 0;
 }
+.rename-input-container label{
+  float: left;
+  color: var(--light-text);
+}
 .rename-input-container input{
   padding: 8px;
   border: none;
@@ -1274,6 +1278,7 @@ body{
   outline: none;
 }
 .rename-button{
+  display: block;
   outline: none;
   border: 1px solid var(--dark-bg);
   border-radius: 5px;

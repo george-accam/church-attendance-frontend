@@ -111,28 +111,29 @@ const AllMembers = () => {
         setIsShow(isShow === id ? true : id);
     } 
 
-    useEffect(()=>{
-        const handleClickOutside = (e)=>{
-            if(menuRef.current && 
-                !menuRef.current.contains(e.target) && 
-            !e.target.closest('.rename-container-outer')){
-                setIsShow(false);
-            }
-        }
+    // useEffect(()=>{
+    //     const handleClickOutside = (e)=>{
+    //         if(menuRef.current && 
+    //             !menuRef.current.contains(e.target)){
+    //             setIsShow(false);
+    //         }
+    //     }
 
-        document.addEventListener("mousedown", handleClickOutside);
+    //     document.addEventListener("mousedown", handleClickOutside);
         
-        return ()=>{
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
-    }, []);
+    //     return ()=>{
+    //         document.removeEventListener("mousedown", handleClickOutside);
+    //     }
+    // }, []);
 
     // handle the rename member
+    
+    // open the rename component
     const handleRename = (id)=>{
-        setIsRename(id);
-        console.log(id);
-        
+        setIsRename(isRename === id ? true : id);
     }
+
+    // closes the rename component
     const handleCloseRename = ()=>{
         setIsRename(null);
     }
@@ -210,32 +211,39 @@ const AllMembers = () => {
                                             { member.userFullName }
                                         </td>
                                         {/* edit table data */}
-                                        <td className='all-members-list-date edit-button edit-parent-container'>
+                                        <td className='all-members-list-date edit-button'>
                                             <div 
-                                                ref={menuRef}
-                                                aria-label="Options menu"
-                                                aria-haspopup="true"
-                                                aria-expanded={isShow}
-                                                className={`${isShow === member._id ? "edit-button-color" : ""}`}
+                                                key={member._id}
+                                                // ref={menuRef}
+                                                role="menu"
+                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                             >
                                             <SlOptionsVertical
                                                 className="edit-button"
                                                 onClick={()=> handleShowEdit(member._id)}
                                             />
                                                 { isShow === member._id && (
-                                                    <Edit
+                                                    <div 
+                                                        className="" 
+                                                        role="none"
+                                                    >
+                                                        <Edit
+                                                            member={member}
+                                                            handleRenameClick={()=> {
+                                                                handleRename(member._id);
+                                                                handleShowEdit(member._id);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                                { isRename === member._id && ( 
+                                                    <Rename 
                                                         member={member}
-                                                        // handleRename={()=> handleRename(member._id)}
+                                                        handleCloseRename={handleCloseRename}
                                                     />
                                                 )}
                                             </div>
 
-                                            {/* { isRename === member._id && ( 
-                                                <Rename 
-                                                    member={member}
-                                                    handleCloseRename={handleCloseRename}
-                                                />
-                                            )} */}
                                         </td>
                                     </tr>
                                 ))
