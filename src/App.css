@@ -1261,6 +1261,26 @@ body{
 .rename-container-header span{
   cursor: pointer;
 }
+.rename-input-container{
+  display: block;
+  font-size: 18px;
+  margin: 15px 0;
+}
+.rename-input-container input{
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  width: 95%;
+  outline: none;
+}
+.rename-button{
+  outline: none;
+  border: 1px solid var(--dark-bg);
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: white;
+}
 
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {

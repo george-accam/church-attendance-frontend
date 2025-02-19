@@ -19,8 +19,8 @@ const AllMembers = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [search, setSearch] = useState("");
     const [isShow, setIsShow] = useState(false);
-    const [isDelete, setIsDelete]= useState(false);
-    const [isRename, setIsRename] = useState(false);
+    const [isDelete, setIsDelete]= useState(null);
+    const [isRename, setIsRename] = useState(null);
     const menuRef = useRef(null);
 
     // search members
@@ -113,7 +113,9 @@ const AllMembers = () => {
 
     useEffect(()=>{
         const handleClickOutside = (e)=>{
-            if(menuRef.current && !menuRef.current.contains(e.target)){
+            if(menuRef.current && 
+                !menuRef.current.contains(e.target) && 
+            !e.target.closest('.rename-container-outer')){
                 setIsShow(false);
             }
         }
@@ -127,7 +129,12 @@ const AllMembers = () => {
 
     // handle the rename member
     const handleRename = (id)=>{
-        setIsRename(isRename === id ? true : id);
+        setIsRename(id);
+        console.log(id);
+        
+    }
+    const handleCloseRename = ()=>{
+        setIsRename(null);
     }
 
     return (
@@ -202,10 +209,14 @@ const AllMembers = () => {
                                         <td className='all-members-list-date'>
                                             { member.userFullName }
                                         </td>
+                                        {/* edit table data */}
                                         <td className='all-members-list-date edit-button edit-parent-container'>
                                             <div 
-                                                ref={menuRef} 
-                                                className={` ${isShow === member._id ? "edit-button-color" : ""}`}
+                                                ref={menuRef}
+                                                aria-label="Options menu"
+                                                aria-haspopup="true"
+                                                aria-expanded={isShow}
+                                                className={`${isShow === member._id ? "edit-button-color" : ""}`}
                                             >
                                             <SlOptionsVertical
                                                 className="edit-button"
@@ -214,10 +225,17 @@ const AllMembers = () => {
                                                 { isShow === member._id && (
                                                     <Edit
                                                         member={member}
-                                                        handleRename={handleRename}
+                                                        // handleRename={()=> handleRename(member._id)}
                                                     />
                                                 )}
                                             </div>
+
+                                            {/* { isRename === member._id && ( 
+                                                <Rename 
+                                                    member={member}
+                                                    handleCloseRename={handleCloseRename}
+                                                />
+                                            )} */}
                                         </td>
                                     </tr>
                                 ))
@@ -232,12 +250,6 @@ const AllMembers = () => {
                         )}
                         </tbody>
                     </table>
-                    
-                    { !isRename && ( 
-                        <Rename 
-                            member={member}
-                        />
-                    )}
                 </div>
             </div>
                 <p className='number-of-members'>
