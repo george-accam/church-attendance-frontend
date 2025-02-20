@@ -64,8 +64,8 @@ const AllMembers = () => {
     // fetch all members
     const fetchAllMembers = async () => {
         try {
-            const response = await api.get('/attendees');
             setIsLoading(true);
+            const response = await api.get('/attendees');
             const { attendance } = response.data;
             // set members
             setMembers(attendance);
