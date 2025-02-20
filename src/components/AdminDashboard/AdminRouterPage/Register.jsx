@@ -47,9 +47,9 @@ const Register = () => {
         userFullName: userFullName,
         ...formData,
       };
+      setIsLoading(true);
       const response = await Api.post("/attendee", submitData);
       const { message } = response.data;
-      setIsLoading(true);
       handleSuccess(message);
       setFormData({
         fullName: "",

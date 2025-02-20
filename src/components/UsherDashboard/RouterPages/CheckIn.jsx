@@ -45,10 +45,11 @@ const CheckIn = () => {
   // submit the check in data
   const handleOnSubmit = async(telephoneNumber) => {
     try {
+      // set loading to true
+      setIsLoading(true);
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
       if (message) {
-        setIsLoading(true);
         handleSuccess(message);
       }
       setPhoneNumber("");
@@ -63,6 +64,7 @@ const CheckIn = () => {
       }
       
     }finally{
+      // set loading to false
       setIsLoading(false);
     }
   };

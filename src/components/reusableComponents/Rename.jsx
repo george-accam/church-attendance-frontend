@@ -1,9 +1,18 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 import React, { useState } from 'react';
 
-const Rename = ({ member, handleCloseRename }) => {
+const Rename = ({ member, isRenaming, handleRenameData, handleCloseRename }) => {
     const [newName, setNewName] = useState(member.fullName);
     const [newPhoneNumber, setNewPhoneNumber] = useState(member.phoneNumber);
+
+    const handleSavedRenameData = (e) => {
+        e.preventDefault();
+        handleRenameData({
+        id: member._id,
+        fullName: newName, 
+        phoneNumber: newPhoneNumber
+    });
+    }
 
     return (
         <div
@@ -17,7 +26,7 @@ const Rename = ({ member, handleCloseRename }) => {
                         <AiOutlineCloseCircle />
                     </span>
                 </div>
-                <form action="">
+                <form onSubmit={handleSavedRenameData}>
                     <div className="rename-input-container">
                         <label htmlFor="full-name">Full name</label>
                         <input 
@@ -41,11 +50,12 @@ const Rename = ({ member, handleCloseRename }) => {
                             className="rename-button"
                             type="submit"
                         >
-                            save
+                            { isRenaming ? "renaming" : "save"}
                         </button>
 
                         <button
                             className="delete-button"
+                            type="button"
                             onClick={handleCloseRename}
                         >
                             cancel

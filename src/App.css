@@ -1295,6 +1295,9 @@ body{
   width: 95%;
   outline: none;
 }
+.rename-input-container input:focus{
+  border: 2px solid blue;
+}
 .delete-button-container-outer{
   display: flex;
   justify-content: center;

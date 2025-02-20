@@ -1,5 +1,5 @@
+import { AiFillEdit } from "react-icons/ai"; 
 import { SlOptionsVertical } from "react-icons/sl"; 
-import { AiTwotoneEdit } from "react-icons/ai"; 
 import { CgSearch } from "react-icons/cg"; 
 import React, { useEffect, useRef, useState } from 'react';
 import api from "../../../API/Api.js";
@@ -22,8 +22,8 @@ const AllMembers = () => {
     const [isShow, setIsShow] = useState(false);
     const [isDelete, setIsDelete]= useState(null);
     const [isRename, setIsRename] = useState(null);
-    const [deletedData, setDeletedData] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isRenaming, setIsRenaming] = useState(false);
     const menuRef = useRef(null);
 
     // search members
@@ -95,7 +95,7 @@ const AllMembers = () => {
     if (isLoading) {
         return (
             <SubComponentLoader 
-            changes={"Registrars"}
+                changes={"Registrars"}
             />
         )
         
@@ -128,8 +128,6 @@ const AllMembers = () => {
     //         document.removeEventListener("mousedown", handleClickOutside);
     //     }
     // }, []);
-
-    // handle the rename member
     
     // open the rename component
     const handleRename = (id)=>{
@@ -155,7 +153,7 @@ const AllMembers = () => {
     const handleDeletedData = async(id)=>{
         try {
             setIsDeleting(true)
-            const response =  await api.delete(`/delete-attendance/${id}`);
+            const response =  await api.delete(`delete-attendance/${id}`);
             const { message  } = response.data;
             if(message){
                 handleSuccess(message || "member deleted successfully")
@@ -170,13 +168,42 @@ const AllMembers = () => {
                 handleError(`Network error : ${error.request}`)
             }
             else{
-                handleError("Error occurred");
+                handleError("Error occurred, please ty again");
             }
         }
         finally{
             setIsDeleting(false);
         }
     }
+
+    // handle rename data
+    const handleRenameData = async({ id, fullName, phoneNumber })=>{
+        try {
+            setIsRenaming(true)
+            const response = await api.put(`update-attendance/${id}`, {fullName, phoneNumber});
+            const { message } = response.data;
+            if(message){
+                handleSuccess(message || "member updated successfully")
+                setIsRename(null);
+                fetchAllMembers();
+                searchMembers();
+            }
+        } 
+        catch (error) {
+            if (error.response.data) {
+                handleError(error.response.data)
+            }
+            else if(error.request) {
+                handleError(`Network error : ${error.request}`);
+            }
+            else {
+                handleError("An unexpected error occurred, please try again");
+            }
+        }
+        finally{
+            setIsRenaming(false);
+        }
+    };
 
     return (
         <div>
@@ -207,7 +234,7 @@ const AllMembers = () => {
                                 <th>Full Name</th>
                                 <th>Phone Number</th>
                                 <th>Registrars</th>
-                                <th><AiTwotoneEdit /></th>
+                                <th><AiFillEdit /></th>
                             </tr>
                         </thead>
                         {/* breaks the thead from the tbody */}
@@ -234,6 +261,57 @@ const AllMembers = () => {
                                         </td>
                                         <td className='all-members-list-date'>
                                             { filteredMember.userFullName }
+                                        </td>
+                                        {/* edit table data */}
+                                        <td className='all-members-list-date edit-button'>
+                                            <div 
+                                                key={filteredMember._id}
+                                                // ref={menuRef}
+                                                role="menu"
+                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                            >
+                                            <SlOptionsVertical
+                                                className="edit-button"
+                                                onClick={()=> handleShowEdit(filteredMember._id)}
+                                            />
+                                                { isShow === filteredMember._id && (
+                                                    <div 
+                                                        className="" 
+                                                        role="none"
+                                                    >
+                                                        <Edit
+                                                            member={filteredMember}
+                                                            handleRename={()=> {
+                                                                handleRename(filteredMember._id);
+                                                                handleShowEdit(filteredMember._id);
+                                                            }}
+                                                            handleDelete={()=> {
+                                                                handleDelete(filteredMember._id);
+                                                                handleShowEdit(filteredMember.id);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                                { isRename === filteredMember._id && ( 
+                                                    <Rename 
+                                                        member={filteredMember}
+                                                        isRenaming={isRenaming}
+                                                        handleCloseRename={handleCloseRename}
+                                                        handleRenameData={handleRenameData}
+                                                    />
+                                                )}
+                                                {isDelete === filteredMember._id && (
+                                                    <Delete 
+                                                        member={filteredMember}
+                                                        isDeleting={isDeleting}
+                                                        handleCloseDelete={handleCloseDelete}
+                                                        handleDeletedData={()=> {
+                                                            handleDeletedData(filteredMember._id);
+                                                        }}
+                                                    />
+                                                )}
+                                            </div>
+
                                         </td>
                                     </tr>
                                 ))
@@ -285,7 +363,9 @@ const AllMembers = () => {
                                                 { isRename === member._id && ( 
                                                     <Rename 
                                                         member={member}
+                                                        isRenaming={isRenaming}
                                                         handleCloseRename={handleCloseRename}
+                                                        handleRenameData={handleRenameData}
                                                     />
                                                 )}
                                                 {isDelete === member._id && (

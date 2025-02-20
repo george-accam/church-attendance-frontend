@@ -71,10 +71,10 @@ const CheckIn = () => {
   // handle the search members
   const handleFetchSearch = async()=>{
     try {
-
+      // set loading to true
+      setIsLoading(true)
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { message, attendee } = response.data;
-      setIsLoading(true)
       if (attendee === null || attendee.length === 0) {
         handleError("member not found");
         return;
@@ -97,6 +97,7 @@ const CheckIn = () => {
 
       }
     }finally{
+      // set loading to false
       setIsLoading(false);
     }
   };
