@@ -47,9 +47,10 @@ const Register = () => {
         userFullName: userFullName,
         ...formData,
       };
+      // set loading to true
+      setIsLoading(true);
       const response = await Api.post("/attendee", submitData);
       const { message } = response.data;
-      setIsLoading(true);
       handleSuccess(message);
       setFormData({
         fullName: "",
@@ -65,6 +66,7 @@ const Register = () => {
         handleError("An error occurred. Please try again");
       }
     }finally{
+      // set loading to false
       setIsLoading(false);
     }
   }

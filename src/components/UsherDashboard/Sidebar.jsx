@@ -22,7 +22,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
     handleSuccess("logged out successfully");
     setTimeout(()=>{
       navigate('/login');
-    }, 2000);
+    }, 1000);
   }
 
   const handleLogout = ()=>{
@@ -44,13 +44,13 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
                 Dashboard
             </h1>
           </div>
-          <p className="dashboard-sidebar-subtitle">
+          <div className="dashboard-sidebar-subtitle">
               Welcome, 
-              <span>
-                {userName} {" "} 
-              <img src={welcome} alt="🤗" />
-              </span> 
-          </p>
+              <div className='subtitle'>
+                { userName }
+              </div> 
+              <img src={ welcome } alt="🤗" />
+          </div>
           <div className="navbar-navigator-container">
             <Link to="/usher-dashboard/all-members"
             onClick={()=> handleShowActive("all-members")} 

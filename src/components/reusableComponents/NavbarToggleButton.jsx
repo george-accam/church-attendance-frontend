@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineLogout } from "react-icons/ai";
 
-const NavbarToggleButton = ({ isShow, setIsShow, handleShow, handleLogout, handleChangeColor }) => {
+const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor }) => {
     const menuRef = useRef(null);
     const [selectedMode, setSelectedMode] = useState(localStorage.getItem("theme") || "light");
 

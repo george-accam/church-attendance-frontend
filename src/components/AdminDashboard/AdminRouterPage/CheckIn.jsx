@@ -9,11 +9,12 @@ import 'aos/dist/aos.css';
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
 
 
-  // count the check time out
+  // count the check in time out
   useEffect(()=>{
     let timeOut
 
@@ -48,7 +49,6 @@ const CheckIn = () => {
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
       if (message) {
-        setIsLoading(true);
         handleSuccess(message);
       }
       setPhoneNumber("");
@@ -62,19 +62,18 @@ const CheckIn = () => {
         handleError("An error occurred. Please try again");
       }
       
-    }finally{
-      setIsLoading(false);
     }
   };
 
 
   // handle the search members
-  const handleFetchSearch = async()=>{
+  const handleFetchSearch = async(e)=>{
+    e.preventDefault();
     try {
-
+      // set loading to true
+      setIsSearching(true)
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { message, attendee } = response.data;
-      setIsLoading(true)
       if (attendee === null || attendee.length === 0) {
         handleError("member not found");
         return;
@@ -97,7 +96,8 @@ const CheckIn = () => {
 
       }
     }finally{
-      setIsLoading(false);
+      // set loading to false
+      setIsSearching(false);
     }
   };
 
@@ -112,6 +112,12 @@ const CheckIn = () => {
     handleFetchSearch();
   }, []);
 
+  const handleEnter = (e)=>{
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      handleFetchSearch();
+    }
+  }
 
   return (
     <div>
@@ -124,7 +130,10 @@ const CheckIn = () => {
                 className='check-in-form'
               >
                 <h1 className='container-header'>Check In Member</h1>
-                <div className="form-group">
+                <div 
+                  tabIndex={0}
+                  onKeyDown={handleEnter}
+                  className="form-group">
                     <label htmlFor="fullName">
                       Phone number
                     </label>
@@ -138,15 +147,15 @@ const CheckIn = () => {
                 </div>
                 <div className="button-container">
                     <button type="submit"
-                    onClick={handleFetchSearch}
-                        disabled={isLoading}
-                        className={`submit-button ${isLoading ? "button-loading" : ""}`}
+                      onClick={handleFetchSearch}
+                      disabled={isSearching}
+                      className={`submit-button ${isSearching ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "searching" : "search"}
+                        {isSearching ? "searching" : "search"}
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
-                        <Link to="/usher-dashboard/register-member" className="login-link check-in-register-member">
+                        <Link to="/admin-dashboard/register-member" className="login-link check-in-register-member">
                           register
                         </Link>
                     </div>
@@ -199,11 +208,6 @@ const CheckIn = () => {
                               </td>
                           </tr>
                         ))
-                      )}
-                      {isLoading && (
-                        <tr className='check-in-all-members-list check-in-search-no-members'>
-                          loading..
-                        </tr>
                       )}
                     </tbody>
                 </table>

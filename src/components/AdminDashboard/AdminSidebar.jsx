@@ -22,7 +22,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
     handleSuccess("logged out successfully");
     setTimeout(()=>{
       navigate('/login');
-    }, 2000);
+    }, 1000);
   }
 
   // close or open logout modal
@@ -45,13 +45,13 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
                 Dashboard
             </h1>
           </div>
-          <p className="dashboard-sidebar-subtitle">
-              Welcome, 
-              <span>
-                {userName} {" "} 
-                <img src={welcome} alt="🤗" />
-              </span> 
-          </p>
+          <div className="dashboard-sidebar-subtitle">
+            Welcome, 
+            <div className='subtitle'>
+              {userName}
+            </div> 
+            <img src={welcome} alt="🤗" />
+          </div>
           <div className="admin-navbar-navigator-container">
             <Link to="/admin-dashboard/members-checked"
               onClick={()=> handleShowActive("members-checked")} 

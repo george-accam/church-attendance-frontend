@@ -50,7 +50,7 @@ const UserDashboard = () => {
   // render the first name of the user
   useEffect(()=>{
     if(user){
-      const [first, ...rest] = user.fullName.split(" ");
+      const first = user.fullName;
       setFirstName(first || "");
     }
     else{

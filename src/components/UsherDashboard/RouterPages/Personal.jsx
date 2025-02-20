@@ -5,6 +5,7 @@ import { handleError, handleSuccess } from '../../../notifications/Notification'
 import { ToastContainer } from 'react-toastify';
 import member from './../../assets/no-member.gif';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
+import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 
 const Personal = () => {
   const [members, setMembers] = useState([]);
@@ -82,7 +83,7 @@ const Personal = () => {
   useEffect(() => {
     fetchMembers();
     searchPersonalMember([]);
-  }, []);
+  }, [search]);
 
   // loading state
   if (isLoading) {
@@ -138,7 +139,7 @@ const Personal = () => {
                         filteredMembers.map((filteredMember) => (
                           <tr key={filteredMember._id} className='all-members-list'>
                                   <td>
-                                      {filteredMember.attendeeName}
+                                      {capitalizeWords(filteredMember.attendeeName)}
                                   </td>
                                   <td className='all-members-list-phone-number'>
                                       {filteredMember.attendeePhoneNumber}
@@ -152,7 +153,7 @@ const Personal = () => {
                           members.length > 0 ?  ( members.map((member) => (
                               <tr key={member._id} className='all-members-list'>
                                   <td>
-                                      {member.attendeeName}
+                                      {capitalizeWords(member.attendeeName)}
                                   </td>
                                   <td className='all-members-list-phone-number'>
                                       {member.attendeePhoneNumber}

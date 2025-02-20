@@ -1,3 +1,5 @@
+import { AiFillEdit } from "react-icons/ai"; 
+import { SlOptionsVertical } from "react-icons/sl"; 
 import { CgSearch } from "react-icons/cg"; 
 import React, { useState, useEffect } from 'react';
 import api from "../../../API/Api.js";
@@ -11,6 +13,7 @@ const Personal = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredMembers, setFilteredMembers] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   
   // getting user data from localStorage
   const user = localStorage.getItem('user');
@@ -31,8 +34,8 @@ const Personal = () => {
 
   const searchPersonalMember = async()=>{
     try {
+      setIsSearching(true);
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
-      setIsLoading(true);
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
         handleError("member not found");
@@ -49,7 +52,7 @@ const Personal = () => {
         handleError("Search failed, please try again");
       }
     }finally{
-      setIsLoading(false);
+      setIsSearching(false);
     }
   };
   // retrieve the data
@@ -61,8 +64,8 @@ const Personal = () => {
       }
 
       const response = await api.get(`personal-attendee/${userId}`);
-      setIsLoading(true);
       const { personalAttendance } = response.data;
+      setIsLoading(true);
       setMembers(personalAttendance);
     } catch (error) {
       if (error.response.data) {
@@ -79,7 +82,7 @@ const Personal = () => {
   useEffect(() => {
     fetchMembers();
     searchPersonalMember([]);
-  }, []);
+  }, [search]);
 
   // loading state
   if (isLoading) {
@@ -113,12 +116,20 @@ const Personal = () => {
                           <th>Full Name</th>
                           <th>Phone Number</th>
                           <th>Date</th>
+                          <th><AiFillEdit /></th>
                       </tr>
                   </thead>
                   {/* breaks the thead from the tbody */}
                   <br />
                   {/* table body */}
                   <tbody>
+                    {isSearching && (
+                        <tr className='search-all-members-list'>
+                            <td colSpan={4}>
+                                searching.......
+                            </td>
+                        </tr>
+                    )}
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
                           <tr key={filteredMember._id} className='all-members-list'>
@@ -143,8 +154,59 @@ const Personal = () => {
                                       {member.attendeePhoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(member.createdAt).toLocaleDateString()}
+                                      { new Date(member.createdAt).toLocaleDateString("en-GB")}
                                   </td>
+                                  {/* edit table data */}
+                                  <td className='all-members-list-date edit-button'>
+                                            <div 
+                                                key={member._id}
+                                                // ref={menuRef}
+                                                role="menu"
+                                                className={`edit-parent-container`}
+                                                // className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                            >
+                                              <SlOptionsVertical
+                                                  className="edit-button"
+                                                  // onClick={()=> handleShowEdit(member._id)}
+                                              />
+                                                {/* { isShow === member._id && (
+                                                    <div 
+                                                        className="" 
+                                                        role="none"
+                                                    >
+                                                        <Edit
+                                                            member={member}
+                                                            handleRename={()=> {
+                                                                handleRename(member._id);
+                                                                handleShowEdit(member._id);
+                                                            }}
+                                                            handleDelete={()=> {
+                                                                handleDelete(member._id);
+                                                                handleShowEdit(member.id);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                                { isRename === member._id && ( 
+                                                    <Rename 
+                                                        member={member}
+                                                        isRenaming={isRenaming}
+                                                        handleCloseRename={handleCloseRename}
+                                                        handleRenameData={handleRenameData}
+                                                    />
+                                                )}
+                                                {isDelete === member._id && (
+                                                    <Delete 
+                                                        member={member}
+                                                        isDeleting={isDeleting}
+                                                        handleCloseDelete={handleCloseDelete}
+                                                        handleDeletedData={()=> {
+                                                            handleDeletedData(member._id);
+                                                        }}
+                                                    />
+                                                )} */}
+                                            </div>
+                                        </td>
                               </tr>
                           ))
                       ): (

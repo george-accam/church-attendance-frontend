@@ -47,9 +47,9 @@ const Register = () => {
         userFullName: userFullName,
         ...formData,
       };
+      setIsLoading(true);
       const response = await Api.post("/attendee", submitData);
       const { message } = response.data;
-      setIsLoading(true);
       handleSuccess(message);
       setFormData({
         fullName: "",
@@ -121,7 +121,7 @@ const Register = () => {
                     </button>
                     <div className="login-link-container">
                         Want to check in member ?
-                        <Link to="/usher-dashboard/check-in" className="login-link check-in-register-member">
+                        <Link to="/admin-dashboard/check-in" className="login-link check-in-register-member">
                           check in
                         </Link>
                     </div>

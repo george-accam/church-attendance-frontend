@@ -36,7 +36,7 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
         handleSuccess("logged out successfully");
         setTimeout(()=>{
             navigate('/login');
-        }, 2000);
+        }, 1000);
     }
     
     // change the theme

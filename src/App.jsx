@@ -49,11 +49,11 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
-          {user && (
-            <>
+          {user && user.role === "Usher" && (
                 <Route path="usher-dashboard/*" element={<UsherDashboard />} />
+          )}
+          {user && user.role === "Admin" && (
                 <Route path="admin-dashboard/*" element={<AdminDashboard />} />
-            </>
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>
