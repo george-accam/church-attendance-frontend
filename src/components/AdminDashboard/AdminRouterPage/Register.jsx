@@ -121,7 +121,7 @@ const Register = () => {
                     </button>
                     <div className="login-link-container">
                         Want to check in member ?
-                        <Link to="/usher-dashboard/check-in" className="login-link check-in-register-member">
+                        <Link to="/admin-dashboard/check-in" className="login-link check-in-register-member">
                           check in
                         </Link>
                     </div>

@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -45,8 +46,6 @@ const CheckIn = () => {
   // submit the check in data
   const handleOnSubmit = async(telephoneNumber) => {
     try {
-      // set loading to true
-      setIsLoading(true);
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
       if (message) {
@@ -63,20 +62,18 @@ const CheckIn = () => {
         handleError("An error occurred. Please try again");
       }
       
-    }finally{
-      // set loading to false
-      setIsLoading(false);
     }
   };
 
 
   // handle the search members
-  const handleFetchSearch = async()=>{
+  const handleFetchSearch = async(e)=>{
+    e.preventDefault();
     try {
 
+      setIsSearching(true)
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { message, attendee } = response.data;
-      setIsLoading(true)
       if (attendee === null || attendee.length === 0) {
         handleError("member not found");
         return;
@@ -99,7 +96,7 @@ const CheckIn = () => {
 
       }
     }finally{
-      setIsLoading(false);
+      setIsSearching(false);
     }
   };
 
@@ -141,10 +138,10 @@ const CheckIn = () => {
                 <div className="button-container">
                     <button type="submit"
                     onClick={handleFetchSearch}
-                        disabled={isLoading}
-                        className={`submit-button ${isLoading ? "button-loading" : ""}`}
+                        disabled={isSearching}
+                        className={`submit-button ${isSearching ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "searching" : "search"}
+                        {isSearching ? "searching" : "search"}
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
@@ -201,11 +198,6 @@ const CheckIn = () => {
                               </td>
                           </tr>
                         ))
-                      )}
-                      {isLoading && (
-                        <tr className='check-in-all-members-list check-in-search-no-members'>
-                          loading..
-                        </tr>
                       )}
                     </tbody>
                 </table>

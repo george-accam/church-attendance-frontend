@@ -9,11 +9,12 @@ import 'aos/dist/aos.css';
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
 
 
-  // count the check time out
+  // count the check in time out
   useEffect(()=>{
     let timeOut
 
@@ -48,7 +49,6 @@ const CheckIn = () => {
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
       if (message) {
-        setIsLoading(true);
         handleSuccess(message);
       }
       setPhoneNumber("");
@@ -62,17 +62,16 @@ const CheckIn = () => {
         handleError("An error occurred. Please try again");
       }
       
-    }finally{
-      setIsLoading(false);
     }
   };
 
 
   // handle the search members
-  const handleFetchSearch = async()=>{
+  const handleFetchSearch = async(e)=>{
+    e.preventDefault();
     try {
       // set loading to true
-      setIsLoading(true)
+      setIsSearching(true)
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)
       const { message, attendee } = response.data;
       if (attendee === null || attendee.length === 0) {
@@ -98,7 +97,7 @@ const CheckIn = () => {
       }
     }finally{
       // set loading to false
-      setIsLoading(false);
+      setIsSearching(false);
     }
   };
 
@@ -149,14 +148,14 @@ const CheckIn = () => {
                 <div className="button-container">
                     <button type="submit"
                       onClick={handleFetchSearch}
-                      disabled={isLoading}
-                      className={`submit-button ${isLoading ? "button-loading" : ""}`}
+                      disabled={isSearching}
+                      className={`submit-button ${isSearching ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "searching" : "search"}
+                        {isSearching ? "searching" : "search"}
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
-                        <Link to="/usher-dashboard/register-member" className="login-link check-in-register-member">
+                        <Link to="/admin-dashboard/register-member" className="login-link check-in-register-member">
                           register
                         </Link>
                     </div>
