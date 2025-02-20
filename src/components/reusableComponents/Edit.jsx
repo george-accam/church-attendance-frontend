@@ -3,13 +3,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import React, { useEffect, useState, useRef } from 'react';
 import Rename from "./Rename";
 
-const Edit = ({ member, handleRename, handleDelete }) => {
+const Edit = ({ memberId, handleRename, handleDelete }) => {
     const [isDelete, setIsDelete]= useState(null);
 
     return (
         <>
             <div
-                key={member._id}
+                key={memberId}
                 role='menuItems'
                 className='edit-container'
                 onClick={(e)=> e.stopPropagation()}

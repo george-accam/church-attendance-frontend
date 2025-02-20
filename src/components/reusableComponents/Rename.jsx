@@ -1,14 +1,14 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 import React, { useState } from 'react';
 
-const Rename = ({ member, isRenaming, handleRenameData, handleCloseRename }) => {
-    const [newName, setNewName] = useState(member.fullName);
-    const [newPhoneNumber, setNewPhoneNumber] = useState(member.phoneNumber);
+const Rename = ({ memberId, memberName, memberPhoneNumber, isRenaming, handleRenameData, handleCloseRename }) => {
+    const [newName, setNewName] = useState(memberName);
+    const [newPhoneNumber, setNewPhoneNumber] = useState(memberPhoneNumber);
 
     const handleSavedRenameData = (e) => {
         e.preventDefault();
         handleRenameData({
-        id: member._id,
+        id: memberId,
         fullName: newName, 
         phoneNumber: newPhoneNumber
     });
@@ -16,7 +16,7 @@ const Rename = ({ member, isRenaming, handleRenameData, handleCloseRename }) => 
 
     return (
         <div
-            key={member._id}
+            key={memberId}
             className='rename-container-outer'
         >
             <div className="rename-container-inner">

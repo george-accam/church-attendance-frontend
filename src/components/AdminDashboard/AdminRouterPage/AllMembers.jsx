@@ -26,7 +26,7 @@ const AllMembers = () => {
     const [isRenaming, setIsRenaming] = useState(false);
     const menuRef = useRef(null);
 
-    // search members
+    // search members input
     const handleSearch = (e) => {
         setSearch(e.target.value);
     };
@@ -88,6 +88,10 @@ const AllMembers = () => {
     // fetch all members on component mount
     useEffect(() => {
         fetchAllMembers();
+    }, []);
+    
+    // fetch search members on component mount
+    useEffect(() => {
         searchMembers();
     }, [search]);
     
@@ -109,11 +113,7 @@ const AllMembers = () => {
         }
     }
 
-    // handle show edit container
-    const handleShowEdit = (id)=>{
-        setIsShow(isShow === id ? true : id);
-    } 
-
+    
     // useEffect(()=>{
     //     const handleClickOutside = (e)=>{
     //         if(menuRef.current && 
@@ -123,12 +123,17 @@ const AllMembers = () => {
     //     }
 
     //     document.addEventListener("mousedown", handleClickOutside);
-        
+    
     //     return ()=>{
     //         document.removeEventListener("mousedown", handleClickOutside);
     //     }
     // }, []);
-    
+        
+    // handle show edit container
+    const handleShowEdit = (id)=>{
+        setIsShow(isShow === id ? true : id);
+    } 
+
     // open the rename component
     const handleRename = (id)=>{
         setIsRename(isRename === id ? true : id);
@@ -157,8 +162,11 @@ const AllMembers = () => {
             const { message  } = response.data;
             if(message){
                 handleSuccess(message || "member deleted successfully")
-                fetchAllMembers();
             }
+            setTimeout(()=>{
+                fetchAllMembers();
+                searchMembers();
+            }, 2000);
 
         } catch (error) {
             if(error.response.data){
@@ -185,9 +193,11 @@ const AllMembers = () => {
             if(message){
                 handleSuccess(message || "member updated successfully")
                 setIsRename(null);
+            }
+            setTimeout(()=>{
                 fetchAllMembers();
                 searchMembers();
-            }
+            }, 2000);
         } 
         catch (error) {
             if (error.response.data) {
@@ -251,7 +261,9 @@ const AllMembers = () => {
                             )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
                                 filteredMembers.map(filteredMember =>(
-                                    <tr key={filteredMember._id} className='all-members-list'>
+                                    <tr key={filteredMember._id} 
+                                        className={`all-members-list ${isRename === filteredMember._id ? 'update-table' : isDelete === filteredMember._id ? 'delete-table' : ''}`}
+                                    >
                                         <td className='all-members-list-name'>
                                             {CapitaliseEachLetter(filteredMember.fullName)}
                                         </td>
@@ -268,7 +280,7 @@ const AllMembers = () => {
                                                 key={filteredMember._id}
                                                 // ref={menuRef}
                                                 role="menu"
-                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                                className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
                                             >
                                             <SlOptionsVertical
                                                 className="edit-button"
@@ -294,7 +306,9 @@ const AllMembers = () => {
                                                 )}
                                                 { isRename === filteredMember._id && ( 
                                                     <Rename 
-                                                        member={filteredMember}
+                                                        memberId={filteredMember._id}
+                                                        memberName={filteredMember.fullName}
+                                                        memberPhoneNumber={filteredMember.phoneNumber}
                                                         isRenaming={isRenaming}
                                                         handleCloseRename={handleCloseRename}
                                                         handleRenameData={handleRenameData}
@@ -348,7 +362,7 @@ const AllMembers = () => {
                                                         role="none"
                                                     >
                                                         <Edit
-                                                            member={member}
+                                                            memberId={member._id}
                                                             handleRename={()=> {
                                                                 handleRename(member._id);
                                                                 handleShowEdit(member._id);
@@ -362,7 +376,9 @@ const AllMembers = () => {
                                                 )}
                                                 { isRename === member._id && ( 
                                                     <Rename 
-                                                        member={member}
+                                                        memberId={member._id}
+                                                        memberName={member.fullName}
+                                                        memberPhoneNumber={member.phoneNumber}
                                                         isRenaming={isRenaming}
                                                         handleCloseRename={handleCloseRename}
                                                         handleRenameData={handleRenameData}
