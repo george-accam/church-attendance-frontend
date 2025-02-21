@@ -24,7 +24,42 @@ const Ushers = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRenaming, setIsRenaming] = useState(false);
 
-    // retrieve the data
+  // handle onchange
+  const handleSearch = (e)=>{
+    setSearch(e.target.value)
+  }
+
+  const searchPersonalMember = async()=>{
+      try {
+        if (search.trim() === "") {
+          setIsSearching(false);
+        }
+        setIsSearching(true);
+        const response = await api.get(`search-users?q=${search}`);
+        const { allUsers } = response.data;
+        if (allUsers === null || allUsers.length === 0) {
+          handleError("member not found");
+        }
+        setFilteredMembers(allUsers);
+      } catch (error) {
+        if (error.response.data) {
+          handleError(error.response.data)
+        }
+        else if (error.request) {
+          handleError(`Issue connecting to the internet ${error.request}`);
+        }else{
+          handleError("Search failed, please try again");
+        }
+      }finally{
+        setIsSearching(false);
+      }
+    };
+    // mount the search personal members
+      useEffect(() => {
+        searchPersonalMember([]);
+      }, [search]);
+
+  // retrieve the data
   const fetchMembers = async () => {
     try {
       setIsLoading(true);
@@ -153,16 +188,16 @@ const Ushers = () => {
           {/* search bar */}
           <div className="header-search-bar">
             <h1 className='all-members-title'>Ushers Registered</h1>
-            {/* <div className="search-container">
+            <div className="search-container">
               <input type="text"
-              placeholder='search members'
+              placeholder='search ushers'
               value={search}
               onChange={handleSearch}
               />
               <CgSearch className="search-icon"
                 onClick={searchPersonalMember}
               />
-            </div> */}
+            </div>
           </div>
           <div className="">
               <table className='all-members-content'>
@@ -188,22 +223,76 @@ const Ushers = () => {
                     )}
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
-                          <tr key={filteredMember._id} className='all-members-list'>
-                                  <td>
-                                      {filteredMember.fullName}
-                                  </td>
-                                  <td className='all-members-list-phone-number'>
-                                      {filteredMember.phoneNumber}
-                                  </td>
-                                  <td className='all-members-list-date'>
-                                      { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
+                          <tr key={filteredMember._id} 
+                            className={`all-members-list ${isRename === filteredMember._id ? 'update-table' : isDelete === filteredMember._id ? 'delete-table' : ''}`}
+                          >
+                              <td>
+                                  {filteredMember.fullName}
+                              </td>
+                              <td className='all-members-list-phone-number'>
+                                  {filteredMember.phoneNumber}
+                              </td>
+                              <td className='all-members-list-date'>
+                                  { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
+                              </td>
+                              {/* edit table data */}
+                              <td className='all-members-list-date edit-button'>
+                                    <div 
+                                        key={filteredMember._id}
+                                        // ref={menuRef}
+                                        role="menu"
+                                        className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
+                                    >
+                                      <SlOptionsVertical
+                                          className="edit-button"
+                                          onClick={()=> handleShowEdit(filteredMember._id)}
+                                      />
+                                        { isShow === filteredMember._id && (
+                                            <div 
+                                                className="" 
+                                                role="none"
+                                            >
+                                              <Edit
+                                                  member={filteredMember}
+                                                  handleRename={()=> {
+                                                      handleRename(filteredMember._id);
+                                                      handleShowEdit(filteredMember._id);
+                                                  }}
+                                                  handleDelete={()=> {
+                                                      handleDelete(filteredMember._id);
+                                                      handleShowEdit(filteredMember.id);
+                                                  }}
+                                              />
+                                            </div>
+                                        )}
+                                        { isRename === filteredMember._id && ( 
+                                            <Rename 
+                                              memberId={filteredMember._id}
+                                              memberName={filteredMember.fullName}
+                                              memberPhoneNumber={filteredMember.phoneNumber}
+                                              isRenaming={isRenaming}
+                                              handleCloseRename={handleCloseRename}
+                                              handleRenameData={handleRenameData}
+                                            />
+                                        )}
+                                        {isDelete === filteredMember._id && (
+                                            <Delete 
+                                                member={filteredMember}
+                                                isDeleting={isDeleting}
+                                                handleCloseDelete={handleCloseDelete}
+                                                handleDeletedData={()=> {
+                                                    handleDeletedData(filteredMember._id);
+                                                }}
+                                            />
+                                        )}
+                                    </div>
                                   </td>
                           </tr>
                         ))
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
                               <tr key={member._id} 
-                              className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                                className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                               >
                                   <td>
                                       {capitalizedEachWord(member.fullName)}
@@ -265,7 +354,7 @@ const Ushers = () => {
                                             />
                                         )}
                                     </div>
-                                </td>
+                                  </td>
                               </tr>
                           ))
                       ): (

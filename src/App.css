@@ -1175,9 +1175,6 @@ body{
   font-size: 15px;
 }
 
-
-
-
 /* toast notification */
 .custom-toast-message{
   font-size: 18px;
@@ -1358,6 +1355,41 @@ body{
 }
 .delete-table{
   background-color: #ff000078;
+}
+
+/* members checked in */
+.grouped-checked-members{
+  margin-top: 20px;
+}
+.grouped-checked-members h1{
+  font-size: 20px;
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 10px;
+}
+.grid-container-inner{
+  display: flex;
+  justify-content: center;
+}
+.grid-item {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 0 7px rgba(128, 128, 128, 0.445);
+}
+.member-info-check{
+  display: flex;
+  font-size: 16px;
+  margin: 15px 0;
+  color: var(--dark-text);
+}
+.member-info-check label{
+  width: 160px;
+  margin-right: 20px;
+  font-weight: 600;
 }
 
 /* responsiveness css */
