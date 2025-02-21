@@ -10,6 +10,7 @@ import PersonalComponentLoader from "../../reusableComponents/PersonalComponentL
 import Edit from "../../reusableComponents/Edit.jsx";
 import Delete from "../../reusableComponents/Delete.jsx";
 import Rename from "../../reusableComponents/Rename.jsx";
+import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
 
 const Personal = () => {
   const [members, setMembers] = useState([]);
@@ -65,7 +66,7 @@ const Personal = () => {
       setIsSearching(false);
     }
   };
-  // retrieve the data
+  // mount the personal members
   const fetchMembers = async () => {
     try {
       if (!user) {
@@ -92,6 +93,8 @@ const Personal = () => {
   useEffect(() => {
     fetchMembers();
   }, []);
+
+  // mount the search personal members
   useEffect(() => {
     searchPersonalMember([]);
   }, [search]);
@@ -99,7 +102,9 @@ const Personal = () => {
   // loading state
   if (isLoading) {
     return (
-      <PersonalComponentLoader />
+      <PersonalComponentLoader 
+        header={"Personal Members"}
+      />
   );
   }
 
@@ -238,7 +243,7 @@ const Personal = () => {
                                       {filteredMember.attendeePhoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(filteredMember.createdAt).toLocaleDateString()}
+                                      { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
                                   </td>
                           </tr>
                         ))
@@ -248,7 +253,7 @@ const Personal = () => {
                               className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                               >
                                   <td>
-                                      {member.attendeeName}
+                                      {capitalizedEachWord(member.attendeeName)}
                                   </td>
                                   <td className='all-members-list-phone-number'>
                                       {member.attendeePhoneNumber}
@@ -312,7 +317,7 @@ const Personal = () => {
                           ))
                       ): (
                           <tr className='no-members'>
-                            <td colSpan={3}>
+                            <td colSpan={4}>
                               <img src={member} alt="👽" />
                               <p>No members available yet</p>
                             </td>

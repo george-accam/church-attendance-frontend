@@ -1,18 +1,21 @@
 import React from 'react';
 
-const PersonalComponentLoader = () => {
-  return (
+const PersonalComponentLoader = ({ bgColor, header }) => {
+    return (
     <div>
         <div className="member-loading-container">
         <div className="all-members-container">
             <div className="header-search-bar">
-            <h1 className='all-members-title'>Personal Members</h1>
+                <h1 className='all-members-title'>{header}</h1>
             </div>
             <div className="">
                 <table className='all-members-content'>
                     {/* table header */}
                     <thead>
-                        <tr className='all-members-list-header personal-members-list-header'>
+                        <tr 
+                            className={`all-members-list-header personal-members-list-header`}
+                            style={{ backgroundColor: bgColor }}
+                        >
                             <th>Full Name</th>
                             <th>Phone Number</th>
                             <th>Date</th>
@@ -44,7 +47,7 @@ const PersonalComponentLoader = () => {
         </p>
         </div>
     </div>
-  )
+    )
 }
 
 export default PersonalComponentLoader;

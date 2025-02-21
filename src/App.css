@@ -869,10 +869,12 @@ body{
   margin-bottom: 10px;
 }
 .active{
-  background-color: rgb(91, 93, 97);
+  background-color: rgba(91, 93, 97, 0.414);
+  border-bottom: 2px solid red;
+  box-shadow: inset 0 0 5px  rgba(165, 213, 255, 0.153);
 }
 .sidebar-navigator:hover{
-  background-color: rgba(91, 93, 97, 0.37);
+  background-color: rgba(91, 93, 97, 0.27);
 }
 .navbar-navigator-container{
   display: flex;
@@ -991,6 +993,10 @@ body{
   font-size: 15px;
   border-bottom: 2px solid rgb(0, 0, 0);
 }
+/* ushers member list */
+.ushers-members-list-header{
+  background-color: rgb(0, 153, 255);
+}
 /* check in member list */
 .check-in-all-members-content{
   height: 48vh;
@@ -1089,10 +1095,19 @@ body{
   background-color: blue;
   color: white;
 }
+/* personal members */
+.ushers-list-header{
+  background-color: rgb(0, 153, 255);
+  color: white;
+}
 
 .personal-ping-effect{
   background-color: red;
   margin-left: 300px;
+}
+.ushers-ping-effect{
+  background-color: red;
+  margin-left: 240px;
 }
 
 /* usher loading */
