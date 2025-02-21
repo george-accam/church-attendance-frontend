@@ -15,7 +15,7 @@ const Delete = ({ member, isDeleting, handleCloseDelete, handleDeletedData }) =>
                     </span>
                 </div>
                 <p className='delete-container-sub-header'>
-                    Are you sure you want to delete the data ? 
+                    Are you sure you want to delete this member ? 
                     This action cannot be undone.
                 </p>
                 <div className="delete-button-container-outer">
