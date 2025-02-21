@@ -1361,9 +1361,17 @@ body{
 .grouped-checked-members{
   margin-top: 20px;
 }
-.grouped-checked-members h1{
-  font-size: 20px;
+.grouped-checked-members-header{
+  display: flex;
+  justify-content: center;
+}
+.grouped-checked-members-header h1{
+  font-size: 16px;
+  font-weight: 300;
   text-align: center;
+  background-color: black;
+  border-radius: 10px;
+  padding: 7px;
 }
 .grid-container {
   display: grid;
@@ -1376,6 +1384,7 @@ body{
   justify-content: center;
 }
 .grid-item {
+  border: 2px solid blue;
   background-color: #f5f5f5;
   border-radius: 4px;
   box-shadow: 0 0 7px rgba(128, 128, 128, 0.445);

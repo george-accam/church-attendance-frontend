@@ -9,7 +9,9 @@ const MembersChecked = () => {
         <div>
             <div className="all-members-container">
                 <div className="grouped-checked-members">
-                    <h1>02/02/2025</h1>
+                    <div className="grouped-checked-members-header">
+                        <h1>02/02/2025</h1>
+                    </div>
                     <div class="grid-container">
                         {/* grid  info */}
                             <div class="grid-item">
@@ -147,7 +149,9 @@ const MembersChecked = () => {
                     </div>
                 </div>
                 <div className="grouped-checked-members">
-                    <h1>02/02/2025</h1>
+                    <div className="grouped-checked-members-header">
+                        <h1>02/02/2025</h1>
+                    </div>
                     <div class="grid-container">
                         {/* grid  info */}
                             <div class="grid-item">
