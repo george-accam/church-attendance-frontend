@@ -7,6 +7,10 @@ import { handleError, handleSuccess } from '../../../notifications/Notification'
 import { ToastContainer } from 'react-toastify';
 import member from './../../assets/no-member.gif';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
+import Edit from "../../reusableComponents/Edit.jsx";
+import Delete from "../../reusableComponents/Delete.jsx";
+import Rename from "../../reusableComponents/Rename.jsx";
+import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
 
 const Personal = () => {
   const [members, setMembers] = useState([]);
@@ -14,6 +18,11 @@ const Personal = () => {
   const [search, setSearch] = useState("");
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [isShow, setIsShow] = useState(false);
+  const [isDelete, setIsDelete]= useState(null);
+  const [isRename, setIsRename] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isRenaming, setIsRenaming] = useState(false);
   
   // getting user data from localStorage
   const user = localStorage.getItem('user');
@@ -34,6 +43,9 @@ const Personal = () => {
 
   const searchPersonalMember = async()=>{
     try {
+      if (search.trim() === "") {
+        setIsSearching(false);
+      }
       setIsSearching(true);
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
       const { personalAttendance } = response.data;
@@ -41,7 +53,6 @@ const Personal = () => {
         handleError("member not found");
       }
       setFilteredMembers(personalAttendance);
-
     } catch (error) {
       if (error.response.data) {
         handleError(error.response.data)
@@ -55,7 +66,7 @@ const Personal = () => {
       setIsSearching(false);
     }
   };
-  // retrieve the data
+  // mount the personal members
   const fetchMembers = async () => {
     try {
       if (!user) {
@@ -81,15 +92,107 @@ const Personal = () => {
   }
   useEffect(() => {
     fetchMembers();
+  }, []);
+
+  // mount the search personal members
+  useEffect(() => {
     searchPersonalMember([]);
   }, [search]);
 
   // loading state
   if (isLoading) {
     return (
-      <PersonalComponentLoader />
+      <PersonalComponentLoader 
+        header={"Personal Members"}
+      />
   );
   }
+
+   // handle show edit container
+      const handleShowEdit = (id)=>{
+          setIsShow(isShow === id ? true : id);
+      } 
+  
+      // open the rename component
+      const handleRename = (id)=>{
+          setIsRename(isRename === id ? true : id);
+      }
+  
+      // closes the rename component
+      const handleCloseRename = ()=>{
+          setIsRename(null);
+      }
+  
+      // open the delete component
+      const handleDelete = (id)=>{
+          setIsDelete(isDelete === id ? true : id);
+      }
+  
+      // close the delete component
+      const handleCloseDelete = ()=>{
+          setIsDelete(null);
+      }
+  
+      // handle the deleted data
+      const handleDeletedData = async(id)=>{
+          try {
+              setIsDeleting(true)
+              const response =  await api.delete(`delete-personal-attendee/${id}`);
+              const { message  } = response.data;
+              if(message){
+                  handleSuccess(message || "member deleted successfully")
+              }
+              setTimeout(()=>{
+                fetchMembers();
+                searchPersonalMember([]);
+              }, 2000);
+  
+          } catch (error) {
+              if(error.response.data){
+                  handleError(error.response.data)
+              }
+              else if(error.request){
+                  handleError(`Network error : ${error.request}`)
+              }
+              else{
+                  handleError("Error occurred, please ty again");
+              }
+          }
+          finally{
+              setIsDeleting(false);
+          }
+      }
+  
+      // handle rename data
+      const handleRenameData = async({ id, fullName, phoneNumber })=>{
+          try {
+              setIsRenaming(true)
+              const response = await api.put(`update-personal-attendee/${id}`, { userId, attendeeName: fullName, attendeePhoneNumber: phoneNumber });
+              const { message } = response.data;
+              if(message){
+                  handleSuccess(message || "member updated successfully")
+                  setIsRename(null);
+              }
+              setTimeout(()=>{
+                fetchMembers();
+                searchPersonalMember([]);
+              }, 2000);
+          } 
+          catch (error) {
+              if (error.response.data) {
+                  handleError(error.response.data)
+              }
+              else if(error.request) {
+                  handleError(`Network error : ${error.request}`);
+              }
+              else {
+                  handleError("An unexpected error occurred, please try again");
+              }
+          }
+          finally{
+              setIsRenaming(false);
+          }
+      };
 
   return (
     <div>
@@ -140,15 +243,17 @@ const Personal = () => {
                                       {filteredMember.attendeePhoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(filteredMember.createdAt).toLocaleDateString()}
+                                      { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
                                   </td>
                           </tr>
                         ))
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
-                              <tr key={member._id} className='all-members-list'>
+                              <tr key={member._id} 
+                              className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                              >
                                   <td>
-                                      {member.attendeeName}
+                                      {capitalizedEachWord(member.attendeeName)}
                                   </td>
                                   <td className='all-members-list-phone-number'>
                                       {member.attendeePhoneNumber}
@@ -158,60 +263,61 @@ const Personal = () => {
                                   </td>
                                   {/* edit table data */}
                                   <td className='all-members-list-date edit-button'>
+                                    <div 
+                                        key={member._id}
+                                        // ref={menuRef}
+                                        role="menu"
+                                        className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                    >
+                                      <SlOptionsVertical
+                                          className="edit-button"
+                                          onClick={()=> handleShowEdit(member._id)}
+                                      />
+                                        { isShow === member._id && (
                                             <div 
-                                                key={member._id}
-                                                // ref={menuRef}
-                                                role="menu"
-                                                className={`edit-parent-container`}
-                                                // className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                                className="" 
+                                                role="none"
                                             >
-                                              <SlOptionsVertical
-                                                  className="edit-button"
-                                                  // onClick={()=> handleShowEdit(member._id)}
+                                              <Edit
+                                                  member={member}
+                                                  handleRename={()=> {
+                                                      handleRename(member._id);
+                                                      handleShowEdit(member._id);
+                                                  }}
+                                                  handleDelete={()=> {
+                                                      handleDelete(member._id);
+                                                      handleShowEdit(member.id);
+                                                  }}
                                               />
-                                                {/* { isShow === member._id && (
-                                                    <div 
-                                                        className="" 
-                                                        role="none"
-                                                    >
-                                                        <Edit
-                                                            member={member}
-                                                            handleRename={()=> {
-                                                                handleRename(member._id);
-                                                                handleShowEdit(member._id);
-                                                            }}
-                                                            handleDelete={()=> {
-                                                                handleDelete(member._id);
-                                                                handleShowEdit(member.id);
-                                                            }}
-                                                        />
-                                                    </div>
-                                                )}
-                                                { isRename === member._id && ( 
-                                                    <Rename 
-                                                        member={member}
-                                                        isRenaming={isRenaming}
-                                                        handleCloseRename={handleCloseRename}
-                                                        handleRenameData={handleRenameData}
-                                                    />
-                                                )}
-                                                {isDelete === member._id && (
-                                                    <Delete 
-                                                        member={member}
-                                                        isDeleting={isDeleting}
-                                                        handleCloseDelete={handleCloseDelete}
-                                                        handleDeletedData={()=> {
-                                                            handleDeletedData(member._id);
-                                                        }}
-                                                    />
-                                                )} */}
                                             </div>
-                                        </td>
+                                        )}
+                                        { isRename === member._id && ( 
+                                            <Rename 
+                                              memberId={member._id}
+                                              memberName={member.attendeeName}
+                                              memberPhoneNumber={member.attendeePhoneNumber}
+                                              isRenaming={isRenaming}
+                                              handleCloseRename={handleCloseRename}
+                                              handleRenameData={handleRenameData}
+                                            />
+                                        )}
+                                        {isDelete === member._id && (
+                                            <Delete 
+                                                member={member}
+                                                isDeleting={isDeleting}
+                                                handleCloseDelete={handleCloseDelete}
+                                                handleDeletedData={()=> {
+                                                    handleDeletedData(member._id);
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                </td>
                               </tr>
                           ))
                       ): (
                           <tr className='no-members'>
-                            <td colSpan={3}>
+                            <td colSpan={4}>
                               <img src={member} alt="👽" />
                               <p>No members available yet</p>
                             </td>

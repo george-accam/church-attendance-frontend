@@ -5,6 +5,7 @@ import Api from "../../../API/Api";
 import { ToastContainer } from 'react-toastify';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import capitalizeWords from '../../reusableComponents/CapitaliseEachLetter';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -181,7 +182,7 @@ const CheckIn = () => {
                             className='all-members-list check-in-all-members-list'
                           >
                               <td className='all-members-list-name'>
-                                  {filteredMember.fullName}
+                                  { capitalizeWords(filteredMember.fullName)}
                               </td>
                               <td className='all-members-list-phone-number'>
                                   {filteredMember.phoneNumber}
