@@ -24,7 +24,7 @@ const Ushers = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRenaming, setIsRenaming] = useState(false);
 
-  // handle onchange
+  // handle search
   const handleSearch = (e)=>{
     setSearch(e.target.value)
   }
