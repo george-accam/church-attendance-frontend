@@ -69,9 +69,7 @@ const CheckInLoader = () => {
                 </div>
                 <p className="number-of-check-ins-loader">
                     <span className='number-of-check-ins-loader-inner'>
-                        ____________________________
-                        ____________________________
-                        ____________________________
+                        ____________________
                     </span>
                 </p>
             </div>

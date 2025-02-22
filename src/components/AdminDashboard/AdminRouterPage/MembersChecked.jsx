@@ -41,7 +41,7 @@ const MembersChecked = () => {
     }, []);
 
     // loading state
-    if (!isLoading) {
+    if (isLoading) {
         return (
             <CheckInLoader />
         )
