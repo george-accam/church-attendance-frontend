@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import CheckInLoader from "../../reusableComponents/CheckInLoader";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
+import member from "./../../assets/no-member.gif"
 
 const MembersChecked = () => {
     const [groupedCheckIns, setGroupedCheckIns] = useState({});
@@ -73,7 +74,7 @@ const MembersChecked = () => {
     };
     // mount the search checked in members
     useEffect(() => {
-        searchCheckedInMember([]);
+        searchCheckedInMember();
     }, [search]);
 
     // loading state
@@ -223,7 +224,10 @@ const MembersChecked = () => {
                                     </p>
                                 </div>
                             )) ) : (
-                                <p>No check-ins found.</p>
+                                <div className="no-members">
+                                    <img src={member} alt="👽" />
+                                    <p>No check-ins found.</p>
+                                </div>
                             )
                     )
                 }
