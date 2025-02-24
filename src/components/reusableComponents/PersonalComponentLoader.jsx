@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PersonalComponentLoader = ({ bgColor, header }) => {
+const PersonalComponentLoader = ({ bgColor, header, className }) => {
     return (
     <div>
         <div className="member-loading-container">
-        <div className="all-members-container">
-            <div className="header-search-bar">
+        <div className={`all-members-container ${className}`}>
+            <div className={`header-search-bar ${className}`}>
                 <h1 className='all-members-title'>{header}</h1>
             </div>
             <div className="">

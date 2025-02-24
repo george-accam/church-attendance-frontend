@@ -7,7 +7,7 @@ import member from './../../assets/no-member.gif';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 
-const Personal = () => {
+const Personal = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -88,7 +88,9 @@ const Personal = () => {
   // loading state
   if (isLoading) {
     return (
-      <PersonalComponentLoader />
+      <PersonalComponentLoader 
+        className={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
+      />
   );
   }
 
@@ -102,7 +104,7 @@ const Personal = () => {
 
   return (
     <div>
-      <div className="all-members-container">
+      <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
           {/* search bar */}
           <div className="header-search-bar">
             <h1 className='all-members-title'>Personal Members</h1>

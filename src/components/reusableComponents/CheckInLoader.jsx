@@ -1,12 +1,12 @@
 import React from 'react'
 import { CgSearch } from "react-icons/cg"; 
 
-const CheckInLoader = () => {
+const CheckInLoader = ({ className }) => {
     return (
         <div>
-            <div className="all-members-container">
+            <div className={`all-members-container ${className}`}>
                 {/* the search container */}
-                <div className="header-search-bar">
+                <div className={`header-search-bar ${className}`}>
                     <h1 className='all-members-title'>
                         Check-in History
                     </h1>
@@ -85,6 +85,10 @@ const CheckInLoader = () => {
                     </p>
                 </div>
             </div>
+            <p className='number-of-members number-of-check-ins-loader'>
+                    <span className='ping-effect'></span>
+                    <p></p>
+                </p>
         </div>
     )
 }

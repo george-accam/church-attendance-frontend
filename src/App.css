@@ -837,7 +837,7 @@ body{
 .subtitle{
   font-weight: 700;
   font-family: monospace;
-  margin-left: 20px;
+  margin-left: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -861,6 +861,7 @@ body{
   margin-bottom: 20px;
   border-radius: 15px 0 0 15px;
   cursor: pointer;
+  outline: none;
 }
 .sidebar-navigator-list{
   display: flex;
@@ -952,7 +953,6 @@ body{
   height: 85vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  border-bottom: 1px solid var(--light-text);
 }
 .all-members-container::-webkit-scrollbar{
   width: 8px;
@@ -967,7 +967,6 @@ body{
   justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 20px;
-  border-bottom: 1px solid var(--light-text);
 }
 .all-members-title{
   font-size: 25px;
@@ -1396,7 +1395,7 @@ body{
   font-weight: 300;
   text-align: center;
   color: var(--light-text);
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.981);
   border-radius: 10px;
   padding: 7px;
 }

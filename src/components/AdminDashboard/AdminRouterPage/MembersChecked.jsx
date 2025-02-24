@@ -11,7 +11,7 @@ import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
 import member from "./../../assets/no-member.gif"
 
-const MembersChecked = () => {
+const MembersChecked = ( { changeColor }) => {
     const [groupedCheckIns, setGroupedCheckIns] = useState({});
     const [searchGroupedCheckIns, setSearchGroupedCheckIns] = useState({});
     const [isTotalCheckIns, setTotalCheckIns] = useState(0);
@@ -80,7 +80,9 @@ const MembersChecked = () => {
     // loading state
     if (isLoading) {
         return (
-            <CheckInLoader />
+            <CheckInLoader 
+                className ={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
+            />
         )
     }
 
@@ -99,9 +101,9 @@ const MembersChecked = () => {
 
     return (
         <div>
-            <div className="all-members-container">
+            <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
                 {/* the search container */}
-                <div className="header-search-bar">
+                <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
                     <h1 className='all-members-title'>
                         Check-in History
                     </h1>

@@ -12,7 +12,7 @@ import Delete from "../../reusableComponents/Delete.jsx";
 import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
 import Rename from "../../reusableComponents/Rename.jsx";
 
-const Ushers = () => {
+const Ushers = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -92,6 +92,7 @@ const Ushers = () => {
         <PersonalComponentLoader 
           header={"Ushers Registered"}
           bgColor={"rgb(0, 153, 255)"}
+          className ={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
         />
     );
   }
@@ -184,9 +185,9 @@ const Ushers = () => {
 
   return (
     <div>
-      <div className="all-members-container">
+      <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
           {/* search bar */}
-          <div className="header-search-bar">
+          <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
             <h1 className='all-members-title'>Ushers Registered</h1>
             <div className="search-container">
               <input type="text"

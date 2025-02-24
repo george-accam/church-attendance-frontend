@@ -12,7 +12,7 @@ import Delete from "../../reusableComponents/Delete.jsx";
 import Rename from "../../reusableComponents/Rename.jsx";
 import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
 
-const Personal = () => {
+const Personal = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -104,6 +104,7 @@ const Personal = () => {
     return (
       <PersonalComponentLoader 
         header={"Personal Members"}
+        className ={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
       />
   );
   }
@@ -196,9 +197,9 @@ const Personal = () => {
 
   return (
     <div>
-      <div className="all-members-container">
+      <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
           {/* search bar */}
-          <div className="header-search-bar">
+          <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
             <h1 className='all-members-title'>Personal Members</h1>
             <div className="search-container">
               <input type="text"

@@ -84,6 +84,7 @@ const AdminDashboard = () => {
         <div className="dashboard-container">
           {/* admin content */}
           <AdminContainer
+            changeColor={changeColor}
           />
         </div>
       </div>

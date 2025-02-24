@@ -87,6 +87,7 @@ const UserDashboard = () => {
         <div className="dashboard-container">
           {/* user content */}
           <UsherContainer
+            changeColor={changeColor}
           />
         </div>
       </div>
