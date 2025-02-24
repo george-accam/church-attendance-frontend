@@ -177,7 +177,7 @@ return (
                         <div className="button-container">
                             <button type="submit"
                                 disabled={isLoading}
-                                className='submit-button'
+                                className={`submit-button ${isLoading ? "submit-button-loading" : ""}`}
                             >
                                 {isLoading ? "submitting" : "submit"}
                             </button>

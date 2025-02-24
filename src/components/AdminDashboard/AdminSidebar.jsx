@@ -1,3 +1,12 @@
+import { RiLogoutCircleLine } from "react-icons/ri"; 
+import { MdEmail } from "react-icons/md"; 
+import { BsListCheck } from "react-icons/bs"; 
+import { BsPeopleFill } from "react-icons/bs"; 
+import { MdChecklistRtl } from "react-icons/md"; 
+import { BsFillCalendarCheckFill } from "react-icons/bs"; 
+import { FaRegistered } from "react-icons/fa"; 
+import { BsFillPersonFill } from "react-icons/bs"; 
+import { IoIosPeople } from "react-icons/io"; 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
@@ -57,49 +66,74 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
               onClick={()=> handleShowActive("members-checked")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "members-checked" ? "active" : ""}`}
             >
+              <div className="sidebar-navigator-list">
+                <BsListCheck className="navigator-icon" />
                 Members checked
+              </div>
             </Link>
 
             <Link to="/admin-dashboard/ushers"
               onClick={()=> handleShowActive("ushers")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "ushers" ? "active" : ""}`}
             >
+              <div className="sidebar-navigator-list">
+                <BsPeopleFill className="navigator-icon" />
                 Ushers
+              </div>
             </Link>
 
             <Link to="/admin-dashboard/all-members"
               onClick={()=> handleShowActive("all-members")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "all-members" ? "active" : ""}`}
             >
+              <div className="sidebar-navigator-list">
+                <IoIosPeople className="navigator-icon" />
                 All members
+              </div>
             </Link>
 
             <Link to="/admin-dashboard/personal"
               onClick={()=> handleShowActive("personal")} 
-              className={`sidebar-navigator admin-sidebar-navigator ${isActive === "personal" ? "active" : ""}`}>
-                Personal
+              className={`sidebar-navigator admin-sidebar-navigator ${isActive === "personal" ? "active" : ""}`}
+              >
+                <div className="sidebar-navigator-list">
+                  <BsFillPersonFill className="navigator-icon" />
+                  Personal
+                </div>
             </Link>
 
             <Link to="/admin-dashboard/register-member"
               onClick={()=> handleShowActive("register")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "register" ? "active" : ""}`}
             >
+              <div className="sidebar-navigator-list">
+                <FaRegistered className="navigator-icon" />
                 Register
+              </div>
             </Link>
 
             <Link to="/admin-dashboard/check-in"
               onClick={()=> handleShowActive("check-in")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "check-in" ? "active" : ""}`}
             >
+              <div className="sidebar-navigator-list">
+                <BsFillCalendarCheckFill className="navigator-icon" />
                 Check In
+              </div>
             </Link>
           </div>
           <div className="admin-sidebar-bottom">
             <p className="sidebar-email">
-              email:  <span>{ userEmail }</span>
+            <div className="sidebar-navigator-list">
+              <MdEmail className="email-icon" />:  
+              <span>{ userEmail }</span>
+            </div>
             </p>
             <p onClick={handleLogout} className="sidebar-logout">
-                Logout
+              <div className="sidebar-navigator-list">
+                <RiLogoutCircleLine className="logout-sidebar-icon" />
+                  Logout
+              </div>
             </p>
           </div>
         </div>

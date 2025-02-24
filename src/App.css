@@ -396,6 +396,10 @@ body{
 .submit-button:hover{
   background-color: rgb(1, 49, 77);
 }
+.submit-button-loading{
+  background-color: rgb(1, 49, 77);
+  cursor: not-allowed;
+}
 .login-link-container{
   color: var(--dark-text);
   margin-left: 4rem;
@@ -852,12 +856,29 @@ body{
   color: var(--light-text);
   text-decoration: none;
   padding: 10px;
-  margin-left: 30px;
+  margin-left: 50px;
   margin-top: 10px;
   margin-bottom: 20px;
   border-radius: 15px 0 0 15px;
   cursor: pointer;
 }
+.sidebar-navigator-list{
+  display: flex;
+}
+.navigator-icon{
+  font-size: 20px;
+  margin-right: 50px;
+}
+.email-icon{
+  font-size: 22px;
+  margin-right: 10px;
+}
+.logout-sidebar-icon{
+  font-size: 20px;
+  margin-right: 50px;
+  margin-left: 30px;
+}
+
 /* admin sidebar navigator */
 .admin-navbar-navigator-container{
   display: flex;
@@ -887,7 +908,7 @@ body{
 }
 /* admin side bar bottom */
 .admin-sidebar-bottom{
-  margin-top: 110px;
+  margin-top: 70px;
   border-top: 1px solid var(--light-text);
 }
 
@@ -907,6 +928,10 @@ body{
   text-align: center;
   border-radius: 5px;
   padding: 5px;
+  transition: .5s;
+}
+.sidebar-logout:hover{
+  background-color: rgba(41, 80, 9, 0.677);
 }
 .sidebar-email span{
   font-family: monospace;
@@ -1251,7 +1276,7 @@ body{
   left: 0;
   padding: 0 10px;
   z-index: 1;
-  background-color: rgba(96, 103, 110, 0.277);
+  background-color: rgba(96, 103, 110, 0.247);
   display: flex;
   justify-content: center;
   align-items: center;
