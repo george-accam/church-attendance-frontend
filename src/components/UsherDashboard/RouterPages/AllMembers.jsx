@@ -7,7 +7,7 @@ import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 
 
-const AllMembers = () => {
+const AllMembers = ({ changeColor }) => {
     const [members, setMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -77,7 +77,8 @@ const AllMembers = () => {
     if (isLoading) {
         return (
             <SubComponentLoader
-            changes={"Date"}
+                changes={"Date"}
+                className={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
             />
         )
         
@@ -92,7 +93,7 @@ const AllMembers = () => {
 
     return (
         <div>
-            <div className="all-members-container">
+            <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
                 <div className="header-search-bar">
                     <h1 className='all-members-title'>All Members</h1>
                     <div

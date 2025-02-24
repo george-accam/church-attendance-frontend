@@ -7,19 +7,43 @@ import AdminRegister from "./AdminRouterPage/Register"
 import AdminCheckIn from "./AdminRouterPage/CheckIn"
 import AdminUshers from "./AdminRouterPage/Ushers"
 
-const AdminContainer = () => {
+const AdminContainer = ({changeColor }) => {
   return (
     <div>
       <div className="user-content-container">
         <div className="user-content">
           <Routes>
             <Route path="/" element={<Navigate to="members-checked" replace />} />
-            <Route path="members-checked" element={<AdminMembersChecked />} />
-            <Route path="ushers" element={<AdminUshers />} />
-            <Route path="all-members" element={<AdminAllMembers />} />
-            <Route path="personal" element={<AdminPersonal />} />
-            <Route path="register-member" element={<AdminRegister />} />
-            <Route path="check-in" element={<AdminCheckIn />} />
+            <Route path="members-checked" element={
+              <AdminMembersChecked 
+                changeColor={changeColor}
+                />
+              } />
+            <Route path="ushers" element={
+              <AdminUshers 
+                changeColor={changeColor}
+              />
+            } />
+            <Route path="all-members" element={
+              <AdminAllMembers
+                changeColor={changeColor}
+              />
+            } />
+            <Route path="personal" element={
+              <AdminPersonal
+                changeColor={changeColor}
+              />
+            } />
+            <Route path="register-member" element={
+              <AdminRegister
+                changeColor={changeColor}
+              />
+            } />
+            <Route path="check-in" element={
+              <AdminCheckIn
+                changeColor={changeColor}
+              />
+            } />
           </Routes>
         </div>
       </div>
