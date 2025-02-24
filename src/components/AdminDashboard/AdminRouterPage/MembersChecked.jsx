@@ -9,11 +9,13 @@ import { ToastContainer } from "react-toastify";
 import CheckInLoader from "../../reusableComponents/CheckInLoader";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
+import member from "./../../assets/no-member.gif"
 
 const MembersChecked = () => {
     const [groupedCheckIns, setGroupedCheckIns] = useState({});
     const [searchGroupedCheckIns, setSearchGroupedCheckIns] = useState({});
     const [isTotalCheckIns, setTotalCheckIns] = useState(0);
+    const [attendees, setAttendees] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
     const [search, setSearch] = useState("");
@@ -49,11 +51,12 @@ const MembersChecked = () => {
         try {
             setIsSearching(true);
             const response = await api.get(`search-checked-in-attendee?q=${search}`);
-            const { checkIns, totalCheckIns } = response.data;
+            const { checkIns, totalCheckIns, attendee } = response.data;
 
-            if (checkIns.length === 0) {
-                handleError("no member found");
+            if (attendee === null || attendee.length === 0) {
+                handleError("No members found matching your search");
             }
+            setAttendees(attendee)
             setSearchGroupedCheckIns(checkIns);
             setTotalCheckIns(totalCheckIns);
         } catch (error) {
@@ -71,7 +74,7 @@ const MembersChecked = () => {
     };
     // mount the search checked in members
     useEffect(() => {
-        searchCheckedInMember([]);
+        searchCheckedInMember();
     }, [search]);
 
     // loading state
@@ -221,14 +224,20 @@ const MembersChecked = () => {
                                     </p>
                                 </div>
                             )) ) : (
-                                <p>No check-ins found.</p>
+                                <div className="no-members">
+                                    <img src={member} alt="👽" />
+                                    <p>No check-ins found.</p>
+                                </div>
                             )
                     )
                 }
             </div>
             <p className='number-of-members number-of-personal-members'>
                 <span className='ping-effect ushers-ping-effect'></span>
-                {`Total number of check-ins for ${search.length > 0 ? search : "all members"} : ${isTotalCheckIns} `}
+                {`Nº of check-ins for 
+                    ${search.length > 0  ? search : "all members"} : 
+                    ${isTotalCheckIns ? isTotalCheckIns : attendees === null || attendees.length === 0 ? 0 :  0}
+                `}
             </p>
             <ToastContainer />
         </div>
