@@ -1,16 +1,19 @@
 import { CgSearch } from "react-icons/cg"; 
 import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
+import Aos from "aos";
 import { ToastContainer } from 'react-toastify';
 import { handleError } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 
 
 const AllMembers = ({ changeColor }) => {
     const [members, setMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
+    const [isSearching, setIsSearching] = useState(false)
     const [filteredMembers, setFilteredMembers] = useState([]);
 
     // search members
@@ -22,9 +25,9 @@ const AllMembers = ({ changeColor }) => {
     // search members function
     const searchMembers = async() => {
         try {
+            setIsSearching(true);
             const response = await api.get(`search-attendee?q=${search}`);
             const { attendee } = response.data;
-            setIsLoading(true);
             if (attendee === null || attendee.length === 0) {
                 handleError("member not found");
             }
@@ -39,7 +42,7 @@ const AllMembers = ({ changeColor }) => {
                 handleError("An error occurred. Please try again");
             }
         } finally {
-            setIsLoading(false);
+            setIsSearching(false);
         }
     };
 
@@ -89,7 +92,17 @@ const AllMembers = ({ changeColor }) => {
             e.preventDefault(); 
             searchMembers();
         }
-        };
+    };
+
+    // the aos effect
+    // useEffect(()=>{
+    //     Aos.init({
+    //         duration: 300,
+    //         easing: 'ease-in-out',
+    //         once: true,
+    //         offset: 100,
+    //     });
+    // }, []);
 
     return (
         <div>
@@ -125,6 +138,13 @@ const AllMembers = ({ changeColor }) => {
                         <br />
                         {/* table body */}
                         <tbody>
+                            {isSearching&&(
+                                <tr className='search-all-members-list'>
+                                    <td colSpan={4}>
+                                        <CheckedInSearch />
+                                    </td>
+                                </tr>
+                            )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
                                 filteredMembers.map(filteredMember =>(
                                     <tr key={filteredMember._id} className='all-members-list'>
