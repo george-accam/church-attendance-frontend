@@ -11,6 +11,8 @@ import Edit from "../../reusableComponents/Edit.jsx";
 import Delete from "../../reusableComponents/Delete.jsx";
 import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
 import Rename from "../../reusableComponents/Rename.jsx";
+import CheckInLoader from "../../reusableComponents/CheckInLoader.jsx";
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 
 const Ushers = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
@@ -218,7 +220,7 @@ const Ushers = ({ changeColor }) => {
                     {isSearching && (
                         <tr className='search-all-members-list'>
                             <td colSpan={4}>
-                                searching.......
+                                <CheckedInSearch />
                             </td>
                         </tr>
                     )}

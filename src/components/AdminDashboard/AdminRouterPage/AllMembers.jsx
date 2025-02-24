@@ -11,6 +11,8 @@ import Edit from "../../reusableComponents/Edit.jsx";
 import CapitaliseEachLetter from "../../reusableComponents/CapitaliseEachLetter.js"
 import Rename from "../../reusableComponents/Rename.jsx";
 import Delete from "../../reusableComponents/Delete.jsx";
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
+import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 
 
 const AllMembers = ({ changeColor }) => {
@@ -228,9 +230,9 @@ const AllMembers = ({ changeColor }) => {
                         className="search-container"
                     >
                         <input type="text"
-                        placeholder='search members'
-                        value={search}
-                        onChange={handleSearch}
+                            placeholder='search members'
+                            value={search}
+                            onChange={handleSearch}
                         />
                         <CgSearch className="search-icon"
                             onClick={searchMembers}
@@ -256,7 +258,7 @@ const AllMembers = ({ changeColor }) => {
                             {isSearching && (
                                 <tr className='search-all-members-list'>
                                     <td colSpan={4}>
-                                        searching.......
+                                        <CheckedInSearch />
                                     </td>
                                 </tr>
                             )}
@@ -273,7 +275,7 @@ const AllMembers = ({ changeColor }) => {
                                             {filteredMember.phoneNumber}
                                         </td>
                                         <td className='all-members-list-date'>
-                                            { filteredMember.userFullName }
+                                            {capitalizeWords(filteredMember.userFullName) }
                                         </td>
                                         {/* edit table data */}
                                         <td className='all-members-list-date edit-button'>
@@ -343,7 +345,7 @@ const AllMembers = ({ changeColor }) => {
                                             {member.phoneNumber}
                                         </td>
                                         <td className='all-members-list-date'>
-                                            { member.userFullName }
+                                            { capitalizeWords(member.userFullName) }
                                         </td>
                                         {/* edit table data */}
                                         <td className='all-members-list-date edit-button'>

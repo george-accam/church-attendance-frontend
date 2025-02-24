@@ -11,6 +11,7 @@ import Edit from "../../reusableComponents/Edit.jsx";
 import Delete from "../../reusableComponents/Delete.jsx";
 import Rename from "../../reusableComponents/Rename.jsx";
 import capitalizedEachWord from "./../../reusableComponents/CapitaliseEachLetter.js"
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 
 const Personal = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
@@ -230,7 +231,7 @@ const Personal = ({ changeColor }) => {
                     {isSearching && (
                         <tr className='search-all-members-list'>
                             <td colSpan={4}>
-                                searching.......
+                                <CheckedInSearch />
                             </td>
                         </tr>
                     )}

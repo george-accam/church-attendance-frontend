@@ -544,7 +544,17 @@ body{
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
   z-index: 1;
   color: var(--dark-text);
+  animation: dropDownEffectEdit .2s linear;
 }
+@keyframes dropDownEffectEdit {
+  0%{
+    transform: translateY(-100%) scale(0);
+  }
+  100%{
+    transform: translateY(0%) scale(1);
+  }
+}
+
 .edit-container-menu{
   margin-top: 5px;
   color: rgba(64, 64, 64, 0.438);
@@ -1286,6 +1296,15 @@ body{
   width: 400px;
   background-color: #8ed0fc;
   box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
+  animation: dropDownEffectRename .4s ease-in-out alternate;
+}
+@keyframes dropDownEffectRename {
+  0%{
+    transform: translateY(-100%) scale(0);
+  }
+  100%{
+    transform: translateY(0%) scale(1);
+  }
 }
 .delete-container-inner{
   padding: 20px;
@@ -1293,6 +1312,15 @@ body{
   width: 300px;
   background-color: #8ed0fc;
   box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
+  animation: dropDownEffectRename .4s ease-in-out alternate;
+}
+@keyframes dropDownEffectRename {
+  0%{
+    transform: translateY(-100%) scale(0);
+  }
+  100%{
+    transform: translateY(0%) scale(1);
+  }
 }
 .rename-container-header{
   color: var(--dark-bg);
