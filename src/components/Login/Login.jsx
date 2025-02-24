@@ -77,11 +77,9 @@ const Login = () => {
           handleSuccess(message);
           setTimeout(()=>{
             if(user.role === "Usher"){
-              // navigate("/usher-dashboard");
               window.location.href = "/usher-dashboard";
             }
             else if(user.role === "Admin"){
-              // navigate("/admin-dashboard")
               window.location.href = "/admin-dashboard";
             }
           }, 2000);
