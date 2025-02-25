@@ -1,12 +1,12 @@
 import { CgSearch } from "react-icons/cg"; 
 import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
-import Aos from "aos";
 import { ToastContainer } from 'react-toastify';
 import { handleError } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
+import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 
 
 const AllMembers = ({ changeColor }) => {
@@ -94,15 +94,6 @@ const AllMembers = ({ changeColor }) => {
         }
     };
 
-    // the aos effect
-    // useEffect(()=>{
-    //     Aos.init({
-    //         duration: 300,
-    //         easing: 'ease-in-out',
-    //         once: true,
-    //         offset: 100,
-    //     });
-    // }, []);
 
     return (
         <div>
@@ -147,9 +138,12 @@ const AllMembers = ({ changeColor }) => {
                             )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
                                 filteredMembers.map(filteredMember =>(
-                                    <tr key={filteredMember._id} className='all-members-list'>
+                                    <tr 
+                                        key={filteredMember._id} 
+                                        className='all-members-list'
+                                    >
                                         <td className='all-members-list-name'>
-                                            {filteredMember.fullName}
+                                            {capitalizeWords(filteredMember.fullName)}
                                         </td>
                                         
                                         <td className='all-members-list-phone-number'>
@@ -162,9 +156,12 @@ const AllMembers = ({ changeColor }) => {
                                 ))
                             ) : ( 
                                 members && members.length > 0 ?  ( members.map((member) => (
-                                    <tr key={member._id} className='all-members-list'>
+                                    <tr 
+                                        key={member._id} 
+                                        className='all-members-list'
+                                    >
                                         <td className='all-members-list-name'>
-                                            {member.fullName}
+                                            {capitalizeWords(member.fullName)}
                                         </td>
                                         
                                         <td className='all-members-list-phone-number'>
