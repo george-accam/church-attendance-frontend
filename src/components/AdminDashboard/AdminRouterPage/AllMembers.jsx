@@ -26,7 +26,7 @@ const AllMembers = ({ changeColor }) => {
     const [isRename, setIsRename] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRenaming, setIsRenaming] = useState(false);
-    const menuRef = useRef(null);
+    const menuRefs = useRef({});
 
     // search members input
     const handleSearch = (e) => {
@@ -96,6 +96,19 @@ const AllMembers = ({ changeColor }) => {
     useEffect(() => {
         searchMembers();
     }, [search]);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (isShow !== null && menuRefs.current[isShow]) {
+                if (!menuRefs.current[isShow].contains(e.target)) {
+                    setIsShow(false);
+                }
+            }
+        };
+        
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isShow]);
     
     // loading state
     if (isLoading) {
@@ -115,22 +128,6 @@ const AllMembers = ({ changeColor }) => {
             searchMembers();
         }
     }
-
-    
-    // useEffect(()=>{
-    //     const handleClickOutside = (e)=>{
-    //         if(menuRef.current && 
-    //             !menuRef.current.contains(e.target)){
-    //             setIsShow(false);
-    //         }
-    //     }
-
-    //     document.addEventListener("mousedown", handleClickOutside);
-    
-    //     return ()=>{
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //     }
-    // }, []);
         
     // handle show edit container
     const handleShowEdit = (id)=>{
@@ -351,16 +348,16 @@ const AllMembers = ({ changeColor }) => {
                                         <td className='all-members-list-date edit-button'>
                                             <div 
                                                 key={member._id}
-                                                // ref={menuRef}
                                                 role="menu"
                                                 className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
-                                            >
+                                                >
                                             <SlOptionsVertical
                                                 className="edit-button"
                                                 onClick={()=> handleShowEdit(member._id)}
-                                            />
+                                                />
                                                 { isShow === member._id && (
                                                     <div 
+                                                        ref={(el) => (menuRefs.current[member._id] = el)}
                                                         className="" 
                                                         role="none"
                                                     >
@@ -377,28 +374,27 @@ const AllMembers = ({ changeColor }) => {
                                                         />
                                                     </div>
                                                 )}
-                                                { isRename === member._id && ( 
-                                                    <Rename 
-                                                        memberId={member._id}
-                                                        memberName={member.fullName}
-                                                        memberPhoneNumber={member.phoneNumber}
-                                                        isRenaming={isRenaming}
-                                                        handleCloseRename={handleCloseRename}
-                                                        handleRenameData={handleRenameData}
-                                                    />
-                                                )}
-                                                {isDelete === member._id && (
-                                                    <Delete 
-                                                        member={member}
-                                                        isDeleting={isDeleting}
-                                                        handleCloseDelete={handleCloseDelete}
-                                                        handleDeletedData={()=> {
-                                                            handleDeletedData(member._id);
-                                                        }}
-                                                    />
-                                                )}
                                             </div>
-
+                                            { isRename === member._id && ( 
+                                                <Rename 
+                                                    memberId={member._id}
+                                                    memberName={member.fullName}
+                                                    memberPhoneNumber={member.phoneNumber}
+                                                    isRenaming={isRenaming}
+                                                    handleCloseRename={handleCloseRename}
+                                                    handleRenameData={handleRenameData}
+                                                />
+                                            )}
+                                            {isDelete === member._id && (
+                                                <Delete 
+                                                    member={member}
+                                                    isDeleting={isDeleting}
+                                                    handleCloseDelete={handleCloseDelete}
+                                                    handleDeletedData={()=> {
+                                                        handleDeletedData(member._id);
+                                                    }}
+                                                />
+                                            )}
                                         </td>
                                     </tr>
                                 ))

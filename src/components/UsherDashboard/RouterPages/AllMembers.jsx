@@ -15,6 +15,8 @@ const AllMembers = ({ changeColor }) => {
     const [search, setSearch] = useState("");
     const [isSearching, setIsSearching] = useState(false)
     const [filteredMembers, setFilteredMembers] = useState([]);
+    const storedUsher = localStorage.getItem('usher');
+    const usherDetails = JSON.parse(storedUsher);
 
     // search members
     const handleSearch = (e) => {
@@ -52,8 +54,11 @@ const AllMembers = ({ changeColor }) => {
             const response = await api.get('/attendees');
             setIsLoading(true);
             const { attendance } = response.data;
+            const filteredAttendance = attendance.filter((attendees) => attendees.userFullName !== usherDetails.fullName);
+            console.log(`members : ${JSON.stringify(filteredAttendance)}`);
+            
             // set members
-            setMembers(attendance);
+            setMembers(filteredAttendance);
 
         } catch (error) {
             if (error.response.data) {
