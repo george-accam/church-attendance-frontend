@@ -3,10 +3,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor }) => {
     const menuRef = useRef(null);
-    const [selectedMode, setSelectedMode] = useState(localStorage.getItem("theme") || "light");
 
-
-    
     // close the theme container when cursor is outside
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -36,7 +33,6 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
                                 </div>
                             </label>
                     </div>
-                    {/* <h6 onClick={handleTheme}><MdOutlineModeStandby /> theme</h6> */}
                     <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
                 </div>
             )}

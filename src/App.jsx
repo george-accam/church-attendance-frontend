@@ -9,18 +9,27 @@ import LandingPage from './components/LandingPage/LandingPage';
 import MainComponentLoader from './components/reusableComponents/MainComponentLoader';
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [usher, setUsher] = useState(null);
+  const [admin, setAdmin] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }else{
-        navigate("/")
+      
+      //  Check if usher is logged in
+      const storedUsher = localStorage.getItem('usher');
+      if (storedUsher) {
+        setUsher(JSON.parse(storedUsher));
       }
+      
+      //  Check if admin is logged in
+      const storedAdmin = localStorage.getItem('admin');
+      if (storedAdmin) {
+        setAdmin(JSON.parse(storedAdmin));
+      }
+      //  If usher or admin is not logged in, navigate to the landing page
+      navigate("/")
     } catch (error) {
       console.error("Error retrieving user from localStorage:", error);
     }
@@ -49,10 +58,12 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
-          {user && user.role === "Usher" && (
+          {/* usher protective route */}
+          {usher && usher.role === "Usher" && (
                 <Route path="usher-dashboard/*" element={<UsherDashboard />} />
           )}
-          {user && user.role === "Admin" && (
+          {/* admin protective route */}
+          {admin && admin.role === "Admin" && (
                 <Route path="admin-dashboard/*" element={<AdminDashboard />} />
           )}
           <Route path="*" element={<NotFound />} />

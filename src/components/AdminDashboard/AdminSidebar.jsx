@@ -29,6 +29,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
   const handleYes = ()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem("active")
     handleSuccess("logged out successfully");
     setTimeout(()=>{
       navigate('/login');

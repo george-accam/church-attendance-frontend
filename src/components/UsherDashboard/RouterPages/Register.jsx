@@ -26,7 +26,7 @@ const Register = () => {
         return;
       }
       // passing the user id to the form data
-      const user  = localStorage.getItem("user");
+      const user  = localStorage.getItem("usher");
       if (!user) {
         handleError("Please login to register member");
         return;

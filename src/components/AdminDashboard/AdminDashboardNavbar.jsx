@@ -13,7 +13,6 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
     const [isShow, setIsShow] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [isTheme, setIsTheme] = useState(false);
-    const [selectedMode, setSelectedMode] = useState(localStorage.getItem("theme") || "light");
     const menuRef = useRef(null);
     const navigate = useNavigate();
 
@@ -30,8 +29,9 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
 
     // logout the user
     const handleYes = ()=>{
-        localStorage.removeItem("user");
+        localStorage.removeItem("admin");
         localStorage.removeItem("token");
+        localStorage.removeItem("active")
         setIsLogout(!isLogout);
         handleSuccess("logged out successfully");
         setTimeout(()=>{
@@ -44,12 +44,6 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
         setIsTheme(!isTheme);
         setIsShow(false);
     }
-
-    // change the theme mode
-    // const handleSelectedMode = (mode)=>{
-    //     setSelectedMode(mode);
-    //     localStorage.setItem("theme", mode);
-    // }
 
     // close the theme container when cursor is outside
     useEffect(() => {

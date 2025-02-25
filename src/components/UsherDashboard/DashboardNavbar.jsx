@@ -34,6 +34,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
     const handleYes = ()=>{
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        localStorage.removeItem("is-active")
         setIsLogout(!isLogout);
         handleSuccess("logged out successfully");
         setTimeout(()=>{
