@@ -236,10 +236,19 @@ const MembersChecked = ( { changeColor }) => {
             </div>
             <p className='number-of-members number-of-personal-members'>
                 <span className='ping-effect ushers-ping-effect'></span>
-                {`Nº of check-ins for 
-                    ${search.length > 0  ? search : "all members"} : 
-                    ${isTotalCheckIns ? isTotalCheckIns : attendees === null || attendees.length === 0 ? 0 :  0}
-                `}
+                Nº of check-ins for {""}
+                <span className="number-of-members-digits">
+                    {search.length > 0  ? 
+                        search : "all members"
+                    } 
+                </span>
+                {""} :
+                {" "}
+                {isTotalCheckIns ? 
+                    isTotalCheckIns : 
+                    attendees === null ||
+                    attendees.length === 0 ? 0 :  0
+                }
             </p>
             <ToastContainer />
         </div>
