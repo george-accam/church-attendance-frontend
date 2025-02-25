@@ -1,7 +1,7 @@
 import { AiFillEdit } from "react-icons/ai"; 
 import { SlOptionsVertical } from "react-icons/sl"; 
 import { CgSearch } from "react-icons/cg"; 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from "../../../API/Api.js";
 import { handleError, handleSuccess } from '../../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
@@ -25,6 +25,7 @@ const Ushers = ({ changeColor }) => {
     const [isRename, setIsRename] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRenaming, setIsRenaming] = useState(false);
+    const menuRefs = useRef({});
 
   // handle search
   const handleSearch = (e)=>{
@@ -87,6 +88,18 @@ const Ushers = ({ changeColor }) => {
   useEffect(() => {
     fetchMembers();
   }, []);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isShow !== null && menuRefs.current[isShow]) {
+        if (!menuRefs.current[isShow].contains(e.target)) {
+          setIsShow(false);
+        }
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isShow]);
 
     // loading state
   if (isLoading) {
@@ -185,6 +198,8 @@ const Ushers = ({ changeColor }) => {
         }
     };
 
+    
+
   return (
     <div>
       <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
@@ -242,18 +257,17 @@ const Ushers = ({ changeColor }) => {
                               <td className='all-members-list-date edit-button'>
                                     <div 
                                         key={filteredMember._id}
-                                        // ref={menuRef}
                                         role="menu"
                                         className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
-                                    >
+                                        >
                                       <SlOptionsVertical
                                           className="edit-button"
                                           onClick={()=> handleShowEdit(filteredMember._id)}
-                                      />
+                                          />
                                         { isShow === filteredMember._id && (
-                                            <div 
-                                                className="" 
-                                                role="none"
+                                          <div 
+                                              className="" 
+                                              role="none"
                                             >
                                               <Edit
                                                   member={filteredMember}
@@ -268,27 +282,27 @@ const Ushers = ({ changeColor }) => {
                                               />
                                             </div>
                                         )}
-                                        { isRename === filteredMember._id && ( 
-                                            <Rename 
-                                              memberId={filteredMember._id}
-                                              memberName={filteredMember.fullName}
-                                              memberPhoneNumber={filteredMember.phoneNumber}
-                                              isRenaming={isRenaming}
-                                              handleCloseRename={handleCloseRename}
-                                              handleRenameData={handleRenameData}
-                                            />
-                                        )}
-                                        {isDelete === filteredMember._id && (
-                                            <Delete 
-                                                member={filteredMember}
-                                                isDeleting={isDeleting}
-                                                handleCloseDelete={handleCloseDelete}
-                                                handleDeletedData={()=> {
-                                                    handleDeletedData(filteredMember._id);
-                                                }}
-                                            />
-                                        )}
                                     </div>
+                                    { isRename === filteredMember._id && ( 
+                                        <Rename 
+                                          memberId={filteredMember._id}
+                                          memberName={filteredMember.fullName}
+                                          memberPhoneNumber={filteredMember.phoneNumber}
+                                          isRenaming={isRenaming}
+                                          handleCloseRename={handleCloseRename}
+                                          handleRenameData={handleRenameData}
+                                        />
+                                    )}
+                                    {isDelete === filteredMember._id && (
+                                        <Delete 
+                                            member={filteredMember}
+                                            isDeleting={isDeleting}
+                                            handleCloseDelete={handleCloseDelete}
+                                            handleDeletedData={()=> {
+                                                handleDeletedData(filteredMember._id);
+                                            }}
+                                        />
+                                    )}
                                   </td>
                           </tr>
                         ))
@@ -310,7 +324,7 @@ const Ushers = ({ changeColor }) => {
                                   <td className='all-members-list-date edit-button'>
                                     <div 
                                         key={member._id}
-                                        // ref={menuRef}
+                                        ref={(el) => (menuRefs.current[member._id] = el)}
                                         role="menu"
                                         className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                     >
@@ -336,27 +350,29 @@ const Ushers = ({ changeColor }) => {
                                               />
                                             </div>
                                         )}
-                                        { isRename === member._id && ( 
-                                            <Rename 
-                                              memberId={member._id}
-                                              memberName={member.fullName}
-                                              memberPhoneNumber={member.phoneNumber}
-                                              isRenaming={isRenaming}
-                                              handleCloseRename={handleCloseRename}
-                                              handleRenameData={handleRenameData}
-                                            />
-                                        )}
-                                        {isDelete === member._id && (
-                                            <Delete 
-                                                member={member}
-                                                isDeleting={isDeleting}
-                                                handleCloseDelete={handleCloseDelete}
-                                                handleDeletedData={()=> {
-                                                    handleDeletedData(member._id);
-                                                }}
-                                            />
-                                        )}
                                     </div>
+                                      {/* rename component */}
+                                      { isRename === member._id && ( 
+                                          <Rename 
+                                            memberId={member._id}
+                                            memberName={member.fullName}
+                                            memberPhoneNumber={member.phoneNumber}
+                                            isRenaming={isRenaming}
+                                            handleCloseRename={handleCloseRename}
+                                            handleRenameData={handleRenameData}
+                                          />
+                                      )}
+                                      {/* delete component */}
+                                      {isDelete === member._id && (
+                                          <Delete 
+                                              member={member}
+                                              isDeleting={isDeleting}
+                                              handleCloseDelete={handleCloseDelete}
+                                              handleDeletedData={()=> {
+                                                  handleDeletedData(member._id);
+                                              }}
+                                          />
+                                      )}
                                   </td>
                               </tr>
                           ))

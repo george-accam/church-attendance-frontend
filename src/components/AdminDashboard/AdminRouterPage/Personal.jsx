@@ -1,7 +1,7 @@
 import { AiFillEdit } from "react-icons/ai"; 
 import { SlOptionsVertical } from "react-icons/sl"; 
 import { CgSearch } from "react-icons/cg"; 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from "../../../API/Api.js";
 import { handleError, handleSuccess } from '../../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
@@ -24,6 +24,7 @@ const Personal = ({ changeColor }) => {
   const [isRename, setIsRename] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isRenaming, setIsRenaming] = useState(false);
+  const menuRefs = useRef({});
   
   // getting user data from localStorage
   const user = localStorage.getItem('admin');
@@ -99,6 +100,20 @@ const Personal = ({ changeColor }) => {
   useEffect(() => {
     searchPersonalMember([]);
   }, [search]);
+
+  //  handle the click outside the edit container
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isShow !== null && menuRefs.current[isShow]) {
+        if (!menuRefs.current[isShow].contains(e.target)) {
+          setIsShow(false);
+        }
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isShow]);
 
   // loading state
   if (isLoading) {
@@ -195,6 +210,7 @@ const Personal = ({ changeColor }) => {
               setIsRenaming(false);
           }
       };
+      
 
   return (
     <div>
@@ -267,7 +283,7 @@ const Personal = ({ changeColor }) => {
                                   <td className='all-members-list-date edit-button'>
                                     <div 
                                         key={member._id}
-                                        // ref={menuRef}
+                                        ref={(el) => (menuRefs.current[member._id] = el)}
                                         role="menu"
                                         className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                     >
