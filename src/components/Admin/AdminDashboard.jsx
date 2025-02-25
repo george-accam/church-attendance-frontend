@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
   // get the stored user data
   useEffect(()=>{
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("admin");
     try {
       if(storedUser){
         setUserAdmin(JSON.parse(storedUser));

@@ -21,14 +21,14 @@ const UserDashboard = () => {
   const handleChangeColor = ()=>{
     setChangeColor((prev)=>{
       const newColor = !prev;
-      localStorage.setItem("changeColor", JSON.stringify(newColor));
+      localStorage.setItem("is-changeColor", JSON.stringify(newColor));
       return newColor;
     })
   }
 
   // change color of the background
   useEffect(()=>{
-    const isChangeColor = localStorage.getItem("changeColor");
+    const isChangeColor = localStorage.getItem("is-changeColor");
     if(isChangeColor !== null){
       setChangeColor(JSON.parse(isChangeColor));
     }
@@ -36,7 +36,7 @@ const UserDashboard = () => {
 
   // get the stored user data
   useEffect(()=>{
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("usher");
     try {
       if(storedUser){
         setUser(JSON.parse(storedUser));

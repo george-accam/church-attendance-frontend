@@ -17,7 +17,7 @@ const initialState = {
 const Login = () => {
     const [formData, setFormData] = useState(initialState);
     const [openPassword, setOpenPassword] = useState(false);
-    const [isSwitch, setIsSwitch] = useState(null);
+    const [isSwitch, setIsSwitch] = useState( localStorage.getItem("switch") || null);
     const [isLoading, setIsLoading] = useState(null)
     const navigate = useNavigate();
 
@@ -44,6 +44,7 @@ const Login = () => {
     // switches the email and phone number input
     const handleIsSwitch = ()=>{
       setIsSwitch(!isSwitch)
+      localStorage.setItem("switch", isSwitch)
     }
 
 
@@ -69,8 +70,11 @@ const Login = () => {
         const { message, user, token } = response.data;
 
         // store the user data in local storage
-        if(user){
-            localStorage.setItem("user", JSON.stringify(user));
+        if(user.role === "Usher"){
+            localStorage.setItem("usher", JSON.stringify(user));
+        }
+        else if(user.role === "Admin"){
+          localStorage.setItem("admin", JSON.stringify(user));
         }
         
         if (message) {

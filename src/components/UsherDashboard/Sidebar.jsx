@@ -11,7 +11,7 @@ import { handleSuccess } from '../../notifications/Notification';
 import welcome  from "../assets/welcome.gif"
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
-  const [isActive, setIsActive] = useState(localStorage.getItem("is-active") || 'members-checked');
+  const [isActive, setIsActive] = useState(localStorage.getItem("is-active") || "all-members");
   const [showLogout, setShowLogout] = useState(false);
   const navigate = useNavigate();
   
@@ -26,6 +26,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
   const handleYes = ()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem("is-active")
     handleSuccess("logged out successfully");
     setTimeout(()=>{
       navigate('/login');

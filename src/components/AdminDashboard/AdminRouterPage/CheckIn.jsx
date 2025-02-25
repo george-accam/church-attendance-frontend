@@ -116,7 +116,7 @@ const CheckIn = () => {
   const handleEnter = (e)=>{
     if(e.key === 'Enter'){
       e.preventDefault();
-      handleFetchSearch();
+      handleFetchSearch;
     }
   }
 
@@ -129,11 +129,11 @@ const CheckIn = () => {
           <div className="inner-container usher-check-in-inner-container">
               <div 
                 className='check-in-form'
+                tabIndex={0}
+                onKeyDown={handleEnter}
               >
                 <h1 className='container-header'>Check In Member</h1>
                 <div 
-                  tabIndex={0}
-                  onKeyDown={handleEnter}
                   className="form-group">
                     <label htmlFor="fullName">
                       Phone number

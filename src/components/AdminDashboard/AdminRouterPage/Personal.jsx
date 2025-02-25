@@ -26,7 +26,7 @@ const Personal = ({ changeColor }) => {
   const [isRenaming, setIsRenaming] = useState(false);
   
   // getting user data from localStorage
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem('admin');
   
   const passedUser = JSON.parse(user);
   const userId = passedUser._id ;

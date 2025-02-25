@@ -14,7 +14,7 @@ const Personal = ({ changeColor }) => {
   const [filteredMembers, setFilteredMembers] = useState([]);
   
   // getting user data from localStorage
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem('usher');
   
   const passedUser = JSON.parse(user);
   const userId = passedUser._id ;
