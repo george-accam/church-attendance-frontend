@@ -23,7 +23,7 @@ const CheckIn = () => {
     if(isChecked){
       timeOut = setTimeout(()=>{
         setIsChecked(false)
-      }, 120000)
+      }, 7200000);
     }
 
     return ()=>{

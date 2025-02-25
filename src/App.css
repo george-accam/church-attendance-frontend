@@ -722,7 +722,17 @@ body{
   padding: 10px;
   box-shadow: 0 0 10px rgba(100, 100, 100, 0.596);
   border-radius: 10px;
+  animation: dropDownEffectRename .4s ease-in-out alternate;
 }
+@keyframes dropDownEffectRename {
+  0%{
+    transform: translateY(-100%) scale(0);
+  }
+  100%{
+    transform: translateY(0%) scale(1);
+  }
+}
+
 .logout-holder h2{
   font-size: 15px;
   text-align: center;
@@ -1563,10 +1573,7 @@ body{
     margin-bottom: 20px;
   }
   .landing-page-title2{
-    font-size: 1.7rem;
-  }
-  .typing {
-    white-space: nowrap; 
+    font-size: 2.7rem;
   }
   .landing-page-sub-image{
     overflow-x: scroll;
@@ -1781,7 +1788,7 @@ body{
     font-size: 5rem;
   }
   .landing-page-title2{
-    font-size: 1.8rem;
+    font-size: 2.9rem;
   }
   .sub-image-container1 img{
     width: 20rem;

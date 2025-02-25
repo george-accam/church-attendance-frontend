@@ -169,7 +169,7 @@ const Personal = ({ changeColor }) => {
                           <tr className='no-members'>
                             <td colSpan={3}>
                               <img src={member} alt="👽" />
-                              <p>No members available yet</p>
+                              <p>No members registered yet</p>
                             </td>
                           </tr>
                       )

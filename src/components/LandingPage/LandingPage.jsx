@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Navbar from "../Navbar";
 import LandImg1 from "../assets/land-img1.jpeg"
 import LandImg2 from "../assets/land-img2.jpeg"
@@ -7,6 +7,7 @@ import LandImg4 from "../assets/land-img4.jpeg"
 import LandImg6 from "../assets/land-img6.jpeg"
 
 const LandingPage = () => {
+
     return (
         <div className='landing-page-container'>
             <div className="landing-page-filter">
@@ -17,8 +18,10 @@ const LandingPage = () => {
                             <h1 className='landing-page-title'>
                                 Welcome to the Church Attendance System!
                             </h1>
-                            <h2 className='landing-page-title2 typing'>
-                                Effortless attendance tracking and member management at your fingertips.
+                            <h2 
+                                className='landing-page-title2 typing'
+                            >
+                                Simplified attendance and member management.
                             </h2>
                             <div className="landing-page-sub-image">
                                 <div className="sub-image-container1 sub-image-top">
