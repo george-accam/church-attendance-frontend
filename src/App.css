@@ -1107,6 +1107,10 @@ body{
   padding: 6px;
   border-radius: 3px;
 }
+.number-of-members-digits{
+  font-weight: 700;
+  color: greenyellow;
+}
 .ping-effect {
   position: absolute;
   display: inline-flex;
