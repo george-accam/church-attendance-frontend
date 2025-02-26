@@ -253,7 +253,9 @@ const Personal = ({ changeColor }) => {
                     )}
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
-                          <tr key={filteredMember._id} className='all-members-list'>
+                          <tr key={filteredMember._id} 
+                            className={`all-members-list personal-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                            >
                                   <td>
                                       {filteredMember.attendeeName}
                                   </td>
@@ -263,6 +265,58 @@ const Personal = ({ changeColor }) => {
                                   <td className='all-members-list-date'>
                                       { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
                                   </td>
+                                  {/* edit table data */}
+                                  <td className='all-members-list-date edit-button'>
+                                    <div 
+                                        key={member._id}
+                                        ref={(el) => (menuRefs.current[member._id] = el)}
+                                        role="menu"
+                                        className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                    >
+                                      <SlOptionsVertical
+                                          className="edit-button"
+                                          onClick={()=> handleShowEdit(member._id)}
+                                      />
+                                        { isShow === member._id && (
+                                            <div 
+                                                className="" 
+                                                role="none"
+                                            >
+                                              <Edit
+                                                  member={member}
+                                                  handleRename={()=> {
+                                                      handleRename(member._id);
+                                                      handleShowEdit(member._id);
+                                                  }}
+                                                  handleDelete={()=> {
+                                                      handleDelete(member._id);
+                                                      handleShowEdit(member.id);
+                                                  }}
+                                              />
+                                            </div>
+                                        )}
+                                        { isRename === member._id && ( 
+                                            <Rename 
+                                              memberId={filteredMember._id}
+                                              memberName={filteredMember.attendeeName}
+                                              memberPhoneNumber={filteredMember.attendeePhoneNumber}
+                                              isRenaming={isRenaming}
+                                              handleCloseRename={handleCloseRename}
+                                              handleRenameData={handleRenameData}
+                                            />
+                                        )}
+                                        {isDelete === member._id && (
+                                            <Delete 
+                                                member={member}
+                                                isDeleting={isDeleting}
+                                                handleCloseDelete={handleCloseDelete}
+                                                handleDeletedData={()=> {
+                                                    handleDeletedData(member._id);
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                </td>
                           </tr>
                         ))
                       ) : (
