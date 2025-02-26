@@ -237,10 +237,10 @@ const MembersChecked = ( { changeColor }) => {
             <p className='number-of-members number-of-personal-members'>
                 <span className='ping-effect ushers-ping-effect'></span>
                 Nº of check-ins for {""}
-                <span className="number-of-members-digits">
-                    {search.length > 0  ? 
+                <span className={`number-of-members-digits ${changeColor ? "color-digits-red" : "color-digits-green"}`}>
+                    {capitalizeWords (search.length > 0  ? 
                         search : "all members"
-                    } 
+                    )} 
                 </span>
                 {""} :
                 {" "}
