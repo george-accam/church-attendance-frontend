@@ -25,7 +25,7 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
   // logout the user
   const handleYes = ()=>{
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('usher');
     localStorage.removeItem("is-active")
     handleSuccess("logged out successfully");
     setTimeout(()=>{

@@ -2,7 +2,6 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { MdEmail } from "react-icons/md"; 
 import { BsListCheck } from "react-icons/bs"; 
 import { BsPeopleFill } from "react-icons/bs"; 
-import { MdChecklistRtl } from "react-icons/md"; 
 import { BsFillCalendarCheckFill } from "react-icons/bs"; 
 import { FaRegistered } from "react-icons/fa"; 
 import { BsFillPersonFill } from "react-icons/bs"; 
@@ -28,7 +27,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
   // logout the user
   const handleYes = ()=>{
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('admin');
     localStorage.removeItem("active")
     handleSuccess("logged out successfully");
     setTimeout(()=>{
