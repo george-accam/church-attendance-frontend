@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Api from "../../API/Api.js";
+import SubmissionLoader from "../reusableComponents/SubmissionLoader.jsx";
 
 // input fields values
 const initialState = {
@@ -179,7 +180,14 @@ return (
                                 disabled={isLoading}
                                 className={`submit-button ${isLoading ? "submit-button-loading" : ""}`}
                             >
-                                {isLoading ? "submitting" : "submit"}
+                                {isLoading ? (
+                                    <div className="login-button-content">
+                                        <SubmissionLoader />
+                                        <p>submitting</p>
+                                    </div>
+                                )
+                                : "submit"
+                                }
                             </button>
                             <div className="login-link-container">
                                 Already have an account? 

@@ -89,7 +89,8 @@ const Personal = ({ changeColor }) => {
   if (isLoading) {
     return (
       <PersonalComponentLoader 
-        className={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
+      header={"Personal Members"}
+      className ={`${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}
       />
   );
   }
@@ -106,7 +107,7 @@ const Personal = ({ changeColor }) => {
     <div>
       <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
           {/* search bar */}
-          <div className="header-search-bar">
+          <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
             <h1 className='all-members-title'>Personal Members</h1>
             <div 
               tabIndex={0}
