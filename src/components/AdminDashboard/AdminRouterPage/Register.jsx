@@ -5,6 +5,7 @@ import Api from "../../../API/Api";
 import { ToastContainer } from 'react-toastify';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import SubmissionLoader from '../../reusableComponents/SubmissionLoader';
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -117,7 +118,14 @@ const Register = () => {
                         disabled={isLoading}
                         className={`submit-button ${isLoading ? "button-loading" : ""}`}
                     >
-                        {isLoading ? "submitting" : "submit"}
+                      {isLoading ? (
+                        <div className="login-button-content">
+                            <SubmissionLoader />
+                            <p>submitting</p>
+                        </div>
+                        ) 
+                      : "submit"
+                      }
                     </button>
                     <div className="login-link-container">
                         Want to check in member ?
