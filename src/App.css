@@ -926,20 +926,20 @@ body{
 }
 .sidebar-bottom{
   margin-top: 120px;
+  padding: 0 10px;
   border-top: 1px solid var(--light-text);
 }
 /* admin side bar bottom */
 .admin-sidebar-bottom{
   margin-top: 70px;
+  padding: 0 10px;
   border-top: 1px solid var(--light-text);
 }
 
 .sidebar-email{
   font-size: 16px;
   color: var(--light-text);
-  margin-left: 10px;
-  margin-top: 5%;
-  margin-bottom: 10%;
+  margin: 20px 0;
 }
 .sidebar-logout{
   font-size: 16px;
@@ -1569,6 +1569,10 @@ body{
 }
 
 /* login content */
+.login-button-content-container{
+  display: flex;
+  justify-content: center;
+}
 .login-button-content{
   display: flex;
 }
@@ -1621,6 +1625,57 @@ body{
   }
 }
 
+/* qr code */
+.code-button-container{
+  margin-top: 20px;
+  position: relative;
+}
+.code-button-container-inner{
+  display: flex;
+  font-size: 15px;
+  margin-right: 130px;
+  cursor: pointer;
+  padding: 2px;
+  background-color: rgba(128, 128, 128, 0.373);
+  border-radius: 10px;
+  border: 1px solid rgba(115, 255, 0, 0.677);
+}
+.code-button-container-inner:hover{
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.234);
+}
+.code-button-container-inner p{
+  margin-top: 6px;
+}
+.mobile-icon{
+  margin-right: 20px;
+  font-size: 28px;
+}
+
+.code-image-open{
+  position: absolute;
+  z-index: 1;
+  animation: dropEffect .4s ease-in-out alternate;
+  transform: translateY(-100%);
+}
+.code-image-close{
+  transform: translateY(0%);
+}
+@keyframes dropEffect {
+  0%{
+    transform: translateY(-100%) scale(0);
+  }
+  100%{
+    transform: translateY(-100%) scale(1);
+  }
+}
+.code-image-inner{
+  margin: 0;
+}
+.code-image-inner img{
+  width: 170px;
+  height: 170px;
+}
 
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
@@ -1683,6 +1738,10 @@ body{
   }
   .edit-container{
     margin: 4px 35px 0 0;
+  }
+  /* qr code */
+  .code-button-container-inner{
+    margin-right: 110px;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -1775,7 +1834,6 @@ body{
     display: block;
   }
   /* user sidebar */
-
   .sidebar-container-open {
     display: block;
     transform: translateX(0);
@@ -1828,6 +1886,10 @@ body{
   .edit-container{
     margin: 4px 20px 0 0;
     width: 120px;
+  }
+  /* qr code */
+  .code-button-container{
+    display: none;
   }
 }
 @media only screen and (max-width: 400px) {

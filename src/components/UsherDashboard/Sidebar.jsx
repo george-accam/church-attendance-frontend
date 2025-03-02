@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
 import { handleSuccess } from '../../notifications/Notification';
 import welcome  from "../assets/welcome.gif"
+import QrCodeButton from "../reusableComponents/QrCodeButton";
 
 const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(localStorage.getItem("is-active") || "all-members");
@@ -101,6 +102,11 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
             </Link>
           </div>
           <div className="sidebar-bottom">
+            {/* mobile view container */}
+            <div className="">
+              <QrCodeButton />
+            </div>
+            {/* email container */}
             <p className="sidebar-email">
             <div className="sidebar-navigator-list">
               <MdEmail className="email-icon" />:  

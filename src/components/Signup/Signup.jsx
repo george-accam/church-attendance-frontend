@@ -181,9 +181,11 @@ return (
                                 className={`submit-button ${isLoading ? "submit-button-loading" : ""}`}
                             >
                                 {isLoading ? (
-                                    <div className="login-button-content">
-                                        <SubmissionLoader />
-                                        <p>submitting</p>
+                                    <div className="login-button-content-container">
+                                        <div className="login-button-content">
+                                            <SubmissionLoader />
+                                            <p>submitting</p>
+                                        </div>
                                     </div>
                                 )
                                 : "submit"
