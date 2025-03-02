@@ -88,7 +88,7 @@ const CheckInLoader = ({ className }) => {
             <p className='number-of-members number-of-check-ins-loader'>
                     <span className='ping-effect'></span>
                     <p></p>
-                </p>
+            </p>
         </div>
     )
 }

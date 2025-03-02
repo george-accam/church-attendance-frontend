@@ -99,6 +99,18 @@ const MembersChecked = ( { changeColor }) => {
         setSearch(e.target.value)
     }
 
+    // check for current date
+    const isToday = (someDate) => {
+        const today = new Date();
+        const checkDate = new Date(someDate);
+
+        return(
+            checkDate.getDate() === today.getDate() &&
+            checkDate.getMonth() === today.getMonth() &&
+            checkDate.getFullYear() === today.getFullYear()
+        );
+    };
+
     return (
         <div>
             <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
@@ -132,11 +144,17 @@ const MembersChecked = ( { changeColor }) => {
                             <div key={date} className="grouped-checked-members">
                                 <div className="grouped-checked-members-header">
                                     <h1>
-                                        {new Date(date).toLocaleDateString("en-GB", {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })}
+                                    {isToday(date) ? (  
+                                            "Today"
+                                        ) : (
+                                            new Date(date).toLocaleDateString("en-GB", {
+                                                weekday: 'long',
+                                                day: 'numeric',
+                                                month: 'short',
+                                                year: 'numeric',
+                                            })
+                                        )
+                                    }
                                     </h1>
                                 </div>
                                 <div className="grid-container">
@@ -182,11 +200,17 @@ const MembersChecked = ( { changeColor }) => {
                                 <div key={date} className="grouped-checked-members">
                                     <div className="grouped-checked-members-header">
                                         <h1>
-                                            {new Date(date).toLocaleDateString("en-GB", {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })}
+                                            {isToday(date) ? (  
+                                                    "Today"
+                                                ) : (
+                                                new Date(date).toLocaleDateString("en-GB", {
+                                                    weekday: 'long',
+                                                    day: 'numeric',
+                                                    month: 'short',
+                                                    year: 'numeric',
+                                                })
+                                            )
+                                            }
                                         </h1>
                                     </div>
                                     <div className="grid-container">

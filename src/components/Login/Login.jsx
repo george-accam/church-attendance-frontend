@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Api from "../../API/Api.js";
+import SubmissionLoader from "../reusableComponents/SubmissionLoader.jsx";
 
 const initialState = {
     email: '', 
@@ -183,7 +184,16 @@ return (
                               disabled={isLoading}
                               className={`submit-button ${isLoading ? "submit-button-loading" : ""}`}
                             >
-                                {isLoading ? "logging in" : "login"}
+                                {isLoading ? (
+                                  <div className="login-button-content-container">
+                                    <div className="login-button-content">
+                                      <SubmissionLoader />
+                                      <p>logging in</p>
+                                    </div>
+                                  </div>
+                                ) 
+                                : "login"
+                                }
                             </button>
                             <div className="login-link-container">
                                 Don't have an account? 

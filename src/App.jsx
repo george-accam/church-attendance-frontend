@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     try {
-      
+      setIsLoading(true);
       //  Check if usher is logged in
       const storedUsher = localStorage.getItem('usher');
       if (storedUsher) {
@@ -29,11 +29,16 @@ const App = () => {
         setAdmin(JSON.parse(storedAdmin));
       }
       //  If usher or admin is not logged in, navigate to the landing page
-      navigate("/")
+      if (!storedUsher && !storedAdmin){
+            navigate("/")
+          }
+  
     } catch (error) {
       console.error("Error retrieving user from localStorage:", error);
     }
-    setIsLoading(false);
+    finally{
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(()=>{
@@ -60,11 +65,11 @@ const App = () => {
           <Route path="register" element={<Signup />} />
           {/* usher protective route */}
           {usher && usher.role === "Usher" && (
-                <Route path="usher-dashboard/*" element={<UsherDashboard />} />
+            <Route path="usher-dashboard/*" element={<UsherDashboard />} />
           )}
           {/* admin protective route */}
           {admin && admin.role === "Admin" && (
-                <Route path="admin-dashboard/*" element={<AdminDashboard />} />
+            <Route path="admin-dashboard/*" element={<AdminDashboard />} />
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>

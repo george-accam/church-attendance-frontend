@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import capitalizeWords from '../../reusableComponents/CapitaliseEachLetter';
+import SubmissionLoader from '../../reusableComponents/SubmissionLoader';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -129,12 +130,13 @@ const CheckIn = () => {
           <div className="inner-container usher-check-in-inner-container">
               <div 
                 className='check-in-form'
-                tabIndex={0}
-                onKeyDown={handleEnter}
-              >
+                >
                 <h1 className='container-header'>Check In Member</h1>
                 <div 
-                  className="form-group">
+                  tabIndex={0}
+                  onKeyDown={handleEnter}
+                  className="form-group"
+                >
                     <label htmlFor="fullName">
                       Phone number
                     </label>
@@ -147,12 +149,20 @@ const CheckIn = () => {
                     />
                 </div>
                 <div className="button-container">
-                    <button type="submit"
+                    <button 
+                      type="submit"
                       onClick={handleFetchSearch}
                       disabled={isSearching}
                       className={`submit-button ${isSearching ? "button-loading" : ""}`}
                     >
-                        {isSearching ? "searching" : "search"}
+                      {isSearching ? (
+                        <div className="login-button-content">
+                            <SubmissionLoader />
+                            <p>searching</p>
+                        </div>
+                      )
+                      : "search"
+                      }
                     </button>
                     <div className="login-link-container">
                         Want to register member ?
@@ -198,14 +208,14 @@ const CheckIn = () => {
                                   {filteredMember.phoneNumber}
                               </td>
                               <td className='all-members-list-date'>
-                                  <input 
-                                    class={`checkbox ${isChecked ? "is-checked": ""}`}
-                                    type="checkbox"
-                                    checked={isChecked}
-                                    disabled={isChecked}
-                                    onChange={handleChecked}
-                                    onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
-                                  />
+                                <input 
+                                  class={`checkbox ${isChecked ? "is-checked": ""}`}
+                                  type="checkbox"
+                                  checked={isChecked}
+                                  disabled={isChecked}
+                                  onChange={handleChecked}
+                                  onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
+                                />
                               </td>
                           </tr>
                         ))

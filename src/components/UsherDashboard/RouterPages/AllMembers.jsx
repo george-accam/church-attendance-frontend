@@ -103,7 +103,7 @@ const AllMembers = ({ changeColor }) => {
     return (
         <div>
             <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
-                <div className="header-search-bar">
+                <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
                     <h1 className='all-members-title'>All Members</h1>
                     <div
                         tabIndex={0}

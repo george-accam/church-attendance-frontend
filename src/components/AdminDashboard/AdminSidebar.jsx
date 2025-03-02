@@ -2,7 +2,6 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { MdEmail } from "react-icons/md"; 
 import { BsListCheck } from "react-icons/bs"; 
 import { BsPeopleFill } from "react-icons/bs"; 
-import { MdChecklistRtl } from "react-icons/md"; 
 import { BsFillCalendarCheckFill } from "react-icons/bs"; 
 import { FaRegistered } from "react-icons/fa"; 
 import { BsFillPersonFill } from "react-icons/bs"; 
@@ -12,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logout from '../reusableComponents/Logout';
 import { handleSuccess } from '../../notifications/Notification';
 import welcome  from "../assets/welcome.gif"
+import QrCodeButton from "../reusableComponents/QrCodeButton";
 
 const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleSidebarActive }) => {
   const [isActive, setIsActive] = useState(localStorage.getItem("active") || "members-checked");
@@ -28,7 +28,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
   // logout the user
   const handleYes = ()=>{
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('admin');
     localStorage.removeItem("active")
     handleSuccess("logged out successfully");
     setTimeout(()=>{
@@ -125,12 +125,18 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
             </Link>
           </div>
           <div className="admin-sidebar-bottom">
-            <p className="sidebar-email">
-            <div className="sidebar-navigator-list">
-              <MdEmail className="email-icon" />:  
-              <span>{ userEmail }</span>
+            {/* mobile view container */}
+            <div className="">
+              <QrCodeButton />
             </div>
+            {/* email container */}
+            <p className="sidebar-email">
+              <div className="sidebar-navigator-list">
+                <MdEmail className="email-icon" />:  
+                <span>{ userEmail }</span>
+              </div>
             </p>
+            {/* logout container */}
             <p onClick={handleLogout} className="sidebar-logout">
               <div className="sidebar-navigator-list">
                 <RiLogoutCircleLine className="logout-sidebar-icon" />
