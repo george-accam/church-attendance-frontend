@@ -148,9 +148,9 @@ const MembersChecked = ( { changeColor }) => {
                                             "Today"
                                         ) : (
                                             new Date(date).toLocaleDateString("en-GB", {
-                                                weekday: 'long',
+                                                weekday: 'short',
                                                 day: 'numeric',
-                                                month: 'short',
+                                                month: 'long',
                                                 year: 'numeric',
                                             })
                                         )
@@ -206,7 +206,7 @@ const MembersChecked = ( { changeColor }) => {
                                                 new Date(date).toLocaleDateString("en-GB", {
                                                     weekday: 'long',
                                                     day: 'numeric',
-                                                    month: 'short',
+                                                    month: 'long',
                                                     year: 'numeric',
                                                 })
                                             )
