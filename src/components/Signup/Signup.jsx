@@ -23,8 +23,6 @@ const Signup = () => {
     const [formData, setFormData] = useState(initialState);
     const[openPassword, setOpenPassword] =  useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
-    
     const navigate = useNavigate();
 
     // handles the input values
@@ -34,11 +32,13 @@ const Signup = () => {
             setFormData({ 
                 ...formData, [name]: value.replace(/\s+/g, "")
             });
-        } else if (name === "email"){
+        } 
+        else if (name === "email"){
             setFormData({
                 ...formData, [name]: value.replace(/\s+/g, "")
             });
-        } else {
+        }
+        else {
             setFormData({ ...formData, [name]: value });
         }
     }
@@ -47,16 +47,60 @@ const Signup = () => {
         setOpenPassword(!openPassword);
     }
 
+    // validate password
+    const validatePassword = (password)=> {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+        if (!regex.test(password)) {
+            handleError("Password should contain at least one uppercase letter, one lowercase letter, one number and one special character");
+            return;
+        };
+    };
+    
+
+    // password strength
+    const getPasswordStrength = (score)=>{
+        switch(score){
+            case 1:
+                return "Password is very weak";
+            case 2:
+                return "Password is very weak";
+            case 3:
+                return "Password is very weak";
+            case 4:
+                return "Password is weak";
+            case 5:
+                return "Password is weak";
+            case 6:
+                return "Password is medium";
+            case 7:
+                return "Password is medium";
+            case 8:
+                return "Password is strong";
+            default:
+                return "Password is very strong";
+        }
+    };
     const handleOnSubmit = async(e)=>{
         e.preventDefault();
         const { phoneNumber, password, confirmPassword } = formData;
         try {
+            // validate password
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+            if (!regex.test(password)) {
+                handleError("Password should contain at least one uppercase letter, one lowercase letter, one number and one special character");
+                return;
+            };
+            
             if(phoneNumber.length !== 10){
                 handleError(" Phone number should be 10 digits");
                 return;
             }
             else if (password !== confirmPassword) {
                 handleError("Passwords do not match");
+                return;
+            }
+            else if(password.length < 8){
+                handleError(`Password should be at least 8 characters long`);
                 return;
             }
 
@@ -93,7 +137,7 @@ const Signup = () => {
             once: true,
             offset: 100,
         });
-    }, [])
+    }, [formData.password]);
 
 return (
     <div>
@@ -163,6 +207,14 @@ return (
                                 </div>
                             </div>
                         </div>
+                        {/* password strength */}
+                        {formData.password && (
+                            <div className="password-strength">
+                                <p>
+                                    {getPasswordStrength(formData.password.length)}
+                                </p>
+                            </div>
+                        )}
                         <div className="form-group">
                             <label htmlFor="confirmPassword">
                                 Confirm Password
