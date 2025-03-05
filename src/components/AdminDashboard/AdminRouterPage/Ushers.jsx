@@ -391,7 +391,7 @@ const Ushers = ({ changeColor }) => {
       </div>
       <p className='number-of-members number-of-personal-members'>
           <span className='ping-effect ushers-ping-effect'></span>
-          Number of ushers registered : {members && members.length > 0 ? members.length : 0}
+          Nº of ushers registered : {members && members.length > 0 ? members.length : 0}
       </p>
       <ToastContainer />
     </div>
