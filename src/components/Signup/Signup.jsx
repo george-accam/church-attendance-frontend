@@ -61,23 +61,59 @@ const Signup = () => {
     const getPasswordStrength = (score)=>{
         switch(score){
             case 1:
-                return "Password is very weak";
+                return (
+                    <p className="password-very-weak">
+                        Password is very weak
+                    </p>
+                );
             case 2:
-                return "Password is very weak";
+                return (
+                    <p className="password-very-weak">
+                        Password is very weak
+                    </p>
+                );
             case 3:
-                return "Password is very weak";
+                return (
+                    <p className="password-very-weak">
+                        Password is very weak
+                    </p>
+                );
             case 4:
-                return "Password is weak";
+                return (
+                    <p className="password-weak">
+                        Password is weak
+                    </p>
+                );
             case 5:
-                return "Password is weak";
+                return (
+                    <p className="password-weak">
+                        Password is weak
+                    </p>
+                );
             case 6:
-                return "Password is medium";
+                return (
+                    <p className="password-medium">
+                        Password is medium
+                    </p>
+                );
             case 7:
-                return "Password is medium";
+                return (
+                    <p className="password-medium">
+                        Password is medium
+                    </p>
+                );
             case 8:
-                return "Password is strong";
+                return (
+                    <p className="password-strong">
+                        Password is strong
+                    </p>
+                );
             default:
-                return "Password is very strong";
+                return (
+                    <p className="password-very-strong">
+                        Password is very strong
+                    </p>
+                );
         }
     };
     const handleOnSubmit = async(e)=>{
@@ -90,7 +126,7 @@ const Signup = () => {
                 handleError("Password should contain at least one uppercase letter, one lowercase letter, one number and one special character");
                 return;
             };
-            
+
             if(phoneNumber.length !== 10){
                 handleError(" Phone number should be 10 digits");
                 return;
@@ -111,7 +147,6 @@ const Signup = () => {
             setFormData(initialState);
             setTimeout(()=>{
                 navigate("/login")
-
             }, 2000);
 
         } catch (error) {
@@ -210,9 +245,7 @@ return (
                         {/* password strength */}
                         {formData.password && (
                             <div className="password-strength">
-                                <p>
-                                    {getPasswordStrength(formData.password.length)}
-                                </p>
+                                {getPasswordStrength(formData.password.length)}
                             </div>
                         )}
                         <div className="form-group">
