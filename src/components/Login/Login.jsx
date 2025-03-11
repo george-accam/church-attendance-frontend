@@ -77,7 +77,7 @@ const Login = () => {
         else if(user.role === "Admin"){
           localStorage.setItem("admin", JSON.stringify(user));
         }
-        
+        // show success message
         if (message) {
           handleSuccess(message);
           setTimeout(()=>{
@@ -89,12 +89,17 @@ const Login = () => {
             }
           }, 2000);
         }
+        // store the token in local storage
         if(token){
           localStorage.setItem("token", token);
         }
 
 
       } catch (error) {
+        if(error.response.status === 429){
+          handleError("Too many failed attempt to login, please try again after 10 minutes");
+        }
+
         if(error.response.data.message){
           handleError(`Error status : ${error.response.data.message}`);
         }

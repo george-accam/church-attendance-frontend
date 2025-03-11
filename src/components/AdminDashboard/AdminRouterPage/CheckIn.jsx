@@ -10,34 +10,18 @@ import SubmissionLoader from '../../reusableComponents/SubmissionLoader';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
-
-
-  // count the check in time out
-  useEffect(()=>{
-    let timeOut
-
-    //if the check is true
-    if(isChecked){
-      timeOut = setTimeout(()=>{
-        setIsChecked(false)
-      }, 7200000);
-    }
-
-    return ()=>{
-      // clear the time out
-      if (timeOut) {
-        clearTimeout(timeOut);
-      }
-    }
-  }, [isChecked])
+  const [checkedMembers, setCheckedMembers] = useState([]);
 
   // handles the check changes
-  const handleChecked = (e)=>{
-    setIsChecked(e.target.checked);
+  const handleChecked = (e, memberId)=>{
+    const isChecked = e.target.checked;
+    setCheckedMembers((prev) => 
+      isChecked
+        ? [...prev, memberId]
+        : prev.filter((id) => id !== memberId)
+    );
   };
 
   // handle the input value
@@ -46,7 +30,7 @@ const CheckIn = () => {
   };
 
   // submit the check in data
-  const handleOnSubmit = async(telephoneNumber) => {
+  const handleOnSubmit = async(telephoneNumber, memberId) => {
     try {
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
@@ -54,6 +38,9 @@ const CheckIn = () => {
         handleSuccess(message);
       }
       setPhoneNumber("");
+
+      // remove the member from checkedMembers after successful submission
+      setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
       
     } catch (error) {
       if (error.response.data) {
@@ -209,12 +196,12 @@ const CheckIn = () => {
                               </td>
                               <td className='all-members-list-date'>
                                 <input 
-                                  class={`checkbox ${isChecked ? "is-checked": ""}`}
+                                  class={`checkbox ${checkedMembers.includes(filteredMember._id) ? "is-checked": ""}`}
                                   type="checkbox"
-                                  checked={isChecked}
-                                  disabled={isChecked}
-                                  onChange={handleChecked}
-                                  onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
+                                  checked={checkedMembers.includes(filteredMember._id)}
+                                  disabled={checkedMembers.includes(filteredMember._id)}
+                                  onChange={(e)=> handleChecked(e, filteredMember._id)}
+                                  onClick={()=> handleOnSubmit(filteredMember.phoneNumber, filteredMember._id)} 
                                 />
                               </td>
                           </tr>

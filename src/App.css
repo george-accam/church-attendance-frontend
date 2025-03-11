@@ -1632,6 +1632,7 @@ body{
 }
 .code-button-container-inner{
   display: flex;
+  color: var(--light-text);
   font-size: 15px;
   margin-right: 130px;
   cursor: pointer;
