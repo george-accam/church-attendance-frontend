@@ -14,30 +14,37 @@ const CheckIn = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [checkedMembers, setCheckedMembers] = useState([]);
 
 
   // count the check in time out
-  useEffect(()=>{
-    let timeOut
+  // useEffect(()=>{
+  //   let timeOut
 
-    //if the check is true
-    if(isChecked){
-      timeOut = setTimeout(()=>{
-        setIsChecked(false)
-      }, 7200000);
-    }
+  //   //if the check is true
+  //   if(isChecked){
+  //     timeOut = setTimeout(()=>{
+  //       setIsChecked(false)
+  //     }, 7200000);
+  //   }
 
-    return ()=>{
-      // clear the time out
-      if (timeOut) {
-        clearTimeout(timeOut);
-      }
-    }
-  }, [isChecked])
+  //   return ()=>{
+  //     // clear the time out
+  //     if (timeOut) {
+  //       clearTimeout(timeOut);
+  //     }
+  //   }
+  // }, [isChecked])
 
   // handles the check changes
-  const handleChecked = (e)=>{
+  const handleChecked = (e, memberId)=>{
     setIsChecked(e.target.checked);
+    const isChecked = e.target.checked;
+    setCheckedMembers((prev) => 
+      isChecked
+        ? [...prev, memberId]
+        : prev.filter((id) => id !== memberId)
+    );
   };
 
   // handle the input value
@@ -46,7 +53,7 @@ const CheckIn = () => {
   };
 
   // submit the check in data
-  const handleOnSubmit = async(telephoneNumber) => {
+  const handleOnSubmit = async(telephoneNumber, memberId) => {
     try {
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber});
       const { message } = response.data;
@@ -54,6 +61,9 @@ const CheckIn = () => {
         handleSuccess(message);
       }
       setPhoneNumber("");
+
+      // remove the member from checkedMembers after successful submission
+      setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
       
     } catch (error) {
       if (error.response.data) {
@@ -209,12 +219,12 @@ const CheckIn = () => {
                               </td>
                               <td className='all-members-list-date'>
                                 <input 
-                                  class={`checkbox ${isChecked ? "is-checked": ""}`}
+                                  class={`checkbox ${checkedMembers.includes(filteredMember._id) ? "is-checked": ""}`}
                                   type="checkbox"
-                                  checked={isChecked}
-                                  disabled={isChecked}
-                                  onChange={handleChecked}
-                                  onClick={()=> handleOnSubmit(filteredMember.phoneNumber)} 
+                                  checked={checkedMembers.includes(filteredMember._id)}
+                                  disabled={checkedMembers.includes(filteredMember._id)}
+                                  onChange={(e)=> handleChecked(e, filteredMember._id)}
+                                  onClick={()=> handleOnSubmit(filteredMember.phoneNumber, filteredMember._id)} 
                                 />
                               </td>
                           </tr>
