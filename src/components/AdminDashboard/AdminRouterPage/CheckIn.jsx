@@ -10,35 +10,12 @@ import SubmissionLoader from '../../reusableComponents/SubmissionLoader';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
   const [checkedMembers, setCheckedMembers] = useState([]);
-
-
-  // count the check in time out
-  // useEffect(()=>{
-  //   let timeOut
-
-  //   //if the check is true
-  //   if(isChecked){
-  //     timeOut = setTimeout(()=>{
-  //       setIsChecked(false)
-  //     }, 7200000);
-  //   }
-
-  //   return ()=>{
-  //     // clear the time out
-  //     if (timeOut) {
-  //       clearTimeout(timeOut);
-  //     }
-  //   }
-  // }, [isChecked])
 
   // handles the check changes
   const handleChecked = (e, memberId)=>{
-    setIsChecked(e.target.checked);
     const isChecked = e.target.checked;
     setCheckedMembers((prev) => 
       isChecked

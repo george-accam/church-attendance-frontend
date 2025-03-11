@@ -19,8 +19,8 @@ const CheckIn = () => {
 
     setCheckedMembers((prev) =>
       isChecked
-        ? [...prev, memberId] // Add memberId to the list
-        : prev.filter((id) => id !== memberId) // Remove memberId from the list
+        ? [...prev, memberId] 
+        : prev.filter((id) => id !== memberId)
     );
   };
 
