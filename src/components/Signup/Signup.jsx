@@ -121,7 +121,7 @@ const Signup = () => {
         const { phoneNumber, password, confirmPassword } = formData;
         try {
             // validate password
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
             if (!regex.test(password)) {
                 handleError("Password should contain at least one uppercase letter, one lowercase letter, one number and one special character");
                 return;

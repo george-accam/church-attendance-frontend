@@ -143,9 +143,11 @@ const CheckIn = () => {
                       className={`submit-button ${isSearching ? "button-loading" : ""}`}
                     >
                       {isSearching ? (
-                        <div className="login-button-content">
-                            <SubmissionLoader />
-                            <p>searching</p>
+                        <div className="login-button-content-container">
+                          <div className="login-button-content">
+                              <SubmissionLoader />
+                              <p>searching</p>
+                          </div>
                         </div>
                       )
                       : "search"

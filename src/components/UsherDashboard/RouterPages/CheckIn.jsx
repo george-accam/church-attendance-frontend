@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import capitalizeWords from '../../reusableComponents/CapitaliseEachLetter';
+import SubmissionLoader from '../../reusableComponents/SubmissionLoader';
 
 const CheckIn = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -117,7 +118,17 @@ const CheckIn = () => {
                   disabled={isSearching}
                   className={`submit-button ${isSearching ? "button-loading" : ""}`}
                 >
-                  {isSearching ? "Searching" : "Search"}
+                  
+                  {isSearching ? (
+                      <div className="login-button-content-container">
+                        <div className="login-button-content">
+                            <SubmissionLoader />
+                            <p>searching</p>
+                        </div>
+                      </div>
+                    )
+                    : "search"
+                  }
                 </button>
                 <div className="login-link-container">
                   Want to register member?
