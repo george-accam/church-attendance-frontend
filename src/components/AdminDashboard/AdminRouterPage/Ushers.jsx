@@ -251,7 +251,11 @@ const Ushers = ({ changeColor }) => {
                                   {filteredMember.phoneNumber}
                               </td>
                               <td className='all-members-list-date'>
-                                  { new Date(filteredMember.createdAt).toLocaleDateString("en-GB")}
+                                  { new Date(filteredMember.createdAt).toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                  })}
                               </td>
                               {/* edit table data */}
                               <td className='all-members-list-date edit-button'>
@@ -318,7 +322,11 @@ const Ushers = ({ changeColor }) => {
                                       {member.phoneNumber}
                                   </td>
                                   <td className='all-members-list-date'>
-                                      { new Date(member.createdAt).toLocaleDateString("en-GB")}
+                                      { new Date(member.createdAt).toLocaleDateString("en-GB", {
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric",
+                                      })}
                                   </td>
                                   {/* edit table data */}
                                   <td className='all-members-list-date edit-button'>

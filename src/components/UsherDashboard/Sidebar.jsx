@@ -1,3 +1,4 @@
+import { AiOutlineMail } from "react-icons/ai"; 
 import { RiLogoutCircleLine } from "react-icons/ri"; 
 import { MdEmail } from "react-icons/md"; 
 import { BsFillCalendarCheckFill } from "react-icons/bs"; 
@@ -108,10 +109,12 @@ const Sidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, handleS
             </div>
             {/* email container */}
             <p className="sidebar-email">
-            <div className="sidebar-navigator-list">
-              <MdEmail className="email-icon" />:  
-              <span>{ userEmail }</span>
-            </div>
+              <div className="sidebar-navigator-list">
+                <AiOutlineMail className="email-icon" />:
+                <div className="user-email">
+                  <span>{ userEmail }</span>
+                </div>  
+              </div>
             </p>
             <p onClick={handleLogout} className="sidebar-logout">
               <div className="sidebar-navigator-list">

@@ -1,3 +1,4 @@
+import { AiOutlineMail } from "react-icons/ai"; 
 import { RiLogoutCircleLine } from "react-icons/ri"; 
 import { MdEmail } from "react-icons/md"; 
 import { BsListCheck } from "react-icons/bs"; 
@@ -132,8 +133,10 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
             {/* email container */}
             <p className="sidebar-email">
               <div className="sidebar-navigator-list">
-                <MdEmail className="email-icon" />:  
-                <span>{ userEmail }</span>
+                <AiOutlineMail className="email-icon" />:  
+                <div className="user-email">
+                  <span>{ userEmail }</span>
+                </div>  
               </div>
             </p>
             {/* logout container */}
