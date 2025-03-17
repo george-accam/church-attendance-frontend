@@ -854,6 +854,8 @@ body{
   margin: 10px 20px;
   display: flex;
   justify-content: space-evenly;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--light-text);
 }
 .subtitle{
   font-weight: 700;
@@ -890,6 +892,12 @@ body{
 .navigator-icon{
   font-size: 20px;
   margin-right: 50px;
+}
+.user-email{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 250px;
 }
 .email-icon{
   font-size: 22px;
@@ -1894,6 +1902,10 @@ body{
     border-right: 1px solid #ccc;
     background-color: var(--dark-text);
     transition: transform 0.3s ease-in-out; 
+  }
+  .dashboard-sidebar-subtitle{
+    padding-bottom: 0px;
+    border-bottom: none;
   }
   /* user content container */
   .user-content-container{
