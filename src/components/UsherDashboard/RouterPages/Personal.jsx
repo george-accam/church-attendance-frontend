@@ -32,8 +32,11 @@ const Personal = ({ changeColor }) => {
 
   const searchPersonalMember = async()=>{
     try {
-      const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
+      if (search.trim() === "") {
+        setIsSearching(false);
+      }
       setIsLoading(true);
+      const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
         handleError("member not found");
