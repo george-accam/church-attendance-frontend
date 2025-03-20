@@ -159,7 +159,7 @@ const AllMembers = ({ changeColor }) => {
         try {
             setIsDeleting(true)
             const response =  await api.delete(`delete-attendance/${id}`);
-            const { message  } = response.data;
+            const { message } = response.data;
             if(message){
                 handleSuccess(message || "member deleted successfully")
             }
@@ -170,7 +170,7 @@ const AllMembers = ({ changeColor }) => {
 
         } catch (error) {
             if(error.response.data){
-                handleError(error.response.data)
+                handleError(error.response.data.message)
             }
             else if(error.request){
                 handleError(`Network error : ${error.request}`)
@@ -200,8 +200,8 @@ const AllMembers = ({ changeColor }) => {
             }, 2000);
         } 
         catch (error) {
-            if (error.response.data) {
-                handleError(error.response.data)
+            if (error.response.message) {
+                handleError(error.response.message)
             }
             else if(error.request) {
                 handleError(`Network error : ${error.request}`);
@@ -331,7 +331,8 @@ const AllMembers = ({ changeColor }) => {
                                 ))
                             ) : ( 
                                 members && members.length > 0 ?  ( members.map((member) => (
-                                    <tr key={member._id} 
+                                    <tr 
+                                        key={member._id} 
                                         className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                                     >
                                         <td className='all-members-list-name'>

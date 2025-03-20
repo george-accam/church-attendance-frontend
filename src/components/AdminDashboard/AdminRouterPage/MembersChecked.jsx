@@ -61,7 +61,7 @@ const MembersChecked = ( { changeColor }) => {
             setTotalCheckIns(totalCheckIns);
         } catch (error) {
             if (error.response.data) {
-                handleError(error.response.data)
+                handleError(error.response.data.message)
             }
             else if (error.request) {
                 handleError(`Issue connecting to the internet ${error.request}`);
