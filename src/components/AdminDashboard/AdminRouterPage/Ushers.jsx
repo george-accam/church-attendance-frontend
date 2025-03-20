@@ -46,7 +46,7 @@ const Ushers = ({ changeColor }) => {
         setFilteredMembers(allUsers);
       } catch (error) {
         if (error.response.data) {
-          handleError(error.response.data)
+          handleError(error.response.data.message)
         }
         else if (error.request) {
           handleError(`Issue connecting to the internet ${error.request}`);
@@ -74,10 +74,12 @@ const Ushers = ({ changeColor }) => {
     } 
     catch (error) {
       if (error.response.data) {
-        handleError(error.response.data);
-      } else if (error.request) {
+        handleError(error.response.data.message)
+      }
+      else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection", + error.request);
-      } else {
+      } 
+      else {
         handleError("An error occurred. Please try again");
       }
     } 
@@ -153,7 +155,7 @@ const Ushers = ({ changeColor }) => {
 
         } catch (error) {
             if(error.response.data){
-                handleError(error.response.data)
+                handleError(error.response.data.message)
             }
             else if(error.request){
                 handleError(`Network error : ${error.request}`)
@@ -184,7 +186,7 @@ const Ushers = ({ changeColor }) => {
         } 
         catch (error) {
             if (error.response.data) {
-                handleError(error.response.data)
+                handleError(error.response.data.message)
             }
             else if(error.request) {
                 handleError(`Network error : ${error.request}`);

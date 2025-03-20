@@ -598,6 +598,20 @@ body{
   margin: 4px 0;
   color: rgba(100, 100, 100, 0.596);
 }
+
+/* Dues */
+.tithe-container{
+  color: blue;
+  cursor: pointer;
+}
+.tithe-icon{
+  margin-right: 30px;
+}
+.welfare-container{
+  color: green;
+  cursor: pointer;
+}
+
 /* switch settings 👇 */
 .toggle-switch-container{
   display: flex;
@@ -1433,6 +1447,9 @@ body{
 }
 .delete-table{
   background-color: #ff000078;
+}
+.welfare-table{
+  background-color: green;
 }
 
 /* members checked in */

@@ -1,10 +1,8 @@
 import { FiEdit } from "react-icons/fi"; 
 import { RiDeleteBin6Line } from "react-icons/ri"; 
 import React, { useEffect, useState, useRef } from 'react';
-import Rename from "./Rename";
 
 const Edit = ({ memberId, handleRename, handleDelete }) => {
-    const [isDelete, setIsDelete]= useState(null);
 
     return (
         <>

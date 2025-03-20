@@ -71,7 +71,7 @@ const CheckIn = () => {
       }
     } catch (error) {
       if (error.response.data) {
-        handleError(error.response.data);
+        handleError(error.response.data.message);
       } else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection");
       } else {

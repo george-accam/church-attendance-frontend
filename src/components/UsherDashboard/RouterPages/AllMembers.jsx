@@ -1,12 +1,17 @@
+import { CgOptions } from "react-icons/cg"; 
+import { FaDonate } from "react-icons/fa"; 
 import { CgSearch } from "react-icons/cg"; 
 import React, { useEffect, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
-import { handleError } from '../../../notifications/Notification.js';
+import { handleError, handleSuccess } from '../../../notifications/Notification.js';
 import member from './../../assets/no-member.gif';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
+import Dues from "../../reusableComponents/Dues.jsx";
+import DuesOption from "../../reusableComponents/DuesOption.jsx";
+import Api from "../../../API/Api.js";
 
 
 const AllMembers = ({ changeColor }) => {
@@ -17,6 +22,24 @@ const AllMembers = ({ changeColor }) => {
     const [filteredMembers, setFilteredMembers] = useState([]);
     const storedUsher = localStorage.getItem('usher');
     const usherDetails = JSON.parse(storedUsher);
+    const [isShow, setIsShow] = useState(null);
+    const [showTithe, setShowTithe] = useState(null);
+    const [showWelfare, setShowWelfare] = useState(null);
+
+
+    // show tithe modal
+    const handleShowTithe = (id)=>{
+        setShowTithe(id === showTithe ? true : id);
+    }
+
+    // show welfare modal
+    const handleShowWelfare = (id)=>{
+        setShowWelfare(id === showWelfare ? true : id);
+    }
+    // show edit dues
+    const handleShowEdit = (id) => {
+        setIsShow(id === isShow ? null : id);
+    };
 
     // search members
     const handleSearch = (e) => {
@@ -55,7 +78,6 @@ const AllMembers = ({ changeColor }) => {
             setIsLoading(true);
             const { attendance } = response.data;
             const filteredAttendance = attendance.filter((attendees) => attendees.userFullName !== usherDetails.fullName);
-            console.log(`members : ${JSON.stringify(filteredAttendance)}`);
             
             // set members
             setMembers(filteredAttendance);
@@ -99,6 +121,44 @@ const AllMembers = ({ changeColor }) => {
         }
     };
 
+    const handleAmount = async({ userId, userFullName, fullName, amount, category }) => {
+        try {
+            if(!amount){
+                handleError("please enter amount");
+                return;
+            }
+            
+            const payload = {
+                userId, 
+                userFullName, 
+                fullName, 
+                amount,
+                category
+            }
+            const response = await Api.post("tithe-welfare", payload);
+            const { message } = response.data;
+            if (message) {
+                handleSuccess(message);
+
+            };
+            setTimeout(()=>{
+                setShowTithe(null);
+                setShowWelfare(null);
+            }, 1000)
+        } catch (error) {
+            if(error.response.data){
+                handleError(error.response.data.message);
+            }
+            else if(error.request){
+                handleError("Network error" + error.request);
+            }
+            else {
+                handleError("An error occurred, please try again");
+            }
+        }
+        
+    };
+
 
     return (
         <div>
@@ -128,12 +188,14 @@ const AllMembers = ({ changeColor }) => {
                                 <th>Full Name</th>
                                 <th>Phone Number</th>
                                 <th>Date</th>
+                                <th><FaDonate /></th>
                             </tr>
                         </thead>
                         {/* breaks the thead from the tbody */}
                         <br />
                         {/* table body */}
                         <tbody>
+                            {/* the search text */}
                             {isSearching&&(
                                 <tr className='search-all-members-list'>
                                     <td colSpan={4}>
@@ -163,7 +225,7 @@ const AllMembers = ({ changeColor }) => {
                                 members && members.length > 0 ?  ( members.map((member) => (
                                     <tr 
                                         key={member._id} 
-                                        className='all-members-list'
+                                        className={`all-members-list ${showTithe === member._id ? 'update-table' : showWelfare === member._id ? 'welfare-table' : ''}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(member.fullName)}
@@ -175,11 +237,62 @@ const AllMembers = ({ changeColor }) => {
                                         <td className='all-members-list-date'>
                                         { new Date(member.createdAt).toLocaleDateString("en-GB") }
                                         </td>
+                                        <td className='all-members-list-date'>
+                                            <div 
+                                                key={member._id}
+                                                role="menu"
+                                                className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
+                                                >
+                                                <CgOptions 
+                                                    className="edit-button"
+                                                    onClick={()=> handleShowEdit(member._id)}
+                                                />
+                                                { isShow === member._id && (
+                                                    <div 
+                                                        // ref={(el) => (menuRefs.current[member._id] = el)}
+                                                        className="" 
+                                                        role="none"
+                                                    >
+                                                        <DuesOption
+                                                            memberId={member._id}
+                                                            optionOne = {"tithe"} 
+                                                            optionTwo = {"welfare"} 
+                                                            handleTithe = {()=> { 
+                                                                handleShowTithe(member._id);
+                                                                setIsShow(null);
+                                                            }} 
+                                                            handleWelfare = {()=> { 
+                                                                handleShowWelfare(member._id);
+                                                                setIsShow(null);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {showTithe === member._id && (
+                                                <Dues 
+                                                    memberId={member._id}
+                                                    title = {"Tithe"} 
+                                                    userFullName={member.fullName}
+                                                    handleAmount={handleAmount}
+                                                    handleClose={()=> handleShowTithe(member._id)}   
+                                                />
+                                            )}
+                                            {showWelfare === member._id && (
+                                                <Dues 
+                                                    memberId={member._id}
+                                                    title = {"Welfare"} 
+                                                    userFullName={member.fullName}
+                                                    handleAmount={handleAmount}
+                                                    handleClose={()=> handleShowWelfare(member._id)}   
+                                                />
+                                            )}
+                                        </td>
                                     </tr>
                                 ))
                             ): (
                                 <tr className='no-members'>
-                                    <td colSpan={3}>
+                                    <td colSpan={4}>
                                     <img src={member} alt="👽" />
                                         <p>No members available yet</p>
                                     </td>
