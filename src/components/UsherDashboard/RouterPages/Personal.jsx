@@ -44,7 +44,7 @@ const Personal = ({ changeColor }) => {
       setFilteredMembers(personalAttendance);
 
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(error.response.data.message)
       }
       else if (error.request) {
@@ -72,8 +72,8 @@ const Personal = ({ changeColor }) => {
       }
       setMembers(personalAttendance);
     } catch (error) {
-      if (error.response.data) {
-        handleError(error.response.data);
+      if (error.response.data.message) {
+        handleError(error.response.data.message);
       } else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection", + error.request);
       } else {

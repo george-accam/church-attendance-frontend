@@ -43,7 +43,7 @@ const CheckIn = () => {
       setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
       
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(`Check in failed: ${error.response.data.message} `)
       } else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection", + error.request);
@@ -74,7 +74,7 @@ const CheckIn = () => {
       }
 
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(error.response.data.message);
 
       }else if(error.request){

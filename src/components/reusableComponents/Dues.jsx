@@ -1,7 +1,7 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 import React, { useState } from 'react';
 
-const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleClose }) => {
+const Dues = ({ memberId, title , userFullName, amount, handleAmount, saving, handleClose }) => {
     const [newName, setNewName] = useState(userFullName);
     const [newAmount, setNewAmount] = useState(amount);
     const storedUsher = localStorage.getItem("usher"); // get stored user data
@@ -55,10 +55,11 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleClos
                     </div>
                     <div className="delete-button-container">
                         <button
-                            className="rename-button"
+                            className={`rename-button ${saving ? "saving-button" : ""}`}
                             type="submit"
+                            disabled={saving}
                         >
-                            save
+                            {saving ? "saving" : "save"}
                         </button>
 
                         <button

@@ -58,7 +58,7 @@ const Register = () => {
       });
 
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(`Registration failed: ${error.response.data.message} `)
       }else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection", + error.request);

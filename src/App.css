@@ -1442,6 +1442,12 @@ body{
   color: white;
   border: 1px solid var(--white-bg);
 }
+.saving-button{
+  background-color: var(--dark-bg);
+  color: white;
+  border: 1px solid var(--white-bg);
+  cursor: not-allowed;
+}
 .update-table{
   background-color: #0055ff88;
 }
