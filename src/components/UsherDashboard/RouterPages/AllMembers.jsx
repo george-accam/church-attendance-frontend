@@ -1,7 +1,7 @@
 import { CgOptions } from "react-icons/cg"; 
 import { FaDonate } from "react-icons/fa"; 
 import { CgSearch } from "react-icons/cg"; 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../../../notifications/Notification.js';
@@ -25,6 +25,8 @@ const AllMembers = ({ changeColor }) => {
     const [isShow, setIsShow] = useState(null);
     const [showTithe, setShowTithe] = useState(null);
     const [showWelfare, setShowWelfare] = useState(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const menuRef = useRef({})
 
 
     // show tithe modal
@@ -50,6 +52,9 @@ const AllMembers = ({ changeColor }) => {
     // search members function
     const searchMembers = async() => {
         try {
+            if(search === ""){
+                return "";
+            }
             setIsSearching(true);
             const response = await api.get(`search-attendee?q=${search}`);
             const { attendee } = response.data;
@@ -59,8 +64,8 @@ const AllMembers = ({ changeColor }) => {
             setFilteredMembers(attendee);
 
         } catch (error) {
-            if (error.response.data) {
-                handleError(error.response.data);
+            if (error.response.data.message) {
+                handleError(error.response.data.message);
             } else if (error.request) {
                 handleError("Error connecting to the server. Please check your internet connection", + error.request);
             } else {
@@ -83,8 +88,8 @@ const AllMembers = ({ changeColor }) => {
             setMembers(filteredAttendance);
 
         } catch (error) {
-            if (error.response.data) {
-                handleError(error.response.data);
+            if (error.response.data.message) {
+                handleError(error.response.data.message);
             }
             else if (error.request) {
                 handleError("Error connecting to the server. Please check your internet connection", + error.request);
@@ -96,6 +101,20 @@ const AllMembers = ({ changeColor }) => {
             setIsLoading(false);
         }
     };
+
+    useEffect(()=>{
+        const handleClickOutside = (e) => {
+            if (isShow !== null && menuRef.current[isShow]) {
+                if (!menuRef.current[isShow].contains(e.target)) {
+                    setIsShow(false);
+                }
+            }
+        };
+        
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    },[isShow])
 
     // fetch all members on component mount
     useEffect(() => {
@@ -121,6 +140,7 @@ const AllMembers = ({ changeColor }) => {
         }
     };
 
+    // submit dues amount
     const handleAmount = async({ userId, userFullName, fullName, amount, category }) => {
         try {
             if(!amount){
@@ -128,6 +148,7 @@ const AllMembers = ({ changeColor }) => {
                 return;
             }
             
+            setIsSaving(true);
             const payload = {
                 userId, 
                 userFullName, 
@@ -146,7 +167,7 @@ const AllMembers = ({ changeColor }) => {
                 setShowWelfare(null);
             }, 1000)
         } catch (error) {
-            if(error.response.data){
+            if(error.response.data.message){
                 handleError(error.response.data.message);
             }
             else if(error.request){
@@ -156,9 +177,12 @@ const AllMembers = ({ changeColor }) => {
                 handleError("An error occurred, please try again");
             }
         }
+        finally{
+            setIsSaving(false);
+        }
         
     };
-
+        
 
     return (
         <div>
@@ -204,10 +228,10 @@ const AllMembers = ({ changeColor }) => {
                                 </tr>
                             )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
-                                filteredMembers.map(filteredMember =>(
+                                filteredMembers.map(filteredMember => (
                                     <tr 
                                         key={filteredMember._id} 
-                                        className='all-members-list'
+                                        className={`all-members-list ${showTithe === filteredMember._id ? 'update-table' : showWelfare === filteredMember._id ? 'welfare-table' : ''}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(filteredMember.fullName)}
@@ -218,6 +242,59 @@ const AllMembers = ({ changeColor }) => {
                                         </td>
                                         <td className='all-members-list-date'>
                                             { new Date(filteredMember.createdAt).toLocaleDateString("en-GB") }
+                                        </td>
+                                        <td className='all-members-list-date'>
+                                            <div 
+                                                key={filteredMember._id}
+                                                role="menu"
+                                                className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
+                                                >
+                                                <CgOptions 
+                                                    className="edit-button"
+                                                    onClick={()=> handleShowEdit(filteredMember._id)}
+                                                />
+                                                { isShow === filteredMember._id && (
+                                                    <div 
+                                                        ref={(el) => (menuRef.current[filteredMember._id] = el)}
+                                                        className="" 
+                                                        role="none"
+                                                    >
+                                                        <DuesOption
+                                                            memberId={filteredMember._id}
+                                                            optionOne = {"tithe"} 
+                                                            optionTwo = {"welfare"} 
+                                                            handleTithe = {()=> { 
+                                                                handleShowTithe(filteredMember._id);
+                                                                setIsShow(null);
+                                                            }} 
+                                                            handleWelfare = {()=> { 
+                                                                handleShowWelfare(filteredMember._id);
+                                                                setIsShow(null);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {showTithe === filteredMember._id && (
+                                                <Dues 
+                                                    memberId={filteredMember._id}
+                                                    title = {"Tithe"} 
+                                                    userFullName={filteredMember.fullName}
+                                                    handleAmount={handleAmount}
+                                                    saving={isSaving}
+                                                    handleClose={()=> handleShowTithe(filteredMember._id)}   
+                                                />
+                                            )}
+                                            {showWelfare === filteredMember._id && (
+                                                <Dues 
+                                                    memberId={filteredMember._id}
+                                                    title = {"Welfare"} 
+                                                    userFullName={filteredMember.fullName}
+                                                    handleAmount={handleAmount}
+                                                    saving={isSaving}
+                                                    handleClose={()=> handleShowWelfare(filteredMember._id)}   
+                                                />
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -249,7 +326,7 @@ const AllMembers = ({ changeColor }) => {
                                                 />
                                                 { isShow === member._id && (
                                                     <div 
-                                                        // ref={(el) => (menuRefs.current[member._id] = el)}
+                                                        ref={(el) => (menuRef.current[member._id] = el)}
                                                         className="" 
                                                         role="none"
                                                     >
@@ -275,6 +352,7 @@ const AllMembers = ({ changeColor }) => {
                                                     title = {"Tithe"} 
                                                     userFullName={member.fullName}
                                                     handleAmount={handleAmount}
+                                                    saving={isSaving}
                                                     handleClose={()=> handleShowTithe(member._id)}   
                                                 />
                                             )}
@@ -284,6 +362,7 @@ const AllMembers = ({ changeColor }) => {
                                                     title = {"Welfare"} 
                                                     userFullName={member.fullName}
                                                     handleAmount={handleAmount}
+                                                    saving={isSaving}
                                                     handleClose={()=> handleShowWelfare(member._id)}   
                                                 />
                                             )}

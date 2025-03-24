@@ -56,7 +56,7 @@ const Personal = ({ changeColor }) => {
       }
       setFilteredMembers(personalAttendance);
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(error.response.data.message)
       }
       else if (error.request) {

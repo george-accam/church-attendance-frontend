@@ -41,9 +41,9 @@ const CheckIn = () => {
       setPhoneNumber("");
 
       // Remove the member from checkedMembers after successful submission
-      setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
+      // setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(`Check in failed: ${error.response.data.message}`);
       } else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection");
@@ -70,7 +70,7 @@ const CheckIn = () => {
         setFilteredMembers(attendee);
       }
     } catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(error.response.data.message);
       } else if (error.request) {
         handleError("Error connecting to the server. Please check your internet connection");

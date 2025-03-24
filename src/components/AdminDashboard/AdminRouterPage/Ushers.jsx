@@ -45,7 +45,7 @@ const Ushers = ({ changeColor }) => {
         }
         setFilteredMembers(allUsers);
       } catch (error) {
-        if (error.response.data) {
+        if (error.response.data.message) {
           handleError(error.response.data.message)
         }
         else if (error.request) {
@@ -73,7 +73,7 @@ const Ushers = ({ changeColor }) => {
       setMembers(ushers);
     } 
     catch (error) {
-      if (error.response.data) {
+      if (error.response.data.message) {
         handleError(error.response.data.message)
       }
       else if (error.request) {
@@ -154,7 +154,7 @@ const Ushers = ({ changeColor }) => {
             }, 2000);
 
         } catch (error) {
-            if(error.response.data){
+            if(error.response.data.message){
                 handleError(error.response.data.message)
             }
             else if(error.request){
@@ -185,7 +185,7 @@ const Ushers = ({ changeColor }) => {
             }, 2000);
         } 
         catch (error) {
-            if (error.response.data) {
+            if (error.response.data,message) {
                 handleError(error.response.data.message)
             }
             else if(error.request) {

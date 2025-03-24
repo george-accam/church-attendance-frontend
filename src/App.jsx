@@ -7,6 +7,7 @@ import UsherDashboard from "./components/Usher/UserDashboard";
 import NotFound from './components/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
 import MainComponentLoader from './components/reusableComponents/MainComponentLoader';
+import DOMPurify from 'dompurify';
 
 const App = () => {
   const [usher, setUsher] = useState(null);
@@ -57,8 +58,14 @@ const App = () => {
     )
   }
 
+  // sanitizing user input
+  const userInput = '<script>alert("XSS")</script>';
+  const safeHTML = DOMPurify.sanitize(userInput);
+
   return (
     <div className='app-container'>
+      {/*  sanitize container */}
+      <div dangerouslySetInnerHTML={{ __html: safeHTML }} />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="login" element={<Login />} />
