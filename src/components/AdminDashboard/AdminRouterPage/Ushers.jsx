@@ -36,12 +36,14 @@ const Ushers = ({ changeColor }) => {
       try {
         if (search.trim() === "") {
           setIsSearching(false);
+          return;
         }
         setIsSearching(true);
         const response = await api.get(`search-users?q=${search}`);
         const { allUsers } = response.data;
         if (allUsers === null || allUsers.length === 0) {
           handleError("member not found");
+          return;
         }
         setFilteredMembers(allUsers);
       } catch (error) {

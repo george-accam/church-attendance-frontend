@@ -851,7 +851,7 @@ body{
 /* user sidebar */
 .sidebar-container{
   width: 320px;
-  height: 90vh;
+  height: 90.4vh;
   padding: 10px 0;
   background-color: var(--dark-text);
 }
@@ -931,7 +931,7 @@ body{
 }
 .admin-sidebar-navigator{
   margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .active{
   background-color: rgba(91, 93, 97, 0.414);
@@ -1731,6 +1731,116 @@ body{
   color: rgb(0, 36, 196);
 }
 
+/* tithe and welfare */
+.filter-container{
+  display: flex;
+  margin: 20px 20px;
+}
+.filter-color{
+  color: var(--light-text);
+  background-color: rgb(105, 175, 0);
+  }
+
+.tithe-and-welfare-content-container{
+  margin: 0 20px;
+}
+
+  .filter-link{
+  padding: 3px 18px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-size: 15px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.filter-text-white{
+  color: var(--light-text);
+}
+.filter-text-dark{
+  color: var(--dark-text);
+}
+
+/* all */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin: 25px 0;
+}
+.card {
+  /* width: 50%;
+  height: auto; */
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  border-radius: 8px;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:before {
+  transform: translateX(-100%);
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:after {
+  transform: translateX(100%);
+}
+.member-info-tithe-and-welfare{
+  color: white;
+}
+.member-tithe-and-welfare-container{
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 75vh;
+  width: 100%;
+}
+
+
+
+
+
+
+
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{
@@ -1785,10 +1895,10 @@ body{
   /* user sidebar */
   .sidebar-container{
     width: 300px;
-    height: 90vh;
+    height: 90.3vh;
   }
   .user-content-container{
-    height: 90vh;
+    height: 90.5vh;
   }
   .edit-container{
     margin: 4px 35px 0 0;
@@ -1932,7 +2042,15 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 93vh;
+    height: 93.3vh;
+  }
+  /* .admin-content-container{
+    height: 92vh;
+  } */
+  .admin-content-tithe-and-welfare-container{
+    height: 90vh;
+    overflow-y: scroll;
+    margin: 0 10px;
   }
   .all-members-list-header th{
     padding: 10px 0;
@@ -1948,6 +2066,10 @@ body{
   /* qr code */
   .code-button-container{
     display: none;
+  }
+  /* all */
+  .tithe-and-welfare-content-container{
+    margin: 0 10px;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -2034,7 +2156,7 @@ body{
     height: 93vh;
   }
   .user-content-container{
-    height: 92.8vh;
+    height: 93.8vh;
   }
   .header-search-bar{
     display: flex;

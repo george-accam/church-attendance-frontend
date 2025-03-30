@@ -163,24 +163,24 @@ const MembersChecked = ( { changeColor }) => {
                                         <div key={checkIn._id} className="grid-item">
                                             <div className="grid-container-inner">
                                                 <div>
-                                                <div className="member-info-check">
-                                                    <label htmlFor="name">
-                                                    <BsPersonSquare /> Name:
-                                                    </label>
-                                                    <p>{capitalizeWords(checkIn.attendeeFullName)}</p>
-                                                </div>
-                                                <div className="member-info-check">
-                                                    <label htmlFor="name">
-                                                    <SlPhone /> Phone number:
-                                                    </label>
-                                                    <p>{checkIn.attendeePhoneNumber}</p>
-                                                </div>
-                                                <div className="member-info-check">
-                                                    <label htmlFor="name">
-                                                    <IoMdTimer /> Checked in at:
-                                                    </label>
-                                                    <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
-                                                </div>
+                                                    <div className="member-info-check">
+                                                        <label htmlFor="name">
+                                                        <BsPersonSquare /> Name:
+                                                        </label>
+                                                        <p>{capitalizeWords(checkIn.attendeeFullName)}</p>
+                                                    </div>
+                                                    <div className="member-info-check">
+                                                        <label htmlFor="name">
+                                                        <SlPhone /> Phone number:
+                                                        </label>
+                                                        <p>{checkIn.attendeePhoneNumber}</p>
+                                                    </div>
+                                                    <div className="member-info-check">
+                                                        <label htmlFor="name">
+                                                        <IoMdTimer /> Checked in at:
+                                                        </label>
+                                                        <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

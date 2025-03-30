@@ -50,6 +50,7 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, saving, ha
                             type="number" 
                             placeholder="Enter amount"
                             value={newAmount}
+                            min={1}
                             onChange={(e)=> setNewAmount(e.target.value)}
                         />
                     </div>

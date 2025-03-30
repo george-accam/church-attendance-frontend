@@ -82,10 +82,10 @@ const AllMembers = ({ changeColor }) => {
             const response = await api.get('/attendees');
             setIsLoading(true);
             const { attendance } = response.data;
-            const filteredAttendance = attendance.filter((attendees) => attendees.userFullName !== usherDetails.fullName);
+            // const filteredAttendance = attendance.filter((attendees) => attendees.userFullName !== usherDetails.fullName);
             
             // set members
-            setMembers(filteredAttendance);
+            setMembers(attendance);
 
         } catch (error) {
             if (error.response.data.message) {

@@ -47,6 +47,7 @@ const Personal = ({ changeColor }) => {
     try {
       if (search.trim() === "") {
         setIsSearching(false);
+        return;
       }
       setIsSearching(true);
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
