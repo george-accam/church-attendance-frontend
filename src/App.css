@@ -2040,6 +2040,9 @@ body{
     padding-bottom: 0px;
     border-bottom: none;
   }
+  .admin-navbar-navigator-container{
+    margin: 5px 0;
+  }
   /* user content container */
   .user-content-container{
     height: 93.3vh;
@@ -2048,7 +2051,7 @@ body{
     height: 92vh;
   } */
   .admin-content-tithe-and-welfare-container{
-    height: 90vh;
+    height: 93vh;
     overflow-y: scroll;
     margin: 0 10px;
   }
