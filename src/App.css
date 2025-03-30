@@ -1790,7 +1790,7 @@ body{
 }
 
 .card:hover {
-  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  transform: rotateY(10deg) rotateX(10deg) scale(0.95);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -1823,7 +1823,7 @@ body{
 }
 
 .card:hover:after {
-  transform: translateX(100%);
+  transform: translateX(10%);
 }
 .member-info-tithe-and-welfare{
   color: white;
@@ -2045,13 +2045,13 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 93.3vh;
+    height: 93vh;
   }
   /* .admin-content-container{
     height: 92vh;
   } */
   .admin-content-tithe-and-welfare-container{
-    height: 93vh;
+    height: 91.7vh;
     overflow-y: scroll;
     margin: 0 10px;
   }
@@ -2164,6 +2164,9 @@ body{
   .header-search-bar{
     display: flex;
     flex-direction: column;
+  }
+  .admin-sidebar-bottom{
+    margin-top: 30px;
   }
   /* usher register */
   .usher-register-container{
