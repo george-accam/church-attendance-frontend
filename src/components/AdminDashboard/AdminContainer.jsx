@@ -16,10 +16,73 @@ import { handleError, handleSuccess } from '../../notifications/Notification';
 
 const AdminContainer = ({changeColor }) => {
   const [dues, setDues] = useState({});
+  const [isTotalAmountByDate, setIsTotalAmountByDate] = useState({});
+  const [isTotalAmount, setIsTotalAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [titheOnly, setTitheOnly] = useState({});
   const [welfareOnly, setWelfareOnly] = useState({});
 
+  const category = "Tithe";
+
+  // function to get tithe data
+  const getAllWelfare = async () => {
+    setLoading(true);
+    try {
+      setLoading(true);
+      const response = await api.get('tithe-welfare');
+      const { message, titheAndWelfareData } = response.data;
+      if (message) {
+        const filteredByDate = {};
+        
+        for (const date in titheAndWelfareData){
+          filteredByDate[date] = titheAndWelfareData[date].filter((item) => item.category !== category);
+        }
+        setWelfareOnly(filteredByDate);
+      } 
+    } catch (error) {
+      if(error.response.data.message) {
+        handleError(`error status: ${error.response.data.message}`);
+      }
+      else if(e.request) {
+        handleError(`network error: ${error.request}`);
+      }
+      else {
+        handleError(`error occurred: ${error.message}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // function to get tithe data
+  const getAllTithe = async () => {
+    setLoading(true);
+    try {
+      setLoading(true);
+      const response = await api.get('tithe-welfare');
+      const { message, titheAndWelfareData, totalAmountByDate, totalAmount } = response.data;
+      if (message) {
+        const filteredByDate = {};
+        
+        for (const date in titheAndWelfareData){
+          filteredByDate[date] = titheAndWelfareData[date].filter((item) => item.category === category);
+        }
+        setTitheOnly(filteredByDate);
+      } 
+    } catch (error) {
+      if(error.response.data.message) {
+        handleError(`error status: ${error.response.data.message}`);
+      }
+      else if(e.request) {
+        handleError(`network error: ${error.request}`);
+      }
+      else {
+        handleError(`error occurred: ${error.message}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
   // function to get both tithe and welfare data
   const getAllDues = async () => {
@@ -27,12 +90,14 @@ const AdminContainer = ({changeColor }) => {
     try {
       setLoading(true);
       const response = await api.get('tithe-welfare');
-      const { message, titheAndWelfareData } = response.data;
+      const { message, titheAndWelfareData, totalAmountByDate, totalAmount } = response.data;
       if (message) {
+        setIsTotalAmountByDate(totalAmountByDate);
+        setIsTotalAmount(totalAmount);
         setDues(titheAndWelfareData);
       } 
     } catch (e) {
-      if(e.response.data.message) {
+      if(e.response.data) {
         handleError(`error status: ${e.response.data.message}`);
       }
       else if(e.request) {
@@ -46,6 +111,8 @@ const AdminContainer = ({changeColor }) => {
     }
   }
   useEffect(() => {
+    getAllWelfare();
+    getAllTithe();
     getAllDues();
   }, []);
 
@@ -60,7 +127,8 @@ const AdminContainer = ({changeColor }) => {
                 changeColor={changeColor}
                 />
               } />
-              {/* tithe and  welfare */}
+
+            {/* tithe and  welfare */}
             <Route path="tithe-and-welfare" element={
               <TitheAndWelfare 
                 changeColor={changeColor}
@@ -69,18 +137,24 @@ const AdminContainer = ({changeColor }) => {
               <Route path='all' element={
                 <All
                   dues={dues}
+                  isTotalAmount={isTotalAmount}
+                  isTotalAmountByDate={isTotalAmountByDate}
                   loading={loading}
                 />
                 } />
               <Route path='tithe' element={
                 <Tithe 
                   titheOnly={titheOnly}
+                  isTotalAmount={isTotalAmount}
+                  isTotalAmountByDate={isTotalAmountByDate}
                   loading={loading}
                 />
                 } />
               <Route path='welfare' element={
                 <Welfare 
-                  dues={dues}
+                  welfareOnly={welfareOnly}
+                  isTotalAmount={isTotalAmount}
+                  isTotalAmountByDate={isTotalAmountByDate}
                   loading={loading}
                 />
                 } />

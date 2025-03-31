@@ -1832,7 +1832,24 @@ body{
   overflow-y: scroll;
   scroll-behavior: smooth;
   height: 75vh;
-  width: 100%;
+  border-bottom: 1px solid var(--light-text);
+}
+.total-amount{
+  margin-top: 10px;
+}
+.total-amount{
+  font-size: 15px;
+}
+.total-amount-by-date{
+  font-size: 15px;
+  margin-bottom: 30px ;
+}
+.total-amount-loader p{
+  margin-top: 5px;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(103, 107, 123);
 }
 
 
@@ -2045,13 +2062,13 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 93vh;
+    height: 93.3vh;
   }
   /* .admin-content-container{
     height: 92vh;
   } */
   .admin-content-tithe-and-welfare-container{
-    height: 91.7vh;
+    height: 90vh;
     overflow-y: scroll;
     margin: 0 10px;
   }

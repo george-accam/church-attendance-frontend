@@ -23,7 +23,7 @@ const MembersChecked = ( { changeColor }) => {
     const fetchCheckedMember = async()=>{
         try {
             setIsLoading(true);
-            const response = await api.get("all-check-ins?page=1&limit=10");
+            const response = await api.get("all-check-ins");
             const { checkIns } = response.data;
             setGroupedCheckIns(checkIns);
         } 
@@ -51,7 +51,7 @@ const MembersChecked = ( { changeColor }) => {
         try {
             setIsSearching(true);
             const response = await api.get(`search-checked-in-attendee?q=${search}`);
-            const { checkIns, totalCheckIns, attendee } = response.data;
+            const { checkIns, totalCheckIns, attendee } = response?.data;
 
             if (attendee === null || attendee.length === 0) {
                 handleError("No members found matching your search");
