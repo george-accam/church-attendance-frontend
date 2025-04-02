@@ -6,6 +6,7 @@ const Delete = ({ member, isDeleting, handleCloseDelete, handleDeletedData }) =>
         <div 
             key={member._id}
             className='rename-container-outer'
+            onClick={(e) => e.stopPropagation()}
         >
             <div className="delete-container-inner">
                 <div className="rename-container-header">

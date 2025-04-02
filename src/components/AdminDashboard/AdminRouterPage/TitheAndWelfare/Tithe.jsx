@@ -2,14 +2,33 @@ import { CgOptions } from "react-icons/cg";
 import { BiCategory } from "react-icons/bi"; 
 import { GiMoneyStack } from "react-icons/gi"; 
 import { BsFillPersonLinesFill } from "react-icons/bs"; 
-import React from 'react';
+import React, { useState } from 'react';
 import { BsPersonSquare } from 'react-icons/bs';
 import { IoMdTimer } from 'react-icons/io';
 import capitalizeWords from "../../../reusableComponents/CapitaliseEachLetter";
 import member from "../../../assets/no-member.gif";
 import TitheAndWelfareLoader from "../../../reusableComponents/TitheAndWelfareLoader";
 
-const Tithe = ({ titheOnly, loading, isTotalAmount, isTotalAmountByDate }) => {
+const Tithe = ({ titheOnly, loading, titheAmount, titheAmountByDate }) => {
+    const [showEdit, setShowEdit] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [showRename, setShowRename] = useState(false);
+
+    // handle show edit 
+    const handleEdit = (id) => {
+        setShowEdit(showEdit === id ? true : id);
+    };
+
+    // handle show delete 
+    const handleDelete = (id) => {
+        setShowDelete(showDelete === id ? true : id);
+    };
+
+    // handle show rename 
+    const handleRename = (id) => {
+        setShowRename(showRename === id ? true : id);
+    };
+    
 
     // check for current date
     const isToday = (someDate) => {
@@ -106,7 +125,7 @@ const Tithe = ({ titheOnly, loading, isTotalAmount, isTotalAmountByDate }) => {
                                                         year: 'numeric',
                                                     })
                                                 )
-                                        } : GH¢ {isTotalAmountByDate[date]}.00
+                                        } : GH¢ {titheAmountByDate[date]}.00
                                 </p>
                             </div>
                         ))
@@ -120,7 +139,7 @@ const Tithe = ({ titheOnly, loading, isTotalAmount, isTotalAmountByDate }) => {
 
             {/* total amount */}
             <div className="total-amount">
-                <p>Total amount : GH¢ {isTotalAmount ? isTotalAmount : 0}.00</p>
+                <p>Total amount : GH¢ {titheAmount ? titheAmount : 0}.00</p>
             </div>
         </div>
     )

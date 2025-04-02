@@ -414,8 +414,7 @@ const AllMembers = ({ changeColor }) => {
             </div>
                 <p className='number-of-members'>
                     <span className='ping-effect'></span>
-                    Nº of members registered : 
-                    {
+                    Nº of members registered : {
                         members &&
                         members.length > 0 ?
                         members.length : 0 

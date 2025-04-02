@@ -1,7 +1,7 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"; 
 import React, { useState } from 'react';
 
-const Dues = ({ memberId, title , userFullName, amount, handleAmount, saving, handleClose }) => {
+const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleRenameData, saving, handleClose }) => {
     const [newName, setNewName] = useState(userFullName);
     const [newAmount, setNewAmount] = useState(amount);
     const storedUsher = localStorage.getItem("usher"); // get stored user data
@@ -12,6 +12,18 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, saving, ha
     const handleSendAmount = (e)=>{
         e.preventDefault();
         handleAmount({
+            userId: usher._id, 
+            userFullName: usher.fullName, 
+            fullName: newName, 
+            amount: newAmount, 
+            category: title,
+        });
+    }
+
+    const handleUpdateAmount = (e)=>{
+        e.preventDefault();
+        handleRenameData({
+            id: memberId,
             userId: usher._id, 
             userFullName: usher.fullName, 
             fullName: newName, 
@@ -33,7 +45,7 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, saving, ha
                         <AiOutlineCloseCircle />
                     </span>
                 </div>
-                <form onSubmit={handleSendAmount}>
+                <form onSubmit={usher.role === "Usher" ? handleSendAmount : handleUpdateAmount}>
                     <div className="rename-input-container">
                         <label htmlFor="full-name">Full name</label>
                         <input 

@@ -2,14 +2,36 @@ import { CgOptions } from "react-icons/cg";
 import { BiCategory } from "react-icons/bi"; 
 import { GiMoneyStack } from "react-icons/gi"; 
 import { BsFillPersonLinesFill } from "react-icons/bs"; 
-import React from 'react';
+import React, { useState } from 'react';
 import { BsPersonSquare } from 'react-icons/bs';
 import { IoMdTimer } from 'react-icons/io';
 import capitalizeWords from "../../../reusableComponents/CapitaliseEachLetter";
 import member from "../../../assets/no-member.gif";
 import TitheAndWelfareLoader from "../../../reusableComponents/TitheAndWelfareLoader";
+import Edit from "../../../reusableComponents/Edit";
+import Delete from "../../../reusableComponents/Delete";
+import Dues from "../../../reusableComponents/Dues";
 
-const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading }) => {
+const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameData }) => {
+    const [showEdit, setShowEdit] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [showRename, setShowRename] = useState(false);
+
+    // handle show edit 
+    const handleEdit = (id) => {
+        setShowEdit(showEdit === id ? true : id);
+    };
+
+    // handle show delete 
+    const handleDelete = (id) => {
+        setShowDelete(showDelete === id ? true : id);
+    };
+
+    // handle show rename 
+    const handleRename = (id) => {
+        setShowRename(showRename === id ? true : id);
+    };
+
     if (loading) {
         return (
             <TitheAndWelfareLoader />
@@ -58,7 +80,43 @@ const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading }) => {
                                         <div 
                                             class="card"
                                             key={due._id}
+                                            onDoubleClick={() => handleEdit(due._id)}
                                         >
+                                                {/* show edit container */}
+                                                {showEdit === due._id && (
+                                                    <Edit 
+                                                        memberId={due._id}
+                                                        handleRename={() => {
+                                                            handleRename(due._id);
+                                                            handleEdit(due._id);
+                                                        }}
+                                                        handleDelete={() => {
+                                                            handleDelete(due._id);
+                                                            handleEdit(due._id);
+                                                        }}
+                                                    />
+                                                )}
+
+                                                {/* show delete container */}
+                                                {showDelete === due._id && (
+                                                    <Delete 
+                                                        member={due}
+                                                        handleCloseDelete={() => handleDelete(due._id)}
+                                                        handleDeletedData={() => handleDelete(due._id)}
+                                                    />
+                                                )}
+
+                                                {/* show rename container */}
+                                                {showRename === due._id && (
+                                                    <Dues 
+                                                        memberId={due._id}
+                                                        title={due.category}
+                                                        userFullName={due.fullName}
+                                                        amount={due.amount}
+                                                        handleRenameData={handleRenameData}
+                                                        handleClose={() => handleRename(due._id)}
+                                                    />
+                                                )}
                                             <div class="card-content">
                                                 <div>
                                                     <div className="member-info-check member-info-tithe-and-welfare">
