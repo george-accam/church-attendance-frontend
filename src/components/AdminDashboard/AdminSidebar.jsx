@@ -79,7 +79,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
             </Link>
 
             {/* tithe-and-welfare */}
-            <Link to="/admin-dashboard/tithe-and-welfare/all"
+            <Link to={`/admin-dashboard/tithe-and-welfare/${localStorage.getItem("tithe-and-welfare")}`}
               onClick={()=> handleShowActive("tithe-and-welfare")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "tithe-and-welfare" ? "active" : ""}`}
             >

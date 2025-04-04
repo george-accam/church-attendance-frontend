@@ -35,7 +35,6 @@ const Personal = ({ changeColor }) => {
       if (search.trim() === "") {
         setIsSearching(false);
       }
-      setIsLoading(true);
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
@@ -53,7 +52,7 @@ const Personal = ({ changeColor }) => {
         handleError("Search failed, please try again");
       }
     }finally{
-      setIsLoading(false);
+      setIsSearching(false);
     }
   };
   // retrieve the data

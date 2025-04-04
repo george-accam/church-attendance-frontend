@@ -11,8 +11,9 @@ import TitheAndWelfareLoader from "../../../reusableComponents/TitheAndWelfareLo
 import Edit from "../../../reusableComponents/Edit";
 import Delete from "../../../reusableComponents/Delete";
 import Dues from "../../../reusableComponents/Dues";
+import CheckedInSearch from "../../../reusableComponents/CheckedInSearch";
 
-const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameData }) => {
+const All = ({ dues, isTotalAmount, searchTotalAmountByDate, isTotalAmountByDate, searchResults, searchTotalAmount, isSearching, loading, handleRenameData, handleDeletedData, isSaving }) => {
     const [showEdit, setShowEdit] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [showRename, setShowRename] = useState(false);
@@ -50,11 +51,136 @@ const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameDa
             checkDate.getFullYear() === today.getFullYear()
         );
     };
+
+    
     
     return (
         <div>
             <div className='member-tithe-and-welfare-container'>
-                    { Object.keys(dues).length > 0 ? (
+                { Object.keys(searchResults).length > 0 ? (
+                    Object.keys(searchResults).map((date) => (
+                        <div key={date} className="">
+                            {/* date header */}
+                            <div className="grouped-checked-members-header">
+                                <h1>
+                                    {isToday(date) ? (  
+                                            "Today"
+                                        ) : (
+                                            new Date(date).toLocaleDateString("en-GB", {
+                                                weekday: 'short',
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric',
+                                            })
+                                        )
+                                    }
+                                </h1>
+                            </div>
+
+                            {/* content card */}
+                            <div className="card-container">
+                                {searchResults[date].map((searchResult) => (
+                                    <div 
+                                        class="card"
+                                        key={searchResult._id}
+                                        onDoubleClick={() => handleEdit(searchResult._id)}
+                                    >
+                                            {/* show edit container */}
+                                            {showEdit === searchResult._id && (
+                                                <Edit 
+                                                    memberId={searchResult._id}
+                                                    handleRename={() => {
+                                                        handleRename(searchResult._id);
+                                                        handleEdit(searchResult._id);
+                                                    }}
+                                                    handleDelete={() => {
+                                                        handleDelete(searchResult._id);
+                                                        handleEdit(searchResult._id);
+                                                    }}
+                                                />
+                                            )}
+
+                                            {/* show delete container */}
+                                            {showDelete === searchResult._id && (
+                                                <Delete 
+                                                    member={searchResult}
+
+                                                    isDeleting={isSaving}
+                                                    handleCloseDelete={() => handleDelete(searchResult._id)}
+                                                    handleDeletedData={()=> handleDeletedData({ 
+                                                        id: searchResult._id, 
+                                                        close: ()=> { setTimeout(() => { handleClose() }, 300) }}
+                                                    )}
+                                                />
+                                            )}
+
+                                            {/* show rename container */}
+                                            {showRename === searchResult._id && (
+                                                <Dues 
+                                                    memberId={searchResult._id}
+                                                    title={searchResult.category}
+                                                    userFullName={searchResult.fullName}
+                                                    saving={isSaving}
+                                                    amount={searchResult.amount}
+                                                    handleRenameData={handleRenameData}
+                                                    handleClose={() => handleRename(searchResult._id)}
+                                                />
+                                            )}
+                                        <div class="card-content">
+                                            <div>
+                                                <div className="member-info-check member-info-tithe-and-welfare">
+                                                    <label htmlFor="name">
+                                                        <BsPersonSquare /> Name:
+                                                    </label>
+                                                    <p>{ capitalizeWords(searchResult.fullName)}</p>
+                                                </div>
+                                                <div className="member-info-check member-info-tithe-and-welfare">
+                                                    <label htmlFor="name">
+                                                        <BsFillPersonLinesFill /> Usher name:
+                                                    </label>
+                                                    <p>{capitalizeWords(searchResult.userFullName)}</p>
+                                                </div>
+                                                <div className="member-info-check member-info-tithe-and-welfare">
+                                                    <label htmlFor="name">
+                                                        <BiCategory /> Type:
+                                                    </label>
+                                                    <p>{searchResult.category}</p>
+                                                </div>
+                                                <div className="member-info-check member-info-tithe-and-welfare">
+                                                    <label htmlFor="name">
+                                                        <GiMoneyStack /> Amount:
+                                                    </label>
+                                                    <p>GH¢ {searchResult.amount}.00</p>
+                                                </div>
+                                                <div className="member-info-check member-info-tithe-and-welfare">
+                                                    <label htmlFor="name">
+                                                        <IoMdTimer /> Submitted at:
+                                                    </label>
+                                                    <p>{new Date(searchResult.dateCreated).toLocaleTimeString()}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                ))}
+                            </div>
+
+                            <p className="total-amount-by-date">
+                                Total amount for {isToday(date) ? (  
+                                            "today"
+                                        ) : (
+                                            new Date(date).toLocaleDateString("en-GB", {
+                                                day: 'numeric',
+                                                month: 'short',
+                                                year: 'numeric',
+                                            })
+                                        )
+                                } : GH¢ {searchTotalAmountByDate[date]}.00
+                            </p>
+                        </div>
+                    ))
+                ) : 
+                    Object.keys(dues).length > 0 ? (
                         Object.keys(dues).map((date) => (
                             <div key={date} className="">
                                 {/* date header */}
@@ -101,8 +227,13 @@ const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameDa
                                                 {showDelete === due._id && (
                                                     <Delete 
                                                         member={due}
+
+                                                        isDeleting={isSaving}
                                                         handleCloseDelete={() => handleDelete(due._id)}
-                                                        handleDeletedData={() => handleDelete(due._id)}
+                                                        handleDeletedData={()=> handleDeletedData({ 
+                                                            id: due._id, 
+                                                            close: ()=> { setTimeout(() => { handleClose() }, 300) }}
+                                                        )}
                                                     />
                                                 )}
 
@@ -112,6 +243,7 @@ const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameDa
                                                         memberId={due._id}
                                                         title={due.category}
                                                         userFullName={due.fullName}
+                                                        saving={isSaving}
                                                         amount={due.amount}
                                                         handleRenameData={handleRenameData}
                                                         handleClose={() => handleRename(due._id)}
@@ -170,17 +302,25 @@ const All = ({ dues, isTotalAmount, isTotalAmountByDate, loading, handleRenameDa
                                 </p>
                             </div>
                         ))
-                    ) : (
-                        <div className="no-members">
-                            <img src={member} alt="👽" />
-                            <p>No dues found.</p>
-                        </div>
-                    )}
+                    ): (
+                    <div className="no-members">
+                        <img src={member} alt="👽" />
+                        <p>No dues found.</p>
+                    </div>
+                )}
             </div>
 
             {/* total amount */}
             <div className="total-amount">
-                <p>Total amount : GH¢ {isTotalAmount ? isTotalAmount : 0}.00</p>
+                <p>
+                    Total amount : GH¢ {
+                        typeof searchTotalAmount === "number" || searchTotalAmount.length > 0
+                        ? searchTotalAmount :
+                        typeof isTotalAmount === "number" || isTotalAmount.length > 0 ? 
+                        isTotalAmount 
+                        : 0 
+                    }.00
+                </p>
             </div>
         </div>
     )

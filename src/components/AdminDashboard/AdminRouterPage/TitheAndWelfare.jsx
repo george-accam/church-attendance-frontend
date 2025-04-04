@@ -1,13 +1,19 @@
 import { CgSearch } from "react-icons/cg"; 
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
 
-const TitheAndWelfare = ({ changeColor }) => {
-    const [isNavigate, setIsNavigate] = useState("all");
+const TitheAndWelfare = ({ changeColor, search, setSearch, isSearching }) => {
+    const [isNavigate, setIsNavigate] = useState(localStorage.getItem("tithe-and-welfare") || "all");
 
     const handleNavigate = (isActive) => {
         setIsNavigate(isActive);
+        localStorage.setItem("tithe-and-welfare", isActive);
     };
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    }
 
 
     return (
@@ -17,17 +23,14 @@ const TitheAndWelfare = ({ changeColor }) => {
                 <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
                     <h1 className='all-members-title'>Tithe and Welfare</h1>
                     <div 
-                        // tabIndex={0}
-                        // onKeyDown={handleEnter}
                         className="search-container"
                     >
                         <input type="text"
                             placeholder='search members'
-                            // value={search}
-                            // onChange={handleSearch}
+                            value={search}
+                            onChange={handleSearch}
                         />
                         <CgSearch className="search-icon"
-                            // onClick={searchMembers}
                         />
                     </div>
                 </div>
@@ -62,6 +65,11 @@ const TitheAndWelfare = ({ changeColor }) => {
 
                 {/* the tithe and welfare child components */}
                 <div className="tithe-and-welfare-content-container">
+                    { isSearching && (
+                        <div className="tithe-and-welfare-loader">
+                            <CheckedInSearch />
+                        </div>
+                    )}
                     <Outlet />
                 </div>
             </div>

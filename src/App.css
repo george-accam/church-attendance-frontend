@@ -1709,6 +1709,8 @@ body{
 .code-image-inner img{
   width: 170px;
   height: 170px;
+  border-radius: 10px;
+  border: 5px solid rgb(77, 127, 2);
 }
 
 /* password strength */
@@ -1745,6 +1747,9 @@ body{
 
 .tithe-and-welfare-content-container{
   margin: 0 20px;
+}
+.admin-content-tithe-and-welfare-container{
+  margin: 0 10px;
 }
 
   .filter-link{
@@ -1793,6 +1798,10 @@ body{
 .card:hover {
   transform: rotateX(10deg);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tithe-and-welfare-loader{
+  margin-bottom: 10px;
 }
 
 .member-info-tithe-and-welfare{
@@ -2040,7 +2049,6 @@ body{
   .admin-content-tithe-and-welfare-container{
     height: 90vh;
     overflow-y: scroll;
-    margin: 0 10px;
   }
   .all-members-list-header th{
     padding: 10px 0;

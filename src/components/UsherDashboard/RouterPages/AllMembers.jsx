@@ -165,7 +165,7 @@ const AllMembers = ({ changeColor }) => {
             setTimeout(()=>{
                 setShowTithe(null);
                 setShowWelfare(null);
-            }, 1000)
+            }, 300)
         } catch (error) {
             if(error.response.data.message){
                 handleError(error.response.data.message);

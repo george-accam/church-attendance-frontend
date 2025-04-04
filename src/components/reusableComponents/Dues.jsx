@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleRenameData, saving, handleClose }) => {
     const [newName, setNewName] = useState(userFullName);
     const [newAmount, setNewAmount] = useState(amount);
+
+    // usher credentials
     const storedUsher = localStorage.getItem("usher"); // get stored user data
     const usherDetails = JSON.parse(storedUsher); // parse user data
     const [usher, setUsher] = useState(usherDetails);
@@ -19,19 +21,18 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleRena
             category: title,
         });
     }
-
+    
+    
     const handleUpdateAmount = (e)=>{
         e.preventDefault();
         handleRenameData({
             id: memberId,
-            userId: usher._id, 
-            userFullName: usher.fullName, 
             fullName: newName, 
             amount: newAmount, 
             category: title,
+            close: ()=> { handleClose() },
         });
     }
-    
 
     return (
         <div
@@ -45,7 +46,7 @@ const Dues = ({ memberId, title , userFullName, amount, handleAmount, handleRena
                         <AiOutlineCloseCircle />
                     </span>
                 </div>
-                <form onSubmit={usher.role === "Usher" ? handleSendAmount : handleUpdateAmount}>
+                <form onSubmit={handleRenameData ? handleUpdateAmount : handleSendAmount}>
                     <div className="rename-input-container">
                         <label htmlFor="full-name">Full name</label>
                         <input 
