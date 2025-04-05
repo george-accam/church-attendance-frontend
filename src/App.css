@@ -1936,6 +1936,7 @@ body{
   cursor: pointer;
   border: 1px solid rgb(96, 96, 255);
   color: white;
+  box-shadow: 0 0 15px rgba(21, 29, 44, 0.616);
 }
 .display-content-card:hover{
   background-color: rgb(96, 96, 255);
