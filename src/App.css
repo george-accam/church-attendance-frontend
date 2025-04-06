@@ -853,7 +853,7 @@ body{
 /* user sidebar */
 .sidebar-container{
   width: 320px;
-  height: 90.4vh;
+  height: 90vh;
   padding: 10px 0;
   background-color: var(--dark-text);
 }
@@ -955,7 +955,7 @@ body{
 }
 /* admin side bar bottom */
 .admin-sidebar-bottom{
-  margin-top: 70px;
+  margin-top: 1px;
   padding: 0 10px;
   border-top: 1px solid var(--light-text);
 }
@@ -1878,17 +1878,18 @@ body{
 .text-area-container-inner{
   display: flex;
   background-color: rgb(66, 84, 119);
-  border-radius: 15px;
+  border-radius: 25px;
   border: 1px solid rgb(96, 96, 255);
-  width: 70%;
-
+  width: 60%;
+  padding: 5px 15px;
+  margin: 0 10px;
 }
 .text-area-container textarea{
   width: 100%;
-  height: 40px;
-  padding: 10px;
-  border-radius: 15px;
+  height: 35px;
+  padding: 8px;
   resize: none;
+  font-size: 14.5px;
   outline: none;
   border: none;
   background-color: rgb(66, 84, 119);
@@ -1897,6 +1898,10 @@ body{
 .text-area-container textarea::placeholder{
   color: rgb(152, 152, 152);
   font-size: 15px;
+}
+.text-area-icon-container button{
+  border: none;
+  background-color: transparent;
 }
 .text-area-container-icon{
   font-size: 25px;
@@ -1922,6 +1927,15 @@ body{
   text-align: center;
   font-weight: 500;
 }
+.display-content-header span{
+  font-size: 20px;
+}
+.display-content-hello{
+  width: 33px;
+  height: 33px;
+  margin: -4px;
+  padding-left: 15px;
+}
 .display-content-card-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1944,10 +1958,36 @@ body{
 }
 .display-content-card p{
   font-size: 16px;
+  text-align: center;
+  line-height: 25px;
   padding: 20px;
 }
-
-
+.prompt-message-and-response-container{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12%;
+}
+.prompt-response-and-icon-container{
+  display: flex;
+  margin-top: 40px;
+}
+.prompt-response-icon{
+  font-size: 25px;
+  margin-right: 20px;
+}
+.prompt-message-container p{
+  font-size: 16px;
+  float: right;
+  max-width: 50%;
+  line-height: 25px;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: #4c4cba70;
+}
+.prompt-response-container{
+  font-size: 16px;
+  line-height: 30px;
+}
 
 
 /* responsiveness css */
@@ -2004,7 +2044,7 @@ body{
   /* user sidebar */
   .sidebar-container{
     width: 300px;
-    height: 90.3vh;
+    height: 90.4vh;
   }
   .user-content-container{
     height: 90.5vh;
@@ -2015,6 +2055,9 @@ body{
   /* qr code */
   .code-button-container-inner{
     margin-right: 110px;
+  }
+  .prompt-message-and-response-container{
+    padding: 10px 20px;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -2139,7 +2182,7 @@ body{
   .sidebar-container{
     position: fixed;
     width: 350px;
-    height: 92.2vh;
+    height: 92vh;
     padding: 10px 0;
     border-right: 1px solid #ccc;
     background-color: var(--dark-text);
@@ -2154,7 +2197,7 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 93.3vh;
+    height: 93vh;
   }
   /* .admin-content-container{
     height: 92vh;
@@ -2182,6 +2225,12 @@ body{
   .tithe-and-welfare-content-container{
     margin: 0 10px;
   }
+  .text-area-container-inner{
+    width: 75%;
+  }
+  .prompt-message-and-response-container{
+    padding: 10px 10%;
+  }
 }
 @media screen and (max-width: 587px) {
   .text-area-container-inner{
@@ -2192,6 +2241,9 @@ body{
   }
   .display-content-container{
     padding-top: 10px;
+  }
+  .prompt-message-and-response-container{
+    padding: 10px 20px;
   }
 }
 @media only screen and (max-width: 450px) {

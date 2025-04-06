@@ -40,6 +40,10 @@ const AdminContainer = ({changeColor }) => {
   const [searchWelfareTotalAmountByDate, setSearchWelfareTotalAmountByDate] = useState({});
   const [searchWelfareTotalAmount, setSearchWelfareTotalAmount] = useState({});
 
+  const [totalCheckIn, setTotalCheckIn] = useState("");
+  const [totalMembers, setTotalMembers] = useState("");
+  
+
   const category = "Tithe";
 
   // function to handle update amount 
@@ -303,7 +307,8 @@ const AdminContainer = ({changeColor }) => {
             <Route path="members-checked" element={
               <AdminMembersChecked 
                 changeColor={changeColor}
-                />
+                setTotalCheckIn={setTotalCheckIn}
+              />
               } />
 
             {/* tithe and  welfare */}
@@ -368,6 +373,7 @@ const AdminContainer = ({changeColor }) => {
             <Route path="all-members" element={
               <AdminAllMembers
                 changeColor={changeColor}
+                setTotalMembers={setTotalMembers}
               />
             } />
             <Route path="personal" element={
@@ -388,6 +394,9 @@ const AdminContainer = ({changeColor }) => {
             <Route path="ai-analyst" element={
               <AIAnalyst
                 changeColor={changeColor}
+                totalAmount={isTotalAmount}
+                totalCheckIn={totalCheckIn}
+                totalMembers={totalMembers}
               />
             } />
           </Routes>

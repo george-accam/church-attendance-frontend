@@ -66,6 +66,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
             </div> 
             <img src={welcome} alt="🤗" />
           </div>
+          
           <div className="admin-navbar-navigator-container">
             {/* members-checked */}
             <Link to="/admin-dashboard/members-checked"
@@ -155,6 +156,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
               </div>
             </Link>
           </div>
+
           <div className="admin-sidebar-bottom">
             {/* mobile view container */}
             <div className="">

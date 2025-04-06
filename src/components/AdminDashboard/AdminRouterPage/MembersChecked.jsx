@@ -11,7 +11,7 @@ import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
 import member from "./../../assets/no-member.gif"
 
-const MembersChecked = ( { changeColor }) => {
+const MembersChecked = ( { changeColor, setTotalCheckIn }) => {
     const [groupedCheckIns, setGroupedCheckIns] = useState({});
     const [searchGroupedCheckIns, setSearchGroupedCheckIns] = useState({});
     const [isTotalCheckIns, setTotalCheckIns] = useState(0);
@@ -19,6 +19,8 @@ const MembersChecked = ( { changeColor }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
     const [search, setSearch] = useState("");
+
+    setTotalCheckIn(isTotalCheckIns ? isTotalCheckIns : 0);
 
     const fetchCheckedMember = async()=>{
         try {
