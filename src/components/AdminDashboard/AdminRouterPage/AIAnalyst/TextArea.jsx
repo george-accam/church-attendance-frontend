@@ -1,17 +1,32 @@
 import { RiSendPlane2Fill } from "react-icons/ri"; 
 import React from 'react';
 
-const TextArea = ({ message, preText, setMessage, handleResponse }) => {
+const TextArea = ({ changeColor, message, preText, setMessage, setGetMessage, handleResponse, handleSaveResponse, }) => {
     const handleSubmit = (e)=>{
         e.preventDefault();
-        handleResponse(preText || message);
+        handleResponse(message ? message : preText);
+        setGetMessage(message ? message : preText);
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        handleSaveResponse({
+            userId: JSON.parse(localStorage.getItem('admin'))._id,
+            session: JSON.parse(sessionStorage.getItem('conversation'))
+        })
     }
 
     return (
         <div  className="text-area-container-outer">
                 <form onSubmit={handleSubmit}>
                     <div className="text-area-container">
-                        <div className="text-area-container-inner">
+                        <div className={`text-area-container-inner ${changeColor ? "text-area-black" : "text-area-white"}`}>
+                            <div 
+                            className="new-chat-icon-container"
+                                onClick={handleSave}
+                            >
+                                <p>new chat</p>
+                            </div>
                             <textarea
                                 value={message || preText}
                                 onChange={(e) => setMessage(e.target.value)}
@@ -19,9 +34,12 @@ const TextArea = ({ message, preText, setMessage, handleResponse }) => {
                             >
                             </textarea>
                                 <div className="text-area-icon-container">
-                                    <button type="submit">
+                                    <button 
+                                        type="submit"
+                                        disabled={message.length > 0  || preText.length > 0 ? false : true}
+                                    >
                                             <RiSendPlane2Fill 
-                                                className="text-area-container-icon" 
+                                                className={`text-area-container-icon ${message.length > 0  || preText.length > 0 ? "" : "text-area-disabled-icon"}`} 
                                             />
                                     </button>
                                 </div>

@@ -288,11 +288,61 @@ const AdminContainer = ({changeColor }) => {
       setLoading(false);
     }
   }
+
+  const handleTotalCheckIns = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get(`search-checked-in-attendee?q=`);
+      const { message, totalCheckIns } = response.data;
+
+      if (message) {
+        setTotalCheckIn(totalCheckIns);
+      } 
+    } catch (error) {
+      if(error.response.data.message) {
+        handleError(`error status: ${error.response.data.message}`);
+      }
+      else if(e.request) {
+        handleError(`network error: ${error.request}`);
+      }
+      else {
+        handleError(`error occurred: ${error.message}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAttendance = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get("attendees");
+      const { attendance, message } = response.data;
+      if (message) {
+        setTotalMembers(attendance.length);
+      }
+    } catch (error) {
+      if(error.response.data.message) {
+        handleError(`error status: ${error.response.data.message}`);
+      }
+      else if(e.request) {
+        handleError(`network error: ${error.request}`);
+      }
+      else {
+        handleError(`error occurred: ${error.message}`);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     searchTitheAndWelfare();
   }, [search]);
   
   useEffect(() => {
+    handleTotalCheckIns();
+    handleAttendance();
     getAllWelfare();
     getAllTithe();
     getAllDues();
@@ -307,7 +357,6 @@ const AdminContainer = ({changeColor }) => {
             <Route path="members-checked" element={
               <AdminMembersChecked 
                 changeColor={changeColor}
-                setTotalCheckIn={setTotalCheckIn}
               />
               } />
 
@@ -373,7 +422,6 @@ const AdminContainer = ({changeColor }) => {
             <Route path="all-members" element={
               <AdminAllMembers
                 changeColor={changeColor}
-                setTotalMembers={setTotalMembers}
               />
             } />
             <Route path="personal" element={

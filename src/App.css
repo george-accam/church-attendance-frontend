@@ -1832,7 +1832,6 @@ body{
 }
 
 /* ai analyst */
-
 .ai-analyst-container{
   margin: 0px;
 }
@@ -1877,12 +1876,27 @@ body{
 }
 .text-area-container-inner{
   display: flex;
-  background-color: rgb(66, 84, 119);
+  background-color: #3737fb25;
   border-radius: 25px;
-  border: 1px solid rgb(96, 96, 255);
+  border: 1px solid rgb(80, 80, 254);
   width: 60%;
   padding: 5px 15px;
   margin: 0 10px;
+}
+.new-chat-icon-container p{
+  cursor: pointer;
+  text-align: center;
+  width: 40px;
+  font-size: 14px;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: #2a2ac1;
+  margin-top: 7px;
+}
+.new-chat-icon-container p:hover{
+  opacity: 0.8;
 }
 .text-area-container textarea{
   width: 100%;
@@ -1892,8 +1906,13 @@ body{
   font-size: 14.5px;
   outline: none;
   border: none;
-  background-color: rgb(66, 84, 119);
-  color: var(--light-text);
+  background-color: transparent;
+}
+.text-area-white textarea{
+  color: white;
+}
+.text-area-black textarea{
+  color: black;
 }
 .text-area-container textarea::placeholder{
   color: rgb(152, 152, 152);
@@ -1902,6 +1921,7 @@ body{
 .text-area-icon-container button{
   border: none;
   background-color: transparent;
+  outline: none;
 }
 .text-area-container-icon{
   font-size: 25px;
@@ -1912,8 +1932,17 @@ body{
   border-radius: 50%;
   padding: 5px;
 }
+.text-area-disabled-icon{
+  color: grey;
+  background-color: rgba(69, 69, 69, 0.375);
+  cursor: not-allowed;
+}
+.text-area-disabled-icon:hover{
+  color: grey;
+  background-color: rgba(69, 69, 69, 0.375);
+}
 .text-area-container-icon:hover{
-  background-color: rgb(0, 0, 200);
+  opacity: 0.8;
 }
 .display-content-container{
   display: flex;
@@ -1950,7 +1979,7 @@ body{
   cursor: pointer;
   border: 1px solid rgb(96, 96, 255);
   color: white;
-  box-shadow: 0 0 15px rgba(21, 29, 44, 0.616);
+  box-shadow: 0 0 8px rgba(21, 29, 44, 0.616);
 }
 .display-content-card:hover{
   background-color: rgb(96, 96, 255);
@@ -1982,7 +2011,7 @@ body{
   line-height: 25px;
   padding: 15px;
   border-radius: 20px;
-  background-color: #4c4cba70;
+  background-color: #3737fb25;
 }
 .prompt-response-container{
   font-size: 16px;

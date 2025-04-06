@@ -33,6 +33,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
     localStorage.removeItem('token');
     localStorage.removeItem('admin');
     localStorage.removeItem("active")
+    sessionStorage.removeItem('conversation');
     handleSuccess("logged out successfully");
     setTimeout(()=>{
       navigate('/login');

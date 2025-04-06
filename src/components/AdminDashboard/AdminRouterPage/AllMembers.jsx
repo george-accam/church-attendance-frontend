@@ -15,7 +15,7 @@ import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 
 
-const AllMembers = ({ changeColor, setTotalMembers }) => {
+const AllMembers = ({ changeColor, }) => {
     const [members, setMembers] = useState([]);
     const [filteredMembers, setFilteredMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,8 +27,6 @@ const AllMembers = ({ changeColor, setTotalMembers }) => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isRenaming, setIsRenaming] = useState(false);
     const menuRefs = useRef({});
-
-    setTotalMembers(members.length); // set the total members to the parent component
 
     // search members input
     const handleSearch = (e) => {

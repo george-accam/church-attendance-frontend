@@ -32,6 +32,7 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
         localStorage.removeItem("admin");
         localStorage.removeItem("token");
         localStorage.removeItem("active")
+        sessionStorage.removeItem('conversation');
         setIsLogout(!isLogout);
         handleSuccess("logged out successfully");
         setTimeout(()=>{

@@ -2,54 +2,82 @@ import { BsRobot } from "react-icons/bs";
 import React, { useEffect, useState } from 'react';
 import ContentDisplayArea from "./AIAnalyst/ContentDisplayArea";
 import TextArea from "./AIAnalyst/TextArea";
-import { handleError } from "../../../notifications/Notification";
+import { handleError, handleSuccess } from "../../../notifications/Notification";
+import api from "../../../API/Api";
 
-const AIAnalyst = ({ totalAmount, totalCheckIn, totalMembers }) => {
+const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalMembers }) => {
     const [message, setMessage] = useState("");
+    const [getMessage, setGetMessage] = useState([]);
     const [getResponse, setGetResponse] = useState([]);
     const [loading, setLoading] = useState(false);
     const [preText, setPreText] = useState('');
+    const [conversation, setConversation] = useState(JSON.parse(sessionStorage.getItem('conversation')) || []);
 
-    const fakeData  = {
-        "qa_pairs": [
-            {
-                "question": "What is your name?",
-                "answer": "I'm an AI assistant here to help you!"
-            },
-            {
-                "question": "How are you?",
-                "answer": "I'm functioning optimally, thank you for asking!"
-            },
-            {
-                "question": "What time is it?",
-                "answer": "I don't have real-time clock access, but you can check your device's time."
-            }
-        ],
-        "default_response": "I'm not sure about that. Could you try asking something else? The word most similar to Trustworthy is Reliable. Reliable means consistently good in quality or performance, and able to be trusted, which aligns closely with the meaning of Trustworthy (deserving of trust or confidence). The other options do not match as closely: Resolute means determined or unwavering. Tenacity means persistence or grit. Relevant means pertinent or applicable. Insolent means rude or disrespectful."
-    }
-
-    const handleResponse = async(questions) => {
+    const handleResponse = async(feedback) => {
         try {
             setLoading(true);
-            const response = await fakeData.qa_pairs.find((item) => {
-                return item.question.toLowerCase() === questions.toLowerCase();
-            });
-            if (!response) {
-                setGetResponse([fakeData.default_response]);
-            } else {
-                setGetResponse(response.answer);
+            const response = await api.post('ai-analyst', { prompt: feedback });
+            const { message, information } = response.data;
+
+            if (message) {
+                setMessage('');
+                setPreText('');
+                setGetResponse(information);
             }
+
+            setConversation([
+                ...conversation,
+                { prompt: feedback, response: information }
+            ]);
+            sessionStorage.setItem('conversation', JSON.stringify([
+                ...conversation,
+                { prompt: feedback, response: information }
+            ]));
+            
         } catch (error) {
-            handleError(`error status : ${error.message}`);
+            if (error.response.data.message) {
+                handleError(`error status : ${error.response.data.message}`);
+            }
+            else if (error.request) {
+            handleError(`network error : ${error.request}`);
+            }
+            else {
+                handleError(`error occurred : ${error.message}`);
+            }
         }
         finally {
             setLoading(false);
         }
     }
 
-    // useEffect(() => {
-    //     handleResponse("What is your name?");
-    // }, []);
+    const  handleSaveResponse = async({ userId, session }) => {
+        try {
+            if(!userId || !session) {
+                return "";
+            }
+            setLoading(true);
+            const response = await api.post('save-ai-analyst-response', { userId, session });
+            const { message } = response.data;
+            
+            if (message) {
+                handleSuccess(message);
+                sessionStorage.removeItem('conversation');
+            }
+        } catch (error) {
+            if (error.response.data.message) {
+                handleError(`error status : ${error.response.data.message}`);
+            }
+            else if (error.request) {
+                handleError(`network error : ${error.request}`);
+            }
+            else {
+                handleError(`error occurred : ${error.message}`);
+            }
+        }
+        finally {
+            setLoading(false);
+        }
+    };
     
 
 
@@ -81,10 +109,9 @@ const AIAnalyst = ({ totalAmount, totalCheckIn, totalMembers }) => {
                             totalAmount={totalAmount}
                             totalCheckIn={totalCheckIn}
                             totalMembers={totalMembers}
-                            message={message}
-                            preText={preText}
+                            conversation={conversation}
+                            getMessage={getMessage}
                             loading={loading}
-                            getResponse={getResponse}
                             handlePreText={handlePreText}
                         />
                     </div>
@@ -93,8 +120,11 @@ const AIAnalyst = ({ totalAmount, totalCheckIn, totalMembers }) => {
                         <TextArea 
                             preText={preText}
                             message={message}
+                            setGetMessage={setGetMessage}
                             setMessage={setMessage}
+                            changeColor={changeColor}
                             handleResponse={handleResponse}
+                            handleSaveResponse={handleSaveResponse}
                         />
                     </div>
                 </div>

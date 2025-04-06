@@ -1,33 +1,42 @@
 import { BsRobot } from "react-icons/bs"; 
-import React from 'react';
+import React, { useState } from 'react';
 import hello from '../../../assets/hello.gif';
 import capitalizeWords from '../../../reusableComponents/CapitaliseEachLetter';
 
-const ContentDisplayArea = ({ handlePreText, totalAmount, totalCheckIn, totalMembers, getResponse, preText, message }) => {
+const ContentDisplayArea = ({ handlePreText, totalAmount, totalCheckIn, totalMembers,loading, getMessage, conversation, }) => {
     const adminStored = JSON.parse(localStorage.getItem('admin'));
     const firsName = adminStored ? adminStored.fullName.split(' ')[0] : 'Admin';
 
     return (
         <div className="content-display-area">
             {/* content display area */}
-            {getResponse && getResponse.length > 0 ? (
-                <div className="prompt-message-and-response-container">
-                    {/* prompt */}
-                    <div className="prompt-message-container">
-                        <p>
-                            {preText ? preText : message}
-                        </p>
-                    </div>
-                    {/* response */}
-                    <div className="prompt-response-and-icon-container">
-                        <div className="">
-                            <BsRobot className="prompt-response-icon" />
+            {conversation && conversation.length || loading > 0 ? (
+                conversation.map((item, index) => (
+                    <div 
+                        className="prompt-message-and-response-container"
+                        key={index}
+                    >
+                        {/* prompt */}
+                        <div className="prompt-message-container"
+                            key={index}
+                        >
+                            <p>
+                                {item.prompt}
+                            </p>
                         </div>
-                        <div className="prompt-response-container">
-                            {getResponse}
+                        {/* response */}
+                        <div className="prompt-response-and-icon-container">
+                            <div className="">
+                                <BsRobot className="prompt-response-icon" />
+                            </div>
+                            <div className="prompt-response-container">
+                                    <p>
+                                        {item.response}     
+                                    </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ))
             ) : (
                 <div className='display-content-container'>
                     <div className="">
@@ -83,6 +92,29 @@ const ContentDisplayArea = ({ handlePreText, totalAmount, totalCheckIn, totalMem
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            )}
+            {/* loading state */}
+            {loading && (
+                <div className="prompt-message-and-response-container">
+                    {/* prompt */}
+                    <div className="prompt-message-container"
+                    >
+                        <p>
+                            {getMessage}
+                        </p>
+                    </div>
+                    {/* response */}
+                    <div className="prompt-response-and-icon-container">
+                        <div className="">
+                            <BsRobot className="prompt-response-icon" />
+                        </div>
+                        <div className="prompt-response-container">
+                            <div class="loader">
+                                <span>thinking...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
