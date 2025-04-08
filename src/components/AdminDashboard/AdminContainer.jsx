@@ -43,6 +43,7 @@ const AdminContainer = ({changeColor }) => {
   const [totalCheckIn, setTotalCheckIn] = useState("");
   const [totalCheckInByDate, setTotalCheckInByDate] = useState({});
   const [totalMembers, setTotalMembers] = useState("");
+  const adminStored = JSON.parse(localStorage.getItem('admin'));
   
 
   const category = "Tithe";
@@ -321,7 +322,8 @@ const AdminContainer = ({changeColor }) => {
       const response = await api.get("attendees");
       const { attendance, message } = response.data;
       if (message) {
-        setTotalMembers(attendance.length);
+        const filteredAttendance = attendance.filter((member) => member.fullName !== adminStored.fullName);
+        setTotalMembers(filteredAttendance.length);
       }
     } catch (error) {
       if(error.response.data.message) {

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { BsPersonSquare } from 'react-icons/bs';
 import { IoMdTimer } from 'react-icons/io';
 import capitalizeWords from "../../../reusableComponents/CapitaliseEachLetter";
-import member from "../../../assets/no-member.gif";
+import member from "../../../assets/empty.png";
 import TitheAndWelfareLoader from "../../../reusableComponents/TitheAndWelfareLoader";
 
 const Tithe = ({ titheOnly, loading, titheAmount, searchTitheTotalAmount, searchTitheTotalAmountByDate, titheSearchResults, titheAmountByDate }) => {

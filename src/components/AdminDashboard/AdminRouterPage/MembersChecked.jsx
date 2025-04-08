@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import CheckInLoader from "../../reusableComponents/CheckInLoader";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter";
 import CheckedInSearch from "../../reusableComponents/CheckedInSearch";
-import member from "./../../assets/no-member.gif"
+import member from "./../../assets/empty.png"
 
 const MembersChecked = ( { changeColor, }) => {
     const [groupedCheckIns, setGroupedCheckIns] = useState({});

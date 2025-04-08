@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import api from "../../../API/Api.js";
 import { handleError, handleSuccess } from '../../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
-import member from './../../assets/no-member.gif';
+import member from './../../assets/empty.png';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
 

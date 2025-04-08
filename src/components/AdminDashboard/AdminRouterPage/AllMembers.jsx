@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import api from "../../../API/Api.js";
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../../../notifications/Notification.js';
-import member from './../../assets/no-member.gif';
+import member from './../../assets/empty.png';
 import SubComponentLoader from "../../reusableComponents/SubComponentLoader.jsx";
 import Edit from "../../reusableComponents/Edit.jsx";
 import CapitaliseEachLetter from "../../reusableComponents/CapitaliseEachLetter.js"

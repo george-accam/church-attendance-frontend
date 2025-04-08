@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import api from "../../../API/Api.js";
 import { handleError, handleSuccess } from '../../../notifications/Notification';
 import { ToastContainer } from 'react-toastify';
-import member from './../../assets/no-member.gif';
+import member from './../../assets/empty.png';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
 import Edit from "../../reusableComponents/Edit.jsx";
 import Delete from "../../reusableComponents/Delete.jsx";
