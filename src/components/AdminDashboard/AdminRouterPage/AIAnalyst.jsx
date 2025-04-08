@@ -5,13 +5,16 @@ import TextArea from "./AIAnalyst/TextArea";
 import { handleError, handleSuccess } from "../../../notifications/Notification";
 import api from "../../../API/Api";
 
-const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalMembers }) => {
+const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate, totalMembers, isTotalAmountByDate }) => {
     const [message, setMessage] = useState("");
     const [getMessage, setGetMessage] = useState([]);
     const [getResponse, setGetResponse] = useState([]);
     const [loading, setLoading] = useState(false);
     const [preText, setPreText] = useState('');
-    const [conversation, setConversation] = useState(JSON.parse(sessionStorage.getItem('conversation')) || []);
+    const [refreshPage, setRefreshPage] = useState(0);
+
+    const storedConversation = JSON.parse(sessionStorage.getItem('conversation'));
+    const [conversation, setConversation] = useState([] || storedConversation || []);
 
     const handleResponse = async(feedback) => {
         try {
@@ -55,13 +58,15 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalMembers }) => 
             if(!userId || !session) {
                 return "";
             }
-            setLoading(true);
+            // setLoading(true);
             const response = await api.post('save-ai-analyst-response', { userId, session });
             const { message } = response.data;
             
             if (message) {
                 handleSuccess(message);
+                setConversation([]);
                 sessionStorage.removeItem('conversation');
+                setRefreshPage(prev => prev + 1);
             }
         } catch (error) {
             if (error.response.data.message) {
@@ -74,9 +79,9 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalMembers }) => 
                 handleError(`error occurred : ${error.message}`);
             }
         }
-        finally {
-            setLoading(false);
-        }
+        // finally {
+        //     setLoading(false);
+        // }
     };
     
 
@@ -108,10 +113,13 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalMembers }) => 
                         <ContentDisplayArea 
                             totalAmount={totalAmount}
                             totalCheckIn={totalCheckIn}
+                            totalCheckInByDate={totalCheckInByDate}
+                            isTotalAmountByDate={isTotalAmountByDate}
                             totalMembers={totalMembers}
                             conversation={conversation}
                             getMessage={getMessage}
                             loading={loading}
+                            refreshPage={refreshPage}
                             handlePreText={handlePreText}
                         />
                     </div>

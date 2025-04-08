@@ -41,6 +41,7 @@ const AdminContainer = ({changeColor }) => {
   const [searchWelfareTotalAmount, setSearchWelfareTotalAmount] = useState({});
 
   const [totalCheckIn, setTotalCheckIn] = useState("");
+  const [totalCheckInByDate, setTotalCheckInByDate] = useState({});
   const [totalMembers, setTotalMembers] = useState("");
   
 
@@ -293,10 +294,11 @@ const AdminContainer = ({changeColor }) => {
     try {
       setLoading(true);
       const response = await api.get(`search-checked-in-attendee?q=`);
-      const { message, totalCheckIns } = response.data;
+      const { message, totalCheckIns, checkIns } = response.data;
 
       if (message) {
         setTotalCheckIn(totalCheckIns);
+        setTotalCheckInByDate(checkIns);
       } 
     } catch (error) {
       if(error.response.data.message) {
@@ -443,7 +445,9 @@ const AdminContainer = ({changeColor }) => {
               <AIAnalyst
                 changeColor={changeColor}
                 totalAmount={isTotalAmount}
+                isTotalAmountByDate={isTotalAmountByDate}
                 totalCheckIn={totalCheckIn}
+                totalCheckInByDate={totalCheckInByDate}
                 totalMembers={totalMembers}
               />
             } />

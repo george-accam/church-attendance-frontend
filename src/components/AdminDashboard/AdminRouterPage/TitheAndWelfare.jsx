@@ -65,7 +65,7 @@ const TitheAndWelfare = ({ changeColor, search, setSearch, isSearching }) => {
 
                 {/* the tithe and welfare child components */}
                 <div className="tithe-and-welfare-content-container">
-                    { isSearching && (
+                    {isSearching && (
                         <div className="tithe-and-welfare-loader">
                             <CheckedInSearch />
                         </div>

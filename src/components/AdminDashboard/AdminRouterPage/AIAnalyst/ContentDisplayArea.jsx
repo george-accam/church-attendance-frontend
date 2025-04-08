@@ -1,125 +1,268 @@
-import { BsRobot } from "react-icons/bs"; 
-import React, { useState } from 'react';
+import { BsRobot } from "react-icons/bs";
+import React, { useEffect, useState, useRef } from 'react';
 import hello from '../../../assets/hello.gif';
 import capitalizeWords from '../../../reusableComponents/CapitaliseEachLetter';
 
-const ContentDisplayArea = ({ handlePreText, totalAmount, totalCheckIn, totalMembers,loading, getMessage, conversation, }) => {
-    const adminStored = JSON.parse(localStorage.getItem('admin'));
-    const firsName = adminStored ? adminStored.fullName.split(' ')[0] : 'Admin';
+const ContentDisplayArea = ({ 
+  handlePreText, 
+  totalAmount,
+  isTotalAmountByDate, 
+  totalCheckIn,
+  totalCheckInByDate, 
+  totalMembers, 
+  loading, 
+  getMessage, 
+  conversation,
+  refreshPage,
+}) => {
+  const adminStored = JSON.parse(localStorage.getItem('admin'));
+  const firsName = adminStored ? adminStored.fullName.split(' ')[0] : 'Admin';
+  const messagesEndRef = useRef(null);
+  const date = getLocalISODate();
 
+  // State for formatted conversation with typing animation
+  const [formattedConversation, setFormattedConversation] = useState([]);
+
+  // Format text and mark lines ending with colon as bold
+  const formatText = (text) => {
+    if (!text) return [];
+    
+    // Remove all asterisks first
+    const textWithoutAsterisks = text.replace(/\*/g, '');
+    // Split by new lines
+    const lines = textWithoutAsterisks.split('\n').filter(line => line.trim() !== '');
+    
+    return lines.map(line => {
+      const trimmed = line.trim();
+      return {
+        text: trimmed,
+        bold: trimmed.endsWith(':')
+      };
+    });
+  };
+
+  // Format text for prompt messages
+  function getLocalISODate() {
+    const d = new Date();
+    // Adjust for timezone offset
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().split('T')[0];
+  }
+  
+  // Scroll to bottom whenever conversation updates
+  useEffect(() => {
+    scrollToBottom();
+  }, [formattedConversation, loading]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Initialize or update conversation when prop changes
+  useEffect(() => {
+    if (conversation.length > formattedConversation.length) {
+      const newEntry = conversation[conversation.length - 1];
+      const formattedResponse = formatText(newEntry.response);
+      
+      setFormattedConversation(prev => [
+        ...prev,
+        {
+          prompt: newEntry.prompt,
+          response: formattedResponse,
+          displayedResponse: [],
+          isTyping: true
+        }
+      ]);
+
+      startTypingAnimation(conversation.length - 1, formattedResponse);
+    }
+  }, [conversation]);
+
+  const startTypingAnimation = (index, lines) => {
+    let currentLine = 0;
+    let currentPos = 0;
+    let displayedText = [];
+    
+    const typingInterval = setInterval(() => {
+      if (currentLine < lines.length) {
+        const line = lines[currentLine];
+        
+        if (currentPos <= line.text.length) {
+          displayedText[currentLine] = {
+            text: line.text.substring(0, currentPos),
+            bold: line.bold
+          };
+          
+          setFormattedConversation(prev => {
+            const updated = [...prev];
+            updated[index] = {
+              ...updated[index],
+              displayedResponse: [...displayedText]
+            };
+            return updated;
+          });
+          
+          currentPos++;
+        } else {
+          currentLine++;
+          currentPos = 0;
+        }
+      } else {
+        setFormattedConversation(prev => {
+          const updated = [...prev];
+          updated[index] = {
+            ...updated[index],
+            isTyping: false
+          };
+          return updated;
+        });
+        clearInterval(typingInterval);
+      }
+    }, 5);
+  };
+
+  const FormattedText = ({ lines }) => {
+    if (!lines || lines.length === 0) return null;
+    
+    if (typeof lines === 'string') {
+      return <p>{lines}</p>;
+    }
+    
     return (
-        <div className="content-display-area">
-            {/* content display area */}
-            {conversation && conversation.length || loading > 0 ? (
-                conversation.map((item, index) => (
-                    <div 
-                        className="prompt-message-and-response-container"
-                        key={index}
-                    >
-                        {/* prompt */}
-                        <div className="prompt-message-container"
-                            key={index}
-                        >
-                            <p>
-                                {item.prompt}
-                            </p>
-                        </div>
-                        {/* response */}
-                        <div className="prompt-response-and-icon-container">
-                            <div className="">
-                                <BsRobot className="prompt-response-icon" />
-                            </div>
-                            <div className="prompt-response-container">
-                                    <p>
-                                        {item.response}     
-                                    </p>
-                            </div>
-                        </div>
-                    </div>
-                ))
+      <>
+        {lines.map((line, i) => (
+          <React.Fragment key={i}>
+            {line.bold ? (
+              <strong>{line.text}</strong>
             ) : (
-                <div className='display-content-container'>
+              <span>{line.text}</span>
+            )}
+            <br />
+          </React.Fragment>
+        ))}
+      </>
+    );
+  };
+
+  const formatPromptText = (text) => {
+    if (!text) return '';
+    // Remove all asterisks
+    const textWithoutAsterisks = text.replace(/\*/g, '');
+    // Split by new lines
+    const lines = textWithoutAsterisks.split('\n').filter(line => line.trim() !== '');
+    
+    return lines.map((line, i) => {
+      const trimmed = line.trim();
+      return (
+        <React.Fragment key={i}>
+          {trimmed.endsWith(':') ? (
+            <strong>{trimmed}</strong>
+          ) : (
+            <span>{trimmed}</span>
+          )}
+          <br />
+        </React.Fragment>
+      );
+    });
+  };
+
+  return (
+    <div className="content-display-area"  key={refreshPage}>
+      {/* Conversation history */}
+        <div className="conversation-history">
+            {formattedConversation.map((item, index) => (
+            <React.Fragment key={index}>
+                <div className="prompt-message-container">
+                <p>{formatPromptText(item.prompt)}</p>
+                </div>
+                <div className="prompt-response-and-icon-container">
                     <div className="">
-                        {/* display header */}
-                        <h1 className='display-content-header'>
-                            Hello {capitalizeWords(firsName)}
-                            <img src={hello} className='display-content-hello'  alt='hello' />
-                            , <span>what's next to analyze ?</span>
-                        </h1>
-
-                        {/* display content */}
-                        <div className="display-content-card-container">
-                            {/* dues data */}
-                            <div 
-                                className="display-content-card"
-                                onClick={() => {
-                                    handlePreText(`Analyze the dues for the service based on the membership fees for this month (Gh¢ ${totalAmount ? totalAmount : "0"}.00) and how can we improve it?`)
-                                }}
-                            >
-                                <p>
-                                    Analyze the revenue
-                                    for the service based on the 
-                                    membership fees for this month
-                                    (Gh¢ {totalAmount ? totalAmount : "0"}.00) and how can we improve it?
-                                </p>
-                            </div>
-                            {/* check-in data */}
-                            <div 
-                                className="display-content-card"
-                                onClick={() => {
-                                    handlePreText(`Determine the attendance rate for the service based on the check-ins today (${totalCheckIn ? totalCheckIn : "0"}) and how can we improve it? and how can we improve it?`)
-                                }}
-                            >
-                                <p>
-                                    Determine the attendance rate for 
-                                    the service based on the check-ins 
-                                    today ({totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?
-                                </p>
-                            </div>
-                            {/* members data */}
-                            <div 
-                                className="display-content-card"
-                                onClick={() => {
-                                    handlePreText(`Evaluate the number of members for the platform based on the user registration this quarter (${totalMembers ? totalMembers : "0"}) and how can we improve it?`)
-                                }}
-                            >
-                                <p>
-                                    Evaluate the number of members
-                                    for the platform based on the user 
-                                    registration this quarter 
-                                    ({totalMembers ? totalMembers : "0"}) and how can we improve it?
-                                </p>
-                            </div>
-                        </div>
-
+                        <BsRobot className="prompt-response-icon" />
                     </div>
+                <div className="prompt-response-container">
+                    {item.isTyping ? (
+                    <p><FormattedText lines={item.displayedResponse} /></p>
+                    ) : (
+                    <p><FormattedText lines={item.response} /></p>
+                    )}
                 </div>
-            )}
-            {/* loading state */}
+                </div>
+            </React.Fragment>
+            ))}
+            
+            {/* Loading state */}
             {loading && (
-                <div className="prompt-message-and-response-container">
-                    {/* prompt */}
-                    <div className="prompt-message-container"
-                    >
-                        <p>
-                            {getMessage}
-                        </p>
-                    </div>
-                    {/* response */}
-                    <div className="prompt-response-and-icon-container">
-                        <div className="">
-                            <BsRobot className="prompt-response-icon" />
-                        </div>
-                        <div className="prompt-response-container">
-                            <div class="loader">
-                                <span>thinking...</span>
-                            </div>
-                        </div>
-                    </div>
+            <div className="prompt-message-and-response-container">
+                <div className="prompt-message-container">
+                <p>{formatPromptText(getMessage)}</p>
                 </div>
+                <div className="prompt-response-and-icon-container">
+                <BsRobot className="prompt-response-icon" />
+                <div className="prompt-response-container">
+                    <div className="loader"><span>thinking...</span></div>
+                </div>
+                </div>
+            </div>
             )}
+            
+            <div ref={messagesEndRef} />
         </div>
-    )
-}
+
+      {/* Initial empty state */}
+        {!loading && conversation.length === 0 && (
+            <div className='display-content-container'>
+            <div className="">
+                <h1 className='display-content-header'>
+                Hello {capitalizeWords(firsName)}
+                <img src={hello} className='display-content-hello' alt='hello' />
+                , <span>what's next to analyze?</span>
+                </h1>
+
+                <div className="display-content-card-container">
+                <div 
+                    className="display-content-card"
+                    onClick={() => {
+                    handlePreText(`Analyze the dues for the church service based on the membership fees for this month (Gh¢ ${isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ ${totalAmount ? totalAmount : "0"}.00) and how can we improve it?`)
+                    }}
+                >
+                    <p>
+                    Analyze the revenue
+                    for the church service based on the 
+                    membership fees for this month
+                    (Gh¢ {isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ {totalAmount ? totalAmount : "0"}.00) and how can we improve it?
+                    </p>
+                </div>
+                <div 
+                    className="display-content-card"
+                    onClick={() => {
+                    handlePreText(`Determine the church attendance rate for the service based on the check-ins today (${totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / ${totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?`)
+                    }}
+                >
+                    <p>
+                    Determine the church attendance rate for 
+                    the service based on the check-ins 
+                    today ({totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / {totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?
+                    </p>
+                </div>
+                <div 
+                    className="display-content-card"
+                    onClick={() => {
+                    handlePreText(`Evaluate the number of members for the church attendance platform based on the user registration this quarter (${totalMembers ? totalMembers : "0"}) and how can we improve it?`)
+                    }}
+                >
+                    <p>
+                    Evaluate the number of members
+                    for the church attendance platform based on the user 
+                    registration this quarter 
+                    ({totalMembers ? totalMembers : "0"}) and how can we improve it?
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
+        )}
+    </div>
+  );
+};
 
 export default ContentDisplayArea;

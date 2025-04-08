@@ -1810,7 +1810,7 @@ body{
 .member-tithe-and-welfare-container{
   overflow-y: scroll;
   scroll-behavior: smooth;
-  height: 75vh;
+  height: 70vh;
   border-bottom: 1px solid var(--light-text);
 }
 .total-amount{
@@ -1886,14 +1886,9 @@ body{
 .new-chat-icon-container p{
   cursor: pointer;
   text-align: center;
-  width: 40px;
-  font-size: 14px;
-  color: white;
-  padding: 5px;
+  font-size: 28px;
   border-radius: 50%;
-  border: 1px solid white;
-  background-color: #2a2ac1;
-  margin-top: 7px;
+  margin-top: 15px;
 }
 .new-chat-icon-container p:hover{
   opacity: 0.8;
@@ -1994,28 +1989,43 @@ body{
 .prompt-message-and-response-container{
   display: flex;
   flex-direction: column;
-  padding: 10px 12%;
+  padding: 10px 0%;
 }
 .prompt-response-and-icon-container{
   display: flex;
   margin-top: 40px;
 }
+.prompt-response-icon-container{
+  display: flex;
+}
 .prompt-response-icon{
   font-size: 25px;
+  width: 50px;
   margin-right: 20px;
 }
+
 .prompt-message-container p{
   font-size: 16px;
   float: right;
-  max-width: 50%;
+  max-width: 60%;
   line-height: 25px;
-  padding: 15px;
+  padding: 10px 20px;
   border-radius: 20px;
   background-color: #3737fb25;
 }
 .prompt-response-container{
   font-size: 16px;
   line-height: 30px;
+}
+
+.conversation-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 17%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
 }
 
 
@@ -2086,7 +2096,10 @@ body{
     margin-right: 110px;
   }
   .prompt-message-and-response-container{
-    padding: 10px 20px;
+    padding: 10px 0px;
+  }
+  .conversation-history{
+    padding: 20px 8%;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -2258,7 +2271,10 @@ body{
     width: 75%;
   }
   .prompt-message-and-response-container{
-    padding: 10px 10%;
+    padding: 10px 0%;
+  }
+  .conversation-history{
+    padding: 20px 10%;
   }
 }
 @media screen and (max-width: 587px) {
@@ -2272,7 +2288,11 @@ body{
     padding-top: 10px;
   }
   .prompt-message-and-response-container{
-    padding: 10px 20px;
+    padding: 10px 0px;
+  }
+  .conversation-history {
+    padding: 20px 5%;
+  
   }
 }
 @media only screen and (max-width: 450px) {

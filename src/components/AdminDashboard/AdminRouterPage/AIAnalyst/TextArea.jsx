@@ -1,3 +1,5 @@
+import { BiMessageRoundedDetail } from "react-icons/bi"; 
+import { AiFillMessage } from "react-icons/ai"; 
 import { RiSendPlane2Fill } from "react-icons/ri"; 
 import React from 'react';
 
@@ -25,7 +27,9 @@ const TextArea = ({ changeColor, message, preText, setMessage, setGetMessage, ha
                             className="new-chat-icon-container"
                                 onClick={handleSave}
                             >
-                                <p>new chat</p>
+                                <p>
+                                    <BiMessageRoundedDetail />
+                                </p>
                             </div>
                             <textarea
                                 value={message || preText}
