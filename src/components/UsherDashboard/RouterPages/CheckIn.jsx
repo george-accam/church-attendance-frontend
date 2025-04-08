@@ -31,18 +31,17 @@ const CheckIn = () => {
   };
 
   // Submit check-in data
-  const handleOnSubmit = async (telephoneNumber, memberId) => {
+  const handleOnSubmit = async (telephoneNumber) => {
     try {
       const response = await Api.post("check-in", { phoneNumber: telephoneNumber });
       const { message } = response.data;
       if (message) {
         handleSuccess(message);
+        setPhoneNumber("");
       }
-      setPhoneNumber("");
 
-      // Remove the member from checkedMembers after successful submission
-      // setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
     } catch (error) {
+      setCheckedMembers([]);
       if (error.response.data.message) {
         handleError(`Check in failed: ${error.response.data.message}`);
       } else if (error.request) {
@@ -57,6 +56,10 @@ const CheckIn = () => {
   const handleFetchSearch = async (e) => {
     e.preventDefault();
     try {
+      if (phoneNumber.length < 10) {
+        handleError("Phone number must be 10 digits long");
+        return;
+      }
       setIsSearching(true);
       const response = await Api.get(`search-attendee?q=${phoneNumber}`);
       const { message, attendee } = response.data;
@@ -65,8 +68,7 @@ const CheckIn = () => {
         return;
       }
 
-      if (attendee !== null || attendee.length !== 0) {
-        handleSuccess(message);
+      if (message) {
         setFilteredMembers(attendee);
       }
     } catch (error) {

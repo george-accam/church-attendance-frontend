@@ -61,7 +61,8 @@ const AllMembers = ({ changeColor }) => {
             if (attendee === null || attendee.length === 0) {
                 handleError("member not found");
             }
-            setFilteredMembers(attendee);
+            const filteredAttendance = attendee.filter((member) => member.fullName !== adminStored.fullName);
+            setFilteredMembers(filteredAttendance);
 
         } catch (error) {
             if (error.response.data.message) {
@@ -82,10 +83,9 @@ const AllMembers = ({ changeColor }) => {
             const response = await api.get('/attendees');
             setIsLoading(true);
             const { attendance } = response.data;
-            // const filteredAttendance = attendance.filter((attendees) => attendees.userFullName !== usherDetails.fullName);
+            const filteredAttendance = attendance.filter((attendees) => attendees.fullName !== usherDetails.fullName);
             
-            // set members
-            setMembers(attendance);
+            setMembers(filteredAttendance);
 
         } catch (error) {
             if (error.response.data.message) {

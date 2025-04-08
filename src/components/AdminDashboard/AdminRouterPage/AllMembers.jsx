@@ -28,6 +28,9 @@ const AllMembers = ({ changeColor, }) => {
     const [isRenaming, setIsRenaming] = useState(false);
     const menuRefs = useRef({});
 
+    const adminStored = JSON.parse(localStorage.getItem('admin'));
+
+
     // search members input
     const handleSearch = (e) => {
         setSearch(e.target.value);
@@ -48,7 +51,8 @@ const AllMembers = ({ changeColor, }) => {
             if (attendee === null || attendee.length === 0) {
                 handleError("member not found");
             }
-            setFilteredMembers(attendee);
+            const filteredAttendance = attendee.filter((member) => member.fullName !== adminStored.fullName);
+            setFilteredMembers(filteredAttendance);
 
         } catch (error) {
             if (error.response.data.message) {
@@ -69,8 +73,8 @@ const AllMembers = ({ changeColor, }) => {
             setIsLoading(true);
             const response = await api.get('/attendees');
             const { attendance } = response.data;
-            // set members
-            setMembers(attendance);
+            const filteredAttendance = attendance.filter((member) => member.fullName !== adminStored.fullName);
+            setMembers(filteredAttendance);
 
         } catch (error) {
             if (error.response.data.message) {
