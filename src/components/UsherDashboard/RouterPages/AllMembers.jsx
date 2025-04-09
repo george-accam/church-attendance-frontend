@@ -50,25 +50,30 @@ const AllMembers = ({ changeColor }) => {
 
 
     // search members function
-    const searchMembers = async() => {
+    const searchMembers = async () => {
         try {
-            if(search === ""){
+            if (search === "") {
                 return "";
             }
             setIsSearching(true);
             const response = await api.get(`search-attendee?q=${search}`);
             const { attendee } = response.data;
-            if (attendee === null || attendee.length === 0) {
-                handleError("member not found");
+            
+            if (!attendee || attendee.length === 0) {
+                handleError("Member not found");
+                return; 
             }
-            const filteredAttendance = attendee.filter((member) => member.fullName !== adminStored.fullName);
-            setFilteredMembers(filteredAttendance);
-
+            
+            const filteredAttendance = attendee.filter((members) => 
+                members.fullName !== usherDetails.fullName
+            );
+            setFilteredMembers(filteredAttendance); 
+    
         } catch (error) {
-            if (error.response.data.message) {
+            if (error.response && error.response.data && error.response.data.message) {
                 handleError(error.response.data.message);
             } else if (error.request) {
-                handleError("Error connecting to the server. Please check your internet connection", + error.request);
+                handleError("Error connecting to the server. Please check your internet connection");
             } else {
                 handleError("An error occurred. Please try again");
             }

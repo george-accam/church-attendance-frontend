@@ -10,7 +10,7 @@ import MainComponentLoader from '../reusableComponents/MainComponentLoader';
 const AdminDashboard = () => {
   const [userAdmin, setUserAdmin] = useState(null);
   const [firstName, setFirstName] = useState("");
-  const [changeColor, setChangeColor] = useState(false)
+  const [changeColor, setChangeColor] = useState(true)
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const handleSidebarActive = ()=>{
