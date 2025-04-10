@@ -2277,6 +2277,12 @@ body{
   .text-area-container-inner{
     width: 75%;
   }
+  .display-content-container{
+    padding-top: 1px;
+  }
+  .display-content-card-container{
+    gap: 10px;
+  }
   .prompt-message-and-response-container{
     padding: 10px 0%;
   }
@@ -2287,12 +2293,6 @@ body{
 @media screen and (max-width: 587px) {
   .text-area-container-inner{
     width: 95%;
-  }
-  .display-content-card-container{
-    gap: 8px;
-  }
-  .display-content-container{
-    padding-top: 10px;
   }
   .prompt-message-and-response-container{
     padding: 10px 0px;
@@ -2306,7 +2306,7 @@ body{
     flex-direction: column;
   }
   .search-container{
-    width: 95%;
+    width: 93%;
   }
 }
 @media only screen and (max-width: 450px) {

@@ -11,7 +11,7 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
     const [getResponse, setGetResponse] = useState([]);
     const [loading, setLoading] = useState(false);
     const [preText, setPreText] = useState('');
-    const [refreshPage, setRefreshPage] = useState(0);
+    const [refreshPage, setRefreshPage] = useState(false);
 
     const storedConversation = JSON.parse(sessionStorage.getItem('conversation'));
     const [conversation, setConversation] = useState([] || storedConversation || []);
@@ -66,7 +66,7 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
                 handleSuccess(message);
                 setConversation([]);
                 sessionStorage.removeItem('conversation');
-                setRefreshPage(prev => prev + 1);
+                setRefreshPage(!refreshPage);
             }
         } catch (error) {
             if (error.response.data.message) {

@@ -18,8 +18,18 @@ const TextArea = ({ changeColor, message, preText, setMessage, setGetMessage, ha
         })
     }
 
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) { 
+            e.preventDefault();
+            handleResponse(message ? message : preText);
+            setGetMessage(message ? message : preText);
+        }
+    }
+
     return (
-        <div  className="text-area-container-outer">
+        <div  className="text-area-container-outer"
+            onKeyDown={handleEnterKey}
+        >
                 <form onSubmit={handleSubmit}>
                     <div className="text-area-container">
                         <div className={`text-area-container-inner ${changeColor ? "text-area-black" : "text-area-white"}`}>

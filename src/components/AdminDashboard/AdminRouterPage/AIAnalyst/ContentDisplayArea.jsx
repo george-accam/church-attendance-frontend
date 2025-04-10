@@ -44,7 +44,6 @@ const ContentDisplayArea = ({
   // Format text for prompt messages
   function getLocalISODate() {
     const d = new Date();
-    // Adjust for timezone offset
     d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
     return d.toISOString().split('T')[0];
   }
@@ -167,7 +166,7 @@ const ContentDisplayArea = ({
   };
 
   return (
-    <div className="content-display-area"  key={refreshPage}>
+    <div className="content-display-area">
       {/* Conversation history */}
         <div className="conversation-history">
             {formattedConversation.map((item, index) => (
