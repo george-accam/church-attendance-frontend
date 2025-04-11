@@ -122,40 +122,6 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                 )}
                 <ToastContainer />
             </div>
-                {/* the theme container */}
-                {/* {isTheme && (
-                    <div className="dark-background">
-                        <div className="logout-decision-holder">
-                            <div className="logout-holder theme-holder-container">
-                                <h2>Theme Preference</h2>
-                                <p>Choose your preferred theme</p>
-                                <div className="theme-holder">
-                                    <div onClick={()=> { 
-                                        handleSelectedMode("light");
-                                        handleChangeColor();
-                                        setIsTheme(false);
-                                    }} 
-                                        className={`${selectedMode === "light" ? "mode-selected" : "theme-mode-choice-container"}`}
-                                    >
-                                        <img src={lightMode} alt="light mode" />
-                                        <p>light mode</p>
-                                    </div>
-                                    <div onClick={()=> {
-                                        handleSelectedMode("dark");
-                                        handleChangeColor();
-                                        setIsTheme(false);
-                                    }} 
-                                        className={`${selectedMode === "dark" ? "mode-selected" : "theme-mode-choice-container"}`}
-                                    >
-                                        <img src={darkMode} alt="dark mode" />
-                                        <p>dark mode</p>
-                                    </div>
-                                </div>
-                                <button className="theme-button" onClick={handleCancel}>cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                )} */}
         </div>
     )
 }

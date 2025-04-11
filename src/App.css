@@ -512,8 +512,10 @@ body{
   font-size: 20px;
   cursor: pointer;
   color: var(--light-text);
-  background-color: blue;
-  padding: 5px;
+  background: #474bff;
+  background: -webkit-linear-gradient(0deg, #474bff 0%, #bc48ff 100%);
+  background: linear-gradient(0deg, #474bff 0%, #bc48ff 100%);
+    padding: 5px;
   border-radius: 10%;
 }
 .sidebar-user-dashboard{
@@ -735,7 +737,9 @@ body{
 }
 .logout-holder{
   margin-top: -200px;
-  background-color: var(--light-text);
+  background: #d0dbf1;
+  background: -webkit-linear-gradient(0deg, #d0dbf1 0%, #47a0ff 100%);
+  background: linear-gradient(0deg, #d0dbf1 0%, #47a0ff 100%);
   padding: 10px;
   box-shadow: 0 0 10px rgba(100, 100, 100, 0.596);
   border-radius: 10px;
@@ -753,12 +757,12 @@ body{
 .logout-holder h2{
   font-size: 15px;
   text-align: center;
-  color: var(--dark-text);
+  color: var(--light-text);
   border-bottom:  1px solid rgba(100, 100, 100, 0.596);
 }
 .logout-holder p{
   background-color: transparent;
-  color: var(--dark-text);
+  color: var(--light-text);
   font-size: 16px;
   margin: 15px 0;
 }
@@ -943,7 +947,7 @@ body{
 }
 .sidebar-navigator:hover{
   background-color: rgba(91, 93, 97, 0.27);
-  margin-left: 66px;
+  margin-left: 62px;
 }
 .navbar-navigator-container{
   display: flex;
@@ -976,7 +980,7 @@ body{
   text-align: center;
   border-radius: 5px;
   padding: 5px;
-  transition: .5s;
+  transition: .3s;
 }
 .sidebar-logout:hover{
   background-color: rgba(41, 80, 9, 0.677);
@@ -1341,7 +1345,9 @@ body{
   padding: 20px;
   border-radius: 10px;
   width: 400px;
-  background-color: #8ed0fc;
+  background: #0038a9;
+  background: -webkit-linear-gradient(0deg, #0038a9 0%, #47a0ff 100%);
+  background: linear-gradient(0deg, #0038a9 0%, #47a0ff 100%);
   box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
   animation: dropDownEffectRename .4s ease-in-out alternate;
 }
@@ -1357,7 +1363,9 @@ body{
   padding: 20px;
   border-radius: 10px;
   width: 300px;
-  background-color: #8ed0fc;
+  background: #0038a9;
+  background: -webkit-linear-gradient(0deg, #0038a9 0%, #47a0ff 100%);
+  background: linear-gradient(0deg, #0038a9 0%, #47a0ff 100%);
   box-shadow: 0 0 10px rgba(24, 24, 24, 0.484);
   animation: dropDownEffectRename .4s ease-in-out alternate;
 }
@@ -1378,7 +1386,7 @@ body{
   justify-content: space-between;
 }
 .delete-container-sub-header{
-  color: red;
+  color: white;
   font-size: 17px;
   text-align: center;
   margin-top: 25px;
@@ -1959,6 +1967,11 @@ body{
   text-align: center;
   font-weight: 500;
 }
+/* .display-content-header {
+  color: #89327e;
+  color: -webkit-linear-gradient(0deg, #89327e 0%, #eb4843 50%, #e0622b 100%);
+  color: linear-gradient(0deg, #89327e 0%, #eb4843 50%, #e0622b 100%);
+} */
 .display-content-header span{
   font-size: 20px;
 }

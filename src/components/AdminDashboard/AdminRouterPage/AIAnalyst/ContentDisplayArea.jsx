@@ -18,7 +18,7 @@ const ContentDisplayArea = ({
   const adminStored = JSON.parse(localStorage.getItem('admin'));
   const firsName = adminStored ? adminStored.fullName.split(' ')[0] : 'Admin';
   const messagesEndRef = useRef(null);
-  const date = getLocalISODate();
+  const date = new Date().toISOString().split('T')[0];
 
   // State for formatted conversation with typing animation
   const [formattedConversation, setFormattedConversation] = useState([]);
@@ -42,11 +42,10 @@ const ContentDisplayArea = ({
   };
 
   // Format text for prompt messages
-  function getLocalISODate() {
-    const d = new Date();
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().split('T')[0];
-  }
+  // function getLocalISODate() {
+  //   const d = new Date();
+  //   return d.toISOString().split('T')[0];
+  // }
   
   // Scroll to bottom whenever conversation updates
   useEffect(() => {
@@ -212,22 +211,22 @@ const ContentDisplayArea = ({
             <div className='display-content-container'>
             <div className="">
                 <h1 className='display-content-header'>
-                Hello {capitalizeWords(firsName)}
-                <img src={hello} className='display-content-hello' alt='hello' />
-                , <span>what's next to analyze?</span>
+                  Hello {capitalizeWords(firsName)}
+                  <img src={hello} className='display-content-hello' alt='hello' />
+                  , <span>what's next to analyze?</span>
                 </h1>
 
                 <div className="display-content-card-container">
                 <div 
                     className="display-content-card"
                     onClick={() => {
-                    handlePreText(`Analyze the dues for the church service based on the membership fees for this month (Gh¢ ${isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ ${totalAmount ? totalAmount : "0"}.00) and how can we improve it?`)
+                    handlePreText(`Analyze the dues for the church service based on the membership fees for this today (Gh¢ ${isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ ${totalAmount ? totalAmount : "0"}.00) and how can we improve it?`)
                     }}
                 >
                     <p>
                     Analyze the revenue
                     for the church service based on the 
-                    membership fees for this month
+                    membership fees for this today
                     (Gh¢ {isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ {totalAmount ? totalAmount : "0"}.00) and how can we improve it?
                     </p>
                 </div>
