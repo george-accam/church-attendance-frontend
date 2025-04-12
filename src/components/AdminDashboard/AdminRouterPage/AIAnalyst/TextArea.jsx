@@ -3,7 +3,7 @@ import { AiFillMessage } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri"; 
 import React from 'react';
 
-const TextArea = ({ changeColor, message, preText, setMessage, setGetMessage, handleResponse, handleSaveResponse, }) => {
+const TextArea = ({ changeColor, message, preText,  setMessage, setGetMessage, handleResponse, handleSaveResponse, }) => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         handleResponse(message ? message : preText);
