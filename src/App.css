@@ -934,7 +934,10 @@ body{
 .admin-navbar-navigator-container{
   display: flex;
   flex-direction: column;
-  margin: 30px 0;
+  margin: 3px 0;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 60vh;
 }
 .admin-sidebar-navigator{
   margin-top: 5px;
@@ -1066,8 +1069,8 @@ body{
 }
 .all-members-list{
   text-align: center;
-  color: var(--light-text);
-  background-color: rgb(96, 128, 139);
+  /* color: var(--light-text); */
+  background-color: rgba(96, 128, 139, 0.499);
   font-size: 15px;
   border-bottom: 2px solid rgb(0, 0, 0);
 }
@@ -2413,7 +2416,7 @@ body{
     flex-direction: column;
   }
   .admin-sidebar-bottom{
-    margin-top: 30px;
+    margin-top: 3px;
   }
   /* usher register */
   .usher-register-container{

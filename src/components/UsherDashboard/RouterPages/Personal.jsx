@@ -6,11 +6,13 @@ import { ToastContainer } from 'react-toastify';
 import member from './../../assets/empty.png';
 import PersonalComponentLoader from "../../reusableComponents/PersonalComponentLoader.jsx";
 import capitalizeWords from "../../reusableComponents/CapitaliseEachLetter.js";
+import CheckedInSearch from "../../reusableComponents/CheckedInSearch.jsx";
 
 const Personal = ({ changeColor }) => {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   const [filteredMembers, setFilteredMembers] = useState([]);
   
   // getting user data from localStorage
@@ -32,13 +34,17 @@ const Personal = ({ changeColor }) => {
 
   const searchPersonalMember = async()=>{
     try {
-      if (search.trim() === "") {
+      if (search.trim() === null || search.trim() === "") {
+        setFilteredMembers([]);
         setIsSearching(false);
+        return;
       }
+      setIsSearching(true);
       const response = await api.get(`search-personal-attendance/${userId}?q=${search}`);
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
         handleError("member not found");
+        return
       }
       setFilteredMembers(personalAttendance);
 
@@ -68,6 +74,7 @@ const Personal = ({ changeColor }) => {
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
         handleError("member not found");
+        return;
       }
       setMembers(personalAttendance);
     } catch (error) {
@@ -138,6 +145,14 @@ const Personal = ({ changeColor }) => {
                   </thead>
                   {/* breaks the thead from the tbody */}
                   <br />
+                  {/* the search text */}
+                  {isSearching&&(
+                      <tr className='search-all-members-list'>
+                          <td colSpan={4}>
+                              <CheckedInSearch />
+                          </td>
+                      </tr>
+                  )}
                   {/* table body */}
                   <tbody>
                     {search.length > 0 || filteredMembers > 0 ? (

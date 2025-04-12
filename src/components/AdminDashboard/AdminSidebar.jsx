@@ -1,3 +1,4 @@
+import { BiBarChartAlt2 } from "react-icons/bi"; 
 import { GiCash } from "react-icons/gi"; 
 import { BsRobot } from "react-icons/bs"; 
 import { AiOutlineMail } from "react-icons/ai"; 
@@ -154,6 +155,17 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
               <div className="sidebar-navigator-list">
                 <BsRobot className="navigator-icon" />
                 AI analyst
+              </div>
+            </Link>
+
+            {/* chart */}
+            <Link to="/admin-dashboard/ai-analyst"
+              onClick={()=> handleShowActive("chart")} 
+              className={`sidebar-navigator admin-sidebar-navigator ${isActive === "chart" ? "active" : ""}`}
+            >
+              <div className="sidebar-navigator-list">
+                <BiBarChartAlt2 className="navigator-icon" />
+                Chart
               </div>
             </Link>
           </div>
