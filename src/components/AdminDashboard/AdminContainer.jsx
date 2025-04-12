@@ -13,6 +13,10 @@ import Tithe from './AdminRouterPage/TitheAndWelfare/Tithe';
 import Welfare from './AdminRouterPage/TitheAndWelfare/Welfare';
 import api from '../../API/Api';
 import { handleError, handleSuccess } from '../../notifications/Notification';
+import BarChart from './AdminRouterPage/BarChart';
+import Revenue from './AdminRouterPage/BarChart/Revenue';
+import Attendance from './AdminRouterPage/BarChart/Attendance';
+import Members from './AdminRouterPage/BarChart/Members';
 
 const AdminContainer = ({changeColor }) => {
   const [dues, setDues] = useState({});
@@ -453,7 +457,21 @@ const AdminContainer = ({changeColor }) => {
                 totalMembers={totalMembers}
               />
             } />
-          </Routes>
+            {/* bar chart */}
+            <Route path="chart" element={
+              <BarChart
+                changeColor={changeColor}
+              />
+            }>
+              <Route path="revenue" element={ 
+                <Revenue />
+              } />
+
+              <Route path="attendance" element={
+                <Attendance />
+              } />
+          </Route>
+        </Routes>
         </div>
       </div>
     </div>

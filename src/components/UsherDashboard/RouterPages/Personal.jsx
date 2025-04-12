@@ -44,7 +44,7 @@ const Personal = ({ changeColor }) => {
       const { personalAttendance } = response.data;
       if (personalAttendance === null || personalAttendance.length === 0) {
         handleError("member not found");
-        return
+        return;
       }
       setFilteredMembers(personalAttendance);
 

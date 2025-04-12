@@ -159,7 +159,7 @@ const AdminSidebar = ({ userName, userEmail, sidebarActive, setSidebarActive, ha
             </Link>
 
             {/* chart */}
-            <Link to="/admin-dashboard/ai-analyst"
+            <Link to={`/admin-dashboard/chart/${localStorage.getItem("bar-chart") || "revenue"}`}
               onClick={()=> handleShowActive("chart")} 
               className={`sidebar-navigator admin-sidebar-navigator ${isActive === "chart" ? "active" : ""}`}
             >

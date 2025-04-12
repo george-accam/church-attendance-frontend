@@ -935,13 +935,10 @@ body{
   display: flex;
   flex-direction: column;
   margin: 3px 0;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  height: 60vh;
 }
 .admin-sidebar-navigator{
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
 }
 .active{
   background-color: rgba(91, 93, 97, 0.414);
@@ -964,7 +961,7 @@ body{
 }
 /* admin side bar bottom */
 .admin-sidebar-bottom{
-  margin-top: 1px;
+  margin-top: 20px;
   padding: 0 10px;
   border-top: 1px solid var(--light-text);
 }
@@ -2050,6 +2047,13 @@ body{
   flex-direction: column;
   gap: 20px;
 
+}
+.bar-chart-components{
+  margin: 0 20px;
+}
+.revenue-bar-container{
+  background-color: white;
+  padding: 10px;
 }
 
 
