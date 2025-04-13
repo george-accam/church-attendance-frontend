@@ -36,13 +36,11 @@ const CheckIn = () => {
       const { message } = response.data;
       if (message) {
         handleSuccess(message);
+        setPhoneNumber("");
       }
-      setPhoneNumber("");
-
-      // remove the member from checkedMembers after successful submission
-      setCheckedMembers((prev) => prev.filter((id) => id !== memberId));
       
     } catch (error) {
+      setCheckedMembers([])
       if (error.response.data.message) {
         handleError(`Check in failed: ${error.response.data.message} `)
       } else if (error.request) {
@@ -68,8 +66,7 @@ const CheckIn = () => {
         return;
       }
 
-      if (attendee !== null || attendee.length !== 0) {
-        handleSuccess(message)
+      if (message) {
         setFilteredMembers(attendee);
       }
 

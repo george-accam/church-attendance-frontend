@@ -34,7 +34,7 @@ const TextArea = ({ changeColor, message, preText,  setMessage, setGetMessage, h
                     <div className="text-area-container">
                         <div className={`text-area-container-inner ${changeColor ? "text-area-black" : "text-area-white"}`}>
                             <div 
-                            className="new-chat-icon-container"
+                                className="new-chat-icon-container"
                                 onClick={handleSave}
                             >
                                 <p>
