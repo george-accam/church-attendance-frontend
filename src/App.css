@@ -1066,10 +1066,11 @@ body{
 }
 .all-members-list{
   text-align: center;
-  /* color: var(--light-text); */
-  background-color: rgba(96, 128, 139, 0.499);
+  color: black;
+  background-color: white;
   font-size: 15px;
-  border-bottom: 2px solid rgb(0, 0, 0);
+  border-top: 3px solid rgba(183, 183, 183, 0.496);
+  border-bottom: 3px solid rgba(183, 183, 183, 0.496);
 }
 /* ushers member list */
 .ushers-members-list-header{
@@ -1100,6 +1101,7 @@ body{
 }
 .edit-button{
   cursor: pointer;
+  color: blue;
   transition: .5s;
 }
 .edit-button:hover{

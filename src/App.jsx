@@ -14,6 +14,7 @@ const App = () => {
   const [admin, setAdmin] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const usherLoggedIn = localStorage.getItem('usher');
 
   useEffect(() => {
     try {
@@ -67,7 +68,7 @@ const App = () => {
       {/*  sanitize container */}
       <div dangerouslySetInnerHTML={{ __html: safeHTML }} />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={ usherLoggedIn ? <Navigate to="usher-dashboard/all-members" /> : <LandingPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
           {/* usher protective route */}

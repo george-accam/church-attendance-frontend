@@ -31,7 +31,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
 
     // logout the user
     const handleYes = ()=>{
-        localStorage.removeItem("user");
+        localStorage.removeItem("usher");
         localStorage.removeItem("token");
         localStorage.removeItem("is-active")
         localStorage.removeItem('usherLoggedIn')
