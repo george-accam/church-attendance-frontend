@@ -6,12 +6,14 @@ import Personal from "./RouterPages/Personal"
 import Register from "./RouterPages/Register"
 
 const UsherContainer = ({ changeColor }) => {
+  const usherLoggedIn = localStorage.getItem('usherLoggedIn')
+
   return (
     <div>
       <div className="user-content-container">
         <div className="user-content">
           <Routes>
-            <Route path="/" element={<Navigate to="all-members" replace />} />
+            <Route path="/" element={ usherLoggedIn && <Navigate to="all-members" replace />} />
             <Route path="all-members" element={
               <AllMembers
                 changeColor={changeColor}

@@ -73,6 +73,7 @@ const Login = () => {
         // store the user data in local storage
         if(user.role === "Usher"){
             localStorage.setItem("usher", JSON.stringify(user));
+            localStorage.setItem("usherLoggedIn", JSON.stringify(true));
         }
         else if(user.role === "Admin"){
           localStorage.setItem("admin", JSON.stringify(user));

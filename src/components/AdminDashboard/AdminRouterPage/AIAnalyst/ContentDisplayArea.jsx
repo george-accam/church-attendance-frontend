@@ -164,6 +164,64 @@ const ContentDisplayArea = ({
     });
   };
 
+  if(refreshPage){
+    return (
+      <div className="content-display-area">
+        {/* Initial empty state */}
+        <div className='display-content-container'>
+        <div className="">
+            <h1 className='display-content-header'>
+              Hello {capitalizeWords(firsName)}
+              <img src={hello} className='display-content-hello' alt='hello' />
+              , <span>what's next to analyze?</span>
+            </h1>
+
+            <div className="display-content-card-container">
+            <div 
+                className="display-content-card"
+                onClick={() => {
+                handlePreText(`Analyze the dues for the church service based on the membership fees for this today (Gh¢ ${isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ ${totalAmount ? totalAmount : "0"}.00) and how can we improve it?`)
+                }}
+            >
+                <p>
+                Analyze the revenue
+                for the church service based on the 
+                membership fees for this today
+                (Gh¢ {isTotalAmountByDate[date]? isTotalAmountByDate[date] : "0"}.00 / Gh¢ {totalAmount ? totalAmount : "0"}.00) and how can we improve it?
+                </p>
+            </div>
+            <div 
+                className="display-content-card"
+                onClick={() => {
+                handlePreText(`Determine the church attendance rate for the service based on the check-ins today (${totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / ${totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?`)
+                }}
+            >
+                <p>
+                Determine the church attendance rate for 
+                the service based on the check-ins 
+                today ({totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / {totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?
+                </p>
+            </div>
+            <div 
+                className="display-content-card"
+                onClick={() => {
+                handlePreText(`Evaluate the number of members for the church attendance platform based on the user registration this quarter (${totalMembers ? totalMembers : "0"}) and how can we improve it?`)
+                }}
+            >
+                <p>
+                Evaluate the number of members
+                for the church attendance platform based on the user 
+                registration this quarter 
+                ({totalMembers ? totalMembers : "0"}) and how can we improve it?
+                </p>
+            </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="content-display-area">
       {/* Conversation history */}

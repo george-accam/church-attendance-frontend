@@ -59,14 +59,14 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
                 return "";
             }
             // setLoading(true);
+            // setRefreshPage(true);
             const response = await api.post('save-ai-analyst-response', { userId, session });
             const { message } = response.data;
             
             if (message) {
-                handleSuccess(message);
                 setConversation([]);
                 sessionStorage.removeItem('conversation');
-                setRefreshPage(!refreshPage);
+                window.location.reload();
             }
         } catch (error) {
             if (error.response.data.message) {
@@ -79,13 +79,17 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
                 handleError(`error occurred : ${error.message}`);
             }
         }
-        // finally {
-        //     setLoading(false);
-        // }
+        finally {
+             // setLoading(false);
+            // setRefreshPage(false);
+        }
     };
     
 
-
+    useEffect(()=>{
+        setConversation([]);
+        handleSaveResponse()
+    }, [refreshPage]);
 
     const handlePreText = (text) => {
         setPreText(text ? text : '');
