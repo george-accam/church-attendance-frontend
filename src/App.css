@@ -14,7 +14,7 @@ body{
 
 :root{
   --white-bg: white;
-  --dark-bg: rgb(17, 29, 48);
+  --dark-bg: rgb(12, 19, 30);
   --light-text: rgb(239, 245, 255);
   --dark-text: rgb(23, 35, 55);
 }
@@ -515,8 +515,9 @@ body{
   background: #474bff;
   background: -webkit-linear-gradient(0deg, #474bff 0%, #bc48ff 100%);
   background: linear-gradient(0deg, #474bff 0%, #bc48ff 100%);
-    padding: 5px;
+  padding: 5px;
   border-radius: 10%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 .sidebar-user-dashboard{
   display: flex;
@@ -1058,17 +1059,25 @@ body{
 .all-members-list-header{
   text-align: center;
   background-color: rgba(115, 255, 0, 0.677);
-  font-size: 20px;
+  font-size: 16px;
 }
 .all-members-list-header th{
-  font-weight: 400;
-  padding: 11px;
+  font-weight: 600;
+  padding: 10px;
 }
 .all-members-list{
   text-align: center;
   color: black;
   background-color: white;
-  font-size: 15px;
+  font-size: 13px;
+  border-top: 3px solid rgba(183, 183, 183, 0.496);
+  border-bottom: 3px solid rgba(183, 183, 183, 0.496);
+}
+.all-members-list-black{
+  text-align: center;
+  color: white;
+  background-color: rgb(43, 78, 107);
+  font-size: 13px;
   border-top: 3px solid rgba(183, 183, 183, 0.496);
   border-bottom: 3px solid rgba(183, 183, 183, 0.496);
 }
@@ -1097,13 +1106,19 @@ body{
   
 }
 .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
-  padding: 16px 0;
+  padding: 10px 0;
 }
 .edit-button{
   cursor: pointer;
   color: blue;
   transition: .5s;
 }
+.edit-button-black{
+  cursor: pointer;
+  color: white;
+  transition: .5s;
+}
+
 .edit-button:hover{
   color: red;
 }

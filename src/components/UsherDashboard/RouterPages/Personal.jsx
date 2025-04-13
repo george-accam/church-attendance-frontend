@@ -157,7 +157,10 @@ const Personal = ({ changeColor }) => {
                   <tbody>
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
-                          <tr key={filteredMember._id} className='all-members-list'>
+                          <tr 
+                            key={filteredMember._id} 
+                            className={`all-members-list ${!changeColor ? "all-members-list-black" : ""}`}
+                          >
                                   <td>
                                       {capitalizeWords(filteredMember.attendeeName)}
                                   </td>
@@ -171,7 +174,10 @@ const Personal = ({ changeColor }) => {
                         ))
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
-                              <tr key={member._id} className='all-members-list'>
+                              <tr 
+                                key={member._id} 
+                                className={`all-members-list ${!changeColor ? "all-members-list-black" : ""}`}
+                              >
                                   <td>
                                       {capitalizeWords(member.attendeeName)}
                                   </td>

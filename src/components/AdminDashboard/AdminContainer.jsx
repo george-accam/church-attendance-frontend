@@ -16,7 +16,6 @@ import { handleError, handleSuccess } from '../../notifications/Notification';
 import BarChart from './AdminRouterPage/BarChart';
 import Revenue from './AdminRouterPage/BarChart/Revenue';
 import Attendance from './AdminRouterPage/BarChart/Attendance';
-import Members from './AdminRouterPage/BarChart/Members';
 
 const AdminContainer = ({changeColor }) => {
   const [dues, setDues] = useState({});

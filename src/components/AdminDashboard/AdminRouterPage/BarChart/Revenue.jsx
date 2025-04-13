@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, defaults } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import api from "../../../../API/Api"
-import { handleError, handleSuccess } from '../../../../notifications/Notification';
+import { handleError } from '../../../../notifications/Notification';
 
 defaults.responsive = true;
 defaults.plugins.legend.position = 'top';
 defaults.plugins.title.display = true;
+if(window.innerWidth < 587) {
+    defaults.aspectRatio = 15/20;
+}
 defaults.plugins.title.font = { size: 20 };
 
 const Revenue = () => {

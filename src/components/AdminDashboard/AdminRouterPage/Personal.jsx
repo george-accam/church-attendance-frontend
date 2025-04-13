@@ -255,7 +255,7 @@ const Personal = ({ changeColor }) => {
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
                           <tr key={filteredMember._id} 
-                            className={`all-members-list personal-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                            className={`all-members-list personal-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                             >
                                   <td>
                                       {filteredMember.attendeeName}
@@ -275,7 +275,7 @@ const Personal = ({ changeColor }) => {
                                         className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                     >
                                       <SlOptionsVertical
-                                          className="edit-button"
+                                          className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                           onClick={()=> handleShowEdit(member._id)}
                                       />
                                         { isShow === member._id && (
@@ -322,8 +322,9 @@ const Personal = ({ changeColor }) => {
                         ))
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
-                              <tr key={member._id} 
-                              className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                              <tr 
+                                key={member._id} 
+                                className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                               >
                                   <td>
                                       {capitalizedEachWord(member.attendeeName)}
@@ -343,7 +344,7 @@ const Personal = ({ changeColor }) => {
                                         className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                     >
                                       <SlOptionsVertical
-                                          className="edit-button"
+                                          className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                           onClick={()=> handleShowEdit(member._id)}
                                       />
                                         { isShow === member._id && (

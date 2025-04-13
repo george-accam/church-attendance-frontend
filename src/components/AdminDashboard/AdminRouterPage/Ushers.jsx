@@ -246,7 +246,7 @@ const Ushers = ({ changeColor }) => {
                     {search.length > 0 || filteredMembers > 0 ? (
                         filteredMembers.map((filteredMember) => (
                           <tr key={filteredMember._id} 
-                            className={`all-members-list ${isRename === filteredMember._id ? 'update-table' : isDelete === filteredMember._id ? 'delete-table' : ''}`}
+                            className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === filteredMember._id ? 'update-table' : isDelete === filteredMember._id ? 'delete-table' : ''}`}
                           >
                               <td>
                                   {filteredMember.fullName}
@@ -269,7 +269,7 @@ const Ushers = ({ changeColor }) => {
                                         className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
                                         >
                                       <SlOptionsVertical
-                                          className="edit-button"
+                                          className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                           onClick={()=> handleShowEdit(filteredMember._id)}
                                           />
                                         { isShow === filteredMember._id && (
@@ -317,7 +317,7 @@ const Ushers = ({ changeColor }) => {
                       ) : (
                           members.length > 0 ?  ( members.map((member) => (
                               <tr key={member._id} 
-                                className={`all-members-list ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                                className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
                               >
                                   <td>
                                       {capitalizedEachWord(member.fullName)}
@@ -341,7 +341,7 @@ const Ushers = ({ changeColor }) => {
                                         className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                     >
                                       <SlOptionsVertical
-                                          className="edit-button"
+                                          className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                           onClick={()=> handleShowEdit(member._id)}
                                       />
                                         { isShow === member._id && (

@@ -236,7 +236,7 @@ const AllMembers = ({ changeColor }) => {
                                 filteredMembers.map(filteredMember => (
                                     <tr 
                                         key={filteredMember._id} 
-                                        className={`all-members-list ${showTithe === filteredMember._id ? 'update-table' : showWelfare === filteredMember._id ? 'welfare-table' : ''}`}
+                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === filteredMember._id ? 'update-table' : showWelfare === filteredMember._id ? 'welfare-table' : ''}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(filteredMember.fullName)}
@@ -255,7 +255,7 @@ const AllMembers = ({ changeColor }) => {
                                                 className={`edit-parent-container ${isShow === filteredMember._id ? "edit-button-color" : ""}`}
                                                 >
                                                 <CgOptions 
-                                                    className="edit-button"
+                                                    className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                                     onClick={()=> handleShowEdit(filteredMember._id)}
                                                 />
                                                 { isShow === filteredMember._id && (
@@ -307,7 +307,7 @@ const AllMembers = ({ changeColor }) => {
                                 members && members.length > 0 ?  ( members.map((member) => (
                                     <tr 
                                         key={member._id} 
-                                        className={`all-members-list ${showTithe === member._id ? 'update-table' : showWelfare === member._id ? 'welfare-table' : ''}`}
+                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === member._id ? 'update-table' : showWelfare === member._id ? 'welfare-table' : ''}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(member.fullName)}
@@ -326,7 +326,7 @@ const AllMembers = ({ changeColor }) => {
                                                 className={`edit-parent-container ${isShow === member._id ? "edit-button-color" : ""}`}
                                                 >
                                                 <CgOptions 
-                                                    className="edit-button"
+                                                    className={`edit-button ${!changeColor ? "edit-button-black" : ""}`}
                                                     onClick={()=> handleShowEdit(member._id)}
                                                 />
                                                 { isShow === member._id && (
