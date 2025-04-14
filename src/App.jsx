@@ -68,7 +68,7 @@ const App = () => {
       {/*  sanitize container */}
       <div dangerouslySetInnerHTML={{ __html: safeHTML }} />
         <Routes>
-          <Route path="/" element={ usherLoggedIn ? <Navigate to="usher-dashboard/all-members" /> : <LandingPage />} />
+          <Route path="/" element={ usherLoggedIn ? <Navigate to={`usher-dashboard/${localStorage.getItem("is-active") || "all-members"}`} /> : <LandingPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
           {/* usher protective route */}

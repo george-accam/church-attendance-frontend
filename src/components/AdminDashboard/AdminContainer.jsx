@@ -360,7 +360,7 @@ const AdminContainer = ({changeColor }) => {
       <div className="user-content-container admin-content-container">
         <div className="user-content">
           <Routes>
-            <Route path="/" element={<Navigate to="members-checked" replace />} />
+            <Route path="/" element={<Navigate to={`${localStorage.getItem("active") || "members-checked"}`} replace />} />
             <Route path="members-checked" element={
               <AdminMembersChecked 
                 changeColor={changeColor}
