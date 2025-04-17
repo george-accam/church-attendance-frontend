@@ -101,7 +101,7 @@ const CheckIn = () => {
   const handleEnter = (e)=>{
     if(e.key === 'Enter'){
       e.preventDefault();
-      handleFetchSearch;
+      handleFetchSearch();
     }
   }
 
@@ -116,11 +116,12 @@ const CheckIn = () => {
                 className='check-in-form'
                 >
                 <h1 className='container-header'>Check In Member</h1>
-                <div 
-                  tabIndex={0}
-                  onKeyDown={handleEnter}
-                  className="form-group"
-                >
+                <form onSubmit={handleFetchSearch}>
+                  <div 
+                    // tabIndex={0}
+                    // onKeyDown={handleEnter}
+                    className="form-group"
+                  >
                     <label htmlFor="fullName">
                       Phone number
                     </label>
@@ -131,32 +132,33 @@ const CheckIn = () => {
                         required
                         placeholder="enter phone number" 
                     />
-                </div>
-                <div className="button-container">
-                    <button 
-                      type="submit"
-                      onClick={handleFetchSearch}
-                      disabled={isSearching}
-                      className={`submit-button ${isSearching ? "button-loading" : ""}`}
-                    >
-                      {isSearching ? (
-                        <div className="login-button-content-container">
-                          <div className="login-button-content">
-                              <SubmissionLoader />
-                              <p>searching</p>
+                  </div>
+                  <div className="button-container">
+                      <button 
+                        type="submit"
+                        // onClick={handleFetchSearch}
+                        disabled={isSearching}
+                        className={`submit-button ${isSearching ? "button-loading" : ""}`}
+                      >
+                        {isSearching ? (
+                          <div className="login-button-content-container">
+                            <div className="login-button-content">
+                                <SubmissionLoader />
+                                <p>searching</p>
+                            </div>
                           </div>
-                        </div>
-                      )
-                      : "search"
-                      }
-                    </button>
-                    <div className="login-link-container">
-                        Want to register member ?
-                        <Link to="/admin-dashboard/register-member" className="login-link check-in-register-member">
-                          register
-                        </Link>
-                    </div>
-                </div>
+                        )
+                        : "search"
+                        }
+                      </button>
+                      <div className="login-link-container">
+                          Want to register member ?
+                          <Link to="/admin-dashboard/register-member" className="login-link check-in-register-member">
+                            register
+                          </Link>
+                      </div>
+                  </div>
+                </form>
               </div>
               {/* members table */}
               <div className="check-in-all-members-content">

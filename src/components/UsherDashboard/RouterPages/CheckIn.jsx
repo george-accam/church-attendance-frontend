@@ -102,43 +102,45 @@ const CheckIn = () => {
           <div className="inner-container usher-check-in-inner-container">
             <div className='check-in-form'>
               <h1 className='container-header'>Check In Member</h1>
-              <div className="form-group">
-                <label htmlFor="fullName">Phone number</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={phoneNumber}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Enter phone number"
-                />
-              </div>
-              <div className="button-container">
-                <button
-                  type="submit"
-                  onClick={handleFetchSearch}
-                  disabled={isSearching}
-                  className={`submit-button ${isSearching ? "button-loading" : ""}`}
-                >
-                  
-                  {isSearching ? (
-                      <div className="login-button-content-container">
-                        <div className="login-button-content">
-                            <SubmissionLoader />
-                            <p>searching</p>
-                        </div>
-                      </div>
-                    )
-                    : "search"
-                  }
-                </button>
-                <div className="login-link-container">
-                  Want to register member?
-                  <Link to="/usher-dashboard/register-member" className="login-link check-in-register-member">
-                    Register
-                  </Link>
+              <form onSubmit={handleFetchSearch}>
+                <div className="form-group">
+                  <label htmlFor="fullName">Phone number</label>
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    value={phoneNumber}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Enter phone number"
+                  />
                 </div>
-              </div>
+                <div className="button-container">
+                  <button
+                    type="submit"
+                    // onClick={handleFetchSearch}
+                    disabled={isSearching}
+                    className={`submit-button ${isSearching ? "button-loading" : ""}`}
+                  >
+                    
+                    {isSearching ? (
+                        <div className="login-button-content-container">
+                          <div className="login-button-content">
+                              <SubmissionLoader />
+                              <p>searching</p>
+                          </div>
+                        </div>
+                      )
+                      : "search"
+                    }
+                  </button>
+                  <div className="login-link-container">
+                    Want to register member?
+                    <Link to="/usher-dashboard/register-member" className="login-link check-in-register-member">
+                      Register
+                    </Link>
+                  </div>
+                </div>
+              </form>
             </div>
             {/* Members table */}
             <div className="check-in-all-members-content">
