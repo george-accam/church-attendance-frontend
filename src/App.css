@@ -2027,7 +2027,9 @@ body{
   padding: 20px;
 }
 .display-content-card{
-  background-color: rgba(66, 84, 119, 0.616);
+  background: #797575;
+  background: -webkit-linear-gradient(0deg, #464242 0%, #636363 100%);
+  background: linear-gradient(0deg, #474747 0%, #979595 100%);
   border-radius: 15px;
   padding: 10px;
   margin: 10px 0;
