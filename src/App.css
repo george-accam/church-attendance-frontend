@@ -1890,7 +1890,7 @@ body{
   margin: 0px;
 }
 .ai-analyst-title-container{
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid transparent;
 }
 .ai-analyst-title{
   display: flex;
@@ -1920,7 +1920,7 @@ body{
   height: 70vh;
 }
 .text-area-container-outer{
-  border-top: 1px solid blue;
+  border-top: 1px solid transparent;
 }
 .text-area-container{
   display: flex;
