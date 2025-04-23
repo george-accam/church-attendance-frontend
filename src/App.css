@@ -336,7 +336,7 @@ body{
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 500;
-  color: var(--dark-bg);
+  color: var(--white-bg);
 }
 .form-group input{
   padding: 10px;
@@ -356,7 +356,7 @@ body{
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 500;
-  color: var(--dark-bg);
+  color: var(--white-bg);
 }
 .password input{
   width: 90%;
@@ -406,12 +406,13 @@ body{
   cursor: not-allowed;
 }
 .login-link-container{
-  color: var(--dark-text);
+  color: var(--white-bg);
   margin-left: 4rem;
   margin-top: 9px;
 }
 .login-link{
   text-decoration: none;
+  margin-left: 10px;
   color: red;
 }
 .email-phone-container{
