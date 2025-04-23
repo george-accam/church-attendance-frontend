@@ -57,6 +57,10 @@ const CheckIn = () => {
   const handleFetchSearch = async(e)=>{
     e.preventDefault();
     try {
+      if(phoneNumber.length !== 10) {
+        handleError("Phone number must be exactly 10 digits long.");
+        return;
+      }
       // set loading to true
       setIsSearching(true)
       const response = await Api.get(`search-attendee?q=${phoneNumber}`)

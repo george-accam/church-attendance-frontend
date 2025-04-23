@@ -117,7 +117,9 @@ body{
 
 /* navbar page */
 .navbar-container{
-  background-color: #2a2a72;
+  background: #010364;
+  background: -webkit-linear-gradient(0deg, #010364 0%, #8982f1 100%);
+  background: linear-gradient(0deg, #010364 0%, #8982f1 100%);
   height: auto;
 }
 .navbar-content{
@@ -295,7 +297,7 @@ body{
   width: 50%;
 }
 .inner-container{
-  width: 70%;
+  width: 50%;
   margin: 10px 15px;
 }
 /* usher register form */
@@ -2177,7 +2179,7 @@ body{
     display: none;
   }
   .inner-container{
-    width: 95%;
+    width: 70%;
   }
   .navbar-button{
     font-size: 12px;
@@ -2353,6 +2355,9 @@ body{
   }
 }
 @media screen and (max-width: 587px) {
+  .inner-container{
+    width: 95%;
+  }
   .text-area-container-inner{
     width: 95%;
   }

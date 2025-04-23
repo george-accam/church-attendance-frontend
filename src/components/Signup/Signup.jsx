@@ -177,12 +177,12 @@ const Signup = () => {
 return (
     <div>
         <div className="container-background">
-            <div className="image-container">
+            {/* <div className="image-container">
                 <img src={BgImage} 
                 className='background-image'
                 alt="background-image"
                 />
-            </div>
+            </div> */}
             <div className="outer-container">
                 <div className="inner-container"
                 data-aos="fade-up"
