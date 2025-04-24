@@ -1514,10 +1514,10 @@ body{
   cursor: not-allowed;
 }
 .update-table{
-  background-color: #0055ff88;
+  background-color: #0055ff;
 }
 .delete-table{
-  background-color: #ff000078;
+  background-color: #ff0000;
 }
 .welfare-table{
   background-color: green;
