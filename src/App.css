@@ -785,11 +785,12 @@ body{
   font-size: 15px;
   text-align: center;
   color: var(--light-text);
-  border-bottom:  1px solid rgba(100, 100, 100, 0.596);
+  padding-bottom: 5px;
+  border-bottom:  2px solid rgb(0, 0, 0);
 }
 .logout-holder p{
   background-color: transparent;
-  color: var(--light-text);
+  color: var(--dark-text);
   font-size: 16px;
   margin: 15px 0;
 }
