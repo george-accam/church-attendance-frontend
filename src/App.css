@@ -1072,15 +1072,15 @@ body{
   outline: none;
 }
 .search-icon{
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
   color: var(--dark-bg);
   padding: 4px;
-  transition: .5s;
 }
 .search-icon:hover{
-  color: var(--light-text);
-  background-color: var(--dark-text);
+  color: black;
+  background-color: rgba(109, 103, 103, 0.27);
+  border-radius: 50%;
 }
 .all-members-content{
   width: 100%;
