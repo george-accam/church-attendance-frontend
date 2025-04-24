@@ -529,7 +529,7 @@ body{
   background: linear-gradient(0deg, #474bff 0%, #bc48ff 100%);
   padding: 5px;
   border-radius: 10%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
 }
 .logout-container span:hover{
   opacity: 80%;
@@ -557,7 +557,7 @@ body{
   right: 0%;
   margin: 4px 55px 0 0;
   width: 150px;
-  background-color: var(--light-text);
+  background: white;
   border: 1px solid rgb(7, 52, 253);
   border-radius: 6px 0 6px 6px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
@@ -1147,7 +1147,6 @@ body{
 }
 .edit-button{
   cursor: pointer;
-  color: blue;
   transition: .5s;
 }
 .edit-button-black{
@@ -1514,13 +1513,22 @@ body{
   cursor: not-allowed;
 }
 .update-table{
-  background-color: #0055ff;
+  color: white;
+  background: #1488cc;
+  background: -webkit-linear-gradient(0deg, #1488cc 0%, #2b32b2 100%);
+  background: linear-gradient(0deg, #1488cc 0%, #2b32b2 100%);
 }
 .delete-table{
-  background-color: #ff0000;
+  color: white;
+  background: #ad0000;
+  background: -webkit-linear-gradient(0deg, #ad0000 0%, #ff5858 100%);
+  background: linear-gradient(0deg, #ad0000 0%, #ff5858 100%);
 }
 .welfare-table{
-  background-color: green;
+  color: white;
+  background: #0b6b00;
+  background: -webkit-linear-gradient(0deg, #0b6b00 0%, #00e604 100%);
+  background: linear-gradient(0deg, #0b6b00 0%, #00e604 100%);
 }
 
 /* members checked in */
@@ -2112,6 +2120,7 @@ body{
 }
 .clear-text{
   font-size: 20px;
+  color: #000;
   margin-top: -30px;
   margin-right: 5px;
   cursor: pointer;

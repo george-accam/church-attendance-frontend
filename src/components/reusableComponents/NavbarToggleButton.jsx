@@ -24,7 +24,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
         <div>
             {isShow && (
                 <div className="logout-inner-container" role="none">
-                    <section>menu</section>
+                    <section>theme</section>
                     <div className="toggle-switch-container">
                         <WiDaySunny 
                             className="toggle-icons"

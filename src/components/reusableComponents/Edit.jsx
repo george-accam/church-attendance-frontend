@@ -25,6 +25,7 @@ const Edit = ({ memberId, handleRename, handleDelete }) => {
                     />
                     <p>Rename</p>
                 </div>
+
                 {/* delete container */}
                 <div
                     onClick={handleDelete}
