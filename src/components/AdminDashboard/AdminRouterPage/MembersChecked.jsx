@@ -126,7 +126,7 @@ const MembersChecked = ( { changeColor, }) => {
                         className="search-container"
                     >
                         <input type="text"
-                            placeholder='search member or YY-MM-DD'
+                            placeholder='search member or yy-mm-dd'
                             value={search}
                             onChange={handleSearch}
                         />

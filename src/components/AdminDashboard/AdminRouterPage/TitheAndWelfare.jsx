@@ -26,7 +26,7 @@ const TitheAndWelfare = ({ changeColor, search, setSearch, isSearching }) => {
                         className="search-container"
                     >
                         <input type="text"
-                            placeholder='search members'
+                            placeholder='search members or yy-mm-dd'
                             value={search}
                             onChange={handleSearch}
                         />

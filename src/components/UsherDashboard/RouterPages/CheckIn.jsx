@@ -1,3 +1,4 @@
+import { CgClose } from "react-icons/cg"; 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { handleSuccess, handleError } from '../../../notifications/Notification';
@@ -95,6 +96,10 @@ const CheckIn = () => {
     handleFetchSearch();
   }, []);
 
+  const handleClear = ()=>{
+    setPhoneNumber("")
+  }
+
   return (
     <div>
       <div className="container-background usher-register-container">
@@ -113,6 +118,14 @@ const CheckIn = () => {
                     required
                     placeholder="Enter phone number"
                   />
+                  {phoneNumber.length > 0 && (
+                    <div 
+                      className="clear-text-container"
+                      onClick={handleClear}
+                    >
+                      <CgClose className="clear-text" />
+                    </div>
+                  )}
                 </div>
                 <div className="button-container">
                   <button
@@ -136,7 +149,7 @@ const CheckIn = () => {
                   <div className="login-link-container">
                     Want to register member?
                     <Link to="/usher-dashboard/register-member" className="login-link check-in-register-member">
-                      Register
+                      register
                     </Link>
                   </div>
                 </div>

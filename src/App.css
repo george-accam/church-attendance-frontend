@@ -1252,8 +1252,6 @@ body{
 
 /* usher loading */
 .loading-members{
-  /* display: flex;
-  justify-content: space-evenly; */
   width: 100%;
   background-color: rgba(96, 128, 139, 0.573);
   font-size: 15px;
@@ -2023,11 +2021,6 @@ body{
   text-align: center;
   font-weight: 500;
 }
-/* .display-content-header {
-  color: #89327e;
-  color: -webkit-linear-gradient(0deg, #89327e 0%, #eb4843 50%, #e0622b 100%);
-  color: linear-gradient(0deg, #89327e 0%, #eb4843 50%, #e0622b 100%);
-} */
 .display-content-header span{
   font-size: 20px;
 }
@@ -2113,6 +2106,22 @@ body{
   background-color: white;
   padding: 10px;
 }
+.clear-text-container{
+  display: flex;
+  justify-content: end;
+}
+.clear-text{
+  font-size: 20px;
+  margin-top: -30px;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 1px;
+}
+.clear-text:hover{
+  background-color: #0000ff29;
+  border-radius: 20px;
+}
+
 
 
 /* responsiveness css */
