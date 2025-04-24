@@ -1,3 +1,5 @@
+import { MdNightlightRound } from "react-icons/md"; 
+import { WiDaySunny } from "react-icons/wi"; 
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineLogout } from "react-icons/ai";
 
@@ -24,14 +26,20 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
                 <div className="logout-inner-container" role="none">
                     <section>menu</section>
                     <div className="toggle-switch-container">
-                            <label className="ui-switch">
-                                <input type="checkbox" 
-                                    onChange={handleChangeColor}
-                                />
-                                <div className="slider">
-                                    <div className="circle"></div>
-                                </div>
-                            </label>
+                        <WiDaySunny 
+                            className="toggle-icons"
+                            onClick={()=>{
+                                handleChangeColor();
+                                setIsShow(false);
+                            }}
+                        />
+                        <MdNightlightRound 
+                            className="toggle-icons"
+                            onClick={()=>{
+                                handleChangeColor();
+                                setIsShow(false);
+                            }}
+                        />
                     </div>
                     <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
                 </div>
