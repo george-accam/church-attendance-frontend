@@ -155,7 +155,9 @@ body{
   transition: .5s;
 }
 .navbar-button:hover{
-  background-color: #1818ab;
+  background: #6900ff;
+  background: -webkit-linear-gradient(0deg, #6900ff 0%, #9951ff 100%);
+  background: linear-gradient(0deg, #6900ff 0%, #9951ff 100%);
   color: var(--light-text);
   border: 1px solid var(--light-text);
 }
@@ -395,7 +397,9 @@ body{
   border: none;
   font-size: 16px;
   border-radius: 6px;
-  background-color: rgb(0, 33, 251);
+  background: #0372b3;
+  background: -webkit-linear-gradient(0deg, #1488cc 0%, #2b32b2 100%);
+  background: linear-gradient(0deg, #1488cc 0%, #2b32b2 100%);
   color: var(--light-text);
   cursor: pointer;
   transition: .5s;
@@ -405,11 +409,15 @@ body{
   background-color: rgb(1, 49, 77);
 }
 .submit-button:hover{
-  background-color: rgb(1, 49, 77);
+  background: #034b75;
+  background: -webkit-linear-gradient(0deg, #034b75 0%, #2b32b2 100%);
+  background: linear-gradient(0deg, #034b75 0%, #2b32b2 100%);
 }
 .submit-button-loading{
-  background-color: rgb(1, 49, 77);
   cursor: not-allowed;
+  background: #034b75;
+  background: -webkit-linear-gradient(0deg, #034b75 0%, #2b32b2 100%);
+  background: linear-gradient(0deg, #034b75 0%, #2b32b2 100%);
 }
 .login-link-container{
   color: var(--white-bg);
@@ -423,16 +431,19 @@ body{
 }
 .email-phone-container{
   background-color: white;
-  padding: 2px;
-  width: 120px;
+  padding: 3px 0;
+  width: 126px;
   border-radius: 5px;
 }
 .email-phone{
   font-size: 16px;
   cursor: pointer;
+  padding: 3px;
 }
 .email-phone-switch{
-  background-color: var(--dark-text);
+  background: #2b2f77;
+  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
   color: var(--light-text);
   padding: 2px;
   border-radius: 4px;
@@ -1691,7 +1702,6 @@ body{
 
 /* submission loader */
 .submission-spinner {
-  
   width: 12px;
   height: 12px;
   border-radius: 50%;
