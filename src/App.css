@@ -2126,7 +2126,9 @@ body{
   line-height: 25px;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #3737fb25;
+  background: rgba(71, 119, 230, 0.336);
+  background: -webkit-linear-gradient(0deg, rgba(71, 119, 230, 0.427) 0%, rgba(14, 10, 255, 0.137) 100%);
+  background: linear-gradient(0deg, rgba(71, 119, 230, 0.399) 0%, rgba(14, 10, 255, 0.35) 100%);
 }
 .prompt-response-container{
   font-size: 16px;
