@@ -56,7 +56,18 @@ const Attendance = () => {
                         {
                             label: 'Total Check ins',
                             data: Object.values(revenueData.checkInsByMonth),
-                            backgroundColor: 'rgba(114, 245, 0, 0.8)',
+                            backgroundColor: (context) => {
+                                const chart = context.chart;
+                                const {ctx, chartArea} = chart;
+                                
+                                if (!chartArea) return null;
+                                
+                                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                                gradient.addColorStop(0, '#1aff00');  // Start color (bottom)
+                                gradient.addColorStop(1, '#04c00d');  // End color (top)
+                                
+                                return gradient;
+                            },
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
                             borderRadius: 4,
@@ -71,7 +82,8 @@ const Attendance = () => {
                             text: 'Monthly Check ins Breakdown',
                             font: {
                                 size: 18
-                            }
+                            },
+                            color: "black",
                         },
                         tooltip: {
                             callbacks: {

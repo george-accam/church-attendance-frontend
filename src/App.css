@@ -1075,7 +1075,7 @@ body{
   display: flex;
   background-color: var(--white-bg);
   border-radius: 10px;
-  border: 2px solid var(--dark-bg);
+  border: 2px solid grey;
   width: 50%;
   outline: none;
   padding: 0px 8px;
@@ -1092,7 +1092,7 @@ body{
 .search-icon{
   font-size: 20px;
   cursor: pointer;
-  color: var(--dark-bg);
+  color: grey;
   padding: 4px;
 }
 .search-icon:hover{
@@ -1502,12 +1502,16 @@ body{
   margin-right: 60px;
   cursor: pointer;
   color: white;
-  background-color: rgb(251, 54, 54);
+  background: #f90027;
+  background: -webkit-linear-gradient(0deg, #f90027 0%, #ff5858 100%);
+  background: linear-gradient(0deg, #f90027 0%, #ff5858 100%);
   transition: .3s;
 }
 .delete-button:hover{
-  background-color: rgba(129, 4, 4, 0.819);
   color: var(--light-text);
+  background: #f9002546;
+  background: -webkit-linear-gradient(0deg, #8d001580 0%, #6c0202 100%);
+  background: linear-gradient(0deg, #830114 0%, #8b0000 100%);
 }
 .rename-button{
   display: block;
@@ -1521,7 +1525,9 @@ body{
   transition: .3s;
 }
 .rename-button:hover{
-  background-color: var(--dark-bg);
+  background: #2b2f77;
+  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
   color: white;
   border: 1px solid var(--white-bg);
 }
@@ -1833,9 +1839,9 @@ body{
   margin: 20px 20px;
 }
 .filter-color{
-  color: var(--light-text);
+  color: white;
   background-color: rgb(105, 175, 0);
-  }
+}
 
 .tithe-and-welfare-content-container{
   margin: 0 20px;

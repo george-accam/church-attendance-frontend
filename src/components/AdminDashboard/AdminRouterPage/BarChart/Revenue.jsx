@@ -59,12 +59,23 @@ const Revenue = () => {
                         {
                             label: 'Total Revenue',
                             data: Object.values(revenueData.totalAmountByMonth),
-                            backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                            backgroundColor: (context) => {
+                                const chart = context.chart;
+                                const {ctx, chartArea} = chart;
+                                
+                                if (!chartArea) return null;
+                                
+                                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                                gradient.addColorStop(0, '#004cff');
+                                gradient.addColorStop(1, '#0e07a8');
+                                
+                                return gradient;
+                            },
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
                             borderRadius: 4,
                         }
-                    ]
+                        ]
                 }}
                 options={{
                     responsive: true,
