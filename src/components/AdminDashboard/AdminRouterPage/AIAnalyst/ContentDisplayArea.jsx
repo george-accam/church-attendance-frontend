@@ -269,7 +269,7 @@ const ContentDisplayArea = ({
             <div className='display-content-container'>
             <div className="">
                 <h1 className='display-content-header'>
-                  Hello {capitalizeWords(firsName)}
+                  <span className="display-content-user-name">Hello {capitalizeWords(firsName)} </span>
                   <img src={hello} className='display-content-hello' alt='hello' />
                   , <span>what's next to analyze?</span>
                 </h1>

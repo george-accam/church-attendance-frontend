@@ -265,9 +265,9 @@ body{
 
 /* signup and login */
 .container-background{
-  background-image: radial-gradient(circle at center center, #060af7, #41c4ec), repeating-radial-gradient(circle at center center, #060af7, #060af7, 14px, transparent 28px, transparent 14px);
+  background-image: radial-gradient(circle at center center, #030695, #0395c1), repeating-radial-gradient(circle at center center, #030695, #030695, 10px, transparent 20px, transparent 10px);
   background-blend-mode: multiply;
-  background-color: #41c4ec;
+  background-color: #0395c1;
   /* background-image:  repeating-radial-gradient(circle at 0 0, transparent 0, #22b5e2 32px), repeating-linear-gradient(#060af7, #060af7);
   background-color: #22b5e2; */
   /* background-image: url("./components/assets/pattern3.jpg"); */
@@ -2048,13 +2048,24 @@ body{
   padding-top: 100px;
 }
 .display-content-header{
-  font-size: 28px;
   margin: 0 30px;
   text-align: center;
   font-weight: 500;
 }
 .display-content-header span{
   font-size: 20px;
+}
+.display-content-user-name {
+  font-size: 8px;
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #8a2387;
+  background: -webkit-linear-gradient(0deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+  background: linear-gradient(0deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback */
 }
 .display-content-hello{
   width: 33px;
@@ -2069,9 +2080,9 @@ body{
   padding: 20px;
 }
 .display-content-card{
-  background: #606c88;
-  background: -webkit-linear-gradient(90deg, #606c88 0%, #3f4c6b 100%);
-  background: linear-gradient(90deg, #606c88 0%, #3f4c6b 100%);
+  background: #004f8e;
+  background: -webkit-linear-gradient(0deg, #004f8e 0%, #7277cf 100%);
+  background: linear-gradient(0deg, #004f8e 0%, #7277cf 100%);
   border-radius: 15px;
   padding: 10px;
   margin: 10px 0;
