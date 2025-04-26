@@ -831,9 +831,11 @@ body{
   align-items: center;
 }
 .yes{
-  background-color: rgb(255, 54, 54);
+  background: #f90027;
+  background: -webkit-linear-gradient(0deg, #f90027 0%, #ff5858 100%);
+  background: linear-gradient(0deg, #f90027 0%, #ff5858 100%);
   color: var(--light-text);
-  padding: 8px;
+  padding: 8px 18px;
   margin-right: 40px;
   border: none;
   border-radius: 5px;
@@ -841,19 +843,25 @@ body{
   transition: 0.5s;
 }
 .yes:hover{
-  background-color: rgb(255, 102, 102);
+  background: #ff002664;
+  background: -webkit-linear-gradient(0deg, #f900255a 0%, #ff585868 100%);
+  background: linear-gradient(0deg, #9e0018 0%, #750000 100%);
 }
 .no{
-  background-color: var(--dark-bg);
+  background: #2b2f77;
+  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
   color: var(--light-text);
-  padding: 8px;
+  padding: 8px 18px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.5s;
 }
 .no:hover{
-  background-color: rgba(62, 62, 62, 0.921);
+  background: #2b2f77;
+  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: linear-gradient(0deg, #000448 0%, #00043a 50%, #000432 100%);
 }
 .theme-button{
   background-color: rgb(0, 106, 255);
