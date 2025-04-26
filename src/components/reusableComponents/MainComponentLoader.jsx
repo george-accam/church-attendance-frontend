@@ -10,7 +10,6 @@ const MainComponentLoader = () => {
                 <span></span>
                 <span></span>
             </div>
-            <p>a moment please... 😊😊</p>
         </div>
     </div>
   )
