@@ -260,8 +260,12 @@ body{
 
 /* signup and login */
 .container-background{
-  background-color: var(--white-bg);
-  background-image: url("./components/assets/pattern3.jpg");
+  background-image: radial-gradient(circle at center center, #060af7, #41c4ec), repeating-radial-gradient(circle at center center, #060af7, #060af7, 14px, transparent 28px, transparent 14px);
+  background-blend-mode: multiply;
+  background-color: #41c4ec;
+  /* background-image:  repeating-radial-gradient(circle at 0 0, transparent 0, #22b5e2 32px), repeating-linear-gradient(#060af7, #060af7);
+  background-color: #22b5e2; */
+  /* background-image: url("./components/assets/pattern3.jpg"); */
   background-position: center;
   height: 100vh;
   display: flex;
@@ -2507,7 +2511,7 @@ body{
   }
   /* usher register */
   .usher-register-container{
-    height: 92.8vh;
+    height: 93.8vh;
   }
   .all-members-list-header{
     font-size: 12px;
