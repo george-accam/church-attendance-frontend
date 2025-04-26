@@ -122,14 +122,15 @@ const Personal = ({ changeColor }) => {
               tabIndex={0}
               onKeyDown={handleKeydown}
               role="button"
-              className="search-container">
+              className="search-container"
+            >
+              <CgSearch className="search-icon"
+                onClick={searchPersonalMember}
+              />
               <input type="text"
               placeholder='search members'
               value={search}
               onChange={handleSearch}
-              />
-              <CgSearch className="search-icon"
-                onClick={searchPersonalMember}
               />
             </div>
           </div>

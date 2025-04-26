@@ -25,12 +25,12 @@ const TitheAndWelfare = ({ changeColor, search, setSearch, isSearching }) => {
                     <div 
                         className="search-container"
                     >
+                        <CgSearch className="search-icon"
+                        />
                         <input type="text"
                             placeholder='search members or yy-mm-dd'
                             value={search}
                             onChange={handleSearch}
-                        />
-                        <CgSearch className="search-icon"
                         />
                     </div>
                 </div>

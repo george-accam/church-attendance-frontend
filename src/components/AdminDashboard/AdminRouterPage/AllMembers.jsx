@@ -230,13 +230,13 @@ const AllMembers = ({ changeColor, }) => {
                         onKeyDown={handleEnter}
                         className="search-container"
                     >
+                        <CgSearch className="search-icon"
+                            onClick={searchMembers}
+                        />
                         <input type="text"
                             placeholder='search members'
                             value={search}
                             onChange={handleSearch}
-                        />
-                        <CgSearch className="search-icon"
-                            onClick={searchMembers}
                         />
                     </div>
                 </div>

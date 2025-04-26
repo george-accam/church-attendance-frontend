@@ -125,13 +125,13 @@ const MembersChecked = ( { changeColor, }) => {
                         onKeyDown={handleEnter}
                         className="search-container"
                     >
+                        <CgSearch className="search-icon"
+                            onClick={searchCheckedInMember}
+                        />
                         <input type="text"
                             placeholder='search member or yy-mm-dd'
                             value={search}
                             onChange={handleSearch}
-                        />
-                        <CgSearch className="search-icon"
-                            onClick={searchCheckedInMember}
                         />
                     </div>
                 </div>

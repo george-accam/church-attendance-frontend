@@ -11,10 +11,11 @@ const CheckInLoader = ({ className }) => {
                         Check-in History
                     </h1>
                     <div className="search-container">
-                        <input type="text"
-                        placeholder='search members'
-                        />
                         <CgSearch className="search-icon"
+                        />
+                        <input 
+                            type="text"
+                            placeholder='search member or yy-mm-dd'
                         />
                     </div>
                 </div>

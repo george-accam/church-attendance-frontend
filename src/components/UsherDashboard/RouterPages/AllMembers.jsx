@@ -198,14 +198,16 @@ const AllMembers = ({ changeColor }) => {
                         tabIndex={0}
                         onKeyDown={handleKeyDown}
                         role="button"
-                        className="search-container">
-                        <input type="text"
-                        placeholder='search members'
-                        value={search}
-                        onChange={handleSearch}
-                        />
+                        className="search-container"
+                    >
                         <CgSearch className="search-icon"
                             onClick={searchMembers}
+                        />
+                        <input 
+                            type="text"
+                            placeholder='search members'
+                            value={search}
+                            onChange={handleSearch}
                         />
                     </div>
                 </div>

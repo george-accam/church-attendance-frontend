@@ -211,13 +211,13 @@ const Ushers = ({ changeColor }) => {
           <div className={`header-search-bar ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
             <h1 className='all-members-title'>Ushers Registered</h1>
             <div className="search-container">
+              <CgSearch className="search-icon"
+                onClick={searchPersonalMember}
+              />
               <input type="text"
               placeholder='search ushers'
               value={search}
               onChange={handleSearch}
-              />
-              <CgSearch className="search-icon"
-                onClick={searchPersonalMember}
               />
             </div>
           </div>

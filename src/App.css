@@ -1084,7 +1084,7 @@ body{
   background-color: var(--white-bg);
   border-radius: 10px;
   border: 2px solid grey;
-  width: 50%;
+  width: 35%;
   outline: none;
   padding: 0px 8px;
   margin-bottom: 10px;
@@ -2067,9 +2067,9 @@ body{
   font-size: 8px;
   font-weight: 800;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #8a2387;
-  background: -webkit-linear-gradient(0deg, #8a2387 0%, #e94057 50%, #f27121 100%);
-  background: linear-gradient(0deg, #8a2387 0%, #e94057 50%, #f27121 100%);
+  background: #ac00a9;
+  background: -webkit-linear-gradient(0deg, #ac00a9 0%, #ff7487 50%, #f27121 100%);
+  background: linear-gradient(0deg, #ac00a9 0%, #ff7487 50%, #f27121 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
