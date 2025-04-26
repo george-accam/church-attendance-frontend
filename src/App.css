@@ -43,10 +43,13 @@ body{
 
 /* app loading container */
 .loading-container{
-  background-color: var(--white-bg);
+  background: #c9f0fc;
+  background: -webkit-linear-gradient(0deg, #c9f0fc 0%, #caeff6 50%, #fafafa 100%);
+  background: linear-gradient(0deg, #c9f0fc 0%, #caeff6 50%, #fafafa 100%);
   height: 100vh;
   color: var(--dark-text);
   font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
 }
 .container {
   position: absolute;
@@ -431,7 +434,7 @@ body{
 }
 .email-phone-container{
   background-color: white;
-  padding: 3px 0;
+  padding: 3px;
   width: 126px;
   border-radius: 5px;
 }
@@ -2469,7 +2472,7 @@ body{
     font-size: 3rem;
   }
   .email-phone-container{
-    width: 120px;
+    width: 126px;
   }
   .button-container{
     flex-direction: column;
