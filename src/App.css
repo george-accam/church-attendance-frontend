@@ -265,15 +265,13 @@ body{
 
 /* signup and login */
 .container-background{
-  background-image: radial-gradient(circle at center center, #030695, #0395c1), repeating-radial-gradient(circle at center center, #030695, #030695, 10px, transparent 20px, transparent 10px);
-  background-blend-mode: multiply;
-  background-color: #0395c1;
-  /* background-image:  repeating-radial-gradient(circle at 0 0, transparent 0, #22b5e2 32px), repeating-linear-gradient(#060af7, #060af7);
-  background-color: #22b5e2; */
-  /* background-image: url("./components/assets/pattern3.jpg"); */
-  background-position: center;
-  height: 100vh;
   display: flex;
+  height: 100vh;
+  background: radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 0% 0% / 64px 64px, radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 32px 32px / 64px 64px, linear-gradient(#0004dc 1.5px, transparent 1.5px) 0px -0.75px / 32px 32px, linear-gradient(90deg, #0004dc 1.5px, #011050 1.5px) -0.75px 0px / 32px 32px #011050;
+  background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+  background-color: #011050;
+  /* background-image: url("./components/assets/pattern3.jpg");
+  background-position: center; */
 }
 .image-container{
   display: flex;
@@ -1578,9 +1576,11 @@ body{
   font-weight: 300;
   text-align: center;
   color: var(--light-text);
-  background-color: rgba(37, 39, 49, 0.981);
   border-radius: 10px;
   padding: 7px;
+  background: #2b2f77;
+  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
 }
 .grid-container {
   display: grid;
@@ -1633,7 +1633,7 @@ body{
   justify-content: center;
 }
 .grouped-checked-members-header-loader h1{
-  background-color: black;
+  background-color: rgb(0, 0, 72);
   border-radius: 10px;
   padding: 15px;
   width: 100px;
