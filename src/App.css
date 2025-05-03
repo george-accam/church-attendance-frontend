@@ -330,9 +330,17 @@ body{
   text-align: center;
   font-size: 15px;
 }
+.container-sub-header span{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 20px;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+}
 .code-container input{
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin: 5px 10px;
   width: 30px;
@@ -2349,6 +2357,21 @@ body{
   .conversation-history{
     padding: 20px 8%;
   }
+  /* verification */
+  .verify-code-form{
+    margin: 0px 10px;
+    padding: 0px -10px;
+  }
+  .container-header{
+    font-size: 28px;
+    padding: 0px -40px;
+  }
+  .code-container input{
+    text-align: center;
+    margin: 15px 30px;
+    width: 30px;
+    height: 30px;
+  }
 }
 @media only screen and (max-width: 1000px) {
   .image-container{
@@ -2532,6 +2555,20 @@ body{
   .conversation-history{
     padding: 20px 10%;
   }
+  .verify-code-form{
+    margin: 0px 10px;
+    padding: 0px -10px;
+  }
+  .container-header{
+    font-size: 28px;
+    padding: 0px -40px;
+  }
+  .code-container input{
+    text-align: center;
+    margin: 15px 30px;
+    width: 30px;
+    height: 30px;
+  }
 }
 @media screen and (max-width: 587px) {
   .inner-container{
@@ -2559,6 +2596,7 @@ body{
     padding: 0px -10px;
   }
   .container-header{
+    font-size: 28px;
     padding: 0px -40px;
   }
   .code-container input{
@@ -2567,6 +2605,7 @@ body{
     width: 30px;
     height: 30px;
   }
+
 }
 @media only screen and (max-width: 450px) {
   .navbar-button{

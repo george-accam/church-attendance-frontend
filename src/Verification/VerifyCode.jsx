@@ -120,7 +120,9 @@ const VerifyCode = () => {
                     >
                         <form className='usher-register-form verify-code-form'>
                             <h1 className='container-header'>Enter Verification Code</h1>
-                            <p className='container-sub-header'>Please enter the verification code sent to {adminDetails.email}</p>
+                            <p className='container-sub-header'>
+                                Please enter the verification code sent to <span>{adminDetails.email}</span>
+                            </p>
                             <div className="password">
                                 <div className="code-container">
                                     {code.map((digit, index) => {
