@@ -2726,4 +2726,23 @@ body{
   .all-members-list-name{
     padding: 0 3px;
   }
+  /* verification */
+  .verify-code-form{
+    margin: 0px 10px;
+  }
+  .container-header{
+    font-size: 20px;
+    padding: 0px -40px;
+  }
+  .code-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  .code-container input{
+    margin: 1px 10px;
+    width: 30px;
+    height: 30px;
+  }
 }
