@@ -291,11 +291,11 @@ const ContentDisplayArea = ({
                 <div 
                     className="display-content-card"
                     onClick={() => {
-                    handlePreText(`Determine the church attendance rate for the service based on the check-ins today (${totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / ${totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?`)
+                    handlePreText(`Analyse the church attendance rate for the service based on the check-ins today (${totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / ${totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?`)
                     }}
                 >
                     <p>
-                    Determine the church attendance rate for 
+                    Analyse the church attendance rate for 
                     the service based on the check-ins 
                     today ({totalCheckInByDate[date] ? totalCheckInByDate[date].length : "0"} / {totalCheckIn ? totalCheckIn : "0"}) and how can we improve it?
                     </p>
