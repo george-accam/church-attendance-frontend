@@ -86,7 +86,8 @@ const Login = () => {
               window.location.href = "/usher-dashboard";
             }
             else if(user.role === "Admin"){
-              window.location.href = "/admin-dashboard";
+              // window.location.href = "/admin-dashboard";
+              navigate("/verify");
             }
           }, 2000);
         }

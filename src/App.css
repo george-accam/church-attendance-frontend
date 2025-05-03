@@ -317,6 +317,105 @@ body{
   margin-bottom: 20px;
   box-shadow: 0 0 8px  grey;
 }
+
+/* verification  */
+.code-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 150px;
+}
+.container-sub-header{
+  color: var(--white-bg);
+  text-align: center;
+  font-size: 15px;
+}
+.code-container input{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 5px 10px;
+  width: 30px;
+  height: 30px;
+}
+.code-container input:focus{
+  border: 4px solid greenyellow;
+}
+.resend-code{
+  width: 100px;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+}
+.resend-code-container{
+  display: flex;
+  justify-content: space-between;
+}
+.resend-code-counter{
+  font-size: 15px;
+  color: var(--white-bg);
+  max-width: 40%;
+  border-radius: 10px;
+  cursor: not-allowed;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #606c88;
+  background: -webkit-linear-gradient(0deg, #606c88 0%, #3f4c6b 100%);
+  background: linear-gradient(0deg, #606c88 0%, #3f4c6b 100%);
+}
+
+.code-loader {
+  position: relative;
+  transform: scale(.6);
+  border-radius: 50%;
+  border: 3px solid;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.code-loader::after {
+  position: absolute;
+  width: 0px;
+  height: 10px;
+  display: block;
+  border-left: 1px solid #fff;
+  content: '';
+  left: 14px;
+  border-radius: 3px;
+  top: 4px;
+  animation-duration: 1s;
+}
+
+.code-loader::before {
+  position: absolute;
+  width: 0px;
+  height: 10px;
+  display: block;
+  border-left: 3px solid #fff;
+  content: '';
+  left: 14px;
+  border-radius: 1px;
+  top: 4px;
+  animation-duration: 40s;
+}
+
+.code-loader::before,.code-loader::after {
+  transform-origin: bottom;
+  animation-name: dial;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes dial {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* usher check in form */
 .check-in-form{
   padding: 10px 30px;
@@ -1858,7 +1957,7 @@ body{
   margin: 0 10px;
 }
 
-  .filter-link{
+.filter-link{
   padding: 3px 18px;
   border-radius: 15px;
   text-decoration: none;
@@ -2454,6 +2553,19 @@ body{
   }
   .search-container{
     width: 93%;
+  }
+  .verify-code-form{
+    margin: 0px 10px;
+    padding: 0px -10px;
+  }
+  .container-header{
+    padding: 0px -40px;
+  }
+  .code-container input{
+    text-align: center;
+    margin: 15px 30px;
+    width: 30px;
+    height: 30px;
   }
 }
 @media only screen and (max-width: 450px) {

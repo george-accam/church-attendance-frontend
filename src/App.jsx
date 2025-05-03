@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
 import MainComponentLoader from './components/reusableComponents/MainComponentLoader';
 import DOMPurify from 'dompurify';
+import VerifyCode from './Verification/VerifyCode';
 
 const App = () => {
   const [usher, setUsher] = useState(null);
@@ -70,6 +71,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={ usherLoggedIn ? <Navigate to={`usher-dashboard/${localStorage.getItem("is-active") || "all-members"}`} /> : <LandingPage />} />
           <Route path="login" element={<Login />} />
+          <Route path="verify" element={<VerifyCode/>} />
           <Route path="register" element={<Signup />} />
           {/* usher protective route */}
           {usher && usher.role === "Usher" && (
