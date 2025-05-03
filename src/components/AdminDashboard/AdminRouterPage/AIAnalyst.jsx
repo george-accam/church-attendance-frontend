@@ -13,8 +13,8 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
     const [preText, setPreText] = useState('');
     const [refreshPage, setRefreshPage] = useState(false);
 
+    const [conversation, setConversation] = useState([]);
     const storedConversation = JSON.parse(sessionStorage.getItem('conversation'));
-    const [conversation, setConversation] = useState([] || storedConversation || []);
 
     const handleResponse = async(feedback) => {
         try {
@@ -86,10 +86,9 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
     };
     
 
-    useEffect(()=>{
-        setConversation([]);
-        handleSaveResponse()
-    }, [refreshPage]);
+    // useEffect(()=>{
+    //     setConversation([]);
+    // }, []);
 
     const handlePreText = (text) => {
         setPreText(text ? text : '');

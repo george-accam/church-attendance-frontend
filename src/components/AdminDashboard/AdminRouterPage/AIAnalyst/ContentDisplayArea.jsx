@@ -131,7 +131,7 @@ const ContentDisplayArea = ({
         {lines.map((line, i) => (
           <React.Fragment key={i}>
             {line.bold ? (
-              <strong>{line.text}</strong>
+            <strong style={{fontSize: "20px"}}>{line.text}</strong>
             ) : (
               <span>{line.text}</span>
             )}

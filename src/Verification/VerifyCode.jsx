@@ -165,7 +165,10 @@ const VerifyCode = () => {
                                 )}
                                 <div className="">
                                     {isLoading && (
-                                        <div class="code-loader"></div>
+                                        <div className="code-loader-container">
+                                            <div class="code-loader"></div>
+                                            <p>waiting</p>
+                                        </div>
                                     )}
                                 </div>
                             </div>
