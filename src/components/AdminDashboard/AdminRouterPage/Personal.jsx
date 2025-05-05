@@ -253,9 +253,9 @@ const Personal = ({ changeColor }) => {
                         </tr>
                     )}
                     {search.length > 0 || filteredMembers > 0 ? (
-                        filteredMembers.map((filteredMember) => (
+                        filteredMembers.map((filteredMember, index) => (
                           <tr key={filteredMember._id} 
-                            className={`all-members-list personal-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                            className={`all-members-list personal-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''} ${index % 2 === 0 ? "even-row" : "odd-row"}`}
                             >
                                   <td>
                                       {filteredMember.attendeeName}
@@ -321,10 +321,10 @@ const Personal = ({ changeColor }) => {
                           </tr>
                         ))
                       ) : (
-                          members.length > 0 ?  ( members.map((member) => (
+                          members.length > 0 ?  ( members.map((member, index) => (
                               <tr 
                                 key={member._id} 
-                                className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''}`}
+                                className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${isRename === member._id ? 'update-table' : isDelete === member._id ? 'delete-table' : ''} ${index % 2 === 0 ? "even-row" : "odd-row"}`}
                               >
                                   <td>
                                       {capitalizedEachWord(member.attendeeName)}

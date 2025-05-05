@@ -235,10 +235,10 @@ const AllMembers = ({ changeColor }) => {
                                 </tr>
                             )}
                             {search.length > 0 && filteredMembers.length > 0 ? (
-                                filteredMembers.map(filteredMember => (
+                                filteredMembers.map((filteredMember, index) => (
                                     <tr 
                                         key={filteredMember._id} 
-                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === filteredMember._id ? 'update-table' : showWelfare === filteredMember._id ? 'welfare-table' : ''}`}
+                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === filteredMember._id ? 'update-table' : showWelfare === filteredMember._id ? 'welfare-table' : ''} ${index % 2 === 0 ? "even-row" : "odd-row"}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(filteredMember.fullName)}
@@ -306,10 +306,10 @@ const AllMembers = ({ changeColor }) => {
                                     </tr>
                                 ))
                             ) : ( 
-                                members && members.length > 0 ?  ( members.map((member) => (
+                                members && members.length > 0 ?  ( members.map((member, index) => (
                                     <tr 
                                         key={member._id} 
-                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === member._id ? 'update-table' : showWelfare === member._id ? 'welfare-table' : ''}`}
+                                        className={`all-members-list ${!changeColor ? "all-members-list-black" : ""} ${showTithe === member._id ? 'update-table' : showWelfare === member._id ? 'welfare-table' : ''} ${index % 2 === 0 ? "even-row" : "odd-row"}`}
                                     >
                                         <td className='all-members-list-name'>
                                             {capitalizeWords(member.fullName)}

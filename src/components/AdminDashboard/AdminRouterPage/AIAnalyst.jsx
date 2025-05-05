@@ -86,10 +86,6 @@ const AIAnalyst = ({ changeColor, totalAmount, totalCheckIn, totalCheckInByDate,
     };
     
 
-    // useEffect(()=>{
-    //     setConversation([]);
-    // }, []);
-
     const handlePreText = (text) => {
         setPreText(text ? text : '');
     }

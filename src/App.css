@@ -1238,13 +1238,26 @@ body{
 .all-members-list{
   text-align: center;
   color: black;
-  background: rgba(163, 241, 255, 0.55);
+  /* background: rgba(163, 241, 255, 0.55);
   background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(0, 238, 255, 0.45) 100%);
-  background: linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(0, 238, 255, 0.45) 100%);
+  background: linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(0, 238, 255, 0.45) 100%); */
   font-size: 15px;
   border-top: 3px solid rgba(255, 255, 255, 0.496);
   border-bottom: 3px solid rgba(255, 255, 255, 0.496);
 }
+
+.even-row{
+  background: rgba(163, 241, 255, 0.55);
+  background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.664) 0%, rgba(0, 238, 255, 0.45) 100%);
+  background: linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(2, 149, 160, 0.45) 100%);
+}
+
+.odd-row{
+  background: rgba(1, 157, 168, 0.45);
+  background: -webkit-linear-gradient(90deg, rgba(0, 238, 255, 0.288) 0%, rgba(163, 241, 255, 0.55) 100%);
+  background: linear-gradient(90deg, rgba(0, 238, 255, 0.11) 0%, rgba(163, 241, 255, 0.55) 100%);
+}
+
 .all-members-list-black{
   text-align: center;
   color: white;
