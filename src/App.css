@@ -1022,7 +1022,7 @@ body{
 /* user sidebar */
 .sidebar-container{
   width: 320px;
-  height: 90vh;
+  height: 89.8vh;
   padding: 10px 0;
   background-color: rgb(0, 4, 16);
 }
@@ -2358,7 +2358,7 @@ body{
   /* user sidebar */
   .sidebar-container{
     width: 300px;
-    height: 90.4vh;
+    height: 89.vh;
   }
   .user-content-container{
     height: 90.5vh;
@@ -2531,7 +2531,7 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 93vh;
+    height: 92.6vh;
   }
   /* .admin-content-container{
     height: 92vh;
