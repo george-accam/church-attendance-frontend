@@ -1,3 +1,4 @@
+import { ImBin } from "react-icons/im"; 
 import { FiEdit } from "react-icons/fi"; 
 import { RiDeleteBin6Line } from "react-icons/ri"; 
 import React, { useEffect, useState, useRef } from 'react';
@@ -13,7 +14,7 @@ const Edit = ({ memberId, handleRename, handleDelete }) => {
                 onClick={(e)=> e.stopPropagation()}
             >
                 <p className="edit-container-menu">
-                    -- option --
+                    -- Option --
                 </p>
                 {/* rename container */}
                 <div
@@ -31,7 +32,7 @@ const Edit = ({ memberId, handleRename, handleDelete }) => {
                     onClick={handleDelete}
                     className="edit-container-delete"
                 >
-                    <RiDeleteBin6Line 
+                    <ImBin 
                         className="delete-icon"
                     />
                     <p>Delete</p>

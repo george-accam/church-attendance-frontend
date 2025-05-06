@@ -1,3 +1,4 @@
+import { BsFillSunFill } from "react-icons/bs"; 
 import { MdNightlightRound } from "react-icons/md"; 
 import { WiDaySunny } from "react-icons/wi"; 
 import React, { useState, useEffect, useRef } from 'react';
@@ -24,24 +25,32 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
         <div>
             {isShow && (
                 <div className="logout-inner-container" role="none">
-                    <section>theme</section>
+                    <section>Theme</section>
                     <div className="toggle-switch-container">
                         {!changeColor ? (
-                            <WiDaySunny 
-                                className="toggle-icons"
+                            <div 
+                                className="light-mode"
                                 onClick={()=>{
                                     handleChangeColor();
-                                    setIsShow(false);
                                 }}
-                            />
+                            >
+                                <BsFillSunFill 
+                                    className="toggle-icons"
+                                />
+                                <div className="light-text">Light</div>
+                            </div>
                         ) : (
-                            <MdNightlightRound 
-                                className="toggle-icons"
+                            <div 
+                                className="light-mode"
                                 onClick={()=>{
                                     handleChangeColor();
-                                    setIsShow(false);
                                 }}
-                            />
+                            >
+                                <MdNightlightRound 
+                                    className="toggle-icons"
+                                />
+                                <div className="light-text">Dark</div>
+                            </div>
                         )}
                     </div>
                     <p onClick={handleLogout}><AiOutlineLogout /> logout</p>

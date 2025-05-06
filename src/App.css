@@ -676,8 +676,9 @@ body{
   margin: 18px 20px 0 0;
   width: 10%;
   z-index: 1;
-  background-color: var(--light-text);
+  background-color: white;
   padding: 5px;
+  border: 1px solid rgb(136, 136, 136);
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
   animation: dropDownEffectEdit .2s linear;
@@ -691,11 +692,11 @@ body{
   margin: 4px 55px 0 0;
   width: 150px;
   background: white;
-  border: 1px solid rgb(7, 52, 253);
+  border: 1px solid rgb(136, 136, 136);
   border-radius: 6px 0 6px 6px;
   box-shadow: 0 0 8px rgba(100, 100, 100, 0.596);
   z-index: 1;
-  color: var(--dark-text);
+  color: black;
   animation: dropDownEffectEdit .2s linear;
 }
 @keyframes dropDownEffectEdit {
@@ -715,8 +716,7 @@ body{
 }
 .edit-container-rename{
   display: flex;
-  justify-content: center;
-  margin: 10px 5px;
+  margin: 5px;
   padding: 5px;
   font-size: 17px;
 }
@@ -726,14 +726,13 @@ body{
 
 .edit-container-delete{
   display: flex;
-  justify-content: center;
-  margin: 10px 5px;
-  color: rgba(255, 47, 47, 0.878);
+  margin: 5px;
+  color: rgb(255, 0, 0);
   padding: 5px;
   font-size: 17px;
 }
 .delete-icon{
-  margin-right: 32px;
+  margin-right: 20px;
 }
 .edit-container-rename:hover, .edit-container-delete:hover{
   background-color: rgba(106, 107, 107, 0.375);
@@ -769,7 +768,21 @@ body{
 .toggle-switch-container{
   display: flex;
   justify-content: space-evenly;
-  margin: 10px 0;
+  margin: 5px 0;
+}
+.light-mode{
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+}
+.light-mode:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.light-text{
+  font-size: 15px;
+  margin: 4px 0 0 15px ;
+  color: #000;
 }
 .toggle-icons{
   font-size: 18px;
@@ -779,14 +792,7 @@ body{
   border-radius: 50%;
   cursor: pointer;
 }
-.toggle-icons:hover{
-  opacity: 70%;
-}
-.dark-day{
-  color: var(--dark-text);
-  font-size: 13px;
-  margin-top: -3px;
-}
+
 .ui-switch {
   /* switch */
   --switch-bg: rgb(135, 150, 165);
@@ -865,8 +871,10 @@ body{
 .logout-inner-container p{
   font-size: 16px;
   text-align: center;
-  background-color: var(--white-bg);
-  color: red;
+  background: #039714;
+  background: -webkit-linear-gradient(0deg, #039714 0%, #44dc2d 100%);
+  background: linear-gradient(0deg, #039714 0%, #4fc53c 100%);
+  color: white;
   cursor: pointer;
   margin-top: 8px;
   transition: 0.5s;
