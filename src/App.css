@@ -1250,9 +1250,6 @@ body{
 .all-members-list{
   text-align: center;
   color: black;
-  /* background: rgba(163, 241, 255, 0.55);
-  background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(0, 238, 255, 0.45) 100%);
-  background: linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(0, 238, 255, 0.45) 100%); */
   font-size: 15px;
   border-top: 3px solid rgba(255, 255, 255, 0.496);
   border-bottom: 3px solid rgba(255, 255, 255, 0.496);
@@ -2317,8 +2314,6 @@ body{
   background-color: #0000ff29;
   border-radius: 20px;
 }
-
-
 
 /* responsiveness css */
 @media only screen and (max-width: 1250px) {
