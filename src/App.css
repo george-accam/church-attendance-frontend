@@ -176,7 +176,7 @@ body{
 .landing-page-container{
   height: auto;
   background: var(--white-bg);
-  background-image: linear-gradient(45deg,  rgba(23, 35, 40, 0.637), rgba(23, 35, 40, 0.382), rgba(74, 207, 255, 0.481)), url("./components/assets/landing-page-image1.jpeg");
+  background-image: linear-gradient(0deg,  rgba(0, 61, 87, 0.781), rgba(1, 43, 61, 0.788), rgba(0, 118, 161, 0.481)), url("./components/assets/landing-page-image1.jpeg");
   background-size: cover;
   background-position: center;
 }
@@ -188,7 +188,7 @@ body{
   color: var(--light-text); 
 }
 .landing-page-filter{
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: blur(3px); */
   height: 100vh;
 }
 .landing-page-inner{
@@ -265,7 +265,6 @@ body{
   font-size: 25px;
   margin-bottom: 10px;
 }
-
 
 /* signup and login */
 .container-background{
@@ -616,8 +615,8 @@ body{
 }
 .not-found-link:hover{
   background: #1488cc;
-background: -webkit-linear-gradient(35deg, #003c5f 0%, #00066e 100%);
-background: linear-gradient(35deg, #01507e 0%, #010768 100%);
+  background: -webkit-linear-gradient(35deg, #003c5f 0%, #00066e 100%);
+  background: linear-gradient(35deg, #01507e 0%, #010768 100%);
 }
 
 /* user dashboard */
@@ -1272,19 +1271,16 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
   border-top: 3px solid rgba(255, 255, 255, 0.496);
   border-bottom: 3px solid rgba(255, 255, 255, 0.496);
 }
-
 .even-row{
   background: rgba(163, 241, 255, 0.55);
   background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.664) 0%, rgba(0, 135, 145, 0.45) 100%);
   background: linear-gradient(90deg, rgba(0, 214, 252, 0.55) 0%, rgba(2, 149, 160, 0.45) 100%);
 }
-
 .odd-row{
   background: rgba(1, 157, 168, 0.45);
   background: -webkit-linear-gradient(90deg, rgba(0, 238, 255, 0.288) 0%, rgba(163, 241, 255, 0.55) 100%);
   background: linear-gradient(90deg, rgba(0, 238, 255, 0.11) 0%, rgba(163, 241, 255, 0.55) 100%);
 }
-
 .all-members-list-black{
   text-align: center;
   color: white;
@@ -2340,7 +2336,7 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
 @media only screen and (max-width: 1250px) {
   .landing-page-inner{
     margin: 40px 0px;
-    padding: 20px 10px;
+    padding: 20px 5px;
     width: 92%;
   }
   .landing-page-title{
@@ -2368,6 +2364,7 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
   }
   .landing-page-bottom{
     margin-top: 10px;
+    margin-left: 10px;
   }
   .landing-page-bottom h3{
     font-size: 1.6rem;
@@ -2629,6 +2626,11 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
   }
 }
 @media screen and (max-width: 587px) {
+  .landing-page-inner{
+    margin: 90px 0px;
+    padding: 20px 5px;
+    width: 92%;
+  }
   .inner-container{
     width: 95%;
   }
