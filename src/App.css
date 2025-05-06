@@ -756,12 +756,15 @@ body{
   color: blue;
   cursor: pointer;
 }
-.tithe-icon{
-  margin-right: 30px;
-}
 .welfare-container{
   color: green;
   cursor: pointer;
+}
+.tithe-icon{
+  margin-right: 50px;
+}
+.welfare-icon{
+  margin-right: 50px;
 }
 
 /* switch settings 👇 */
@@ -2564,6 +2567,13 @@ body{
   }
   .all-members-list-name, .all-members-list-phone-number, .all-members-list-date{
     padding: 8px 0;
+  }
+  /* dues option */
+  .tithe-icon{
+    margin-right: 20px;
+  }
+  .welfare-icon{
+    margin-right: 20px;
   }
   /* admin all members */
   .edit-container{

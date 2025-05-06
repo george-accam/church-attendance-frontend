@@ -11,7 +11,7 @@ const DuesOption = ({ memberId, optionOne, optionTwo, handleTithe, handleWelfare
             onClick={(e)=> e.stopPropagation()}
         >
             <p className="edit-container-menu">
-                -- option --
+                -- Option --
             </p>
             {/* option one container */}
             <div
@@ -29,7 +29,7 @@ const DuesOption = ({ memberId, optionOne, optionTwo, handleTithe, handleWelfare
                 className="edit-container-delete welfare-container"
             >
                 <BsCashStack
-                    className="edit-icon"
+                    className="welfare-icon"
                 />
                 <p>{optionTwo}</p>
             </div>

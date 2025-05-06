@@ -268,8 +268,8 @@ const AllMembers = ({ changeColor }) => {
                                                     >
                                                         <DuesOption
                                                             memberId={filteredMember._id}
-                                                            optionOne = {"tithe"} 
-                                                            optionTwo = {"welfare"} 
+                                                            optionOne = {"Tithe"} 
+                                                            optionTwo = {"Welfare"} 
                                                             handleTithe = {()=> { 
                                                                 handleShowTithe(filteredMember._id);
                                                                 setIsShow(null);
@@ -339,8 +339,8 @@ const AllMembers = ({ changeColor }) => {
                                                     >
                                                         <DuesOption
                                                             memberId={member._id}
-                                                            optionOne = {"tithe"} 
-                                                            optionTwo = {"welfare"} 
+                                                            optionOne = {"Tithe"} 
+                                                            optionTwo = {"Welfare"} 
                                                             handleTithe = {()=> { 
                                                                 handleShowTithe(member._id);
                                                                 setIsShow(null);
