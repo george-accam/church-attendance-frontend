@@ -603,13 +603,19 @@ body{
   margin-bottom: 30px;
 }
 .not-found-link{
-  background-color: blue;
-  border: 2px solid rgb(144, 225, 255);
+  background: #1488cc;
+  background: -webkit-linear-gradient(35deg, #1488cc 0%, #2b32b2 100%);
+  background: linear-gradient(35deg, #1488cc 0%, #2b32b2 100%);
   border-radius: 10px;
   padding: 10px;
   font-size: 10px;
   color: var(--light-text);
   text-decoration: none;
+}
+.not-found-link:hover{
+  background: #1488cc;
+background: -webkit-linear-gradient(35deg, #003c5f 0%, #00066e 100%);
+background: linear-gradient(35deg, #01507e 0%, #010768 100%);
 }
 
 /* user dashboard */
