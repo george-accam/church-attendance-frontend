@@ -94,6 +94,7 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
                         handleShow={handleShow}
                         handleTheme={handleTheme}
                         handleLogout={handleLogout}
+                        changeColor={changeColor}
                         handleChangeColor={()=> { 
                             handleChangeColor();
                             setIsTheme(false);

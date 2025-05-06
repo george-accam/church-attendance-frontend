@@ -3,7 +3,7 @@ import { WiDaySunny } from "react-icons/wi";
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineLogout } from "react-icons/ai";
 
-const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor }) => {
+const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor, changeColor }) => {
     const menuRef = useRef(null);
 
     // close the theme container when cursor is outside
@@ -26,20 +26,23 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
                 <div className="logout-inner-container" role="none">
                     <section>theme</section>
                     <div className="toggle-switch-container">
-                        <WiDaySunny 
-                            className="toggle-icons"
-                            onClick={()=>{
-                                handleChangeColor();
-                                setIsShow(false);
-                            }}
-                        />
-                        <MdNightlightRound 
-                            className="toggle-icons"
-                            onClick={()=>{
-                                handleChangeColor();
-                                setIsShow(false);
-                            }}
-                        />
+                        {!changeColor ? (
+                            <WiDaySunny 
+                                className="toggle-icons"
+                                onClick={()=>{
+                                    handleChangeColor();
+                                    setIsShow(false);
+                                }}
+                            />
+                        ) : (
+                            <MdNightlightRound 
+                                className="toggle-icons"
+                                onClick={()=>{
+                                    handleChangeColor();
+                                    setIsShow(false);
+                                }}
+                            />
+                        )}
                     </div>
                     <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
                 </div>

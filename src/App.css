@@ -303,6 +303,10 @@ body{
   align-items: center;
   width: 50%;
 }
+/* verification */
+.verify-code-form{
+  margin-top: -200px;
+}
 .inner-container{
   width: 50%;
   margin: 10px 15px;
@@ -768,7 +772,7 @@ body{
   margin: 10px 0;
 }
 .toggle-icons{
-  font-size: 15px;
+  font-size: 18px;
   color: white;
   padding: 2px;
   background: #323232;
@@ -776,7 +780,7 @@ body{
   cursor: pointer;
 }
 .toggle-icons:hover{
-  opacity: 80%;
+  opacity: 70%;
 }
 .dark-day{
   color: var(--dark-text);
@@ -919,7 +923,7 @@ body{
 }
 .logout-holder p{
   background-color: transparent;
-  color: var(--dark-text);
+  color: var(--light-text);
   font-size: 16px;
   margin: 15px 0;
 }
@@ -1022,7 +1026,7 @@ body{
 /* user sidebar */
 .sidebar-container{
   width: 320px;
-  height: 89.8vh;
+  height: 89.7vh;
   padding: 10px 0;
   background-color: rgb(0, 4, 16);
 }
@@ -1248,8 +1252,8 @@ body{
 
 .even-row{
   background: rgba(163, 241, 255, 0.55);
-  background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.664) 0%, rgba(0, 238, 255, 0.45) 100%);
-  background: linear-gradient(90deg, rgba(163, 241, 255, 0.55) 0%, rgba(2, 149, 160, 0.45) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(163, 241, 255, 0.664) 0%, rgba(0, 135, 145, 0.45) 100%);
+  background: linear-gradient(90deg, rgba(0, 214, 252, 0.55) 0%, rgba(2, 149, 160, 0.45) 100%);
 }
 
 .odd-row{
@@ -1579,24 +1583,28 @@ body{
 }
 .rename-container-header{
   color: var(--dark-bg);
-  border-bottom: 1px solid var(--dark-bg);
+  border-bottom: 1px solid white;
   margin-bottom: 10px;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
 }
+.rename-container-header p{
+  color: white;
+}
 .delete-container-sub-header{
   color: white;
   font-size: 17px;
-  text-align: center;
+  text-align: justify;
   margin-top: 25px;
 }
 .rename-container-header span{
   cursor: pointer;
   transition: .5s;
+  color: red;
 }
 .rename-container-header span:hover{
-  color: red;
+  color: white;
 }
 .rename-input-container{
   display: block;
@@ -2378,8 +2386,8 @@ body{
   }
   /* verification */
   .verify-code-form{
-    margin: 0px 10px;
     padding: 0px -10px;
+    margin-top: -200px;
   }
   .container-header{
     font-size: 28px;
@@ -2531,7 +2539,7 @@ body{
   }
   /* user content container */
   .user-content-container{
-    height: 92.6vh;
+    height: 92.7vh;
   }
   /* .admin-content-container{
     height: 92vh;
@@ -2575,7 +2583,7 @@ body{
     padding: 20px 10%;
   }
   .verify-code-form{
-    margin: 0px 10px;
+    margin-top: -200px;
     padding: 0px -10px;
   }
   .container-header{
@@ -2611,7 +2619,7 @@ body{
     width: 93%;
   }
   .verify-code-form{
-    margin: 0px 10px;
+    margin-top: -200px;
     padding: 0px -10px;
   }
   .container-header{
@@ -2747,7 +2755,7 @@ body{
   }
   /* verification */
   .verify-code-form{
-    margin: 0px 10px;
+    margin-top: -200px;
   }
   .container-header{
     font-size: 20px;

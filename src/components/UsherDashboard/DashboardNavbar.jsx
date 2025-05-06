@@ -96,6 +96,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                         handleShow={handleShow}
                         handleTheme={handleTheme}
                         handleLogout={handleLogout}
+                        changeColor={changeColor}
                         handleChangeColor={()=> { 
                             handleChangeColor();
                             setIsTheme(false);
