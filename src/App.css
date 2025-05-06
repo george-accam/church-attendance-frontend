@@ -267,11 +267,10 @@ body{
 .container-background{
   display: flex;
   height: 100vh;
-  background: radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 0% 0% / 64px 64px, radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 32px 32px / 64px 64px, linear-gradient(#0004dc 1.5px, transparent 1.5px) 0px -0.75px / 32px 32px, linear-gradient(90deg, #0004dc 1.5px, #011050 1.5px) -0.75px 0px / 32px 32px #011050;
+  background-color: #002fff;
+  background: radial-gradient(circle, transparent 20%, #000d4652 20%, #011050 80%, transparent 80%, transparent) 0% 0% / 64px 64px, radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 32px 32px / 64px 64px, linear-gradient(#0004dc 1.5px, transparent 1.5px) 0px -0.75px / 32px 32px, linear-gradient(90deg, #0004dc 1.5px, #011050 1.5px) -0.75px 0px / 32px 32px #011050;
   background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
-  background-color: #011050;
-  /* background-image: url("./components/assets/pattern3.jpg");
-  background-position: center; */
+  background-position: left; 
 }
 .image-container{
   display: flex;
@@ -761,10 +760,10 @@ body{
   cursor: pointer;
 }
 .tithe-icon{
-  margin-right: 50px;
+  margin-right: 54px;
 }
 .welfare-icon{
-  margin-right: 50px;
+  margin-right: 54px;
 }
 
 /* switch settings 👇 */
