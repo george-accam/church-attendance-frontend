@@ -120,9 +120,12 @@ body{
 
 /* navbar page */
 .navbar-container{
-  background: #010364;
+  /* background: #010364;
   background: -webkit-linear-gradient(0deg, #010364 0%, #8982f1 100%);
-  background: linear-gradient(0deg, #010364 0%, #8982f1 100%);
+  background: linear-gradient(0deg, #010364 0%, #8982f1 100%); */
+  background: #6317cd;
+  background: -webkit-linear-gradient(40deg, #6317cd 0%, #5c3b8a 100%);
+  background: linear-gradient(40deg, #6317cd 0%, #5c3b8a 100%);
   height: auto;
 }
 .navbar-content{
@@ -156,6 +159,7 @@ body{
   text-decoration: none;
   color: #2a2a72;
   transition: .5s;
+  font-size: 14px;
 }
 .navbar-button:hover{
   background: #6900ff;
@@ -318,7 +322,6 @@ body{
   background: linear-gradient(0deg, #3aadf0 0%, #2b32b2 100%);
   border-radius: 10px;
   margin-bottom: 20px;
-  box-shadow: 0 0 8px  grey;
 }
 
 /* verification  */
@@ -439,7 +442,6 @@ body{
   background: #3aadf0;
   background: -webkit-linear-gradient(0deg, #3aadf0 0%, #2b32b2 100%);
   background: linear-gradient(0deg, #3aadf0 0%, #2b32b2 100%);
-  box-shadow: 0 0 8px  grey;
   border-radius: 10px 10px 0 0;
   margin-bottom: 20px;
 }
@@ -559,8 +561,8 @@ body{
 }
 .email-phone-switch{
   background: #2b2f77;
-  background: -webkit-linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
-  background: linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+  background: -webkit-linear-gradient(0deg, #e6e6e6 0%, #64646b 50%, #444663 100%);
+  background: linear-gradient(0deg, #2b2f77 0%, #373955 50%, #3a3d5c 100%);
   color: var(--light-text);
   padding: 2px;
   border-radius: 4px;
@@ -886,6 +888,9 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
   cursor: pointer;
   margin-top: 8px;
   transition: 0.5s;
+}
+.navbar-logout-icon{
+  margin-top: 2px;
 }
 .logout-inner-container p:hover{
   background: #039714;
@@ -1263,7 +1268,7 @@ background: linear-gradient(35deg, #01507e 0%, #010768 100%);
 .all-members-list{
   text-align: center;
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   border-top: 3px solid rgba(255, 255, 255, 0.496);
   border-bottom: 3px solid rgba(255, 255, 255, 0.496);
 }

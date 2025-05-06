@@ -53,7 +53,7 @@ const NavbarToggleButton = ({ isShow, setIsShow, handleLogout, handleChangeColor
                             </div>
                         )}
                     </div>
-                    <p onClick={handleLogout}><AiOutlineLogout /> logout</p>
+                    <p onClick={handleLogout}><AiOutlineLogout className="navbar-logout-icon" /> Logout</p>
                 </div>
             )}
         </div>

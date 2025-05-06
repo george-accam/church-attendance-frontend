@@ -13,8 +13,8 @@ const Navbar = () => {
           <p className='image-text'>Christ Embassy</p>
         </div>
         <div className="nav-item">
-          <Link className='navbar-button' to="/login">login</Link>
-          <Link className='navbar-button navbar-button2' to="/register">register</Link>
+          <Link className='navbar-button' to="/login">Login</Link>
+          <Link className='navbar-button navbar-button2' to="/register">Register</Link>
         </div>
       </div>
     </div>
