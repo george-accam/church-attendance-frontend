@@ -52,7 +52,7 @@ const LandingPage = () => {
                                     Sign up now and experience the convenience of modern church management.
                                 </p>
                             </div>
-                            <div className="nav-item">
+                            <div className="nav-item landing-page-button">
                                 <Link className='navbar-button navbar-button2' to="/register">Get Started</Link>
                             </div>
                         </div>

@@ -181,6 +181,9 @@ body{
   background-size: cover;
   background-position: center;
 }
+.landing-page-button{
+  margin-left: -50px;
+}
 .landing-page-content{
   overflow-y: scroll;
   height: 90vh;
@@ -195,7 +198,7 @@ body{
   height: auto;
 }
 .landing-page-inner{
-  margin: 40px 40px 0px 40px;
+  margin: 10px 40px 0px 40px;
   padding: 20px 50px;
   border: 1px solid var(--light-text);
   border-radius: 10px;
@@ -263,6 +266,7 @@ body{
 }
 .landing-page-bottom{
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .landing-page-bottom h3{
   font-size: 25px;
@@ -2356,6 +2360,9 @@ body{
     max-width: 950px;
     margin: 0px auto;
   }
+  .landing-page-button{
+    margin-left: -3.5%;
+  }
   .sub-image-container1{
     margin: 14px;
   }
@@ -2439,8 +2446,8 @@ body{
     font-size: 25px;
   }
   .sub-image-container1 img{
-    width: 20rem;
-    height: 20rem;
+    width: 22rem;
+    height: 22rem;
   }
   .sub-image-container1 span{
     font-size: 1.9rem;
@@ -2630,37 +2637,21 @@ body{
   }
 }
 @media screen and (max-width: 587px) {
-  .landing-page-content{
-    padding-top: 290px;
-  }
   .landing-page-inner{
-    margin-top: 40px;
-  }
-  .landing-page-inner{
-    margin: 9px 0px;
+    margin-top: -50px;
     padding: 20px 2px;
     width: 92%;
   }
-  .landing-page-sub-image{
-    display: flex;
-    flex-direction: column;
-    padding-top: 320px;
-    height: 80vh;
-    margin: 0px auto;
-  }
   .sub-image-container1{
-    margin: 1px;
-  }
-  .sub-image-container1 img{
-    width: 100%;
-    height: 300px;
-  }
-  .sub-image-container1 span{
-    font-size: 18px;
+    margin: 10px;
   }
   .landing-page-bottom{
     text-align: center;
     margin-bottom: 10px;
+  }
+  
+  .sub-image-top{
+    margin-bottom: 15px;
   }
   .inner-container{
     width: 95%;
@@ -2713,14 +2704,14 @@ body{
     font-size: 3.9rem;
     margin-left: 3rem;
   }
+  .landing-page-inner{
+    margin-top: -130px;
+  }
   .landing-page-title{
     font-size: 5rem;
   }
   .landing-page-title2{
     font-size: 2.9rem;
-  }
-  .sub-image-top{
-    margin-bottom: 60px;
   }
   .landing-page-bottom{
     margin-top: 10px;
