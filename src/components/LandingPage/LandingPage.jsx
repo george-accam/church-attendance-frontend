@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from "../Navbar";
 import LandImg1 from "../assets/land-img1.jpeg"
 import LandImg2 from "../assets/land-img2.jpeg"
@@ -10,8 +11,8 @@ const LandingPage = () => {
 
     return (
         <div className='landing-page-container'>
-            <div className="landing-page-filter">
                 <Navbar />
+            <div className="landing-page-filter">
                 <div className='landing-page-content'>
                     <div className="landing-page-inner">
                         <div className="">
@@ -50,6 +51,9 @@ const LandingPage = () => {
                                 <p>
                                     Sign up now and experience the convenience of modern church management.
                                 </p>
+                            </div>
+                            <div className="nav-item">
+                                <Link className='navbar-button navbar-button2' to="/register">Get Started</Link>
                             </div>
                         </div>
                     </div>

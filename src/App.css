@@ -174,13 +174,16 @@ body{
 
 /* landing page */
 .landing-page-container{
-  height: auto;
+  overflow-y: scroll;
+  height: 100vh;
   background: var(--white-bg);
   background-image: linear-gradient(0deg,  rgba(0, 61, 87, 0.781), rgba(1, 43, 61, 0.788), rgba(0, 118, 161, 0.481)), url("./components/assets/landing-page-image1.jpeg");
   background-size: cover;
   background-position: center;
 }
 .landing-page-content{
+  overflow-y: scroll;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,7 +192,7 @@ body{
 }
 .landing-page-filter{
   /* backdrop-filter: blur(3px); */
-  height: 100vh;
+  height: auto;
 }
 .landing-page-inner{
   margin: 40px 40px 0px 40px;
@@ -273,7 +276,7 @@ body{
   background-color: #002fff;
   background: radial-gradient(circle, transparent 20%, #000d4652 20%, #011050 80%, transparent 80%, transparent) 0% 0% / 64px 64px, radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 32px 32px / 64px 64px, linear-gradient(#0004dc 1.5px, transparent 1.5px) 0px -0.75px / 32px 32px, linear-gradient(90deg, #0004dc 1.5px, #011050 1.5px) -0.75px 0px / 32px 32px #011050;
   background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
-  background-position: left; 
+  background-position: center; 
 }
 .image-container{
   display: flex;
@@ -319,7 +322,7 @@ body{
   background: #3aadf0;
   background: -webkit-linear-gradient(0deg, #3aadf0 0%, #2b32b2 100%);
   background: linear-gradient(0deg, #3aadf0 0%, #2b32b2 100%);
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
@@ -548,7 +551,8 @@ body{
   color: red;
 }
 .email-phone-container{
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.219);
+  color: white;
   padding: 2px;
   width: 126px;
   border-radius: 5px;
@@ -556,7 +560,7 @@ body{
 .email-phone{
   font-size: 16px;
   cursor: pointer;
-  padding: 3px;
+  padding: 4px;
 }
 .email-phone-switch{
   background: #2b2f77;
@@ -2626,10 +2630,37 @@ body{
   }
 }
 @media screen and (max-width: 587px) {
+  .landing-page-content{
+    padding-top: 290px;
+  }
   .landing-page-inner{
-    margin: 90px 0px;
-    padding: 20px 5px;
+    margin-top: 40px;
+  }
+  .landing-page-inner{
+    margin: 9px 0px;
+    padding: 20px 2px;
     width: 92%;
+  }
+  .landing-page-sub-image{
+    display: flex;
+    flex-direction: column;
+    padding-top: 320px;
+    height: 80vh;
+    margin: 0px auto;
+  }
+  .sub-image-container1{
+    margin: 1px;
+  }
+  .sub-image-container1 img{
+    width: 100%;
+    height: 300px;
+  }
+  .sub-image-container1 span{
+    font-size: 18px;
+  }
+  .landing-page-bottom{
+    text-align: center;
+    margin-bottom: 10px;
   }
   .inner-container{
     width: 95%;
@@ -2687,14 +2718,6 @@ body{
   }
   .landing-page-title2{
     font-size: 2.9rem;
-  }
-  .sub-image-container1 img{
-    width: 20rem;
-    height: 20rem;
-  }
-  .sub-image-container1 span{
-    font-size: 1.9rem;
-    border-radius: 0;
   }
   .sub-image-top{
     margin-bottom: 60px;
