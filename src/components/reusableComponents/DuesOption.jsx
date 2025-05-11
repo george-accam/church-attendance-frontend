@@ -11,7 +11,7 @@ const DuesOption = ({ memberId, optionOne, optionTwo, handleTithe, handleWelfare
             onClick={(e)=> e.stopPropagation()}
         >
             <p className="edit-container-menu">
-                -- Option --
+                — Option —
             </p>
             {/* option one container */}
             <div

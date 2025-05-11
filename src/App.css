@@ -266,7 +266,7 @@ body{
   border-radius: 0 0 10px 10px;
 }
 .sub-image-top{
-  margin-bottom: 60px;
+  margin-bottom: 13px;
 }
 .landing-page-bottom{
   margin-top: 10px;
@@ -2374,9 +2374,6 @@ body{
     width: 190px;
     height: 190px;
   }
-  .sub-image-top{
-    margin-bottom: 60px;
-  }
   .landing-page-bottom{
     margin-top: 10px;
     margin-left: 10px;
@@ -2457,7 +2454,7 @@ body{
     font-size: 1.9rem;
   }
   .sub-image-top{
-    margin-bottom: 60px;
+    margin-bottom: 12px;
   }
   .landing-page-bottom{
     margin-top: 10px;

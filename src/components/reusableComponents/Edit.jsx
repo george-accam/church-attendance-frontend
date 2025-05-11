@@ -14,7 +14,7 @@ const Edit = ({ memberId, handleRename, handleDelete }) => {
                 onClick={(e)=> e.stopPropagation()}
             >
                 <p className="edit-container-menu">
-                    -- Option --
+                    — Option —
                 </p>
                 {/* rename container */}
                 <div
