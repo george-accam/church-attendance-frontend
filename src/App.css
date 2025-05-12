@@ -281,10 +281,10 @@ body{
 .container-background{
   display: flex;
   height: 100vh;
-  background-color: #002fff;
-  background: radial-gradient(circle, transparent 20%, #000d4652 20%, #011050 80%, transparent 80%, transparent) 0% 0% / 64px 64px, radial-gradient(circle, transparent 20%, #011050 20%, #011050 80%, transparent 80%, transparent) 32px 32px / 64px 64px, linear-gradient(#0004dc 1.5px, transparent 1.5px) 0px -0.75px / 32px 32px, linear-gradient(90deg, #0004dc 1.5px, #011050 1.5px) -0.75px 0px / 32px 32px #011050;
-  background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
-  background-position: center; 
+  background: #0070b0;
+  background: -webkit-linear-gradient(43deg, #0070b0 0%, #020652 100%);
+  background: linear-gradient(43deg, #003b5e 0%, #00033f 100%);
+
 }
 .image-container{
   display: flex;
