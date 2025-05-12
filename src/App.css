@@ -1941,7 +1941,8 @@ body{
   display: flex;
   color: var(--light-text);
   font-size: 15px;
-  margin-right: 130px;
+  /* margin-right: 133px; */
+  width: 172px;
   cursor: pointer;
   padding: 2px;
   background-color: rgba(128, 128, 128, 0.373);
