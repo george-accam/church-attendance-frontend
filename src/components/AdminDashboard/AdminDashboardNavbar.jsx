@@ -1,3 +1,4 @@
+import { IoMdOptions } from "react-icons/io"; 
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdLogout } from "react-icons/md"; 
 import React, { useRef, useState, useEffect } from 'react';
@@ -84,7 +85,7 @@ const AdminDashboardNavbar = ({ user, handleChangeColor, changeColor, handleSide
                 ref={menuRef}
                 >
                 <span id="options-menu" onClick={handleShow} aria-expanded={isShow}>
-                    <MdLogout />
+                    <IoMdOptions />
                 </span>
                 {/* toggle navbar container */}
                 {isShow && (

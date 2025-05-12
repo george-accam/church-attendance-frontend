@@ -40,21 +40,6 @@ const CheckInLoader = ({ className }) => {
                                         <label htmlFor="name"></label>
                                         <p></p>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* grid  info */}
-                        <div class="grid-item">
-                            <div className="grid-container-inner">
-                                <div className="">
-                                    <div className="member-info-check-loader">
-                                        <label htmlFor="name"></label>
-                                        <p></p>
-                                    </div>
-                                    <div className="member-info-check-loader">
-                                        <label htmlFor="name"></label>
-                                        <p></p>
-                                    </div>
                                     <div className="member-info-check-loader">
                                         <label htmlFor="name"></label>
                                         <p></p>
@@ -66,6 +51,33 @@ const CheckInLoader = ({ className }) => {
                         <div class="grid-item">
                             <div className="grid-container-inner">
                                 <div className="">
+                                    <div className="member-info-check-loader">
+                                        <label htmlFor="name"></label>
+                                        <p></p>
+                                    </div>
+                                    <div className="member-info-check-loader">
+                                        <label htmlFor="name"></label>
+                                        <p></p>
+                                    </div>
+                                    <div className="member-info-check-loader">
+                                        <label htmlFor="name"></label>
+                                        <p></p>
+                                    </div>
+                                    <div className="member-info-check-loader">
+                                        <label htmlFor="name"></label>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* grid  info */}
+                        <div class="grid-item">
+                            <div className="grid-container-inner">
+                                <div className="">
+                                    <div className="member-info-check-loader">
+                                        <label htmlFor="name"></label>
+                                        <p></p>
+                                    </div>
                                     <div className="member-info-check-loader">
                                         <label htmlFor="name"></label>
                                         <p></p>

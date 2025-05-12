@@ -1,3 +1,6 @@
+import { BsFillPatchCheckFill } from "react-icons/bs"; 
+import { BiCalendarCheck } from "react-icons/bi"; 
+import { BsPersonCircle } from "react-icons/bs"; 
 import { IoMdTimer } from "react-icons/io"; 
 import { SlPhone } from "react-icons/sl"; 
 import { CgSearch } from "react-icons/cg"; 
@@ -158,6 +161,7 @@ const MembersChecked = ( { changeColor, }) => {
                                     }
                                     </h1>
                                 </div>
+
                                 <div className="grid-container">
                                     {/* Render check-ins for each date */}
                                     {searchGroupedCheckIns[date].map((checkIn) => (
@@ -166,27 +170,34 @@ const MembersChecked = ( { changeColor, }) => {
                                                 <div>
                                                     <div className="member-info-check">
                                                         <label htmlFor="name">
-                                                        <BsPersonSquare /> Name:
+                                                            <BsPersonSquare /> Name:
                                                         </label>
                                                         <p>{capitalizeWords(checkIn.attendeeFullName)}</p>
                                                     </div>
                                                     <div className="member-info-check">
                                                         <label htmlFor="name">
-                                                        <SlPhone /> Phone number:
+                                                            <SlPhone /> Phone number:
                                                         </label>
                                                         <p>{checkIn.attendeePhoneNumber}</p>
                                                     </div>
                                                     <div className="member-info-check">
                                                         <label htmlFor="name">
-                                                        <IoMdTimer /> Checked in at:
+                                                            <IoMdTimer /> Checked in at:
                                                         </label>
                                                         <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
+                                                    </div>
+                                                    <div className="member-info-check">
+                                                        <label htmlFor="name">
+                                                            <BsFillPatchCheckFill /> Checked in by:
+                                                        </label>
+                                                        <p>{checkIn.checkedBy ? capitalizeWords(checkIn.checkedBy) : "not found"}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
+
                                 <p className="number-of-check-ins">
                                     {groupedCheckIns[date] ? 
                                         `Number of check-ins: ${searchGroupedCheckIns[date].length}` 
@@ -214,35 +225,43 @@ const MembersChecked = ( { changeColor, }) => {
                                             }
                                         </h1>
                                     </div>
+                                    
                                     <div className="grid-container">
                                         {/* Render check-ins for each date */}
                                         {groupedCheckIns[date].map((checkIn) => (
                                             <div key={checkIn._id} className="grid-item">
                                                 <div className="grid-container-inner">
                                                     <div>
-                                                    <div className="member-info-check">
-                                                        <label htmlFor="name">
-                                                        <BsPersonSquare /> Name:
-                                                        </label>
-                                                        <p>{capitalizeWords(checkIn.attendeeFullName)}</p>
-                                                    </div>
-                                                    <div className="member-info-check">
-                                                        <label htmlFor="name">
-                                                        <SlPhone /> Phone number:
-                                                        </label>
-                                                        <p>{checkIn.attendeePhoneNumber}</p>
-                                                    </div>
-                                                    <div className="member-info-check">
-                                                        <label htmlFor="name">
-                                                        <IoMdTimer /> Checked in at:
-                                                        </label>
-                                                        <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
-                                                    </div>
+                                                        <div className="member-info-check">
+                                                            <label htmlFor="name">
+                                                            <BsPersonSquare /> Name:
+                                                            </label>
+                                                            <p>{capitalizeWords(checkIn.attendeeFullName)}</p>
+                                                        </div>
+                                                        <div className="member-info-check">
+                                                            <label htmlFor="name">
+                                                            <SlPhone /> Phone number:
+                                                            </label>
+                                                            <p>{checkIn.attendeePhoneNumber}</p>
+                                                        </div>
+                                                        <div className="member-info-check">
+                                                            <label htmlFor="name">
+                                                            <IoMdTimer /> Checked in at:
+                                                            </label>
+                                                            <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
+                                                        </div>
+                                                        <div className="member-info-check">
+                                                            <label htmlFor="name">
+                                                                <BsFillPatchCheckFill /> Checked in by:
+                                                            </label>
+                                                            <p>{checkIn.checkedBy ? capitalizeWords(checkIn.checkedBy) : "not found"}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
+                                    
                                     <p className="number-of-check-ins">
                                         {groupedCheckIns[date] ? 
                                             `Number of check-ins: ${groupedCheckIns[date].length}` 

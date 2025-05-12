@@ -15,6 +15,9 @@ const CheckIn = () => {
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [checkedMembers, setCheckedMembers] = useState([]);
 
+  // get the local storage data
+  const usherData = JSON.parse(localStorage.getItem('usher'));
+
   // Handle checkbox changes
   const handleChecked = (e, memberId) => {
     const isChecked = e.target.checked;
@@ -34,7 +37,7 @@ const CheckIn = () => {
   // Submit check-in data
   const handleOnSubmit = async (telephoneNumber) => {
     try {
-      const response = await Api.post("check-in", { phoneNumber: telephoneNumber });
+      const response = await Api.post("check-in", { phoneNumber: telephoneNumber, checkedBy: usherData.fullName });
       const { message } = response.data;
       if (message) {
         handleSuccess(message);

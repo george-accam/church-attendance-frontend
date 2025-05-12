@@ -1,3 +1,4 @@
+import { IoMdOptions } from "react-icons/io"; 
 import { HiMenuAlt1 } from "react-icons/hi"; 
 import { AiOutlineLogout } from "react-icons/ai"; 
 import { MdOutlineModeStandby } from "react-icons/md"; 
@@ -86,7 +87,7 @@ const DashboardNavbar = ({ user, handleChangeColor, changeColor, handleSidebarAc
                 ref={menuRef}
                 >
                 <span id="options-menu" onClick={handleShow} aria-expanded={isShow}>
-                    <MdLogout />
+                    <IoMdOptions />
                 </span>
                 {/* toggle navbar container */}
                 {isShow && (
