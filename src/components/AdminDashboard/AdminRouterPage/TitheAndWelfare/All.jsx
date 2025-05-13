@@ -52,6 +52,13 @@ const All = ({ dues, isTotalAmount, searchTotalAmountByDate, isTotalAmountByDate
         );
     };
 
+    // time format to 12 hours
+    const timeFormat = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }
+
     
     
     return (
@@ -156,7 +163,7 @@ const All = ({ dues, isTotalAmount, searchTotalAmountByDate, isTotalAmountByDate
                                                     <label htmlFor="name">
                                                         <IoMdTimer /> Submitted at:
                                                     </label>
-                                                    <p>{new Date(searchResult.dateCreated).toLocaleTimeString()}</p>
+                                                    <p>{new Date(searchResult.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,7 +286,7 @@ const All = ({ dues, isTotalAmount, searchTotalAmountByDate, isTotalAmountByDate
                                                         <label htmlFor="name">
                                                             <IoMdTimer /> Submitted at:
                                                         </label>
-                                                        <p>{new Date(due.dateCreated).toLocaleTimeString()}</p>
+                                                        <p>{new Date(due.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                     </div>
                                                 </div>
                                             </div>

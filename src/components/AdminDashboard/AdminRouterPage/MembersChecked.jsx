@@ -115,6 +115,13 @@ const MembersChecked = ( { changeColor, }) => {
         );
     };
 
+    // time format to 12 hours
+    const timeFormat = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }
+
     return (
         <div>
             <div className={`all-members-container ${changeColor ? "dashboard-border-bottom-dark" : "dashboard-border-bottom-light"}`}>
@@ -184,7 +191,7 @@ const MembersChecked = ( { changeColor, }) => {
                                                         <label htmlFor="name">
                                                             <IoMdTimer /> Checked in at:
                                                         </label>
-                                                        <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
+                                                        <p>{new Date(checkIn.checkInTime).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                     </div>
                                                     <div className="member-info-check">
                                                         <label htmlFor="name">
@@ -248,7 +255,7 @@ const MembersChecked = ( { changeColor, }) => {
                                                             <label htmlFor="name">
                                                             <IoMdTimer /> Checked in at:
                                                             </label>
-                                                            <p>{new Date(checkIn.checkInTime).toLocaleTimeString()}</p>
+                                                            <p>{new Date(checkIn.checkInTime).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                         </div>
                                                         <div className="member-info-check">
                                                             <label htmlFor="name">

@@ -47,6 +47,13 @@ const Tithe = ({ titheOnly, loading, titheAmount, searchTitheTotalAmount, search
             <TitheAndWelfareLoader />
         );
     }
+
+    // time format to 12 hours
+    const timeFormat = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }
     
     return (
         <div>
@@ -106,7 +113,7 @@ const Tithe = ({ titheOnly, loading, titheAmount, searchTitheTotalAmount, search
                                                         <label htmlFor="name">
                                                             <IoMdTimer /> Submitted at:
                                                         </label>
-                                                        <p>{new Date(due.dateCreated).toLocaleTimeString()}</p>
+                                                        <p>{new Date(due.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -185,7 +192,7 @@ const Tithe = ({ titheOnly, loading, titheAmount, searchTitheTotalAmount, search
                                                             <label htmlFor="name">
                                                                 <IoMdTimer /> Submitted at:
                                                             </label>
-                                                            <p>{new Date(due.dateCreated).toLocaleTimeString()}</p>
+                                                            <p>{new Date(due.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                         </div>
                                                     </div>
                                                 </div>

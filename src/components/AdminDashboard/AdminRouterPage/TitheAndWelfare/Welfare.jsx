@@ -47,6 +47,13 @@ const Welfare = ({ welfareOnly, loading, welfareSearchResults, welfareAmount, we
             <TitheAndWelfareLoader />
         )
     }
+
+    // time format to 12 hours
+    const timeFormat = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }
     
     return (
         <div>
@@ -108,7 +115,7 @@ const Welfare = ({ welfareOnly, loading, welfareSearchResults, welfareAmount, we
                                                         <label htmlFor="name">
                                                             <IoMdTimer /> Submitted at:
                                                         </label>
-                                                        <p>{new Date(due.dateCreated).toLocaleTimeString()}</p>
+                                                        <p>{new Date(due.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +197,7 @@ const Welfare = ({ welfareOnly, loading, welfareSearchResults, welfareAmount, we
                                                             <label htmlFor="name">
                                                                 <IoMdTimer /> Submitted at:
                                                             </label>
-                                                            <p>{new Date(due.dateCreated).toLocaleTimeString()}</p>
+                                                            <p>{new Date(due.dateCreated).toLocaleTimeString("en-GB", timeFormat)}</p>
                                                         </div>
                                                     </div>
                                                 </div>
