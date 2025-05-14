@@ -1065,7 +1065,9 @@ body{
   width: 320px;
   height: 89.7vh;
   padding: 10px 0;
-  background-color: rgb(0, 4, 16);
+  background: #00031f;
+  background: -webkit-linear-gradient(244deg, #0d102e 0%, #000017 50%, #000000 100%);
+  background: linear-gradient(244deg, #0d102e 0%, #000017 50%, #000000 100%);
 }
 .sidebar-top{
   display: none;
