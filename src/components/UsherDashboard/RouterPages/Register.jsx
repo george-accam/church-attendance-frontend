@@ -1,3 +1,4 @@
+import { BsFingerprint } from "react-icons/bs"; 
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import { handleSuccess, handleError } from '../../../notifications/Notification';
@@ -5,6 +6,7 @@ import Api from "../../../API/Api";
 import { ToastContainer } from 'react-toastify';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { useSocket } from '../../Socket.io/Socket';
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -81,6 +83,12 @@ const Register = () => {
     });
   }, [])
 
+  // initialize socket connection
+  const { socket, message, connected } = useSocket();
+  console.log("Socket message:", message || "no message received");
+  console.log("Socket connected:", connected);
+  
+
   return (
     <div>
       <div className="container-background usher-register-container">
@@ -113,6 +121,20 @@ const Register = () => {
                         required
                         placeholder="enter phone number" 
                     />
+                </div>
+                <div className="fingerprint-group">
+                    <label htmlFor="fingerprintID">
+                      Fingerprint
+                    </label>
+                    {message ? (
+                      <p className="fingerprintID-success">
+                        <BsFingerprint />
+                      </p>
+                    ) :(
+                      <p className="fingerprintID-fail">
+                        <BsFingerprint />
+                      </p>
+                    )}
                 </div>
                 <div className="button-container">
                     <button type="submit"

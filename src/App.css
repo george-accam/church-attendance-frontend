@@ -484,6 +484,26 @@ body{
 .form-group input:focus-visible{
   border: 1px solid blue;
 }
+.fingerprint-group{
+  display: flex;
+  justify-content: space-between;
+}
+.fingerprint-group label{
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white-bg);
+}
+.fingerprint-group p{
+  font-size: 45px;
+  margin-top: 5px;
+}
+.fingerprintID-success{
+  color: rgb(94, 255, 0);
+}
+.fingerprintID-fail{
+  color: red;
+}
 .password{
   margin: 15px 0px;
   display: flex;
