@@ -83,7 +83,7 @@ const Register = () => {
     });
   }, [])
 
-  // initialize socket connection
+  // initialize socket connection and listen for messages
   const { socket, message, connected } = useSocket();
   console.log("Socket message:", message || "no message received");
   console.log("Socket connected:", connected);
