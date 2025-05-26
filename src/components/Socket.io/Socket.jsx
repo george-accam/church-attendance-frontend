@@ -4,7 +4,8 @@ import io from 'socket.io-client';
 const SocketContext = createContext(null);
 
 //URL of  Socket.io server
-const SOCKET_SERVER_URL = "https://church-attendance-server.vercel.app/";
+const SOCKET_SERVER_URL = 'https://church-attendance-server.onrender.com';
+// const SOCKET_SERVER_URL = 'http://localhost:3002';
 
 export const Socket = ({ children }) => {
     const [socket, setSocket] = useState(null);
